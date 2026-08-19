@@ -1,5 +1,6 @@
 import logging
 from collections import deque
+from html import escape
 from pathlib import Path
 
 import streamlit as st
@@ -134,56 +135,362 @@ def _inject_app_css() -> None:
     st.markdown(
         """
         <style>
+        :root {
+            --canvas: #faf9f5;
+            --surface-soft: #f5f0e8;
+            --surface-card: #efe9de;
+            --surface-strong: #e8e0d2;
+            --surface-dark: #181715;
+            --surface-dark-elevated: #252320;
+            --surface-dark-soft: #1f1e1b;
+            --primary: #cc785c;
+            --primary-active: #a9583e;
+            --ink: #141413;
+            --body: #3d3d3a;
+            --muted: #6c6a64;
+            --muted-soft: #8e8b82;
+            --hairline: #e6dfd8;
+            --teal: #5db8a6;
+            --amber: #e8a55a;
+            --success: #5db872;
+            --warning: #d4a017;
+            --error: #c64545;
+        }
+        html, body, [data-testid="stAppViewContainer"] {
+            background: var(--canvas);
+            color: var(--ink);
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        [data-testid="stHeader"] {
+            background: rgba(250, 249, 245, 0.88);
+            backdrop-filter: blur(10px);
+        }
         .block-container {
-            padding-top: 1.4rem;
-            padding-bottom: 1.5rem;
-            max-width: 1180px;
+            padding-top: 1.25rem;
+            padding-bottom: 1.75rem;
+            max-width: 1200px;
+        }
+        h1, h2, h3 {
+            color: var(--ink);
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: 400;
+            letter-spacing: 0;
+        }
+        p, li, label, span {
+            letter-spacing: 0;
+        }
+        .app-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+            gap: 1.5rem;
+            align-items: stretch;
+            margin-bottom: 1.25rem;
+        }
+        .hero-copy {
+            padding: 1rem 0 .35rem;
+        }
+        .brand-row {
+            display: flex;
+            align-items: center;
+            gap: .55rem;
+            color: var(--body);
+            font-size: .86rem;
+            font-weight: 500;
+            margin-bottom: .9rem;
+        }
+        .brand-mark {
+            width: 1.05rem;
+            height: 1.05rem;
+            display: inline-grid;
+            place-items: center;
+            color: var(--primary);
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+        .hero-copy h1 {
+            font-size: clamp(2.2rem, 5vw, 4.1rem);
+            line-height: 1.03;
+            margin: 0 0 .8rem;
+        }
+        .hero-copy p {
+            max-width: 670px;
+            color: var(--body);
+            font-size: 1.02rem;
+            line-height: 1.58;
+            margin: 0;
+        }
+        .hero-surface {
+            background: var(--surface-dark);
+            border-radius: 12px;
+            color: var(--canvas);
+            padding: 1.25rem;
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .hero-surface .mini-label {
+            color: #a09d96;
+            font-size: .76rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+        .hero-surface .hero-line {
+            color: var(--canvas);
+            font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: .88rem;
+            line-height: 1.7;
+            margin-top: 1rem;
+        }
+        .hero-surface .status-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin-top: 1rem;
+        }
+        .dark-pill {
+            border: 1px solid #393631;
+            border-radius: 999px;
+            color: #d7d1c7;
+            padding: .32rem .65rem;
+            font-size: .78rem;
+        }
+        .section-heading {
+            margin: 1.2rem 0 .85rem;
+        }
+        .section-heading .eyebrow {
+            color: var(--primary);
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: .25rem;
+        }
+        .section-heading h2 {
+            font-size: clamp(1.55rem, 3vw, 2.35rem);
+            line-height: 1.12;
+            margin: 0 0 .35rem;
+        }
+        .section-heading p {
+            color: var(--muted);
+            font-size: .95rem;
+            line-height: 1.55;
+            margin: 0;
+            max-width: 760px;
+        }
+        .insight-card,
+        .feature-card,
+        .action-box,
+        .chat-panel,
+        .composer-panel {
+            border-radius: 12px;
+            box-shadow: none;
         }
         .insight-card {
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 1rem 1.05rem;
-            background: #ffffff;
-            min-height: 138px;
+            border: 1px solid var(--hairline);
+            padding: 1.15rem 1.2rem;
+            background: var(--surface-card);
+            min-height: 168px;
         }
         .insight-card h3 {
-            font-size: 0.9rem;
-            margin: 0 0 .35rem 0;
-            color: #475569;
-            font-weight: 700;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: .78rem;
+            margin: 0 0 .5rem;
+            color: var(--muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .08em;
         }
         .insight-card .big {
-            font-size: 1.65rem;
-            line-height: 1.2;
-            font-weight: 760;
-            color: #111827;
-            margin-bottom: .3rem;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+            line-height: 1.12;
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: .45rem;
         }
         .insight-card p {
             margin: 0;
-            color: #475569;
+            color: var(--body);
             font-size: .92rem;
-            line-height: 1.45;
+            line-height: 1.5;
+        }
+        .insight-card.dark {
+            background: var(--surface-dark);
+            border-color: var(--surface-dark);
+        }
+        .insight-card.dark h3,
+        .insight-card.dark p {
+            color: #a09d96;
+        }
+        .insight-card.dark .big {
+            color: var(--canvas);
+        }
+        .insight-card.coral {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        .insight-card.coral h3,
+        .insight-card.coral p,
+        .insight-card.coral .big {
+            color: #ffffff;
         }
         .action-box {
-            border-left: 4px solid #2563eb;
-            background: #eff6ff;
-            padding: .85rem 1rem;
-            border-radius: 6px;
-            margin-bottom: .65rem;
+            border: 1px solid var(--hairline);
+            background: var(--canvas);
+            padding: 1rem 1.1rem;
+            margin-bottom: .7rem;
+            display: grid;
+            grid-template-columns: 2.1rem 1fr;
+            gap: .85rem;
+            align-items: start;
         }
-        .action-box strong {
-            color: #1e3a8a;
-        }
-        .quiet-note {
-            color: #64748b;
+        .action-number {
+            width: 2.1rem;
+            height: 2.1rem;
+            border-radius: 999px;
+            background: var(--primary);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: 600;
             font-size: .9rem;
         }
+        .action-box strong,
+        .feature-card strong {
+            color: var(--ink);
+            display: block;
+            font-size: 1rem;
+            margin-bottom: .25rem;
+        }
+        .action-box p,
+        .feature-card p {
+            color: var(--body);
+            margin: 0;
+            font-size: .93rem;
+            line-height: 1.5;
+        }
+        .quiet-note {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+        .summary-band {
+            background: var(--surface-soft);
+            border: 1px solid var(--hairline);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            color: var(--body);
+            line-height: 1.55;
+            margin-bottom: 1rem;
+        }
+        .summary-band strong {
+            color: var(--ink);
+        }
+        .chat-shell {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 280px;
+            gap: 1rem;
+            align-items: start;
+            margin-top: .35rem;
+        }
+        .chat-panel,
+        .composer-panel {
+            border: 1px solid var(--hairline);
+            background: var(--surface-card);
+            padding: 1rem;
+        }
+        .chat-panel {
+            min-height: 610px;
+        }
+        .composer-panel {
+            background: var(--surface-dark);
+            color: var(--canvas);
+            position: sticky;
+            top: 5.25rem;
+        }
+        .composer-panel h3 {
+            color: var(--canvas);
+            font-family: Georgia, "Times New Roman", serif;
+            margin: 0 0 .45rem;
+            font-size: 1.45rem;
+        }
+        .composer-panel p {
+            color: #a09d96;
+            font-size: .9rem;
+            line-height: 1.55;
+            margin: 0 0 .9rem;
+        }
+        .composer-panel .mini-label {
+            color: #a09d96;
+            font-size: .74rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+        }
         div[data-testid="stVerticalBlock"]:has(.chat-history-marker) {
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
+            border: 1px solid var(--hairline);
+            border-radius: 12px;
             padding: .75rem .85rem;
-            background: #f8fafc;
+            background: var(--canvas);
+        }
+        div[data-testid="stChatMessage"] {
+            background: rgba(255, 255, 255, .36);
+            border: 1px solid var(--hairline);
+            border-radius: 12px;
+            padding: .3rem .55rem;
+        }
+        .stButton > button,
+        .stDownloadButton > button {
+            border-radius: 8px;
+            border: 1px solid var(--hairline);
+            background: var(--canvas);
+            color: var(--ink);
+            min-height: 40px;
+        }
+        .stButton > button[kind="primary"],
+        .stDownloadButton > button[kind="primary"] {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+        .stButton > button:hover,
+        .stDownloadButton > button:hover {
+            border-color: var(--primary);
+            color: var(--primary-active);
+        }
+        div[data-testid="stTabs"] button {
+            color: var(--muted);
+        }
+        div[data-testid="stTabs"] button[aria-selected="true"] {
+            color: var(--ink);
+        }
+        div[data-testid="stTabs"] button[aria-selected="true"] p {
+            color: var(--ink);
+            font-weight: 600;
+        }
+        div[data-testid="stSelectbox"] label,
+        div[data-testid="stCheckbox"] label,
+        div[data-testid="stFileUploader"] label {
+            color: var(--body);
+        }
+        .stAlert {
+            border-radius: 12px;
+        }
+        @media (max-width: 900px) {
+            .app-hero,
+            .chat-shell {
+                grid-template-columns: 1fr;
+            }
+            .hero-surface {
+                min-height: auto;
+            }
+            .composer-panel {
+                position: static;
+            }
+            .chat-panel {
+                min-height: 520px;
+            }
         }
         </style>
         """,
@@ -371,25 +678,117 @@ def _build_next_steps(summary, habits, profiles, risk, forecast, goals) -> list[
     return steps[:3]
 
 
-def _render_insight_card(title: str, big: str, detail: str) -> None:
+def _safe(value) -> str:
+    return escape(str(value), quote=True)
+
+
+def _risk_plain_language(risk) -> tuple[str, str]:
+    level = str(getattr(risk, "risk_level", "low")).lower()
+    score = float(getattr(risk, "score", 0.0) or 0.0)
+    factors = getattr(risk, "contributing_factors", []) or []
+    if level == "high":
+        title = "Pressure is getting too loud"
+    elif level == "medium":
+        title = "Pressure is building"
+    elif level == "low":
+        title = "Load looks manageable"
+    else:
+        title = "Still reading the load"
+    reason = ", ".join(str(f) for f in factors[:2]) or getattr(
+        risk, "explanation", "No strong risk factors stood out yet."
+    )
+    return title, f"{score:.0%} signal. {reason}"
+
+
+def _forecast_plain_language(forecast) -> tuple[str, str]:
+    direction = str(getattr(forecast, "direction", "stable")).lower()
+    confidence = float(getattr(forecast, "confidence", 0.0) or 0.0)
+    horizon = int(getattr(forecast, "horizon_days", 7) or 7)
+    if direction == "improving":
+        title = "The next few days may feel lighter"
+    elif direction == "declining":
+        title = "Catch the dip early"
+    else:
+        title = "The pattern looks steady"
+    return title, f"{horizon}-day read with {confidence:.0%} confidence."
+
+
+def _render_app_hero(records_count: int) -> None:
+    entry_word = "entry" if records_count == 1 else "entries"
     st.markdown(
         f"""
-        <div class="insight-card">
-            <h3>{title}</h3>
-            <div class="big">{big}</div>
-            <p>{detail}</p>
+        <div class="app-hero">
+            <div class="hero-copy">
+                <div class="brand-row">
+                    <span class="brand-mark">*</span>
+                    <span>Mind Shift AI</span>
+                </div>
+                <h1>Your journal, turned into clear next steps.</h1>
+                <p>
+                    A calmer workspace for reflection: write what happened, then
+                    review the pattern as plain conclusions and practical moves.
+                </p>
+            </div>
+            <div class="hero-surface">
+                <div>
+                    <div class="mini-label">Reflection console</div>
+                    <div class="hero-line">
+                        entries.loaded: {records_count}<br>
+                        insight.mode: conclusions first<br>
+                        next.action: one useful step
+                    </div>
+                </div>
+                <div class="status-row">
+                    <span class="dark-pill">{records_count} {entry_word}</span>
+                    <span class="dark-pill">Private SQLite memory</span>
+                    <span class="dark-pill">Render-ready</span>
+                </div>
+            </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
 
-def _render_action(title: str, detail: str) -> None:
+def _render_section_heading(eyebrow: str, title: str, detail: str = "") -> None:
+    detail_html = f"<p>{_safe(detail)}</p>" if detail else ""
+    st.markdown(
+        f"""
+        <div class="section-heading">
+            <div class="eyebrow">{_safe(eyebrow)}</div>
+            <h2>{_safe(title)}</h2>
+            {detail_html}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def _render_insight_card(
+    title: str, big: str, detail: str, variant: str = "cream"
+) -> None:
+    variant_class = variant if variant in {"dark", "coral"} else ""
+    st.markdown(
+        f"""
+        <div class="insight-card {variant_class}">
+            <h3>{_safe(title)}</h3>
+            <div class="big">{_safe(big)}</div>
+            <p>{_safe(detail)}</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def _render_action(title: str, detail: str, index: int) -> None:
     st.markdown(
         f"""
         <div class="action-box">
-            <strong>{title}</strong><br>
-            {detail}
+            <div class="action-number">{index}</div>
+            <div>
+                <strong>{_safe(title)}</strong>
+                <p>{_safe(detail)}</p>
+            </div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -583,14 +982,49 @@ def _render_dashboard_v2(service: "RAGService") -> None:
     records = db.get_all()
 
     if not records:
-        st.info("Write a few journal entries to see your personal summary here.")
+        _render_section_heading(
+            "Insights",
+            "Your dashboard will become useful after a few entries.",
+            "Start with ordinary daily notes. The app will summarize pressure, support, momentum, and next steps here.",
+        )
+        c1, c2, c3 = st.columns(3)
+        with c1:
+            _render_insight_card(
+                "Start here",
+                "Write freely",
+                "One honest paragraph is enough. You do not need perfect structure.",
+                "coral",
+            )
+        with c2:
+            _render_insight_card(
+                "What it learns",
+                "Patterns",
+                "Mood direction, repeated pressures, stabilizing habits, and relationship signals.",
+            )
+        with c3:
+            _render_insight_card(
+                "What you get",
+                "Next steps",
+                "Clear conclusions with small actions instead of raw counts.",
+                "dark",
+            )
         return
 
-    label = st.selectbox(
-        "Time range", list(_LOOKBACK_OPTIONS.keys()), index=1, key="dash_range_v2"
-    )
+    controls_left, controls_right = st.columns([3, 1])
+    with controls_left:
+        label = st.selectbox(
+            "Time range", list(_LOOKBACK_OPTIONS.keys()), index=1, key="dash_range_v2"
+        )
+    with controls_right:
+        report_clicked = st.button(
+            "Generate Report", key="gen_report_v2", use_container_width=True
+        )
     lookback = _LOOKBACK_OPTIONS[label]
     window_records = _window_records(records, lookback)
+
+    if not window_records:
+        st.info("No entries found in this time range. Try a wider range.")
+        return
 
     summary = service.pattern_engine.analyze(lookback_days=lookback)
     habit_corrs = service.habit_engine.analyze(lookback_days=lookback)
@@ -612,14 +1046,16 @@ def _render_dashboard_v2(service: "RAGService") -> None:
     pressure_title, pressure_detail = _top_pressure(summary)
     stabilizer_title, stabilizer_detail = _best_stabilizer(habit_corrs)
     person_title, person_detail = _relationship_guidance(profiles)
+    risk_title, risk_detail = _risk_plain_language(risk)
+    forecast_title, forecast_detail = _forecast_plain_language(forecast)
     next_steps = _build_next_steps(
         summary, habit_corrs, profiles, risk, forecast, goals
     )
 
-    st.subheader("Your Journal Summary")
-    st.caption(
-        "A simple read of your recent entries: what is happening, what is driving it, "
-        "and what to try next. This is reflection support, not medical advice."
+    _render_section_heading(
+        "Insights",
+        "The plain-language read",
+        "Conclusions first, evidence second. This is reflection support, not medical advice.",
     )
 
     try:
@@ -632,24 +1068,39 @@ def _render_dashboard_v2(service: "RAGService") -> None:
         else:
             st.info(alert.message)
 
-    c1, c2, c3 = st.columns(3)
+    summary_sentence = (
+        f"Across {len(window_records)} entries in {label.lower()}, the overall read is "
+        f"{_mood_label(mood_score).lower()}. The main pressure appears to be "
+        f"{pressure_title.lower()}, and the most useful immediate move is: "
+        f"{next_steps[0][1]}"
+    )
+    st.markdown(
+        f"""
+        <div class="summary-band">
+            <strong>Bottom line:</strong> {_safe(summary_sentence)}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    c1, c2, c3 = st.columns([1.1, 1, 1])
     with c1:
         _render_insight_card(
             "Overall state",
-            f"{mood_score}/100",
-            f"{_mood_label(mood_score)}. {balance_detail}",
+            _mood_label(mood_score),
+            f"Score {mood_score}/100. {balance_detail}",
+            "coral",
         )
     with c2:
         _render_insight_card("Direction", momentum_title, momentum_detail)
     with c3:
-        factors = ", ".join(risk.contributing_factors) or "No strong risk factors yet."
-        _render_insight_card(
-            "Pressure load",
-            risk.risk_level.title(),
-            f"{risk.score:.0%} signal. {factors}",
-        )
+        _render_insight_card("Pressure load", risk_title, risk_detail, "dark")
 
-    st.subheader("What This Means")
+    _render_section_heading(
+        "Meaning",
+        "What seems to be driving it",
+        "These are the patterns worth acting on first.",
+    )
     c1, c2, c3 = st.columns(3)
     with c1:
         _render_insight_card("Main pressure", pressure_title, pressure_detail)
@@ -658,28 +1109,43 @@ def _render_dashboard_v2(service: "RAGService") -> None:
     with c3:
         _render_insight_card("People pattern", person_title, person_detail)
 
-    st.subheader("Try This Next")
-    for title, detail in next_steps:
-        _render_action(title, detail)
+    _render_section_heading(
+        "Action Plan",
+        "Three useful moves",
+        "Small enough to do, specific enough to reduce noise.",
+    )
+    for idx, (title, detail) in enumerate(next_steps, start=1):
+        _render_action(title, detail, idx)
 
-    st.subheader("Progress Signals")
-    p1, p2 = st.columns([1, 1])
+    _render_section_heading(
+        "Progress",
+        "Signals to watch",
+        "Use these as gentle indicators, not judgments.",
+    )
+    p1, p2, p3 = st.columns([1, 1, 1])
     with p1:
-        st.markdown("**Mood forecast**")
-        st.progress(min(1.0, max(0.0, (forecast.predicted_sentiment + 1.0) / 2.0)))
-        st.caption(
-            f"{forecast.direction.title()} over the next {forecast.horizon_days} days. "
-            f"Confidence {forecast.confidence:.0%}."
+        _render_insight_card(
+            "Mood forecast",
+            forecast_title,
+            forecast_detail,
         )
     with p2:
-        st.markdown("**Goal momentum**")
         if goals:
-            for goal in goals[:3]:
-                st.markdown(f"**{goal.goal_keyword.replace('_', ' ').title()}**")
-                st.progress(goal.estimated_progress)
-                st.caption(goal.explanation)
+            goal = goals[0]
+            goal_name = goal.goal_keyword.replace("_", " ").title()
+            _render_insight_card(
+                "Goal momentum",
+                goal_name,
+                f"{goal.estimated_progress:.0%} progress signal. {goal.explanation}",
+            )
         else:
-            st.caption("No goal has enough repeated evidence yet.")
+            _render_insight_card(
+                "Goal momentum",
+                "Not clear yet",
+                "Repeated goals will appear here once your entries mention them consistently.",
+            )
+    with p3:
+        _render_insight_card("Balance", balance_title, balance_detail)
 
     with st.expander("Evidence behind these conclusions", expanded=False):
         emo_df = _emotion_over_time_df(window_records)
@@ -790,8 +1256,7 @@ def _render_dashboard_v2(service: "RAGService") -> None:
         else:
             st.info("Growth trends appear once you have entries across time.")
 
-    st.subheader("Weekly Report")
-    if st.button("Generate Report", key="gen_report_v2"):
+    if report_clicked:
         report_bytes = service.report_generator.generate(lookback_days=lookback)
         st.download_button(
             "Download Weekly Report (PDF)",
@@ -914,11 +1379,36 @@ def _render_chat_v2(service: "RAGService") -> None:
             st.info(alert.message)
         st.session_state["alerts_shown"] = True
 
-    top_left, top_right = st.columns([5, 1])
-    with top_left:
-        st.caption("Write naturally. The chat remembers this session; scroll the history without moving the composer.")
-    with top_right:
-        if st.button("Reset", use_container_width=True):
+    records = service.journal_db.get_all()
+    last_mood = "Not read yet"
+    if records:
+        last = sorted(records, key=lambda r: r.timestamp or "")[-1]
+        last_mood = str(last.emotion or "neutral").title()
+
+    _render_section_heading(
+        "Journal",
+        "A steady place to write",
+        "Write the day honestly; the response will meet the entry in context.",
+    )
+
+    history_col, context_col = st.columns([2.35, 1])
+
+    with context_col:
+        st.markdown(
+            f"""
+            <div class="composer-panel">
+                <div class="mini-label">Current journal</div>
+                <h3>{_safe(last_mood)}</h3>
+                <p>{len(records)} saved entries. {len(st.session_state["chat_history"])} messages in this session.</p>
+                <div class="status-row">
+                    <span class="dark-pill">Private memory</span>
+                    <span class="dark-pill">Reflection mode</span>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        if st.button("Reset Session", use_container_width=True):
             st.session_state["chat_history"] = []
             settings = get_settings()
             st.session_state["stm_entries"] = deque(maxlen=settings.session_stm_size)
@@ -926,47 +1416,47 @@ def _render_chat_v2(service: "RAGService") -> None:
             st.session_state.pop("last_pipeline_debug", None)
             st.rerun()
 
-    with st.expander("Chat options", expanded=False):
-        c1, c2 = st.columns(2)
-        with c1:
+        with st.expander("Session controls", expanded=False):
             st.session_state["show_retrieved"] = st.checkbox(
                 "Show retrieved memories",
                 value=st.session_state["show_retrieved"],
             )
-        with c2:
             st.session_state["debug_mode"] = st.checkbox(
                 "Debug mode",
                 value=st.session_state["debug_mode"],
             )
-        uploaded_file = st.file_uploader("Attach a journal file")
-        if uploaded_file is not None:
-            try:
-                save_path = _save_uploaded_file(uploaded_file)
-                st.success(f"File saved at: {save_path}")
-            except Exception as exc:
-                st.error(f"Failed to save file: {exc}")
+            uploaded_file = st.file_uploader("Attach a journal file")
+            if uploaded_file is not None:
+                try:
+                    save_path = _save_uploaded_file(uploaded_file)
+                    st.success(f"File saved at: {save_path}")
+                except Exception as exc:
+                    st.error(f"Failed to save file: {exc}")
 
-    with st.container(height=560):
-        st.markdown('<span class="chat-history-marker"></span>', unsafe_allow_html=True)
-        if not st.session_state["chat_history"]:
-            st.info("No entries in this session yet. Start with what happened today.")
-        for msg in st.session_state["chat_history"]:
-            with st.chat_message(msg["role"]):
-                st.markdown(msg["content"])
+    with history_col:
+        with st.container(height=620):
+            st.markdown(
+                '<span class="chat-history-marker"></span>', unsafe_allow_html=True
+            )
+            if not st.session_state["chat_history"]:
+                st.info("Start with what happened today.")
+            for msg in st.session_state["chat_history"]:
+                with st.chat_message(msg["role"]):
+                    st.markdown(msg["content"])
 
-    debug_payload = st.session_state.get("last_pipeline_debug")
-    if debug_payload and (
-        st.session_state["show_retrieved"] or st.session_state["debug_mode"]
-    ):
-        with st.expander("Latest pipeline details", expanded=False):
-            if st.session_state["show_retrieved"]:
-                st.caption("Retrieved memories used")
-                st.json(debug_payload.get("retrieved", []))
-            if st.session_state["debug_mode"]:
-                st.caption("Detected emotion")
-                st.json(debug_payload.get("emotion", {}))
-                st.caption("Constructed prompt")
-                st.code(debug_payload.get("prompt", ""))
+        debug_payload = st.session_state.get("last_pipeline_debug")
+        if debug_payload and (
+            st.session_state["show_retrieved"] or st.session_state["debug_mode"]
+        ):
+            with st.expander("Latest pipeline details", expanded=False):
+                if st.session_state["show_retrieved"]:
+                    st.caption("Retrieved memories used")
+                    st.json(debug_payload.get("retrieved", []))
+                if st.session_state["debug_mode"]:
+                    st.caption("Detected emotion")
+                    st.json(debug_payload.get("emotion", {}))
+                    st.caption("Constructed prompt")
+                    st.code(debug_payload.get("prompt", ""))
 
     user_text = st.chat_input("Write your current journal entry...")
     if not user_text:
@@ -983,9 +1473,9 @@ def _render_chat_v2(service: "RAGService") -> None:
         emotion = output["emotion"]
         response = output["response"]
         assistant_text = (
-            f"Detected mood: **{emotion['emotion']}** ({emotion['confidence']:.2f})\n\n"
-            f"{_format_secondary_emotions(emotion)}"
             f"{response}"
+            f"\n\n_Mood read: {emotion['emotion']} ({emotion['confidence']:.2f})._"
+            f"\n\n{_format_secondary_emotions(emotion)}"
         )
         _append_chat("assistant", assistant_text)
         st.session_state["last_pipeline_debug"] = {
@@ -1002,7 +1492,6 @@ if __name__ == "__main__":
     setup_logging(logging.INFO)
     _init_session_state()
     _inject_app_css()
-    st.title("AI Journaling Assistant")
     shared = _get_shared_components()
 
     # Create a per-session memory manager + service wrapper.
@@ -1023,6 +1512,8 @@ if __name__ == "__main__":
             text_processor=shared["text_processor"],
         )
     service: RAGService = st.session_state["service"]
+
+    _render_app_hero(len(shared["journal_db"].get_all()))
 
     chat_tab, dashboard_tab = st.tabs(["Chat", "Insights Dashboard"])
     with chat_tab:
