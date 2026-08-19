@@ -1,21 +1,14 @@
-langchain
-langchain-core
 langchain-community
+langchain-text-splitters
 pypdf
 pymupdf
-# FOR EMBEDDINGS
-sentence-transformers
 faiss-cpu
-chromadb
-langchain-groq
 python-dotenv
-typesense
-langchain_openai
-langgraph
 streamlit
-transformers
 spacy
 vaderSentiment
 fpdf2
 numpy
 networkx
+pandas
+requests

@@ -1,0 +1,9 @@
+# Optional full local ML stack.
+#
+# Render uses the lightweight hashing/rule-based backends from render.yaml.
+# Install this file locally if you want transformer embeddings/emotion models:
+#   pip install -r requirements-ml.txt
+
+-r requirements.txt
+sentence-transformers
+transformers

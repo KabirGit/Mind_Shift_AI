@@ -63,6 +63,13 @@ make seed               # optional: populate 30 days of demo data
 make run                # opens http://localhost:8501
 ```
 
+Render uses lightweight deterministic embeddings/emotion detection so the app
+fits small containers. For the full local transformer-backed experience, also run:
+
+```bash
+pip install -r requirements-ml.txt
+```
+
 ## Run Tests
 
 ```bash

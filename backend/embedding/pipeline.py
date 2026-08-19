@@ -49,9 +49,15 @@ class EmbeddingPipeline:
         if model_name.lower() in {"hashing", "hashing-384", "lightweight"}:
             self.model = _HashingEmbeddingModel()
         else:
-            from sentence_transformers import SentenceTransformer
+            try:
+                from sentence_transformers import SentenceTransformer
 
-            self.model = SentenceTransformer(model_name)
+                self.model = SentenceTransformer(model_name)
+            except ImportError:
+                logger.warning(
+                    "sentence-transformers is not installed; using hashing embeddings."
+                )
+                self.model = _HashingEmbeddingModel()
         logger.info("Loaded embedding model: %s", model_name)
 
     def chunk_documents(self, documents: list[Any]) -> list[Any]:

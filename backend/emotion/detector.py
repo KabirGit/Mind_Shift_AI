@@ -45,7 +45,13 @@ class EmotionDetector:
 
     def _get_classifier(self):
         if self._classifier is None:
-            from transformers import pipeline
+            try:
+                from transformers import pipeline
+            except ImportError as exc:
+                raise RuntimeError(
+                    "transformers is not installed; use EMOTION_MODEL=rule-based "
+                    "or install requirements-ml.txt"
+                ) from exc
 
             # top_k=None returns scores for every label so we can rank them.
             self._classifier = pipeline(
@@ -143,5 +149,5 @@ class EmotionDetector:
                 "all_emotions": ranked[: self.top_n],
             }
         except Exception as exc:
-            logger.exception("Emotion detection failed, using fallback: %s", exc)
-            return fallback
+            logger.exception("Emotion detection failed, using rule-based fallback: %s", exc)
+            return self._detect_rule_based(text)
