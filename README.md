@@ -4,6 +4,8 @@ A local-first journaling companion that turns your entries into explainable, det
 
 ![CI](https://img.shields.io/badge/tests-passing-brightgreen)
 
+[Live App](https://mind-shift-ai.pages.dev) | [API Health](https://ai-reflection-intelligence-platform-eei6.onrender.com/api/health)
+
 ![Dashboard Screenshot](docs/screenshot_placeholder.png)
 
 ## What makes this different
@@ -69,6 +71,16 @@ fits small containers. For the full local transformer-backed experience, also ru
 ```bash
 pip install -r requirements-ml.txt
 ```
+
+## Deployment
+
+- Frontend: [Cloudflare Pages](https://mind-shift-ai.pages.dev)
+- Backend: [Render FastAPI service](https://ai-reflection-intelligence-platform-eei6.onrender.com/api/health)
+- Frontend build root: `frontend`
+- Cloudflare build command: `npm run pages:build`
+- Cloudflare output directory: `out`
+- Public frontend env var: `NEXT_PUBLIC_API_URL=https://ai-reflection-intelligence-platform-eei6.onrender.com`
+- Backend CORS env var: `ALLOWED_ORIGIN=https://mind-shift-ai.pages.dev`
 
 ## Run Tests
 
