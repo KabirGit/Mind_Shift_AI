@@ -496,20 +496,35 @@ def _inject_app_css() -> None:
         .stDownloadButton > button:hover span {
             color: var(--primary-active);
         }
-        div[data-testid="stTabs"] button {
-            color: var(--muted);
+        div[data-testid="stTabs"] [data-baseweb="tab-list"] {
+            background: var(--surface-dark);
+            border: 1px solid var(--surface-dark);
+            border-radius: 12px;
+            gap: .45rem;
+            padding: .38rem;
+            width: fit-content;
         }
-        div[data-testid="stTabs"] button p,
-        div[data-testid="stTabs"] button span {
-            color: var(--muted);
+        div[data-testid="stTabs"] button[data-baseweb="tab"] {
+            background: var(--surface-dark-elevated) !important;
+            border: 1px solid #3b3832 !important;
+            border-radius: 8px !important;
+            color: var(--canvas) !important;
+            min-height: 40px;
+            padding: .45rem .9rem !important;
         }
-        div[data-testid="stTabs"] button[aria-selected="true"] {
-            color: var(--ink);
+        div[data-testid="stTabs"] button[data-baseweb="tab"] p,
+        div[data-testid="stTabs"] button[data-baseweb="tab"] span {
+            color: var(--canvas) !important;
+            font-weight: 600 !important;
         }
-        div[data-testid="stTabs"] button[aria-selected="true"] p,
-        div[data-testid="stTabs"] button[aria-selected="true"] span {
-            color: var(--ink);
-            font-weight: 600;
+        div[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] {
+            background: var(--primary) !important;
+            border-color: var(--primary) !important;
+            color: #ffffff !important;
+        }
+        div[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] p,
+        div[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] span {
+            color: #ffffff !important;
         }
         div[data-testid="stSelectbox"] label,
         div[data-testid="stCheckbox"] label,
@@ -1591,7 +1606,7 @@ if __name__ == "__main__":
 
     _render_app_hero(len(shared["journal_db"].get_all()))
 
-    chat_tab, dashboard_tab = st.tabs(["Chat", "Insights Dashboard"])
+    chat_tab, dashboard_tab = st.tabs(["Chat", "Insights"])
     with chat_tab:
         _render_chat_v2(service)
     with dashboard_tab:
