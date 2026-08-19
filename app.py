@@ -435,10 +435,16 @@ def _inject_app_css() -> None:
             background: var(--canvas);
         }
         div[data-testid="stChatMessage"] {
-            background: rgba(255, 255, 255, .36);
+            background: #fffdf8;
             border: 1px solid var(--hairline);
             border-radius: 12px;
             padding: .3rem .55rem;
+        }
+        div[data-testid="stChatMessage"],
+        div[data-testid="stChatMessage"] p,
+        div[data-testid="stChatMessage"] span,
+        div[data-testid="stChatMessage"] li {
+            color: var(--ink);
         }
         .stButton > button,
         .stDownloadButton > button {
@@ -448,10 +454,22 @@ def _inject_app_css() -> None:
             color: var(--ink);
             min-height: 40px;
         }
+        .stButton > button p,
+        .stButton > button span,
+        .stDownloadButton > button p,
+        .stDownloadButton > button span {
+            color: var(--ink);
+        }
         .stButton > button[kind="primary"],
         .stDownloadButton > button[kind="primary"] {
             background: var(--primary);
             border-color: var(--primary);
+            color: white;
+        }
+        .stButton > button[kind="primary"] p,
+        .stButton > button[kind="primary"] span,
+        .stDownloadButton > button[kind="primary"] p,
+        .stDownloadButton > button[kind="primary"] span {
             color: white;
         }
         .stButton > button:hover,
@@ -459,13 +477,24 @@ def _inject_app_css() -> None:
             border-color: var(--primary);
             color: var(--primary-active);
         }
+        .stButton > button:hover p,
+        .stButton > button:hover span,
+        .stDownloadButton > button:hover p,
+        .stDownloadButton > button:hover span {
+            color: var(--primary-active);
+        }
         div[data-testid="stTabs"] button {
+            color: var(--muted);
+        }
+        div[data-testid="stTabs"] button p,
+        div[data-testid="stTabs"] button span {
             color: var(--muted);
         }
         div[data-testid="stTabs"] button[aria-selected="true"] {
             color: var(--ink);
         }
-        div[data-testid="stTabs"] button[aria-selected="true"] p {
+        div[data-testid="stTabs"] button[aria-selected="true"] p,
+        div[data-testid="stTabs"] button[aria-selected="true"] span {
             color: var(--ink);
             font-weight: 600;
         }
@@ -474,8 +503,42 @@ def _inject_app_css() -> None:
         div[data-testid="stFileUploader"] label {
             color: var(--body);
         }
+        div[data-testid="stSelectbox"] [data-baseweb="select"] > div,
+        div[data-testid="stSelectbox"] [data-baseweb="select"] span,
+        div[data-testid="stTextInput"] input,
+        div[data-testid="stTextArea"] textarea,
+        div[data-testid="stChatInput"] textarea {
+            background-color: #fffdf8;
+            color: var(--ink);
+            caret-color: var(--primary);
+        }
+        div[data-testid="stTextInput"] input::placeholder,
+        div[data-testid="stTextArea"] textarea::placeholder,
+        div[data-testid="stChatInput"] textarea::placeholder {
+            color: var(--muted-soft);
+            opacity: 1;
+        }
+        div[data-testid="stExpander"] {
+            background: var(--surface-soft);
+            border: 1px solid var(--hairline);
+            border-radius: 12px;
+        }
+        div[data-testid="stExpander"],
+        div[data-testid="stExpander"] p,
+        div[data-testid="stExpander"] span,
+        div[data-testid="stExpander"] label {
+            color: var(--ink);
+        }
+        div[data-testid="stDataFrame"] {
+            color: var(--ink);
+        }
         .stAlert {
             border-radius: 12px;
+        }
+        .stAlert,
+        .stAlert p,
+        .stAlert span {
+            color: var(--ink);
         }
         @media (max-width: 900px) {
             .app-hero,
