@@ -1,0 +1,6 @@
+name = "mind-shift-ai"
+compatibility_date = "2026-08-19"
+pages_build_output_dir = "out"
+
+# Set this in Cloudflare Pages for production:
+# NEXT_PUBLIC_API_URL=https://your-render-backend.onrender.com
