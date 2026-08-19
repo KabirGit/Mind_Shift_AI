@@ -318,6 +318,25 @@ def test_chat_endpoint_happy_path():
     assert body["packet"]["reflection_prompts"]
 
 
+def test_chat_endpoint_allows_pages_cors_preflight():
+    client = _client(FakeService())
+    response = client.options(
+        "/api/chat",
+        headers={
+            "Origin": "https://preview.mind-shift-ai.pages.dev",
+            "Access-Control-Request-Method": "POST",
+            "Access-Control-Request-Headers": "content-type",
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.headers["access-control-allow-origin"] == (
+        "https://preview.mind-shift-ai.pages.dev"
+    )
+    assert "POST" in response.headers["access-control-allow-methods"]
+    assert "content-type" in response.headers["access-control-allow-headers"]
+
+
 def test_chat_endpoint_rejects_empty_text():
     client = _client(FakeService(empty=True))
     response = client.post("/api/chat", json={"text": ""})

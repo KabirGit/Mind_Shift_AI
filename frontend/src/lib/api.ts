@@ -1,5 +1,11 @@
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "http://127.0.0.1:8501";
+const configuredApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/$/, "");
+
+const fallbackApiUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://ai-reflection-intelligence-platform-eei6.onrender.com"
+    : "http://127.0.0.1:8501";
+
+export const API_BASE_URL = configuredApiUrl || fallbackApiUrl;
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
