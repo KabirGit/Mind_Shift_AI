@@ -497,34 +497,35 @@ def _inject_app_css() -> None:
             color: var(--primary-active);
         }
         div[data-testid="stTabs"] [data-baseweb="tab-list"] {
-            background: var(--surface-dark);
-            border: 1px solid var(--surface-dark);
+            background: #fffdf8;
+            border: 1px solid var(--hairline);
             border-radius: 12px;
             gap: .45rem;
             padding: .38rem;
             width: fit-content;
         }
         div[data-testid="stTabs"] button[data-baseweb="tab"] {
-            background: var(--surface-dark-elevated) !important;
-            border: 1px solid #3b3832 !important;
+            background: #fffdf8 !important;
+            border: 1px solid transparent !important;
             border-radius: 8px !important;
-            color: var(--canvas) !important;
+            color: var(--ink) !important;
             min-height: 40px;
             padding: .45rem .9rem !important;
         }
         div[data-testid="stTabs"] button[data-baseweb="tab"] p,
         div[data-testid="stTabs"] button[data-baseweb="tab"] span {
-            color: var(--canvas) !important;
+            color: var(--ink) !important;
             font-weight: 600 !important;
         }
         div[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] {
-            background: var(--primary) !important;
+            background: #fffdf8 !important;
             border-color: var(--primary) !important;
-            color: #ffffff !important;
+            color: var(--ink) !important;
+            box-shadow: 0 0 0 2px rgba(204, 120, 92, .18);
         }
         div[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] p,
         div[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] span {
-            color: #ffffff !important;
+            color: var(--ink) !important;
         }
         div[data-testid="stSelectbox"] label,
         div[data-testid="stCheckbox"] label,
