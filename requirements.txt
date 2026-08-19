@@ -8,7 +8,9 @@ streamlit
 spacy
 vaderSentiment
 fpdf2
+fastapi
 numpy
 networkx
 pandas
 requests
+uvicorn
