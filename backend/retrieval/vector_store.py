@@ -8,7 +8,6 @@ import threading
 from typing import Any
 
 import faiss
-import numpy as np
 
 from backend.embedding.pipeline import EmbeddingPipeline
 
@@ -77,6 +76,11 @@ class FaissVectorStore:
             }
             for chunk in chunks
         ]
+        if not records:
+            dim = self.embedding_pipeline.model.get_sentence_embedding_dimension()
+            self._ensure_index(int(dim or 384))
+            self.save()
+            return
         self.add_entries(records, save=False)
         self.save()
 
@@ -138,7 +142,7 @@ class FaissVectorStore:
             distances, indices = self.index.search(query_emb, top_k)
 
             results: list[dict[str, Any]] = []
-            for idx, dist in zip(indices[0], distances[0]):
+            for idx, dist in zip(indices[0], distances[0], strict=False):
                 if idx < 0 or idx >= len(self.metadata):
                     continue
                 results.append(

@@ -1,9 +1,9 @@
 langchain
 langchain-core
 langchain-community
-pypdf 
+pypdf
 pymupdf
-#FOR EMBEDDINGS
+# FOR EMBEDDINGS
 sentence-transformers
 faiss-cpu
 chromadb
@@ -14,3 +14,8 @@ langchain_openai
 langgraph
 streamlit
 transformers
+spacy
+vaderSentiment
+fpdf2
+numpy
+networkx

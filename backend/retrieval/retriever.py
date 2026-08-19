@@ -5,6 +5,25 @@ from typing import Any
 
 from backend.retrieval.vector_store import FaissVectorStore
 
+# Coarse valence grouping for fine-grained (GoEmotions-style) labels. Used to
+# give related emotions a partial similarity score instead of a hard zero.
+_POSITIVE = {
+    "admiration", "amusement", "approval", "caring", "desire", "excitement",
+    "gratitude", "joy", "love", "optimism", "pride", "relief", "curiosity",
+    "happiness",
+}
+_NEGATIVE = {
+    "anger", "annoyance", "disappointment", "disapproval", "disgust",
+    "embarrassment", "fear", "grief", "nervousness", "remorse", "sadness",
+}
+_AMBIGUOUS = {"confusion", "realization", "surprise"}
+
+_EMOTION_VALENCE: dict[str, str] = {
+    **{e: "positive" for e in _POSITIVE},
+    **{e: "negative" for e in _NEGATIVE},
+    **{e: "ambiguous" for e in _AMBIGUOUS},
+}
+
 
 class Retriever:
     def __init__(
@@ -38,7 +57,7 @@ class Retriever:
 
         semantic_scores = self._normalize_semantic(candidates)
         ranked = []
-        for item, semantic in zip(candidates, semantic_scores):
+        for item, semantic in zip(candidates, semantic_scores, strict=False):
             meta = item.get("metadata", {})
             emotion = self._emotion_similarity(
                 query_emotion=query_emotion,
@@ -79,6 +98,12 @@ class Retriever:
             return 1.0
         if query_emotion == "neutral" or memory_emotion == "neutral":
             return 0.5
+        # Valence-aware partial match: with a fine-grained (e.g. 28-label)
+        # taxonomy, distinct-but-related emotions should still score above 0.
+        q_val = _EMOTION_VALENCE.get(query_emotion)
+        m_val = _EMOTION_VALENCE.get(memory_emotion)
+        if q_val is not None and m_val is not None and q_val == m_val:
+            return 0.6
         return 0.0
 
     def _recency_weight(self, timestamp: str) -> float:

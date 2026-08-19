@@ -1,5 +1,6 @@
-from typing import Any
 import logging
+from typing import Any
+
 import numpy as np
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer

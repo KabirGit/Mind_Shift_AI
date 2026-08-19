@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: ai-reflection-intelligence-platform
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeployTrigger: commit
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: MISTRAL_API_KEY
+        sync: false
+      - key: MISTRAL_MODEL
+        value: mistral-small
+      - key: PYTHONUNBUFFERED
+        value: "1"

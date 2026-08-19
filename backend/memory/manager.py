@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections import deque
-from typing import Any, Deque
+from typing import Any
 
 from backend.emotion.detector import EmotionDetector
 from backend.memory.schema import MemoryEntry
@@ -14,7 +14,7 @@ class MemoryManager:
         vector_store: FaissVectorStore,
         emotion_detector: EmotionDetector,
         stm_size: int = 10,
-        stm: Deque[MemoryEntry] | None = None,
+        stm: deque[MemoryEntry] | None = None,
     ) -> None:
         self.vector_store = vector_store
         self.emotion_detector = emotion_detector
@@ -25,6 +25,7 @@ class MemoryManager:
         text: str,
         tags: list[str] | None = None,
         emotion_signal: dict[str, Any] | None = None,
+        topics: list[str] | None = None,
     ) -> dict[str, Any]:
         signal = emotion_signal or self.emotion_detector.detect(text)
         entry = MemoryEntry(
@@ -32,6 +33,7 @@ class MemoryManager:
             emotion=signal["emotion"],
             emotion_intensity=signal["confidence"],
             tags=tags or [],
+            topics=topics or [],
         )
         self.stm.append(entry)
         self.vector_store.add_entries([entry.to_metadata()], save=True)

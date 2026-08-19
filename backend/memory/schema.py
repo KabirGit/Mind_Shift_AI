@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime, UTC
+from datetime import UTC, datetime
 
 
 @dataclass
@@ -13,6 +13,7 @@ class MemoryEntry:
     emotion: str = "neutral"
     emotion_intensity: float = 0.0
     tags: list[str] = field(default_factory=list)
+    topics: list[str] = field(default_factory=list)
 
     def to_metadata(self) -> dict:
         return {
@@ -23,4 +24,5 @@ class MemoryEntry:
             # Compatibility alias for downstream consumers expecting "score".
             "emotion_score": float(self.emotion_intensity),
             "tags": self.tags,
+            "topics": self.topics,
         }

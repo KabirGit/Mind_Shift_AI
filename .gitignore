@@ -4,7 +4,7 @@
 
 # ------------------------------
 
-**pycache**/
+__pycache__/
 *.py[cod]
 *$py.class
 
@@ -24,6 +24,10 @@ ENV/
 .env
 .env.*
 *.env
+# but DO track the example template
+!.env.example
+.secrets/
+secrets/
 
 # ------------------------------
 
@@ -60,6 +64,7 @@ logs/
 # ------------------------------
 
 .streamlit/
+graphify-out/
 
 # ------------------------------
 
@@ -69,6 +74,8 @@ logs/
 
 .vscode/
 .idea/
+.codex/
+.agents/
 *.swp
 *.swo
 
@@ -90,6 +97,9 @@ Thumbs.db
 dist/
 build/
 *.egg-info/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
 
 # ------------------------------
 
@@ -115,4 +125,8 @@ uv.lock
 # ------------------------------
 
 *.sqlite3
+*.sqlite
+*.sqlite-journal
 *.db
+.coverage
+htmlcov/

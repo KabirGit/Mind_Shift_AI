@@ -1,11 +1,8 @@
 from __future__ import annotations
 
-import json
 import logging
-import socket
-import urllib.error
-import urllib.request
 from typing import Any
+
 import requests
 
 logger = logging.getLogger(__name__)
@@ -84,7 +81,7 @@ class HuggingFaceInferenceClient:
         }
 
         payload = {
-            "model": "mistral-small",
+            "model": self.model_name,
             "messages": [
                 {"role": "system", "content": "You are an empathetic journaling assistant."},
                 {"role": "user", "content": prompt}

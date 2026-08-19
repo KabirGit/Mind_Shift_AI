@@ -1,6 +1,6 @@
+import logging
 from pathlib import Path
 from typing import Any
-import logging
 
 from langchain_community.document_loaders import (
     CSVLoader,
