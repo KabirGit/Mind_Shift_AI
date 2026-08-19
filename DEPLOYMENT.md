@@ -2,7 +2,7 @@
 
 This repo is deployed as two services:
 
-- Backend: FastAPI on Render, using Docker and a persistent disk for SQLite plus FAISS.
+- Backend: FastAPI on Render, using Docker. The free-tier config uses ephemeral storage for SQLite plus FAISS.
 - Frontend: static Next.js export on Cloudflare Pages, calling the backend with `NEXT_PUBLIC_API_URL`.
 
 Do not put `MISTRAL_API_KEY` or `HF_API_TOKEN` in Cloudflare. Browser code must only receive the public backend URL.
@@ -22,9 +22,8 @@ Render service settings from `render.yaml`:
 | Dockerfile | `./Dockerfile` |
 | Docker context | `.` |
 | Health check path | `/api/health` |
-| Persistent disk name | `mind-shift-ai-data` |
-| Persistent disk mount path | `/var/data` |
-| Persistent disk size | `1 GB` |
+
+Render free tier does not support persistent disks. The committed `render.yaml` therefore uses `/tmp/mind-shift-ai` for demo storage. This lets the service deploy on free tier, but journal history and FAISS memory can reset when Render restarts or redeploys the service.
 
 Render environment variables to set manually:
 
@@ -40,11 +39,29 @@ Render environment variables already defined by `render.yaml`:
 | `MISTRAL_MODEL` | `mistral-small` |
 | `EMBEDDING_MODEL` | `hashing` |
 | `EMOTION_MODEL` | `rule-based` |
+| `DATA_DIR` | `/tmp/mind-shift-ai/data` |
+| `VECTOR_STORE_DIR` | `/tmp/mind-shift-ai/faiss_store` |
+| `SQLITE_PATH` | `/tmp/mind-shift-ai/data/journal.db` |
+| `LATENCY_LOG_PATH` | `/tmp/mind-shift-ai/data/latency_log.jsonl` |
+| `PYTHONUNBUFFERED` | `1` |
+
+To keep data permanently, upgrade the Render service to a paid plan and add this disk block back to `render.yaml`:
+
+```yaml
+    disk:
+      name: mind-shift-ai-data
+      mountPath: /var/data
+      sizeGB: 1
+```
+
+Then change the storage env vars back to:
+
+| Key | Paid disk value |
+| --- | --- |
 | `DATA_DIR` | `/var/data/data` |
 | `VECTOR_STORE_DIR` | `/var/data/faiss_store` |
 | `SQLITE_PATH` | `/var/data/data/journal.db` |
 | `LATENCY_LOG_PATH` | `/var/data/data/latency_log.jsonl` |
-| `PYTHONUNBUFFERED` | `1` |
 
 After Render deploys, verify:
 
