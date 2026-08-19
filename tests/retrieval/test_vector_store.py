@@ -1,3 +1,4 @@
+from backend.embedding.pipeline import EmbeddingPipeline
 from backend.retrieval.vector_store import FaissVectorStore
 
 
@@ -25,3 +26,13 @@ def test_build_from_empty_documents_creates_queryable_empty_store(tmp_path):
     assert store.index.ntotal == 0
     assert store.exists()
     assert store.query("anything") == []
+
+
+def test_hashing_embedding_backend_is_deterministic():
+    pipeline = EmbeddingPipeline(model_name="hashing")
+
+    first = pipeline.embed_texts(["career growth"])
+    second = pipeline.embed_texts(["career growth"])
+
+    assert first.shape == (1, 384)
+    assert (first == second).all()

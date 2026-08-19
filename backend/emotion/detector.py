@@ -4,8 +4,6 @@ import logging
 import threading
 from typing import Any
 
-from transformers import pipeline
-
 logger = logging.getLogger(__name__)
 
 
@@ -47,6 +45,8 @@ class EmotionDetector:
 
     def _get_classifier(self):
         if self._classifier is None:
+            from transformers import pipeline
+
             # top_k=None returns scores for every label so we can rank them.
             self._classifier = pipeline(
                 "text-classification",
@@ -54,6 +54,38 @@ class EmotionDetector:
                 top_k=None,
             )
         return self._classifier
+
+    @property
+    def _uses_rule_based(self) -> bool:
+        return self.model_name.lower() in {"rule-based", "rules", "lightweight"}
+
+    def _detect_rule_based(self, text: str) -> dict[str, Any]:
+        lowered = text.lower()
+        rules = [
+            ("joy", {"happy", "great", "good", "joy", "excited", "proud", "grateful"}),
+            ("optimism", {"hope", "hopeful", "better", "improving", "progress"}),
+            ("fear", {"worried", "anxious", "scared", "afraid", "nervous"}),
+            ("sadness", {"sad", "tired", "lonely", "upset", "heavy"}),
+            ("anger", {"angry", "frustrated", "annoyed", "furious"}),
+            ("stress", {"stress", "deadline", "pressure", "overwhelmed"}),
+        ]
+        matches = []
+        for label, words in rules:
+            count = sum(1 for word in words if word in lowered)
+            if count:
+                matches.append((label, min(0.95, 0.55 + count * 0.1)))
+        if not matches:
+            matches = [("neutral", 0.65)]
+        ranked = [
+            {"emotion": label, "score": round(score, 4)}
+            for label, score in sorted(matches, key=lambda item: item[1], reverse=True)
+        ]
+        top = ranked[0]
+        return {
+            "emotion": top["emotion"],
+            "confidence": top["score"],
+            "all_emotions": ranked[: self.top_n],
+        }
 
     @staticmethod
     def _normalize_label(label: str) -> str:
@@ -80,6 +112,9 @@ class EmotionDetector:
             return fallback
 
         try:
+            if self._uses_rule_based:
+                return self._detect_rule_based(text)
+
             classifier = self._get_classifier()
             with self._lock:
                 # truncation guards against inputs longer than the model's limit.

@@ -56,3 +56,9 @@ def test_fine_grained_labels_supported():
     # Labels outside the old 5-set are preserved, not collapsed.
     out = _detector([{"label": "disgust", "score": 0.8}]).detect("gross")
     assert out["emotion"] == "disgust"  # previously collapsed to "anger"
+
+
+def test_rule_based_detector_avoids_hf_pipeline():
+    out = EmotionDetector("rule-based").detect("I feel hopeful but stressed.")
+    assert out["emotion"] == "optimism"
+    assert out["all_emotions"]
