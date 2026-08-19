@@ -137,9 +137,9 @@ def _inject_app_css() -> None:
         <style>
         :root {
             --canvas: #faf9f5;
-            --surface-soft: #f5f0e8;
-            --surface-card: #efe9de;
-            --surface-strong: #e8e0d2;
+            --surface-soft: #f0e7da;
+            --surface-card: #e6dac8;
+            --surface-strong: #d9c9b5;
             --surface-dark: #181715;
             --surface-dark-elevated: #252320;
             --surface-dark-soft: #1f1e1b;
@@ -149,7 +149,7 @@ def _inject_app_css() -> None:
             --body: #3d3d3a;
             --muted: #6c6a64;
             --muted-soft: #8e8b82;
-            --hairline: #e6dfd8;
+            --hairline: #d2c3b2;
             --teal: #5db8a6;
             --amber: #e8a55a;
             --success: #5db872;
@@ -169,6 +169,13 @@ def _inject_app_css() -> None:
             padding-top: 1.25rem;
             padding-bottom: 1.75rem;
             max-width: 1200px;
+        }
+        div[data-testid="stTabs"] [data-baseweb="tab-panel"] {
+            background: #f2eadf;
+            border: 1px solid var(--hairline);
+            border-radius: 12px;
+            padding: 1rem 1rem 1.2rem;
+            margin-top: .75rem;
         }
         h1, h2, h3 {
             color: var(--ink);
@@ -285,10 +292,10 @@ def _inject_app_css() -> None:
         .chat-panel,
         .composer-panel {
             border-radius: 12px;
-            box-shadow: none;
+            box-shadow: 0 1px 2px rgba(20, 20, 19, 0.06);
         }
         .insight-card {
-            border: 1px solid var(--hairline);
+            border: 1px solid #c9b8a5;
             padding: 1.15rem 1.2rem;
             background: var(--surface-card);
             min-height: 168px;
@@ -338,7 +345,7 @@ def _inject_app_css() -> None:
         }
         .action-box {
             border: 1px solid var(--hairline);
-            background: var(--canvas);
+            background: #fffdf8;
             padding: 1rem 1.1rem;
             margin-bottom: .7rem;
             display: grid;
@@ -376,16 +383,22 @@ def _inject_app_css() -> None:
             font-size: .9rem;
         }
         .summary-band {
-            background: var(--surface-soft);
-            border: 1px solid var(--hairline);
+            background: var(--surface-dark);
+            border: 1px solid var(--surface-dark);
             border-radius: 12px;
             padding: 1rem 1.2rem;
-            color: var(--body);
+            color: var(--canvas);
             line-height: 1.55;
             margin-bottom: 1rem;
+            box-shadow: 0 1px 2px rgba(20, 20, 19, 0.08);
         }
         .summary-band strong {
-            color: var(--ink);
+            color: #ffffff;
+        }
+        .summary-band,
+        .summary-band p,
+        .summary-band span {
+            color: var(--canvas);
         }
         .chat-shell {
             display: grid;
@@ -432,7 +445,7 @@ def _inject_app_css() -> None:
             border: 1px solid var(--hairline);
             border-radius: 12px;
             padding: .75rem .85rem;
-            background: var(--canvas);
+            background: #fffdf8;
         }
         div[data-testid="stChatMessage"] {
             background: #fffdf8;
