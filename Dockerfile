@@ -20,6 +20,5 @@ COPY . .
 
 EXPOSE 8501
 
-# NOTE: The LLM call uses an external free-tier API. Pass the key at runtime:
-#   docker run -e MISTRAL_API_KEY=<token> -p 8501:8501 <image>
-CMD ["sh", "-c", "streamlit run app.py --server.address=0.0.0.0 --server.port=${PORT:-8501}"]
+# NOTE: The LLM call uses an external free-tier API. Pass the key at runtime.
+CMD ["sh", "-c", "uvicorn backend.api.main:app --host 0.0.0.0 --port ${PORT:-8501}"]

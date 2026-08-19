@@ -6,9 +6,15 @@ services:
     dockerfilePath: ./Dockerfile
     dockerContext: .
     autoDeployTrigger: commit
-    healthCheckPath: /_stcore/health
+    healthCheckPath: /api/health
+    disk:
+      name: mind-shift-ai-data
+      mountPath: /var/data
+      sizeGB: 1
     envVars:
       - key: MISTRAL_API_KEY
+        sync: false
+      - key: ALLOWED_ORIGIN
         sync: false
       - key: MISTRAL_MODEL
         value: mistral-small
@@ -16,5 +22,13 @@ services:
         value: hashing
       - key: EMOTION_MODEL
         value: rule-based
+      - key: DATA_DIR
+        value: /var/data/data
+      - key: VECTOR_STORE_DIR
+        value: /var/data/faiss_store
+      - key: SQLITE_PATH
+        value: /var/data/data/journal.db
+      - key: LATENCY_LOG_PATH
+        value: /var/data/data/latency_log.jsonl
       - key: PYTHONUNBUFFERED
         value: "1"
