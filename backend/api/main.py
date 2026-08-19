@@ -43,10 +43,15 @@ def _allowed_origins() -> list[str]:
     return origins
 
 
+def _allowed_origin_regex() -> str | None:
+    return os.getenv("ALLOWED_ORIGIN_REGEX", r"https://.*\.pages\.dev")
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=_allowed_origins(),
-    allow_credentials=True,
+    allow_origin_regex=_allowed_origin_regex(),
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )

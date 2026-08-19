@@ -36,6 +36,7 @@ Render environment variables already defined by `render.yaml`:
 
 | Key | Value |
 | --- | --- |
+| `ALLOWED_ORIGIN_REGEX` | `https://.*\.pages\.dev` |
 | `MISTRAL_MODEL` | `mistral-small` |
 | `EMBEDDING_MODEL` | `hashing` |
 | `EMOTION_MODEL` | `rule-based` |
@@ -113,7 +114,7 @@ If you need to allow more than one frontend origin, use commas:
 ALLOWED_ORIGIN=https://mind-shift-ai.pages.dev,https://preview-url.pages.dev
 ```
 
-Then redeploy or restart the Render service.
+The backend also allows Cloudflare Pages origins through `ALLOWED_ORIGIN_REGEX=https://.*\.pages\.dev`, so production and preview Pages URLs work without an exact-origin mismatch. Then redeploy or restart the Render service.
 
 ## 4. Smoke Test
 
