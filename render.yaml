@@ -7,10 +7,6 @@ services:
     dockerContext: .
     autoDeployTrigger: commit
     healthCheckPath: /api/health
-    disk:
-      name: mind-shift-ai-data
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
       - key: MISTRAL_API_KEY
         sync: false
@@ -23,12 +19,12 @@ services:
       - key: EMOTION_MODEL
         value: rule-based
       - key: DATA_DIR
-        value: /var/data/data
+        value: /tmp/mind-shift-ai/data
       - key: VECTOR_STORE_DIR
-        value: /var/data/faiss_store
+        value: /tmp/mind-shift-ai/faiss_store
       - key: SQLITE_PATH
-        value: /var/data/data/journal.db
+        value: /tmp/mind-shift-ai/data/journal.db
       - key: LATENCY_LOG_PATH
-        value: /var/data/data/latency_log.jsonl
+        value: /tmp/mind-shift-ai/data/latency_log.jsonl
       - key: PYTHONUNBUFFERED
         value: "1"
