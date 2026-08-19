@@ -23,7 +23,7 @@ class FaissVectorStore:
     ) -> None:
         self.persist_dir = persist_dir
         self.embedding_pipeline = embedding_pipeline
-        self.index: faiss.IndexFlatL2 | None = None
+        self.index: faiss.Index | None = None
         self.metadata: list[dict[str, Any]] = []
         self._known_hashes: set[str] = set()
         self._lock = threading.Lock()
