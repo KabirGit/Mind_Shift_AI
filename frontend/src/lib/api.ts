@@ -111,6 +111,22 @@ export type DashboardSummary = {
   insights: string[];
 };
 
+export type DashboardHeadline = {
+  baseline_sentiment: number;
+  current_sentiment: number;
+  sentiment_delta: number;
+  dominant_emotion_start: string;
+  dominant_emotion_end: string;
+  recovery_speed_days_start: number;
+  recovery_speed_days_end: number;
+  entry_count: number;
+  days_in_range: number;
+  growth_score: number;
+  growth_narrative: string;
+  has_sufficient_data: boolean;
+  minimum_entry_count: number;
+};
+
 export type GoalProgress = {
   goal_keyword: string;
   first_mentioned: string;
@@ -129,6 +145,7 @@ export type SentimentForecast = {
   predicted_sentiment: number;
   direction: string;
   confidence: number;
+  forecast_accuracy_note?: string;
   explanation: string;
 };
 
@@ -136,6 +153,20 @@ export type BurnoutRisk = {
   risk_level: string;
   score: number;
   contributing_factors: string[];
+  confidence: number;
+  explanation: string;
+};
+
+export type TemporalPattern = {
+  topic: string;
+  peak_day_of_week: string;
+  peak_time_of_day?: string | null;
+  day_time_crossing?: string | null;
+  day_time_sample_size: number;
+  peak_day_avg_sentiment: number;
+  peak_time_avg_sentiment?: number | null;
+  baseline_avg_sentiment: number;
+  delta: number;
   confidence: number;
   explanation: string;
 };
@@ -159,6 +190,36 @@ export type GrowthSnapshot = {
   dominant_emotion: string;
   top_topic: string;
   snapshot_date: string;
+};
+
+export type WeeklyBucket = {
+  label: string;
+  avg_sentiment: number;
+  dominant_emotion: string;
+  top_topic: string;
+  entry_count: number;
+};
+
+export type DashboardStory = {
+  range: string;
+  lookback_days: number;
+  headline: DashboardHeadline;
+  top_working: HabitCorrelation[];
+  top_draining: TriggerStat[];
+  people: RelationshipProfile[];
+  rhythm?: TemporalPattern | null;
+  weekly_buckets: WeeklyBucket[];
+  forecast: {
+    sentiment_forecast: SentimentForecast;
+    burnout_risk: BurnoutRisk;
+  };
+  goals: GoalProgress[];
+  highlight_memory?: TimelineEvent | null;
+  thresholds: {
+    min_insight_confidence: number;
+    min_mention_count: number;
+    min_entry_count: number;
+  };
 };
 
 export type GraphQuery = {
@@ -209,6 +270,12 @@ export function sendChat(
 export function getDashboardSummary(range: string): Promise<DashboardSummary> {
   return apiFetch<DashboardSummary>(
     `/api/dashboard/summary?range=${encodeURIComponent(range)}`
+  );
+}
+
+export function getDashboardStory(range: string): Promise<DashboardStory> {
+  return apiFetch<DashboardStory>(
+    `/api/dashboard/story?range=${encodeURIComponent(range)}`
   );
 }
 

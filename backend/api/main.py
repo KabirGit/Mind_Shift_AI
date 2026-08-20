@@ -14,6 +14,7 @@ from backend.api.rag_service import RAGService
 from backend.api.schemas import (
     ChatRequest,
     ChatResponse,
+    DashboardStoryResponse,
     DashboardSummaryResponse,
     DiagnosticsResponse,
     EmotionPoint,
@@ -201,6 +202,24 @@ def graph_query(
         summary=service.knowledge_graph.summarize_node(graph, node),
         neighbors=result.get("neighbors", []),
         edge_data=result.get("edge_data", []),
+    )
+
+
+@app.get(
+    "/api/dashboard/story",
+    response_model=DashboardStoryResponse,
+    response_model_exclude_none=True,
+)
+def dashboard_story(
+    service: Annotated[RAGService, Depends(get_service)],
+    range_label: Annotated[str, Query(alias="range")] = "Last 30 days",
+) -> DashboardStoryResponse:
+    from backend.analytics.dashboard_story import DashboardStoryComposer
+
+    lookback = _lookback_days(range_label)
+    return DashboardStoryComposer(service).compose(
+        range_label=range_label,
+        lookback_days=lookback,
     )
 
 

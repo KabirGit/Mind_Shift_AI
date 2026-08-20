@@ -8,9 +8,11 @@ from backend.analytics.habit_engine import HabitCorrelation
 from backend.analytics.models import PatternSummary, TriggerStat
 from backend.analytics.prediction_engine import BurnoutRisk, SentimentForecast
 from backend.analytics.relationship_engine import RelationshipProfile
+from backend.analytics.temporal_engine import TemporalPattern
 from backend.analytics.timeline_engine import TimelineEvent
 from backend.api.main import app, get_service
 from backend.orchestrator.packet import IntelligencePacket
+from backend.profile.models import UserProfile
 from backend.storage.models import JournalRecord
 
 TS = "2026-08-19T10:00:00Z"
@@ -226,6 +228,42 @@ class FakeKnowledgeGraph:
         }
 
 
+class FakeProfileManager:
+    def update(self):
+        return UserProfile(
+            baseline_sentiment=0.1,
+            current_sentiment=0.35,
+            dominant_emotion="joy",
+            recovery_speed_days=1.5,
+            entry_count=6,
+            growth_score=0.65,
+        )
+
+
+class FakeTemporalEngine:
+    def __init__(self, empty: bool = False):
+        self.empty = empty
+
+    def analyze(self, lookback_days: int = 60):
+        if self.empty:
+            return []
+        return [
+            TemporalPattern(
+                topic="career",
+                peak_day_of_week="Monday",
+                peak_time_of_day="morning",
+                day_time_crossing="Monday morning",
+                day_time_sample_size=2,
+                peak_day_avg_sentiment=-0.2,
+                peak_time_avg_sentiment=-0.2,
+                baseline_avg_sentiment=0.1,
+                delta=-0.3,
+                confidence=0.6,
+                explanation="Career sentiment is lower on Monday mornings.",
+            )
+        ]
+
+
 class FakeReportGenerator:
     def generate(self, lookback_days: int = 30):
         return b"%PDF-1.4 fake"
@@ -255,8 +293,10 @@ class FakeService:
         self.habit_engine = FakeHabitEngine(empty)
         self.relationship_engine = FakeRelationshipEngine(empty)
         self.insight_engine = FakeInsightEngine(empty)
+        self.profile_manager = FakeProfileManager()
         self.goal_engine = FakeGoalEngine(empty)
         self.prediction_engine = FakePredictionEngine()
+        self.temporal_engine = FakeTemporalEngine(empty)
         self.timeline_engine = FakeTimelineEngine(empty)
         self.growth_tracker = FakeGrowthTracker(empty)
         self.knowledge_graph = FakeKnowledgeGraph(empty)
@@ -291,18 +331,118 @@ class FakeService:
         }
 
 
-def _record():
+class FakeStoryHabitEngine:
+    def analyze(self, lookback_days: int = 30):
+        return [
+            HabitCorrelation(
+                habit="exercise",
+                mention_count=5,
+                avg_sentiment_when_mentioned=0.5,
+                avg_sentiment_other_days=0.0,
+                delta=0.5,
+                correlation_label="positive",
+                confidence=0.6,
+                explanation="Exercise seems helpful.",
+            ),
+            HabitCorrelation(
+                habit="coffee",
+                mention_count=3,
+                avg_sentiment_when_mentioned=0.1,
+                avg_sentiment_other_days=0.0,
+                delta=0.1,
+                correlation_label="positive",
+                confidence=0.4,
+                explanation="Coffee is exploratory.",
+            ),
+        ]
+
+
+class FakeStoryPatternEngine:
+    def analyze(self, lookback_days: int = 30):
+        return PatternSummary(
+            recurring_topics={"career": 6, "money": 3},
+            period_entry_count=6,
+            triggers=[
+                TriggerStat(
+                    topic="career",
+                    frequency=6,
+                    avg_sentiment=-0.35,
+                    dominant_emotion="fear",
+                    trend="decreasing",
+                    confidence=0.6,
+                    explanation="Career has been draining.",
+                ),
+                TriggerStat(
+                    topic="money",
+                    frequency=3,
+                    avg_sentiment=-0.2,
+                    dominant_emotion="sadness",
+                    trend="stable",
+                    confidence=0.4,
+                    explanation="Money is exploratory.",
+                ),
+            ],
+        )
+
+
+class FakeStoryRelationshipEngine:
+    def analyze(self, lookback_days: int = 30):
+        return [
+            RelationshipProfile(
+                person="Alice",
+                mention_count=4,
+                avg_sentiment=0.4,
+                dominant_emotion="joy",
+                last_mentioned=TS,
+                trend="improving",
+                relationship_type="friend",
+                confidence=0.6,
+                explanation="Alice appears supportive.",
+            ),
+            RelationshipProfile(
+                person="Bob",
+                mention_count=2,
+                avg_sentiment=0.2,
+                dominant_emotion="joy",
+                last_mentioned=TS,
+                trend="stable",
+                relationship_type="colleague",
+                confidence=0.6,
+                explanation="Bob is below mention threshold.",
+            ),
+        ]
+
+
+class FakeStoryService(FakeService):
+    def __init__(self, *, low_data: bool = False):
+        super().__init__(empty=False)
+        count = 2 if low_data else 6
+        self.journal_db = FakeJournalDB([
+            _record(
+                rid=f"s{i}",
+                ts=f"2026-08-{10 + i:02d}T10:00:00Z",
+                sentiment=-0.2 if i < count // 2 else 0.4,
+                emotion="fear" if i < count // 2 else "joy",
+            )
+            for i in range(count)
+        ])
+        self.pattern_engine = FakeStoryPatternEngine()
+        self.habit_engine = FakeStoryHabitEngine()
+        self.relationship_engine = FakeStoryRelationshipEngine()
+
+
+def _record(rid="r1", ts=TS, sentiment=0.2, emotion="joy"):
     return JournalRecord(
-        id="r1",
+        id=rid,
         text="Career felt better after exercise with Alice.",
-        timestamp=TS,
-        emotion="joy",
+        timestamp=ts,
+        emotion=emotion,
         emotion_confidence=0.8,
         entities_people=["Alice"],
         topics=["career"],
         habits=["exercise"],
-        sentiment_compound=0.2,
-        sentiment_valence=0.2,
+        sentiment_compound=sentiment,
+        sentiment_valence=sentiment,
     )
 
 
@@ -421,6 +561,37 @@ def test_dashboard_and_support_endpoints_happy_path():
     diagnostics = client.get("/api/diagnostics")
     assert diagnostics.status_code == 200
     assert diagnostics.json()["latency"]["sample_count"] == 2
+
+
+def test_dashboard_story_happy_path_applies_thresholds():
+    client = _client(FakeStoryService())
+    response = client.get("/api/dashboard/story?range=Last%2030%20days")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["headline"]["has_sufficient_data"] is True
+    assert body["headline"]["entry_count"] == 6
+    assert body["headline"]["sentiment_delta"] == 0.25
+    assert body["top_working"][0]["habit"] == "exercise"
+    assert all(item["confidence"] >= 0.5 for item in body["top_working"])
+    assert [item["topic"] for item in body["top_draining"]] == ["career"]
+    assert [person["person"] for person in body["people"]] == ["Alice"]
+    assert body["rhythm"]["day_time_crossing"] == "Monday morning"
+    assert body["weekly_buckets"]
+    assert "not a clinical assessment" in body["forecast"]["burnout_risk"]["explanation"]
+    assert body["goals"][0]["goal_keyword"] == "job_search"
+    assert body["highlight_memory"]["event_type"] == "normal"
+
+
+def test_dashboard_story_low_data_path_is_explicit():
+    client = _client(FakeStoryService(low_data=True))
+    response = client.get("/api/dashboard/story")
+
+    assert response.status_code == 200
+    headline = response.json()["headline"]
+    assert headline["entry_count"] == 2
+    assert headline["has_sufficient_data"] is False
+    assert headline["minimum_entry_count"] == 5
 
 
 def test_dashboard_and_support_endpoints_empty_data_path():

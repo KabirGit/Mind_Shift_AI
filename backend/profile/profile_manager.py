@@ -6,7 +6,7 @@ import sqlite3
 from collections import Counter
 from datetime import UTC, datetime
 
-from backend.analytics._stats_utils import filter_window, parse_ts, sort_key
+from backend.analytics._stats_utils import filter_window, recovery_speed_days
 from backend.profile.models import UserProfile
 from backend.storage.db import JournalDB
 
@@ -144,17 +144,7 @@ class ProfileManager:
             return self._last_known
 
     def _recovery_speed(self, records) -> float:
-        ordered = sorted(records, key=lambda r: sort_key(r.timestamp))
-        deltas: list[float] = []
-        for i in range(len(ordered) - 1):
-            cur = ordered[i]
-            nxt = ordered[i + 1]
-            if cur.sentiment_compound < 0 and nxt.sentiment_compound > 0.1:
-                t0 = parse_ts(cur.timestamp)
-                t1 = parse_ts(nxt.timestamp)
-                if t0 and t1:
-                    deltas.append((t1 - t0).total_seconds() / 86400.0)
-        return sum(deltas) / len(deltas) if deltas else 0.0
+        return recovery_speed_days(records)
 
     @staticmethod
     def _now() -> str:

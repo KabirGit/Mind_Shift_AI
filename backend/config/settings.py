@@ -31,6 +31,11 @@ class Settings:
     retrieval_half_life_hours: float = float(os.getenv("RETRIEVAL_HALF_LIFE_HOURS", "72"))
     retrieval_candidate_pool: int = int(os.getenv("RETRIEVAL_CANDIDATE_POOL", "20"))
     ltm_max_entries: int = int(os.getenv("LTM_MAX_ENTRIES", "0"))
+    dashboard_min_insight_confidence: float = float(
+        os.getenv("DASHBOARD_MIN_INSIGHT_CONFIDENCE", "0.5")
+    )
+    dashboard_min_mention_count: int = int(os.getenv("DASHBOARD_MIN_MENTION_COUNT", "3"))
+    dashboard_min_entry_count: int = int(os.getenv("DASHBOARD_MIN_ENTRY_COUNT", "5"))
 
 
 def get_settings() -> Settings:

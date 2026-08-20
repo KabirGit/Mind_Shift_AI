@@ -4,6 +4,7 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
+from backend.analytics.dashboard_story import DashboardStoryResponse
 from backend.analytics.goal_engine import GoalProgress
 from backend.analytics.growth_tracker import GrowthSnapshot
 from backend.analytics.habit_engine import HabitCorrelation

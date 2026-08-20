@@ -70,3 +70,18 @@ def half_split_trend(
     if diff < -threshold:
         return down
     return stable
+
+
+def recovery_speed_days(records) -> float:
+    """Average days from a negative entry to the next positive entry."""
+    ordered = sorted(records, key=lambda r: sort_key(r.timestamp))
+    deltas: list[float] = []
+    for i in range(len(ordered) - 1):
+        cur = ordered[i]
+        nxt = ordered[i + 1]
+        if cur.sentiment_compound < 0 and nxt.sentiment_compound > 0.1:
+            t0 = parse_ts(cur.timestamp)
+            t1 = parse_ts(nxt.timestamp)
+            if t0 and t1:
+                deltas.append((t1 - t0).total_seconds() / 86400.0)
+    return sum(deltas) / len(deltas) if deltas else 0.0
