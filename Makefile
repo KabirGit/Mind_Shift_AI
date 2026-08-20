@@ -1,4 +1,6 @@
-.PHONY: install install-dev run seed demo-snapshot test lint typecheck clean help
+DEMO_PERSONA_JSON ?= $(USERPROFILE)/Downloads/demo_persona_journals.json
+
+.PHONY: install install-dev run seed demo-snapshot ingest-demo-persona test lint typecheck clean help
 
 help:           ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -21,6 +23,9 @@ seed:           ## Populate demo data (deletes existing DB and FAISS store first
 
 demo-snapshot:  ## Regenerate static recruiter demo JSON under backend/demo_data
 	python scripts/generate_demo_snapshot.py
+
+ingest-demo-persona:  ## Ingest DEMO_PERSONA_JSON through the real pipeline and publish demo JSON
+	python scripts/ingest_demo_persona.py "$(DEMO_PERSONA_JSON)"
 
 test:           ## Run all tests
 	pytest -v

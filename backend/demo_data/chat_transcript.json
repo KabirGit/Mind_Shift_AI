@@ -1,26 +1,38 @@
 {
   "mode": "demo",
-  "persona": "Aarav, a product analyst navigating launch stress, exercise habits, and two recurring relationships.",
+  "persona": "30-day demo persona journal dataset ingested through RAGService.run_pipeline.",
   "generated_with_live_llm": false,
   "messages": [
     {
       "role": "user",
-      "content": "I noticed I stopped exercising when work got intense. Why does it hit my mood so hard?"
+      "content": "I didn't sleep more than four hours last night. My phone said 3:40 rolled around and I was still staring at the ceiling thinking about tomorrow's sprint review. My manager Priya has been messaging me at 11 PM about the API migration deadline, and every time my phone buzzes something in my chest tightens. I've had four cups of coffee since eight this morning and my hands are a little shaky as I write this, which isn't a great sign for a Thursday.\n\nPapa has a cardiology checkup coming up next week and I keep pushing the thought away because I don't know what I'll do if it's bad news. Ma called this morning just to say hello, but I could hear the worry under her voice, the way she always sounds when she's trying hard not to worry me. I told her I was fine. I'm not sure that was true.\n\nI snapped at Meera this morning over something stupid, whether we'd left the gas on, and she just went quiet and left for work without really saying goodbye. I know she's been trying to get close, asking how I'm doing every evening, and I keep answering in one word and going back to my laptop. I feel like I'm disappearing into my own head and dragging her down with me. I want to apologize tonight but I don't know how to say it without turning it into a whole conversation about how I've been for weeks.\n\nDidn't run today. Haven't run in over two weeks now, if I'm honest. My legs feel like they've forgotten how. I keep telling myself tomorrow, and then tomorrow becomes another day at this desk from eight in the morning until almost midnight, waiting for the migration to stabilize.\n\nI scrolled Instagram for maybe forty-five minutes after that instead of sleeping, watching other people's vacations and promotions and feeling like a failure by comparison. I don't even remember what I was looking for.\n\nRohan texted asking if we could talk about a loan for his bike repair shop. I haven't answered yet. I don't have the bandwidth today, and I know that's not fair to him, but I genuinely don't.\n\nMeera suggested I start journaling again. I don't know if it helps yet. Right now I mostly just feel tired in a way that sleep doesn't seem to fix anymore."
     },
     {
       "role": "assistant",
-      "content": "That pattern makes sense: when work pressure rose, the entries show exercise dropping off at the same time mood got heavier. It does not mean exercise is a magic fix, but it does look like one of your steadier supports.\n\nFor today, I would treat it gently: choose the smallest version of the habit that still counts, then notice whether your body feels even a little less braced.",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
       "emotion": {
-        "emotion": "realization",
-        "confidence": 0.84,
+        "emotion": "confusion",
+        "confidence": 0.397,
         "all_emotions": [
           {
-            "emotion": "realization",
-            "score": 0.84
+            "emotion": "confusion",
+            "score": 0.397
           },
           {
-            "emotion": "curiosity",
-            "score": 0.54
+            "emotion": "disappointment",
+            "score": 0.2448
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.1685
+          },
+          {
+            "emotion": "disapproval",
+            "score": 0.0915
+          },
+          {
+            "emotion": "realization",
+            "score": 0.0909
           }
         ]
       },
@@ -29,66 +41,326 @@
         "flagged": false,
         "matched_terms": []
       },
-      "retrieved_memories": [
-        {
-          "index": 3,
-          "distance": 7.0,
-          "metadata": {
-            "text": "Sarah approved the final project plan and said it supports my promotion case. I felt trusted again instead of just evaluated.",
-            "timestamp": "2026-08-17T15:15:00Z",
-            "emotion": "pride",
-            "topics": [
-              "career"
-            ]
-          }
-        },
-        {
-          "index": 16,
-          "distance": 7.0,
-          "metadata": {
-            "text": "The work backlog is real. I did not exercise and I can feel my patience thinning.",
-            "timestamp": "2026-08-04T12:15:00Z",
-            "emotion": "anger",
-            "topics": [
-              "career",
-              "health"
-            ]
-          }
-        },
-        {
-          "index": 23,
-          "distance": 7.0,
-          "metadata": {
-            "text": "I went for a short run anyway. It did not fix work, but my body felt less braced by the end.",
-            "timestamp": "2026-07-28T15:15:00Z",
-            "emotion": "relief",
-            "topics": [
-              "career",
-              "health"
-            ]
-          }
-        }
-      ],
+      "retrieved_memories": [],
       "prompt": null
     },
     {
       "role": "user",
-      "content": "I am nervous that Sarah's feedback means I am falling behind again."
+      "content": "Another rough night. I keep waking up around two and just lying there running through everything Priya said in yesterday's review, replaying the parts where she sounded disappointed even though she didn't say the word. She wants the migration done by next Friday and I don't see how that's realistic given everything else on my plate, but I didn't push back. I never push back.\n\nRohan called again about the loan. This time I picked up and immediately felt my stomach drop the way it always does when money comes up between us. I told him I'd think about it. He got quiet, the way he does when he thinks I'm judging him, and I hated that I couldn't just say yes or explain properly why I'm hesitant. It's not that I don't want to help him. I just don't have the emotional room right now to also carry his stress along with mine.\n\nSkipped the gym again. Skipped breakfast too, actually, just had coffee and went straight into meetings. By four in the afternoon I had a headache that wouldn't go away and I still had two hours of coding left on a bug that turned out to be a single misplaced semicolon. Arjun caught it before I did and I felt embarrassed more than grateful, which isn't fair to him, he was just trying to help.\n\nMeera and I were still a bit distant tonight after yesterday. She made dinner, I barely tasted it because I was reading Slack messages under the table, and she noticed. She didn't say anything, just looked tired in a way that made me feel worse than if she'd been angry. I keep meaning to really talk to her and instead I just say 'I'm fine, just work stuff' and go back to my laptop.\n\nEnded up on Twitter until almost one in the morning again, doomscrolling through news that made my chest tight for no productive reason. I know this pattern by now. Bad sleep, no movement, too much caffeine, too much scrolling, and then I wonder why I feel like this. Writing it down at least makes the pattern visible, even if I don't know what to do about it yet."
     },
     {
       "role": "assistant",
-      "content": "The Sarah thread looks like it softened over time: earlier feedback landed as criticism, but later entries show clearer planning and trust returning. That suggests the pressure was real, but not the whole relationship.\n\nBefore the next feedback moment, it may help to separate the task signal from the self-worth signal: what is she asking you to change, and what does that not say about your competence?",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "disappointment",
+        "confidence": 0.3452,
+        "all_emotions": [
+          {
+            "emotion": "disappointment",
+            "score": 0.3452
+          },
+          {
+            "emotion": "annoyance",
+            "score": 0.3055
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.1383
+          },
+          {
+            "emotion": "embarrassment",
+            "score": 0.1012
+          },
+          {
+            "emotion": "disapproval",
+            "score": 0.0819
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Sameer texted asking if I wanted to grab drinks after work and honestly, after the week I've had, I said yes almost immediately. We used to do this all the time in college, just vent about everything over a couple of beers, and tonight it felt like exactly what I needed. We sat at that same dive bar near his place for almost four hours.\n\nI told him everything. Priya, the deadline, Papa's checkup, the money thing with Rohan, how distant things have felt with Meera. He listened, mostly, though he also spent a good chunk of the night talking about his own frustrations with his job and how everyone around him is 'soft' for taking things seriously, which used to feel validating and tonight just felt kind of exhausting, though I didn't say that.\n\nWe had more than I meant to. I told myself two drinks and it turned into five, maybe six, I stopped counting honestly. By the time I got home it was almost midnight and Meera was already asleep, or pretending to be. I felt this heavy, sinking guilt looking at her in the dark, like I'd chosen an old habit over the person actually trying to help me.\n\nSameer has this way of making everything feel like it doesn't matter as much as I think it does, which is a relief for about two hours and then just leaves me feeling worse than before I saw him, if I'm honest with myself. I don't know why I keep going back to this exact loop with him.\n\nDidn't eat much of anything real today besides bar snacks. No exercise, obviously. Didn't even open my laptop tonight, which under different circumstances might sound like a good thing, except it wasn't rest, it was just avoidance with extra steps and alcohol involved. I know I'm going to feel terrible tomorrow, and not just physically. I already do a little, writing this."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "disappointment",
+        "confidence": 0.4669,
+        "all_emotions": [
+          {
+            "emotion": "disappointment",
+            "score": 0.4669
+          },
+          {
+            "emotion": "annoyance",
+            "score": 0.1653
+          },
+          {
+            "emotion": "sadness",
+            "score": 0.1628
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.0727
+          },
+          {
+            "emotion": "realization",
+            "score": 0.0681
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Woke up with a pounding headache and that specific kind of hollow, ashamed feeling that follows a night like last night. I called in and told Priya I wasn't feeling well, which technically wasn't a lie, though I know the deadline doesn't care how I feel. She replied with a short 'ok, hope you feel better' that somehow still managed to sound disappointed.\n\nSnapped at Arjun over Slack for something minor, a code review comment he made that was completely reasonable, and I could tell from his reply that he was confused by how sharp I was. I apologized an hour later but the damage of feeling like I'm becoming someone who takes things out on people who don't deserve it is sitting heavy on me.\n\nMeera asked gently this morning if last night was about the same thing it's usually about with Sameer, and I got defensive instead of honest, said something like 'it's not that deep, we just hung out.' She didn't argue, just gave me this look that I've started to recognize as her deciding not to fight about it right now. I hate that look more than if she'd actually gotten angry.\n\nDrank about six cups of coffee today trying to function, which obviously didn't help the headache or the general jittery, on-edge feeling that's been sitting in my chest for what feels like weeks now. No exercise again, of course. Ordered food instead of cooking, ate it standing at the counter scrolling my phone instead of sitting at the table with Meera.\n\nRohan texted again, just a 'hey, no pressure, whenever you can talk' which somehow made me feel worse than if he'd pushed. I still haven't given him an answer.\n\nI keep noticing this pattern where every time I see Sameer, the next day is worse, not better, even though in the moment it always feels like exactly what I need. I don't know what to do with that observation yet except write it down."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "disappointment",
+        "confidence": 0.404,
+        "all_emotions": [
+          {
+            "emotion": "disappointment",
+            "score": 0.404
+          },
+          {
+            "emotion": "annoyance",
+            "score": 0.3665
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.0972
+          },
+          {
+            "emotion": "sadness",
+            "score": 0.094
+          },
+          {
+            "emotion": "embarrassment",
+            "score": 0.0555
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Ma called this morning to remind me about Papa's cardiology checkup on Wednesday, and I could hear that she'd been crying, or close to it. Papa's been having some chest tightness on exertion, nothing dramatic, but enough that the doctor wants a proper stress test done. She kept saying 'it's probably nothing, don't worry' in the exact tone that makes it very clear she's the one who's worried.\n\nI spent most of the afternoon unable to focus on work at all, just staring at my screen thinking about my father, who has never once in my life admitted to being scared of anything, going in for tests he clearly doesn't want to talk about. I called Papa directly in the evening and he brushed it off in typical fashion, asked about my work instead, told me not to skip meals, the usual reversal where somehow I end up reassuring him that I'm fine when he's the one with the appointment.\n\nCouldn't sleep again, obviously. Kept running through worst-case scenarios that I know aren't productive but couldn't stop. Meera noticed I was distracted and asked what was wrong, and this time I actually told her about Papa instead of shutting the conversation down. She held my hand for a while and didn't try to fix anything, just stayed there, and it was the first time in almost two weeks I felt like we were actually on the same side of something instead of two tired people orbiting each other in the same apartment.\n\nStill didn't exercise. Still drank too much coffee. But I did eat an actual dinner sitting down for the first time in days, and that conversation with Meera felt like a small crack of light in what's otherwise been a pretty relentlessly heavy week. I don't know what Wednesday's results will show. I'm trying not to think about it and completely failing."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "neutral",
+        "confidence": 0.3758,
+        "all_emotions": [
+          {
+            "emotion": "neutral",
+            "score": 0.3758
+          },
+          {
+            "emotion": "disappointment",
+            "score": 0.2808
+          },
+          {
+            "emotion": "confusion",
+            "score": 0.0832
+          },
+          {
+            "emotion": "nervousness",
+            "score": 0.0734
+          },
+          {
+            "emotion": "sadness",
+            "score": 0.0728
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Neha came over this afternoon, my cousin, seventeen years old and somehow always the most alive person in any room she walks into. She's visiting Pune for a college prep course and wanted to hang out, and honestly I almost said I was too busy, which would have been a lie, I was just tired. I'm glad I didn't cancel.\n\nWe ended up spending three hours just talking and watching bad reality TV and her showing me memes I didn't understand, and for the first time in what feels like a long stretch, I actually laughed, properly laughed, not the polite performance laugh I've been doing in meetings. She has this way of treating everything, including my clearly exhausted state, with this light, unbothered humor that somehow makes it feel less heavy without dismissing it. She asked once, casually, 'you doing okay though, for real?' and I actually told her a little bit, more than I've told most people, and she just nodded and said 'that sounds like a lot' without trying to solve it.\n\nStill an undercurrent of dread about Papa's test on Wednesday sitting underneath everything today. Didn't run, didn't do much of anything productive, spent the morning half asleep on the couch. But it was a lighter day than most of this week, and Neha leaving in the evening actually made me feel a small ache of missing her already, which is more feeling than I've had access to in a while beyond anxiety and exhaustion.\n\nMeera and I talked a bit more tonight, still gently, still careful, but real. She mentioned she thinks I should talk to someone, a therapist, not in an accusing way, just quietly, 'I think it might help, that's all.' I didn't say no. I didn't say yes either. But I didn't get defensive this time, which feels like something."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "joy",
+        "confidence": 0.653,
+        "all_emotions": [
+          {
+            "emotion": "joy",
+            "score": 0.653
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.1443
+          },
+          {
+            "emotion": "relief",
+            "score": 0.1174
+          },
+          {
+            "emotion": "amusement",
+            "score": 0.1076
+          },
+          {
+            "emotion": "approval",
+            "score": 0.0989
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "End of a genuinely hard week, and I'm trying to actually sit with that instead of just pushing through to the next one on autopilot. Papa's stress test is scheduled for Wednesday, still a few days off, and the waiting is its own kind of exhausting. Priya pushed the migration deadline by three days after I finally, hesitantly, told her the original timeline wasn't realistic, which felt like a small, uncomfortable but necessary act of honesty I've been avoiding for weeks.\n\nI still haven't given Rohan an answer about the loan. I need to actually sit down and think about that properly instead of avoiding his texts, but not today.\n\nMeera and I talked again about the idea of therapy, longer this time, and I agreed to at least try one session. She found someone, a therapist named Dr. Anjali who apparently a coworker of hers has seen before, and I have a first session booked for Monday. I feel nervous about it in a way that's hard to articulate, some mix of relief that someone else might help carry this and a kind of shame that I need it at all, which I know logically isn't a fair thing to feel but I feel it anyway.\n\nVikram texted asking if I wanted to join him for his Saturday morning run, something he's done religiously for years while I've mostly just watched from the sidelines making excuses. I actually said yes this time, more out of desperation to do something different than any real motivation. We'll see if I actually show up tomorrow or find a reason to bail.\n\nLooking back at this week honestly: barely slept, barely moved, drank too much once with Sameer and felt worse for two days after, snapped at people who didn't deserve it, and spent most evenings scrolling instead of present. But there were real moments too, Meera's hand in mine on Sunday, Neha's laugh on Monday, the honesty with Priya on Thursday. I don't feel good yet. But something in the pattern might be starting to shift, even if just barely."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "disappointment",
+        "confidence": 0.2963,
+        "all_emotions": [
+          {
+            "emotion": "disappointment",
+            "score": 0.2963
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.2582
+          },
+          {
+            "emotion": "nervousness",
+            "score": 0.0821
+          },
+          {
+            "emotion": "annoyance",
+            "score": 0.0801
+          },
+          {
+            "emotion": "sadness",
+            "score": 0.0783
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "I actually went. Six in the morning, alarm screaming, every part of me wanting to cancel on Vikram, and I got up and went anyway. We ran maybe four kilometers along the river, slow, more walking-running than actual running if I'm honest, and I had to stop twice to catch my breath in a way that was mildly humbling given how out of shape two weeks of zero movement has left me.\n\nBut something happened around the second kilometer where my head just went quiet for the first time in what feels like a month. Not fixed, not resolved, just quiet, like the volume got turned down on all the noise about Priya and Papa and Rohan and the general low hum of dread I've been carrying. Vikram didn't say much, he never does on runs, just paced himself to match me and let me set the rhythm, which I appreciated more than I expected to.\n\nAfterward we sat on a bench and he asked, out of nowhere, 'you've been off for a while, everything okay?' and I actually told him some of it, the real version, not the 'I'm fine, just busy' version I've been giving everyone else. He didn't try to fix it, just said 'well, you showed up today, that's something' which sounds simple but landed harder than I expected.\n\nCame home and actually made breakfast instead of just coffee, eggs and toast, sat at the table with Meera before she left for work, which felt almost novel at this point. She noticed the difference in me immediately, said I looked lighter, and I told her about the run and about how I said yes to therapy on Monday, and she looked genuinely relieved in a way that made me realize how much she's been quietly worried underneath all her patience.\n\nWork is still heavy, the migration deadline still looms even with the extension, and Papa's test is Wednesday, still hanging over everything. But this morning felt like the first small proof that something other than my current spiral is possible. One run doesn't undo three weeks of nothing. But it's a data point, and today I'll take it."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "neutral",
+        "confidence": 0.3701,
+        "all_emotions": [
+          {
+            "emotion": "neutral",
+            "score": 0.3701
+          },
+          {
+            "emotion": "realization",
+            "score": 0.3084
+          },
+          {
+            "emotion": "approval",
+            "score": 0.17
+          },
+          {
+            "emotion": "disappointment",
+            "score": 0.0787
+          },
+          {
+            "emotion": "relief",
+            "score": 0.0403
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Today was brutal. The migration hit a wall none of us anticipated, a data integrity issue that meant half of yesterday's work had to be redone, and Priya called an emergency sync at seven in the evening that ran until almost ten. She was sharp on the call, not yelling, she never yells, just clipped and disappointed in that specific managerial way that somehow feels worse than shouting. She said, in front of the whole team, that she expected 'this kind of thing to have been caught earlier,' and even though it wasn't really about me specifically, I felt it land square in my chest like it was.\n\nStayed up coding until nearly two in the morning trying to patch the issue myself, on almost no sleep from the night before, running on coffee and adrenaline and something closer to panic than focus. Didn't eat dinner. Didn't talk to Meera beyond a distracted 'hey' when she checked on me around eleven. I know I promised myself this morning I'd try to keep some of what Saturday's run gave me, and instead the day completely swallowed it.\n\nBy midnight I was in that specific state where I couldn't tell anymore if I was actually being productive or just spinning, rewriting the same function four different ways because none of them felt right, my hands shaking slightly from too much caffeine and too little food. Around one, I finally just stopped, closed the laptop, and sat in the dark for a while feeling something close to hopeless, like no matter what I do this feeling is just going to keep finding new reasons to exist, work deadline today, Papa's test tomorrow, money with Rohan next week, always something.\n\nDidn't sleep well again obviously. Skipped everything, exercise, real food, any actual conversation with Meera. Tomorrow is Papa's test and I have almost nothing left in me to face it with, and that scares me more than the test itself does."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
       "emotion": {
         "emotion": "fear",
-        "confidence": 0.82,
+        "confidence": 0.2774,
         "all_emotions": [
           {
             "emotion": "fear",
-            "score": 0.82
+            "score": 0.2774
           },
           {
-            "emotion": "realization",
-            "score": 0.49
+            "emotion": "neutral",
+            "score": 0.2488
+          },
+          {
+            "emotion": "disappointment",
+            "score": 0.1746
+          },
+          {
+            "emotion": "nervousness",
+            "score": 0.117
+          },
+          {
+            "emotion": "annoyance",
+            "score": 0.055
           }
         ]
       },
@@ -97,67 +369,39 @@
         "flagged": false,
         "matched_terms": []
       },
-      "retrieved_memories": [
-        {
-          "index": 6,
-          "distance": 7.0,
-          "metadata": {
-            "text": "Work was still intense, yet I handled feedback without spiraling. That felt new.",
-            "timestamp": "2026-08-14T12:15:00Z",
-            "emotion": "optimism",
-            "topics": [
-              "career"
-            ]
-          }
-        },
-        {
-          "index": 1,
-          "distance": 8.0,
-          "metadata": {
-            "text": "This week feels better. Exercise is back, work is clearer, and I am not carrying everything alone.",
-            "timestamp": "2026-08-19T17:15:00Z",
-            "emotion": "gratitude",
-            "topics": [
-              "career",
-              "relationship",
-              "health"
-            ]
-          }
-        },
-        {
-          "index": 20,
-          "distance": 8.0,
-          "metadata": {
-            "text": "No workout again. I scrolled late while worrying about money, slept poorly, and woke up already behind.",
-            "timestamp": "2026-07-31T18:15:00Z",
-            "emotion": "sadness",
-            "topics": [
-              "health",
-              "money"
-            ]
-          }
-        }
-      ],
+      "retrieved_memories": [],
       "prompt": null
     },
     {
       "role": "user",
-      "content": "Maya and I are okay now, but I still feel bad that I disappeared when stressed."
+      "content": "Lowest day in a while, maybe the lowest since this whole stretch started. Woke up already exhausted from maybe two hours of actual sleep, and instead of getting up I just lay there for almost an hour unable to make myself move, which has never really happened to me before in quite that way. Called in sick again, the second time in two weeks, and felt a fresh wave of guilt on top of everything else about that.\n\nPapa's test results came back mid-morning and it's not nothing, mild narrowing they want to monitor with medication and a follow-up in a few weeks, not an emergency but also not the reassuring 'it's nothing' everyone was hoping for. Ma called crying with relief that it wasn't worse and I could barely process my own reaction underneath managing hers over the phone. Papa, predictably, downplayed it entirely, more annoyed about the dietary restrictions than anything else.\n\nDidn't run. Didn't eat properly, just picked at things throughout the day without actually sitting down for a meal. Spent hours on my phone doing nothing in particular, scrolling through the same three apps in a loop, not even really looking at anything, just needing my hands to be doing something that wasn't thinking. Meera came home to find me basically in the same spot on the couch she'd left me in that morning and I could see her trying to figure out whether to push or give space, and she chose space, which I think was right, though it also made me feel a little more alone.\n\nI keep thinking about what Vikram said Saturday, that showing up is something, and today I showed up for absolutely nothing, not work, not exercise, not really even myself. First therapy session is tomorrow and for the first time I actually feel a flicker of wanting to go, not out of obligation to Meera but because I genuinely don't know how much longer I can keep operating like this without something changing."
     },
     {
       "role": "assistant",
-      "content": "It makes sense that you still feel tender about that. The entries show you pulling back during the hardest stretch, then repairing with Maya through an honest conversation and a walk.\n\nThe useful part is not that you handled it perfectly; it is that repair was possible. A small next step could be naming the pattern early, before stress turns into silence.",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
       "emotion": {
-        "emotion": "remorse",
-        "confidence": 0.79,
+        "emotion": "disappointment",
+        "confidence": 0.4074,
         "all_emotions": [
           {
-            "emotion": "remorse",
-            "score": 0.79
+            "emotion": "disappointment",
+            "score": 0.4074
           },
           {
-            "emotion": "caring",
-            "score": 0.55
+            "emotion": "annoyance",
+            "score": 0.1628
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.1267
+          },
+          {
+            "emotion": "sadness",
+            "score": 0.0977
+          },
+          {
+            "emotion": "remorse",
+            "score": 0.0513
           }
         ]
       },
@@ -166,47 +410,827 @@
         "flagged": false,
         "matched_terms": []
       },
-      "retrieved_memories": [
-        {
-          "index": 0,
-          "distance": 6.0,
-          "metadata": {
-            "text": "I still have pressure around the launch, but I can see the pattern now: sleep, exercise, and honest conversations help.",
-            "timestamp": "2026-08-20T18:15:00Z",
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "First session with Dr. Anjali today. I almost cancelled twice on the drive there, sat in the parking lot for ten minutes before going in. She's calmer than I expected, doesn't rush anything, just let me talk in circles for the first twenty minutes before gently asking questions that somehow cut straight to things I hadn't said out loud to anyone, not even Meera.\n\nI ended up telling her about Papa's test results, about the deadline pressure from Priya, about how every conversation with Rohan about money makes my chest tight, about Sameer and how I know that pattern isn't good for me but keep going back to it anyway when things get hard. She didn't judge any of it, just kept asking 'what does that feel like in your body when you say that' which sounds like a strange question but actually made me realize how much tension I've just been carrying physically this whole time without naming it.\n\nI cried at one point, which I genuinely cannot remember the last time I did in front of another person, maybe not since I was a teenager. It wasn't dramatic, just this quiet release when she asked about my father and I realized how scared I've actually been underneath all the 'I'm fine.' She didn't make it a big deal, just handed me a tissue and let it happen, then gently moved us toward talking about what small things might help this week, nothing overwhelming, just one or two things.\n\nWe landed on trying five minutes of breathing or meditation before bed, and keeping the run with Vikram going if I can. Small, manageable. I left feeling wrung out but also lighter in a way I haven't felt in weeks, like something that's been clenched for a long time loosened slightly. Told Meera about it that evening, more openly than I've told her anything in a while, and she just held my hand and said 'I'm proud of you for going.' First good night's sleep in what feels like a month."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "realization",
+        "confidence": 0.572,
+        "all_emotions": [
+          {
             "emotion": "realization",
-            "topics": [
-              "career",
-              "relationship",
-              "health"
-            ]
+            "score": 0.572
+          },
+          {
+            "emotion": "fear",
+            "score": 0.2263
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.1959
+          },
+          {
+            "emotion": "nervousness",
+            "score": 0.0839
+          },
+          {
+            "emotion": "approval",
+            "score": 0.0678
           }
-        },
-        {
-          "index": 9,
-          "distance": 6.0,
-          "metadata": {
-            "text": "The budget still worries me, but I made a spreadsheet and stopped avoiding the numbers.",
-            "timestamp": "2026-08-11T09:15:00Z",
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Second run with Vikram this morning, and it was noticeably easier than Saturday, less gasping, more actual rhythm. We talked more this time too, less about my stuff and more just normal conversation, his work, a trip he's planning, which felt good in its own way, like being a person with a life outside the spiral rather than just someone in crisis being managed.\n\nSlept close to seven hours last night, the best stretch in weeks, and I think the combination of actually crying things out in therapy yesterday and the five minutes of breathing before bed genuinely helped. It wasn't perfect, I still woke up once around three, but I fell back asleep within twenty minutes instead of lying there for two hours, which by recent standards feels like a small miracle.\n\nCooked dinner tonight for the first time in what's probably a month, nothing elaborate, just dal and rice, but I did it properly, chopped vegetables, stood at the stove, didn't check my phone once during it. Meera came home to the smell of actual cooking instead of delivery containers and her face genuinely lit up in a way that made me a little emotional, honestly. We ate together at the table, talked properly, no laptops, no distracted half-answers. I apologized, actually apologized, for how distant I've been the past few weeks, and she said she'd been scared she was losing me a little, which was hard to hear but I think needed saying out loud between us.\n\nWork is still work, Priya's still pushing on the migration, but it felt more manageable today, less like the deadline was going to swallow me whole and more like just a hard task I need to get through. Rohan texted again about the loan, and this time I actually replied properly, told him I needed a few more days to look at the numbers but that I wasn't saying no, which felt more honest than my usual avoidance. Small day, but it feels like the first one in a while where I did more than just survive it."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "approval",
+        "confidence": 0.2797,
+        "all_emotions": [
+          {
+            "emotion": "approval",
+            "score": 0.2797
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.1421
+          },
+          {
+            "emotion": "sadness",
+            "score": 0.1189
+          },
+          {
+            "emotion": "relief",
+            "score": 0.1054
+          },
+          {
             "emotion": "realization",
-            "topics": [
-              "money"
-            ]
+            "score": 0.0938
           }
-        },
-        {
-          "index": 2,
-          "distance": 7.0,
-          "metadata": {
-            "text": "Maya and I walked after dinner. We talked about stress without it taking over the whole evening.",
-            "timestamp": "2026-08-18T16:15:00Z",
-            "emotion": "caring",
-            "topics": [
-              "relationship",
-              "health"
-            ]
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Finally called Rohan back properly tonight about the loan instead of texting one-line non-answers. Sat down beforehand and actually looked at our numbers with Meera, which I should have done two weeks ago instead of just avoiding the whole topic out of some vague anxious dread. Turns out we can help with part of what he needs, not all of it, and I was able to tell him that clearly and calmly instead of either caving out of guilt or shutting the conversation down out of stress like I usually do.\n\nHe was really appreciative, more than I expected, and said he understood completely about the amount and had actually been more worried about me being upset with him than about the money itself, which caught me off guard. We ended up talking for almost an hour, longer than we have in ages, about things that weren't just logistics, how he's actually doing, how the bike shop idea came about, stuff I realized I hadn't really asked him about in a long time because I've been so wrapped up in my own stress.\n\nIt felt genuinely good to set a clear, kind boundary instead of either resentment or overextending myself, and to notice I wasn't anxious the whole time we talked, just present. That's new. Usually conversations with Rohan about money leave me tight in the chest for hours afterward, replaying it, and tonight I just felt calm, even a little closer to him than before.\n\nMeditated again before bed, five minutes, starting to feel slightly less awkward and more like something I actually want to do rather than a chore Dr. Anjali assigned. Skipped the run today, rest day by choice rather than avoidance, which itself feels like a distinction worth noting. Slept reasonably well again. This week feels shaky still, not a straight line, but there's a thread of something steadier running through it that wasn't there two weeks ago."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "realization",
+        "confidence": 0.5818,
+        "all_emotions": [
+          {
+            "emotion": "realization",
+            "score": 0.5818
+          },
+          {
+            "emotion": "approval",
+            "score": 0.2319
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.1219
+          },
+          {
+            "emotion": "relief",
+            "score": 0.0792
+          },
+          {
+            "emotion": "admiration",
+            "score": 0.0501
           }
-        }
-      ],
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Two weeks since I started actually writing these down, and looking back at where I was on day one versus tonight, something has clearly shifted even if it doesn't feel dramatic day to day. That first week was almost entirely bad, barely sleeping, no exercise, drinking with Sameer and feeling worse for days after, snapping at people, avoiding Rohan, dreading Papa's test. This week had its own low point, maybe the worst single day of the whole stretch on Thursday, but it also had therapy, two runs with Vikram, a real cooked dinner and honest conversation with Meera, and an actual resolved, calm conversation with Rohan.\n\nSecond therapy session is Thursday. I'm actually looking forward to it in a way that surprised me when I noticed it, which feels like real progress from the parking-lot hesitation of last week. Dr. Anjali mentioned something in the first session about noticing patterns without judging them, and I've been trying to apply that here, just noticing that the Sameer pattern exists rather than beating myself up about it, noticing that running with Vikram consistently correlates with a better next day, noticing that meditation before bed seems to actually be helping the sleep even in small doses.\n\nWork is still heavy but Priya seemed genuinely pleased with progress on the migration today, first positive feedback in weeks, not glowing, just a simple 'good, this is on track now' but it landed differently than her usual clipped tone. Papa's on his new medication and seems more like himself on the phone, less avoidant about the topic than I expected, actually asked me how I've been doing for once instead of just deflecting.\n\nStill tired most days. Still some anxious nights. This isn't some clean transformation, more like a slightly steadier version of the same person figuring things out one uneven week at a time. But compared to two weeks ago, something in me feels less like it's drowning and more like it's swimming, even if slowly."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "realization",
+        "confidence": 0.2662,
+        "all_emotions": [
+          {
+            "emotion": "realization",
+            "score": 0.2662
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.2589
+          },
+          {
+            "emotion": "disappointment",
+            "score": 0.191
+          },
+          {
+            "emotion": "approval",
+            "score": 0.0654
+          },
+          {
+            "emotion": "surprise",
+            "score": 0.0396
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Tried a longer meditation session this morning before work, ten minutes instead of the usual five before bed, sitting on the balcony with coffee after instead of scrolling my phone first thing like I usually do. It felt clumsy and my mind wandered constantly, mostly back to the migration and a nagging worry about Papa's follow-up appointment next week, but Dr. Anjali said that's normal, the point isn't a blank mind, it's noticing when it wanders and gently bringing it back, which I did, over and over, maybe fifteen times in ten minutes.\n\nCut back on coffee today, only two cups instead of my usual four or five, and I noticed by early afternoon I felt steadier rather than jittery, less of that on-edge feeling that's been sitting in my chest for weeks. Small thing, but it's the kind of small thing Dr. Anjali keeps gently pointing me toward, that big changes aren't really the plan right now, just consistent small ones.\n\nGood day at work, actually got into a flow state for a couple hours on a piece of the migration that's been giving me trouble, Arjun and I paired on it and actually had fun problem-solving together, which is a word I haven't used about work in a long time. He mentioned he'd noticed I seemed less stressed lately and it was nice to hear that from someone outside my immediate circle, that whatever's shifting is visible even to people who don't know the details.\n\nMeera and I had a quiet, easy evening, watched a movie, nothing dramatic, just comfortable, which after the tension of a few weeks ago feels like its own kind of relief. Didn't run today, rest day, but did the meditation both morning and a short one before bed. Small, steady day. I'm starting to trust these a little more than I trust the big dramatic swings."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "joy",
+        "confidence": 0.7145,
+        "all_emotions": [
+          {
+            "emotion": "joy",
+            "score": 0.7145
+          },
+          {
+            "emotion": "approval",
+            "score": 0.2148
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.1377
+          },
+          {
+            "emotion": "relief",
+            "score": 0.1369
+          },
+          {
+            "emotion": "realization",
+            "score": 0.0868
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Really good day at work today, one of the best in a long time. We hit a major milestone on the migration ahead of the revised deadline, and Priya actually stopped by my desk in person, which she almost never does, to say the team's work this week had been excellent and specifically called out a piece of the architecture I'd designed as 'genuinely elegant,' her words. I don't think I've felt proud of something at work in months, and it hit differently than I expected, this warm, almost unfamiliar feeling of things going right instead of constantly bracing for the next problem.\n\nSpent almost three hours in a real flow state coding this afternoon, the kind where you look up and can't believe how much time passed, no anxiety underneath it, just focus. Arjun and I grabbed coffee after work to celebrate the milestone, nothing big, but it felt good to mark it instead of just immediately moving on to the next fire, which is usually what happens.\n\nMeditated again before bed, fifteen minutes this time, longer than I've managed yet, and it's genuinely starting to feel less like an assigned task and more like something I actually crave at the end of a long day, a way of putting the day down before sleep instead of carrying it into bed with me.\n\nTold Meera about Priya's comment and she looked so happy for me, said 'see, I told you things could get better,' and I actually believed her instead of just nodding along politely like I might have a few weeks ago. No exercise today, work ran long, but I don't feel guilty about it in the anxious, self-critical way I used to, just noting it as a rest day and moving on. Slept well again. These good days used to feel rare and fragile. Today felt solid."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "joy",
+        "confidence": 0.4849,
+        "all_emotions": [
+          {
+            "emotion": "joy",
+            "score": 0.4849
+          },
+          {
+            "emotion": "admiration",
+            "score": 0.2644
+          },
+          {
+            "emotion": "approval",
+            "score": 0.1947
+          },
+          {
+            "emotion": "relief",
+            "score": 0.1602
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.0945
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Sameer texted asking to meet up, said it had been a while, and I said yes, partly because it genuinely had been a while and partly, if I'm honest with myself now, out of some old habit of not wanting to say no to him. We met at the same bar as before and it started out fine, catching up, some laughs about old college stuff, but as the night went on the same pattern crept back in, more drinks than I meant to have, him talking mostly about how everyone in his life is overreacting to normal problems, and me nodding along instead of pushing back or steering the conversation somewhere healthier.\n\nI noticed myself noticing it this time though, which is new, some part of me watching the pattern unfold in real time and thinking 'this is the thing Dr. Anjali and I talked about' even while I was still doing it. I didn't leave early. I didn't set a limit. But I noticed, and I think that noticing itself is different from three weeks ago when I'd have just been fully inside it without any awareness at all.\n\nGot home late again, later than I meant to, and Meera was awake this time, not upset exactly, just quietly asked 'how was it' in a tone that told me she already knew how it probably went. I told her honestly, said it felt off by the end, that I think I understand now why these nights with Sameer leave me feeling worse rather than better, that it's not really about the alcohol, it's about spending hours reinforcing this idea that everything hard in my life is something to numb out or complain about rather than actually deal with.\n\nDidn't sleep well. Skipped the evening meditation entirely, too tired and slightly foggy from the drinks. I know tomorrow is probably going to be rough. But there's something different about seeing the pattern clearly this time instead of just living inside it."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "disappointment",
+        "confidence": 0.3217,
+        "all_emotions": [
+          {
+            "emotion": "disappointment",
+            "score": 0.3217
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.3163
+          },
+          {
+            "emotion": "realization",
+            "score": 0.308
+          },
+          {
+            "emotion": "annoyance",
+            "score": 0.0864
+          },
+          {
+            "emotion": "approval",
+            "score": 0.0856
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Woke up exactly as rough as I expected, headache, low energy, that familiar hollow guilt sitting in my chest before I'd even fully opened my eyes. But this time I actually sat with it for a minute instead of just pushing through, and wrote down, almost as an experiment, every time I've seen Sameer this month and how the next day felt. Day 3, drinks, then day 4 was one of the worst of the whole month. Yesterday, drinks, and today is rough again. Every single time, without exception, the day after is worse than the day before. It's such an obvious pattern laid out like that and I've apparently needed to see it in writing to actually believe it.\n\nTold Vikram about it on our run this morning, well, walk today really, I didn't have much in me for actual running. He didn't say 'I told you so' or anything like that, just listened and said something like 'some people are just draining even when they don't mean to be, that's allowed to be true even if you love them.' That landed harder than I expected. I don't think I've let myself consider that Sameer being a genuine, longtime friend and Sameer being bad for me right now can both be true at once.\n\nMeera and I talked about it properly tonight, really talked, not the careful sideways version from a few weeks ago. I told her about the pattern I'd written down and she didn't say anything judgmental, just asked what I thought I wanted to do about it. I said I think I need some distance from him for a while, not forever, not dramatically, just less, and less drinking specifically. She said that sounded healthy and squeezed my hand.\n\nMeditated tonight even though I didn't want to, ten minutes, mostly just sitting with the discomfort of the day rather than any real calm. Early night. Tomorrow I want to actually run properly again."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "disappointment",
+        "confidence": 0.3648,
+        "all_emotions": [
+          {
+            "emotion": "disappointment",
+            "score": 0.3648
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.1895
+          },
+          {
+            "emotion": "annoyance",
+            "score": 0.1822
+          },
+          {
+            "emotion": "realization",
+            "score": 0.0877
+          },
+          {
+            "emotion": "sadness",
+            "score": 0.0602
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Long, honest conversation with Meera today, the kind we haven't really had in months, maybe longer if I'm being fully truthful with myself. We sat on the balcony for almost two hours, no phones, just talking, starting with the Sameer thing but going much wider than that, into how distant I'd let myself get from her over the past couple months without really registering it, buried in work stress and my own head, and how much that had actually hurt her even though she never made me feel guilty about it, just quietly worried and a little lonely in our own apartment.\n\nI told her I was sorry, properly, not the quick apology from a couple weeks ago but a real one, naming specific things, the nights I ignored her at dinner, the way I used to shut down every time she asked how I was doing. She cried a little, said she'd been scared for weeks that something was really wrong and that I wasn't going to let her in, and that today, finally talking like this, felt like getting a piece of me back that had been missing.\n\nI decided out loud, in that conversation, that I'm going to see Sameer less for a while, not cut him off, just protect this space I'm slowly building rather than let it get eroded every couple weeks. She said she supports that completely and isn't trying to control who I see, just glad I can see the pattern myself now.\n\nWe ended up cooking dinner together, actually together, both of us in the kitchen at once for the first time in ages, laughing about how bad we both are at chopping onions evenly. Felt closer to her tonight than I have in a long time, maybe longer than just this rough month, honestly. No run today, but a full ten minute meditation before bed together, her idea, sitting next to each other in silence. Good, full day."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "sadness",
+        "confidence": 0.2736,
+        "all_emotions": [
+          {
+            "emotion": "sadness",
+            "score": 0.2736
+          },
+          {
+            "emotion": "joy",
+            "score": 0.1532
+          },
+          {
+            "emotion": "disappointment",
+            "score": 0.106
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.0799
+          },
+          {
+            "emotion": "realization",
+            "score": 0.0648
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Run with Vikram this morning, five kilometers, the longest yet, and it felt genuinely good rather than like something I was forcing myself through. My legs are getting used to it, my breathing evens out faster now, and there's this steady, almost meditative quality to it now that wasn't there in the first couple of weeks when it was mostly just gasping and willpower. We're talking about signing up for an actual 10k in a few months, which a month ago would have sounded absurd to me.\n\nTold Vikram more about the conversation with Meera on Tuesday and about deciding to see Sameer less, and he said something I keep thinking about, that he's noticed over years of running together with different friends that the people who show up consistently for something hard, like an early morning run, tend to be the people who are actually good for you in general, and the people who only show up when there's a bar involved tend to reveal something too. Simple observation, but it stuck with me.\n\nGood, steady day otherwise. Meditation this morning after the run, fifteen minutes, easiest it's felt yet, actual moments of real quiet in there instead of constant wandering. Cooked a proper dinner again tonight, getting more comfortable in the kitchen, tried a new recipe Meera found, turned out decent. Slept well, close to eight hours, which a month ago would have felt like a fantasy.\n\nWork is manageable, migration's basically stable now, Priya's mostly hands-off this week which after weeks of tight oversight feels like its own kind of relief and vote of confidence. Haven't heard from Sameer since Tuesday, which feels neither dramatic nor sad, just quiet, the natural result of a decision rather than an argument. Four weeks ago today was my first entry in this journal. I genuinely do not feel like the same person who wrote it, even though it's only been that short a stretch of time."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "neutral",
+        "confidence": 0.4028,
+        "all_emotions": [
+          {
+            "emotion": "neutral",
+            "score": 0.4028
+          },
+          {
+            "emotion": "approval",
+            "score": 0.3942
+          },
+          {
+            "emotion": "realization",
+            "score": 0.1918
+          },
+          {
+            "emotion": "joy",
+            "score": 0.052
+          },
+          {
+            "emotion": "relief",
+            "score": 0.0453
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Neha's back in Pune for a few days before her course wraps up, and she came over again today, same easy, funny energy as last time, immediately made fun of me for 'looking less like a zombie' than a few weeks ago, which honestly made me laugh harder than it probably should have. We ended up going for a walk along the river, the same stretch I've been running with Vikram, and I found myself pointing out where I usually stop to catch my breath like it was some kind of landmark, which she thought was ridiculous and adorable in equal measure.\n\nShe's dealing with her own stress, college applications, pressure from her parents about which stream to pick, and I found myself actually able to be present and helpful in a way I don't think I could have a month ago, when I barely had bandwidth for my own problems let alone anyone else's. We talked for a long time about pressure and expectations and how they show up differently in different generations of the same family, and it felt like a real, mutual conversation rather than me just half-listening while she talked.\n\nEvery time she visits, I notice afterward how much lighter I feel, some specific quality of joy that doesn't show up as reliably with almost anyone else in my life right now, maybe because there's zero weight or history or obligation attached to it, just genuine easy affection between us. I told Meera that later and she laughed and said 'Neha's basically your happiness cheat code,' which felt exactly right.\n\nMeditated tonight, ten minutes, easy at this point, part of the routine now rather than a chore. No run today, walked plenty though. Papa's follow-up appointment is in two days and there's some background hum of anxiety about it, but it feels manageable now in a way it wouldn't have a month ago, present but not consuming everything else."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "amusement",
+        "confidence": 0.7397,
+        "all_emotions": [
+          {
+            "emotion": "amusement",
+            "score": 0.7397
+          },
+          {
+            "emotion": "joy",
+            "score": 0.4595
+          },
+          {
+            "emotion": "approval",
+            "score": 0.0969
+          },
+          {
+            "emotion": "admiration",
+            "score": 0.0565
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.052
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Third session with Dr. Anjali today, and for the first time I walked in without that dread I felt going into the first one. We talked a lot about this past week, the honesty with Meera, the decision about Sameer, the runs with Vikram becoming a real habit rather than a forced one. She pointed out something I hadn't quite named myself, that a lot of what's shifted isn't really about doing more things, it's about a handful of specific, repeatable things, the runs, the meditation, actually eating meals sitting down, honest conversations instead of avoidant ones, and that consistency with a few small things is doing more than any single big gesture could.\n\nShe also asked me to notice, this week, which people in my life I feel lighter after seeing versus heavier, without judgment, just as data. I told her about Vikram and Neha on the lighter side, Meera especially this past week, and Sameer clearly on the heavier side, at least for now. She said that's genuinely useful information, that it's not about cutting anyone off dramatically but about being honest with myself about the actual effect different relationships have, which is exactly the conversation I had with Meera on the balcony last week, just put into clearer language.\n\nRan with Vikram again this morning before the session, easy five kilometers now, barely notice the effort compared to three weeks ago. Meditated again tonight. Cooked dinner, third time this week, starting to feel like an actual habit rather than a novelty.\n\nFour weeks in total since day one of this journal, three weeks since the real turning point around the first therapy session and first run. Looking back at the whole month, the shape of it is clear even if it wasn't a straight line, a rough first week and a half, a genuine low point mid-month, and then a slow, real climb from there that's still ongoing. Papa's follow-up is tomorrow. I feel steadier facing it than I expected to."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "neutral",
+        "confidence": 0.5991,
+        "all_emotions": [
+          {
+            "emotion": "neutral",
+            "score": 0.5991
+          },
+          {
+            "emotion": "approval",
+            "score": 0.2813
+          },
+          {
+            "emotion": "realization",
+            "score": 0.2083
+          },
+          {
+            "emotion": "relief",
+            "score": 0.0141
+          },
+          {
+            "emotion": "optimism",
+            "score": 0.0117
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Papa's follow-up appointment today, and the news was genuinely good, the medication is working, the narrowing hasn't progressed, doctor seemed pleased with his numbers and mostly just reinforced the diet and exercise recommendations rather than raising any new concerns. Ma called immediately after, this time crying from relief rather than worry, and I could actually hear the difference in her voice from three weeks ago.\n\nI felt something loosen in my chest that I hadn't fully realized I was still holding onto, this background thread of fear about Papa that's been running under everything since the first mention of the checkup a month ago. Called Papa directly this evening and he was in unusually good spirits, actually talked a bit about how the diet changes have been going, joked that Ma's been policing his meals 'like a prison warden,' which is about as openly he ever gets about being cared for.\n\nRan with Vikram this morning before all this news came in, six kilometers, a new personal best for this whole stretch, and honestly the run this morning probably helped me handle the anxious wait for Papa's appointment results better than I would have otherwise, gave the nervous energy somewhere to go instead of just sitting in my chest all day.\n\nTold Meera the good news the second I got off the phone with Ma and we just held each other for a minute in the kitchen, both of us releasing something we'd both been quietly carrying for weeks on his behalf. Cooked dinner together again, easy and comfortable at this point, this new rhythm we've built. Meditated before bed, reflecting mostly on relief and gratitude rather than the usual settling-anxious-thoughts version of it. Genuinely good day, one of the best of this whole month, no complicated feelings underneath it, just relief and warmth."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "joy",
+        "confidence": 0.3665,
+        "all_emotions": [
+          {
+            "emotion": "joy",
+            "score": 0.3665
+          },
+          {
+            "emotion": "approval",
+            "score": 0.2239
+          },
+          {
+            "emotion": "relief",
+            "score": 0.2213
+          },
+          {
+            "emotion": "admiration",
+            "score": 0.1815
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.1647
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Presentation to leadership today on the completed migration, something I'd been quietly dreading for two weeks even as the actual work stabilized, some leftover anxiety about being visible and judged that I don't think has fully caught up with how much steadier I actually feel these days. It went well, genuinely well, clear questions, solid answers, and afterward Priya pulled me aside and said this was some of the strongest technical leadership she'd seen from anyone on the team this year, and that she's going to recommend me for the senior engineer track review coming up next quarter.\n\nI sat with that for a while after work, trying to actually let it land instead of immediately discounting it or worrying about the next deadline, which is usually my instinct. A month ago I don't think I would have believed I was capable of this kind of feedback, was mostly just trying to survive each day rather than think about growth or recognition at all.\n\nTold Arjun the news and he seemed genuinely happy for me, said he'd noticed the shift in how I've been showing up at work these past couple weeks, more present, less frazzled, and that it's been good for the whole team's energy, not just mine, which was a nice thing to hear, that whatever's shifted in me privately has had some visible ripple effect on people around me too.\n\nNo run today, celebrated with Meera instead, went out for dinner, actual restaurant, first time in ages we've done that without me checking my phone the entire time. Meditated briefly before bed, mostly just sitting with a kind of quiet pride I haven't let myself feel in a long time. Good day, steady day, the kind that a month ago would have felt impossible to imagine having."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "joy",
+        "confidence": 0.4028,
+        "all_emotions": [
+          {
+            "emotion": "joy",
+            "score": 0.4028
+          },
+          {
+            "emotion": "approval",
+            "score": 0.2818
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.2327
+          },
+          {
+            "emotion": "relief",
+            "score": 0.1762
+          },
+          {
+            "emotion": "admiration",
+            "score": 0.0731
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Fourth Saturday run in a row with Vikram now, a real streak at this point rather than something I'm forcing myself into, seven kilometers today, further than I've ever managed, and I genuinely didn't feel wrecked afterward, just pleasantly tired in a way that feels earned rather than depleting. Noticing real physical changes too, more energy through the day generally, better sleep most nights, less of that low background fatigue that used to sit under everything a month ago.\n\nVikram mentioned today that he's noticed a real difference in me since we started running together, said I seem lighter, more like myself, whatever that means to someone who's known me since college, and it meant a lot coming from him specifically, someone who's been consistently good for me this whole stretch without ever making a big deal out of it, just showing up every week and letting the running speak for itself.\n\nSpent the afternoon doing small chores around the apartment, nothing exciting, just steady, present tasks, cooked a proper lunch, did some reading for the first time in what feels like months, an actual book rather than just scrolling headlines. Meera commented that the apartment feels different lately too, calmer, more lived in, less like two exhausted people just passing through the same space.\n\nMeditated this evening, fifteen minutes, easily now, genuinely enjoy it at this point rather than doing it out of obligation. Looking back at this week specifically, the shape of it is just steady good days stacked on top of each other, Papa's good news, the presentation, the running streak, real rest, which after a month that started with barely functioning through each day feels like a completely different life, even though on paper not that much has actually changed except a handful of small, repeated habits."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "joy",
+        "confidence": 0.5584,
+        "all_emotions": [
+          {
+            "emotion": "joy",
+            "score": 0.5584
+          },
+          {
+            "emotion": "approval",
+            "score": 0.3042
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.2015
+          },
+          {
+            "emotion": "relief",
+            "score": 0.1424
+          },
+          {
+            "emotion": "realization",
+            "score": 0.0775
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Quiet Sunday, mostly spent in the kitchen actually, decided to properly cook a full meal from scratch, something more ambitious than the usual dal and rice, a whole spread for Meera as a small thank you for everything the past few weeks, and for putting up with me through the rough patch before that. Took most of the afternoon, several dishes going at once, and I found real, uncomplicated enjoyment in it, the specific kind of focus cooking requires that isn't anxious focus like work often is, just present, hands-on attention.\n\nMeera was genuinely touched, said this was the most 'like yourself' she'd seen me in months, not just this past rough month but honestly longer than that if she's being fully honest, that some version of me that existed before the worst of the work stress and general grinding exhaustion had been missing for a while and seems to be coming back now. That landed somewhere deep, this idea that I haven't just been recovering from a bad month, I've been slowly finding my way back to something that had actually been eroding for longer than I'd realized.\n\nNo run today, rest day, but a long walk instead, and meditation both morning and evening, twenty minutes total across the day, more than I've ever managed, genuinely restorative rather than effortful at this point. Reflected during the evening session on the specific handful of things that seem to consistently make me feel better, cooking, running with Vikram, honest conversation with Meera, time with Neha, meditation, actual sleep, versus the things that reliably make me feel worse afterward even when they feel good in the moment, doomscrolling late at night, too much coffee, drinking with Sameer specifically.\n\nIt's such a clear, simple list when I actually write it out like that. I don't know why it took a full month of writing these entries to see the pattern this plainly, but I'm glad I finally can."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "realization",
+        "confidence": 0.2616,
+        "all_emotions": [
+          {
+            "emotion": "realization",
+            "score": 0.2616
+          },
+          {
+            "emotion": "approval",
+            "score": 0.129
+          },
+          {
+            "emotion": "gratitude",
+            "score": 0.1217
+          },
+          {
+            "emotion": "joy",
+            "score": 0.1179
+          },
+          {
+            "emotion": "confusion",
+            "score": 0.0988
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Called Rohan tonight to check in properly, not about money this time, just to see how the bike shop is going with the partial funding we sent a couple weeks ago. He sounded genuinely good, excited even, said the shop's first month of proper operations has gone better than expected and he's already thinking about a small expansion, wanted my opinion on some of the numbers, which felt nice, being asked for input rather than just being the sibling with the loan.\n\nWe ended up talking for over an hour, about the business but also just about life generally, our parents, how relieved we both are about Papa's good news, plans for Diwali later in the year. It struck me partway through how different this conversation felt from the tense, anxious one-line exchanges we were having a month ago, how much of that tension back then was really coming from my side, from how depleted and reactive I was generally, rather than anything actually wrong between us.\n\nI brought up, gently, that I want us to keep talking more regularly, not just when there's a financial ask on the table, and he agreed immediately, said he'd wanted that too but wasn't sure how to bring it up given how stressed I'd clearly been. Setting that boundary honestly a couple weeks ago, being clear about what I could and couldn't do, seems to have actually made the relationship stronger rather than more distant, which wasn't what I expected going into that conversation back then.\n\nRan with Vikram this morning before all this, six kilometers, steady and easy now. Meditated tonight after the call with Rohan, reflecting mostly on how much lighter family relationships feel when I'm not also drowning in my own unmanaged stress underneath them. Good, full day."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "approval",
+        "confidence": 0.431,
+        "all_emotions": [
+          {
+            "emotion": "approval",
+            "score": 0.431
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.2694
+          },
+          {
+            "emotion": "joy",
+            "score": 0.1231
+          },
+          {
+            "emotion": "excitement",
+            "score": 0.0879
+          },
+          {
+            "emotion": "realization",
+            "score": 0.0762
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Full day with Meera today, no work, no phones for most of it, just us, first real unstructured day together in what feels like months rather than weeks. We went to that bookstore café she loves near her office, wandered around for hours, no agenda, ended up back home for a slow, easy evening cooking together again, something that's become genuinely our thing now rather than a rare event.\n\nShe told me tonight, over dinner, that this month has been hard for her too in ways she hadn't fully said out loud before, watching me struggle and not knowing how to help, feeling shut out for a lot of it, genuinely scared at points that something bigger was wrong that neither of us had a name for yet. Hearing that honestly, not in an accusing way, just as her own real experience of the same stretch of time, made me appreciate even more how much patience she extended through weeks where I wasn't giving her much back.\n\nI told her, and meant it fully, that I feel like I've gotten back not just myself but us, this specific ease between us that had quietly eroded over months before this whole journal even started, buried under work stress I let consume everything else. She said she's noticed I actually look at her now when she talks instead of half-listening while thinking about something else, small thing, but she said it meant a lot.\n\nNo run today, full rest day, but a long, comfortable walk in the evening and meditation together again, her idea, something we've started doing a couple times a week now, sitting side by side in easy silence. Genuinely one of the best days of the whole month, not because anything dramatic happened, just because of how present and connected the whole day felt."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "admiration",
+        "confidence": 0.4108,
+        "all_emotions": [
+          {
+            "emotion": "admiration",
+            "score": 0.4108
+          },
+          {
+            "emotion": "approval",
+            "score": 0.1938
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.1165
+          },
+          {
+            "emotion": "realization",
+            "score": 0.0517
+          },
+          {
+            "emotion": "fear",
+            "score": 0.0422
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "Sameer texted asking to meet up this weekend, and I actually thought about it properly this time instead of either an automatic yes or an anxious avoidance. Ended up suggesting coffee during the day instead of drinks at night, something lower-key, and he agreed easily, no pushback, which was almost surprising given how much of our friendship has revolved around those long bar nights.\n\nWe met this afternoon, just coffee, an hour, and it was genuinely nice, lighter somehow without the alcohol and the late hour pulling everything into that heavier, complain-about-everything register. He asked how I've been and I told him honestly, therapy, running, the changes with Rohan and Meera, and he actually seemed to take it in rather than immediately steering back to his usual venting, said something like 'good for you man, seriously,' which felt genuine.\n\nI noticed, writing this tonight, that I don't feel that familiar low, guilty hangover feeling I usually get the day after seeing him, because there simply isn't a day after yet to compare, but also because the whole shape of the meetup was different, shorter, sober, daytime, boundaries I set without really announcing them as boundaries, just naturally shaping the interaction differently than before. It feels like real proof of what Dr. Anjali's been saying, that this was never really about cutting Sameer out, just about not letting that specific old pattern run unchecked.\n\nRan with Vikram this morning before all that, easy seven kilometers now, barely notice the distance anymore. Meditated tonight, reflecting on how much of this month has been less about big decisions and more about small, repeated, deliberate choices, the run, the boundary with Sameer today, the honest conversations, stacking up into something that actually holds. Tomorrow marks a full month since I started writing these down. I genuinely cannot believe how far this has come."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "realization",
+        "confidence": 0.3703,
+        "all_emotions": [
+          {
+            "emotion": "realization",
+            "score": 0.3703
+          },
+          {
+            "emotion": "neutral",
+            "score": 0.2625
+          },
+          {
+            "emotion": "approval",
+            "score": 0.2247
+          },
+          {
+            "emotion": "surprise",
+            "score": 0.0531
+          },
+          {
+            "emotion": "joy",
+            "score": 0.0314
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
+      "prompt": null
+    },
+    {
+      "role": "user",
+      "content": "One month exactly since my first entry, and I went back and reread it tonight, that first one about barely sleeping, four cups of coffee and shaking hands, snapping at Meera over the gas stove, avoiding Rohan's texts, dreading Papa's checkup, no exercise in two weeks. Reading it back feels almost like reading about a different person, not because the problems all magically disappeared, some of them are still genuinely part of my life, work is still demanding, family still has its complexities, but because of how differently I'm carrying all of it now compared to then.\n\nThe shape of this month, looking at it whole: a genuinely brutal first week and a half, sleepless, wired on coffee, one bad night with Sameer that made everything worse instead of better, real tension with Meera, real dread about Papa. Then a low point right around the middle, that Wednesday and Thursday where I could barely get off the couch, which turned out to be exactly the point where I finally said yes to therapy and yes to running with Vikram, both scary, uncomfortable first steps. From there, an uneven but real climb, a relapse with Sameer that at least taught me the pattern clearly instead of just repeating it blindly, honest hard conversations with Meera and Rohan that ended up strengthening both relationships rather than damaging them, Papa's genuinely good health news, real recognition at work, and this steady, almost boring in the best way accumulation of small habits, the runs, the meditation, actual cooked meals, real sleep.\n\nWhat actually helped, looking back plainly: consistent movement with Vikram, meditation, honest conversation instead of avoidance, cooking as a kind of grounding ritual, and time with people like Neha and Meera who leave me feeling lighter rather than heavier. What consistently hurt: late-night drinking and venting with Sameer specifically, too much coffee, doomscrolling instead of sleeping, and avoiding hard conversations with Rohan and Meera until they became bigger than they needed to be.\n\nI'm not fixed, whatever that would even mean. But I'm steadier, more present with Meera, closer to my brother, genuinely proud of work for the first time in a long while, and I have a small set of habits now that I trust to actually hold me up rather than just distract me. A month ago I couldn't have written that sentence and meant it. Tonight, I do."
+    },
+    {
+      "role": "assistant",
+      "content": "I'm here with you. Tell me more about what you're feeling.",
+      "emotion": {
+        "emotion": "neutral",
+        "confidence": 0.2981,
+        "all_emotions": [
+          {
+            "emotion": "neutral",
+            "score": 0.2981
+          },
+          {
+            "emotion": "realization",
+            "score": 0.2118
+          },
+          {
+            "emotion": "approval",
+            "score": 0.1971
+          },
+          {
+            "emotion": "fear",
+            "score": 0.0844
+          },
+          {
+            "emotion": "disappointment",
+            "score": 0.0485
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [],
       "prompt": null
     }
   ]

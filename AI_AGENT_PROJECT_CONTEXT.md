@@ -2605,3 +2605,36 @@ can freeze live-generated sample replies. If not, it marks
 `generated_with_live_llm: false` in `chat_transcript.json` and uses the offline
 fallback transcript text from the script. This keeps the deployed demo reliable and
 honest.
+
+## 51. External Demo Persona Ingestion
+
+`scripts/ingest_demo_persona.py` ingests an externally supplied
+`demo_persona_journals.json` dataset. The input may be either an array of entries or
+an object with `persona_brief` plus `entries`; the script treats `persona_brief` only
+as presence metadata and never injects it into analytics or dashboard content.
+
+Important behavior:
+
+- Entries are sorted by `day` and processed through `RAGService.run_pipeline`.
+- The script uses isolated runtime storage under `data/demo_persona/`:
+  `journal.db`, `faiss_store/`, and `latency_log.jsonl`.
+- After each pipeline call, the stored SQLite record and FAISS metadata are
+  backdated to the entry date as `YYYY-MM-DDT12:00:00Z`, following the
+  `scripts/seed_demo_data.py` pattern.
+- Raw per-entry outputs are written to
+  `debug/demo_persona_raw_output/ingestion_log.json`.
+- Actual FastAPI endpoint responses are captured through `TestClient` with
+  `get_service` overridden to the isolated persona service, then written under
+  `debug/demo_persona_raw_output/`.
+- The same endpoint JSON is copied into `backend/demo_data/` so the existing
+  `/api/demo/*` routes and demo-mode frontend render this persona without new UI.
+
+Command:
+
+```bash
+make ingest-demo-persona DEMO_PERSONA_JSON=C:/path/to/demo_persona_journals.json
+```
+
+No analytics engine logic should be tuned in this ingestion step. If an engine
+extracts odd people, topics, emotions, goals, or relationships, leave those outputs
+as-is unless there is an actual crash or storage/export bug.

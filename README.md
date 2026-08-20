@@ -41,6 +41,17 @@ Mistral credentials and network access are available, the script can freeze
 live-generated sample replies; otherwise the JSON metadata records that offline
 fallback transcript text was used.
 
+To ingest an externally supplied persona dataset through the real journal pipeline
+and publish those raw endpoint outputs into the demo page:
+
+```bash
+make ingest-demo-persona DEMO_PERSONA_JSON=C:/path/to/demo_persona_journals.json
+```
+
+That script stores the temporary persona DB/FAISS files under `data/demo_persona/`,
+writes raw endpoint output under `debug/demo_persona_raw_output/`, and copies the
+same endpoint JSON into `backend/demo_data/` for `/api/demo/*`.
+
 ## Architecture
 
 ```

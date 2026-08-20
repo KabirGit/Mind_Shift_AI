@@ -1,19 +1,19 @@
 {
   "retrieval_precision": {
-    "precision_at_k": 0.7333,
+    "precision_at_k": 1.0,
     "k": 3,
     "n_samples_used": 10,
     "note": "Approximation using topic overlap as relevance proxy."
   },
   "emotion_confidence": {
-    "mean_confidence": 0.8373,
-    "min": 0.77,
-    "max": 0.9,
-    "low_confidence_ratio": 0.0
+    "mean_confidence": 0.4231,
+    "min": 0.2616,
+    "max": 0.7397,
+    "low_confidence_ratio": 0.7667
   },
   "latency": {
-    "avg_ms": 0.0,
-    "p95_ms": 0.0,
-    "sample_count": 0
+    "avg_ms": 1119.35,
+    "p95_ms": 1263.36,
+    "sample_count": 30
   }
 }

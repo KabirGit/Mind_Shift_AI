@@ -3,73 +3,68 @@
   "lookback_days": 30,
   "emotion_over_time": [
     {
-      "date": "2026-07-22",
-      "emotion": "optimism",
-      "count": 1
-    },
-    {
       "date": "2026-07-23",
-      "emotion": "pride",
+      "emotion": "confusion",
       "count": 1
     },
     {
       "date": "2026-07-24",
-      "emotion": "joy",
+      "emotion": "disappointment",
       "count": 1
     },
     {
       "date": "2026-07-25",
-      "emotion": "stress",
+      "emotion": "disappointment",
       "count": 1
     },
     {
       "date": "2026-07-26",
-      "emotion": "fear",
+      "emotion": "disappointment",
       "count": 1
     },
     {
       "date": "2026-07-27",
-      "emotion": "sadness",
+      "emotion": "neutral",
       "count": 1
     },
     {
       "date": "2026-07-28",
-      "emotion": "relief",
+      "emotion": "joy",
       "count": 1
     },
     {
       "date": "2026-07-29",
-      "emotion": "remorse",
+      "emotion": "disappointment",
       "count": 1
     },
     {
       "date": "2026-07-30",
-      "emotion": "annoyance",
+      "emotion": "neutral",
       "count": 1
     },
     {
       "date": "2026-07-31",
-      "emotion": "sadness",
-      "count": 1
-    },
-    {
-      "date": "2026-08-01",
       "emotion": "fear",
       "count": 1
     },
     {
+      "date": "2026-08-01",
+      "emotion": "disappointment",
+      "count": 1
+    },
+    {
       "date": "2026-08-02",
-      "emotion": "sadness",
+      "emotion": "realization",
       "count": 1
     },
     {
       "date": "2026-08-03",
-      "emotion": "relief",
+      "emotion": "approval",
       "count": 1
     },
     {
       "date": "2026-08-04",
-      "emotion": "anger",
+      "emotion": "realization",
       "count": 1
     },
     {
@@ -79,312 +74,1026 @@
     },
     {
       "date": "2026-08-06",
-      "emotion": "sadness",
+      "emotion": "joy",
       "count": 1
     },
     {
       "date": "2026-08-07",
-      "emotion": "relief",
+      "emotion": "joy",
       "count": 1
     },
     {
       "date": "2026-08-08",
-      "emotion": "optimism",
+      "emotion": "disappointment",
       "count": 1
     },
     {
       "date": "2026-08-09",
-      "emotion": "caring",
+      "emotion": "disappointment",
       "count": 1
     },
     {
       "date": "2026-08-10",
-      "emotion": "joy",
+      "emotion": "sadness",
       "count": 1
     },
     {
       "date": "2026-08-11",
-      "emotion": "realization",
+      "emotion": "neutral",
       "count": 1
     },
     {
       "date": "2026-08-12",
-      "emotion": "pride",
+      "emotion": "amusement",
       "count": 1
     },
     {
       "date": "2026-08-13",
-      "emotion": "joy",
+      "emotion": "neutral",
       "count": 1
     },
     {
       "date": "2026-08-14",
-      "emotion": "optimism",
+      "emotion": "joy",
       "count": 1
     },
     {
       "date": "2026-08-15",
-      "emotion": "relief",
+      "emotion": "joy",
       "count": 1
     },
     {
       "date": "2026-08-16",
-      "emotion": "optimism",
+      "emotion": "joy",
       "count": 1
     },
     {
       "date": "2026-08-17",
-      "emotion": "pride",
+      "emotion": "realization",
       "count": 1
     },
     {
       "date": "2026-08-18",
-      "emotion": "caring",
+      "emotion": "approval",
       "count": 1
     },
     {
       "date": "2026-08-19",
-      "emotion": "gratitude",
+      "emotion": "admiration",
       "count": 1
     },
     {
       "date": "2026-08-20",
       "emotion": "realization",
       "count": 1
+    },
+    {
+      "date": "2026-08-21",
+      "emotion": "neutral",
+      "count": 1
     }
   ],
   "pattern_summary": {
     "recurring_emotions": {
-      "realization": 3,
-      "gratitude": 1,
-      "caring": 2,
-      "pride": 3,
-      "optimism": 4,
-      "relief": 4,
-      "joy": 3,
-      "sadness": 4,
-      "anger": 1,
-      "fear": 2,
-      "annoyance": 1,
-      "remorse": 1,
-      "stress": 1
+      "neutral": 5,
+      "realization": 5,
+      "admiration": 1,
+      "approval": 2,
+      "joy": 6,
+      "amusement": 1,
+      "sadness": 1,
+      "disappointment": 7,
+      "fear": 1,
+      "confusion": 1
     },
     "recurring_topics": {
-      "career": 15,
-      "relationship": 9,
-      "health": 16,
-      "money": 5
+      "career": 22,
+      "health": 30,
+      "relationship": 13,
+      "money": 21,
+      "education": 6
     },
     "recurring_people": {
-      "Sarah": 10,
-      "Maya": 9
+      "Meera": 28,
+      "Neha": 6,
+      "Anjali": 8,
+      "Ma": 4,
+      "Told Meera": 2,
+      "Priya": 2,
+      "Felt": 1,
+      "Arjun": 1,
+      "Papa": 2,
+      "Rohan": 1,
+      "Twitter": 1,
+      "Instagram": 1
     },
     "emotion_trends": {
+      "neutral": "stable",
       "realization": "increasing",
-      "caring": "increasing",
-      "pride": "increasing",
-      "optimism": "stable",
-      "relief": "increasing",
+      "approval": "stable",
       "joy": "stable",
-      "sadness": "stable",
-      "fear": "decreasing"
+      "disappointment": "increasing"
     },
     "topic_trends": {
       "career": "increasing",
-      "relationship": "increasing",
       "health": "increasing",
-      "money": "increasing"
+      "relationship": "increasing",
+      "money": "increasing",
+      "education": "stable"
     },
     "triggers": [
       {
         "topic": "career",
-        "frequency": 15,
-        "avg_sentiment": 0.124,
-        "dominant_emotion": "optimism",
+        "frequency": 22,
+        "avg_sentiment": 0.3959,
+        "dominant_emotion": "disappointment",
         "trend": "increasing",
         "confidence": 1.0,
-        "explanation": "Based on 15 entries mentioning career; avg sentiment +0.12, trend increasing."
-      },
-      {
-        "topic": "relationship",
-        "frequency": 9,
-        "avg_sentiment": 0.1933,
-        "dominant_emotion": "joy",
-        "trend": "increasing",
-        "confidence": 0.9,
-        "explanation": "Based on 9 entries mentioning relationship; avg sentiment +0.19, trend increasing."
+        "explanation": "Based on 22 entries mentioning career; avg sentiment +0.4, trend increasing."
       },
       {
         "topic": "health",
-        "frequency": 16,
-        "avg_sentiment": 0.1225,
-        "dominant_emotion": "relief",
+        "frequency": 30,
+        "avg_sentiment": 0.4868,
+        "dominant_emotion": "disappointment",
         "trend": "increasing",
         "confidence": 1.0,
-        "explanation": "Based on 16 entries mentioning health; avg sentiment +0.12, trend increasing."
+        "explanation": "Based on 30 entries mentioning health; avg sentiment +0.49, trend increasing."
+      },
+      {
+        "topic": "relationship",
+        "frequency": 13,
+        "avg_sentiment": 0.6459,
+        "dominant_emotion": "neutral",
+        "trend": "increasing",
+        "confidence": 1.0,
+        "explanation": "Based on 13 entries mentioning relationship; avg sentiment +0.65, trend increasing."
       },
       {
         "topic": "money",
-        "frequency": 5,
-        "avg_sentiment": -0.254,
-        "dominant_emotion": "sadness",
+        "frequency": 21,
+        "avg_sentiment": 0.5682,
+        "dominant_emotion": "disappointment",
         "trend": "increasing",
-        "confidence": 0.5,
-        "explanation": "Based on 5 entries mentioning money; avg sentiment -0.25, trend increasing."
+        "confidence": 1.0,
+        "explanation": "Based on 21 entries mentioning money; avg sentiment +0.57, trend increasing."
+      },
+      {
+        "topic": "education",
+        "frequency": 6,
+        "avg_sentiment": 0.493,
+        "dominant_emotion": "disappointment",
+        "trend": "stable",
+        "confidence": 0.6,
+        "explanation": "Based on 6 entries mentioning education; avg sentiment +0.49, trend stable."
       }
     ],
     "period_entry_count": 30
   },
   "recurring_topics": {
-    "career": 15,
-    "relationship": 9,
-    "health": 16,
-    "money": 5
+    "career": 22,
+    "health": 30,
+    "relationship": 13,
+    "money": 21,
+    "education": 6
   },
   "triggers": [
     {
       "topic": "career",
-      "frequency": 15,
-      "avg_sentiment": 0.124,
-      "dominant_emotion": "optimism",
+      "frequency": 22,
+      "avg_sentiment": 0.3959,
+      "dominant_emotion": "disappointment",
       "trend": "increasing",
       "confidence": 1.0,
-      "explanation": "Based on 15 entries mentioning career; avg sentiment +0.12, trend increasing."
-    },
-    {
-      "topic": "relationship",
-      "frequency": 9,
-      "avg_sentiment": 0.1933,
-      "dominant_emotion": "joy",
-      "trend": "increasing",
-      "confidence": 0.9,
-      "explanation": "Based on 9 entries mentioning relationship; avg sentiment +0.19, trend increasing."
+      "explanation": "Based on 22 entries mentioning career; avg sentiment +0.4, trend increasing."
     },
     {
       "topic": "health",
-      "frequency": 16,
-      "avg_sentiment": 0.1225,
-      "dominant_emotion": "relief",
+      "frequency": 30,
+      "avg_sentiment": 0.4868,
+      "dominant_emotion": "disappointment",
       "trend": "increasing",
       "confidence": 1.0,
-      "explanation": "Based on 16 entries mentioning health; avg sentiment +0.12, trend increasing."
+      "explanation": "Based on 30 entries mentioning health; avg sentiment +0.49, trend increasing."
+    },
+    {
+      "topic": "relationship",
+      "frequency": 13,
+      "avg_sentiment": 0.6459,
+      "dominant_emotion": "neutral",
+      "trend": "increasing",
+      "confidence": 1.0,
+      "explanation": "Based on 13 entries mentioning relationship; avg sentiment +0.65, trend increasing."
     },
     {
       "topic": "money",
-      "frequency": 5,
-      "avg_sentiment": -0.254,
-      "dominant_emotion": "sadness",
+      "frequency": 21,
+      "avg_sentiment": 0.5682,
+      "dominant_emotion": "disappointment",
       "trend": "increasing",
-      "confidence": 0.5,
-      "explanation": "Based on 5 entries mentioning money; avg sentiment -0.25, trend increasing."
+      "confidence": 1.0,
+      "explanation": "Based on 21 entries mentioning money; avg sentiment +0.57, trend increasing."
+    },
+    {
+      "topic": "education",
+      "frequency": 6,
+      "avg_sentiment": 0.493,
+      "dominant_emotion": "disappointment",
+      "trend": "stable",
+      "confidence": 0.6,
+      "explanation": "Based on 6 entries mentioning education; avg sentiment +0.49, trend stable."
     }
   ],
   "habits": [
     {
-      "habit": "exercise",
-      "mention_count": 8,
-      "avg_sentiment_when_mentioned": 0.495,
-      "avg_sentiment_other_days": -0.0345,
-      "delta": 0.5295,
-      "correlation_label": "positive",
-      "streak_length": 3,
-      "consistency_percentage": 26.67,
-      "co_occurring_pairs": [
-        {
-          "habit_a": "exercise",
-          "habit_b": "sleep",
-          "mention_count": 2,
-          "avg_sentiment_together": 0.575,
-          "avg_sentiment_either_alone": 0.2478,
-          "delta_vs_either_alone": 0.3272,
-          "confidence": 0.2,
-          "explanation": "exercise + sleep appeared together 2 times; sentiment was +0.33 vs either habit alone."
-        }
-      ],
-      "confidence": 0.8,
-      "explanation": "Exercise mentioned 8 times; mood was +0.53 higher on those days."
-    },
-    {
-      "habit": "cooking",
-      "mention_count": 2,
-      "avg_sentiment_when_mentioned": 0.37,
-      "avg_sentiment_other_days": 0.0879,
-      "delta": 0.2821,
-      "correlation_label": "positive",
-      "streak_length": 1,
-      "consistency_percentage": 6.67,
-      "co_occurring_pairs": [],
-      "confidence": 0.2,
-      "explanation": "Cooking mentioned 2 times; mood was +0.28 higher on those days."
-    },
-    {
-      "habit": "sleep",
+      "habit": "coding",
       "mention_count": 5,
-      "avg_sentiment_when_mentioned": 0.114,
-      "avg_sentiment_other_days": 0.1052,
-      "delta": 0.0088,
-      "correlation_label": "neutral",
+      "avg_sentiment_when_mentioned": -0.0856,
+      "avg_sentiment_other_days": 0.6012,
+      "delta": -0.6868,
+      "correlation_label": "negative",
       "streak_length": 1,
       "consistency_percentage": 16.67,
       "co_occurring_pairs": [
         {
-          "habit_a": "exercise",
-          "habit_b": "sleep",
+          "habit_a": "coding",
+          "habit_b": "social_media",
           "mention_count": 2,
-          "avg_sentiment_together": 0.575,
-          "avg_sentiment_either_alone": 0.2478,
-          "delta_vs_either_alone": 0.3272,
+          "avg_sentiment_together": -0.6995,
+          "avg_sentiment_either_alone": 0.326,
+          "delta_vs_either_alone": -1.0255,
           "confidence": 0.2,
-          "explanation": "exercise + sleep appeared together 2 times; sentiment was +0.33 vs either habit alone."
+          "explanation": "coding + social_media appeared together 2 times; sentiment was -1.03 vs either habit alone."
+        },
+        {
+          "habit_a": "coding",
+          "habit_b": "coffee",
+          "mention_count": 4,
+          "avg_sentiment_together": -0.3403,
+          "avg_sentiment_either_alone": 0.5102,
+          "delta_vs_either_alone": -0.8505,
+          "confidence": 0.4,
+          "explanation": "coding + coffee appeared together 4 times; sentiment was -0.85 vs either habit alone."
+        },
+        {
+          "habit_a": "coding",
+          "habit_b": "sleep",
+          "mention_count": 4,
+          "avg_sentiment_together": -0.3403,
+          "avg_sentiment_either_alone": 0.5058,
+          "delta_vs_either_alone": -0.846,
+          "confidence": 0.4,
+          "explanation": "coding + sleep appeared together 4 times; sentiment was -0.85 vs either habit alone."
+        },
+        {
+          "habit_a": "coding",
+          "habit_b": "exercise",
+          "mention_count": 5,
+          "avg_sentiment_together": -0.0856,
+          "avg_sentiment_either_alone": 0.6276,
+          "delta_vs_either_alone": -0.7132,
+          "confidence": 0.5,
+          "explanation": "coding + exercise appeared together 5 times; sentiment was -0.71 vs either habit alone."
+        },
+        {
+          "habit_a": "coding",
+          "habit_b": "meditation",
+          "mention_count": 2,
+          "avg_sentiment_together": 0.962,
+          "avg_sentiment_either_alone": 0.4436,
+          "delta_vs_either_alone": 0.5184,
+          "confidence": 0.2,
+          "explanation": "coding + meditation appeared together 2 times; sentiment was +0.52 vs either habit alone."
         }
       ],
       "confidence": 0.5,
-      "explanation": "Sleep mentioned 5 times; mood was +0.01 higher on those days."
+      "explanation": "Coding mentioned 5 times; mood was -0.69 lower on those days."
+    },
+    {
+      "habit": "meditation",
+      "mention_count": 19,
+      "avg_sentiment_when_mentioned": 0.692,
+      "avg_sentiment_other_days": 0.1323,
+      "delta": 0.5597,
+      "correlation_label": "positive",
+      "streak_length": 18,
+      "consistency_percentage": 63.33,
+      "co_occurring_pairs": [
+        {
+          "habit_a": "exercise",
+          "habit_b": "meditation",
+          "mention_count": 17,
+          "avg_sentiment_together": 0.7384,
+          "avg_sentiment_either_alone": 0.1577,
+          "delta_vs_either_alone": 0.5807,
+          "confidence": 1.0,
+          "explanation": "exercise + meditation appeared together 17 times; sentiment was +0.58 vs either habit alone."
+        },
+        {
+          "habit_a": "coding",
+          "habit_b": "meditation",
+          "mention_count": 2,
+          "avg_sentiment_together": 0.962,
+          "avg_sentiment_either_alone": 0.4436,
+          "delta_vs_either_alone": 0.5184,
+          "confidence": 0.2,
+          "explanation": "coding + meditation appeared together 2 times; sentiment was +0.52 vs either habit alone."
+        },
+        {
+          "habit_a": "coffee",
+          "habit_b": "meditation",
+          "mention_count": 5,
+          "avg_sentiment_together": 0.6354,
+          "avg_sentiment_either_alone": 0.4291,
+          "delta_vs_either_alone": 0.2063,
+          "confidence": 0.5,
+          "explanation": "coffee + meditation appeared together 5 times; sentiment was +0.21 vs either habit alone."
+        },
+        {
+          "habit_a": "meditation",
+          "habit_b": "sleep",
+          "mention_count": 9,
+          "avg_sentiment_together": 0.5892,
+          "avg_sentiment_either_alone": 0.417,
+          "delta_vs_either_alone": 0.1722,
+          "confidence": 0.9,
+          "explanation": "meditation + sleep appeared together 9 times; sentiment was +0.17 vs either habit alone."
+        },
+        {
+          "habit_a": "cooking",
+          "habit_b": "meditation",
+          "mention_count": 9,
+          "avg_sentiment_together": 0.5832,
+          "avg_sentiment_either_alone": 0.7042,
+          "delta_vs_either_alone": -0.121,
+          "confidence": 0.9,
+          "explanation": "cooking + meditation appeared together 9 times; sentiment was -0.12 vs either habit alone."
+        },
+        {
+          "habit_a": "meditation",
+          "habit_b": "reading",
+          "mention_count": 11,
+          "avg_sentiment_together": 0.6536,
+          "avg_sentiment_either_alone": 0.558,
+          "delta_vs_either_alone": 0.0957,
+          "confidence": 1.0,
+          "explanation": "meditation + reading appeared together 11 times; sentiment was +0.10 vs either habit alone."
+        },
+        {
+          "habit_a": "meditation",
+          "habit_b": "social_media",
+          "mention_count": 4,
+          "avg_sentiment_together": 0.5503,
+          "avg_sentiment_either_alone": 0.4818,
+          "delta_vs_either_alone": 0.0685,
+          "confidence": 0.4,
+          "explanation": "meditation + social_media appeared together 4 times; sentiment was +0.07 vs either habit alone."
+        }
+      ],
+      "confidence": 1.0,
+      "explanation": "Meditation mentioned 19 times; mood was +0.56 higher on those days."
+    },
+    {
+      "habit": "social_media",
+      "mention_count": 9,
+      "avg_sentiment_when_mentioned": 0.0989,
+      "avg_sentiment_other_days": 0.653,
+      "delta": -0.5542,
+      "correlation_label": "negative",
+      "streak_length": 1,
+      "consistency_percentage": 30.0,
+      "co_occurring_pairs": [
+        {
+          "habit_a": "coding",
+          "habit_b": "social_media",
+          "mention_count": 2,
+          "avg_sentiment_together": -0.6995,
+          "avg_sentiment_either_alone": 0.326,
+          "delta_vs_either_alone": -1.0255,
+          "confidence": 0.2,
+          "explanation": "coding + social_media appeared together 2 times; sentiment was -1.03 vs either habit alone."
+        },
+        {
+          "habit_a": "reading",
+          "habit_b": "social_media",
+          "mention_count": 6,
+          "avg_sentiment_together": 0.0473,
+          "avg_sentiment_either_alone": 0.669,
+          "delta_vs_either_alone": -0.6217,
+          "confidence": 0.6,
+          "explanation": "reading + social_media appeared together 6 times; sentiment was -0.62 vs either habit alone."
+        },
+        {
+          "habit_a": "exercise",
+          "habit_b": "social_media",
+          "mention_count": 9,
+          "avg_sentiment_together": 0.0989,
+          "avg_sentiment_either_alone": 0.6904,
+          "delta_vs_either_alone": -0.5916,
+          "confidence": 0.9,
+          "explanation": "exercise + social_media appeared together 9 times; sentiment was -0.59 vs either habit alone."
+        },
+        {
+          "habit_a": "sleep",
+          "habit_b": "social_media",
+          "mention_count": 8,
+          "avg_sentiment_together": -0.0118,
+          "avg_sentiment_either_alone": 0.5731,
+          "delta_vs_either_alone": -0.5849,
+          "confidence": 0.8,
+          "explanation": "sleep + social_media appeared together 8 times; sentiment was -0.58 vs either habit alone."
+        },
+        {
+          "habit_a": "coffee",
+          "habit_b": "social_media",
+          "mention_count": 6,
+          "avg_sentiment_together": -0.0232,
+          "avg_sentiment_either_alone": 0.3695,
+          "delta_vs_either_alone": -0.3928,
+          "confidence": 0.6,
+          "explanation": "coffee + social_media appeared together 6 times; sentiment was -0.39 vs either habit alone."
+        },
+        {
+          "habit_a": "cooking",
+          "habit_b": "social_media",
+          "mention_count": 4,
+          "avg_sentiment_together": 0.2018,
+          "avg_sentiment_either_alone": 0.423,
+          "delta_vs_either_alone": -0.2212,
+          "confidence": 0.4,
+          "explanation": "cooking + social_media appeared together 4 times; sentiment was -0.22 vs either habit alone."
+        },
+        {
+          "habit_a": "meditation",
+          "habit_b": "social_media",
+          "mention_count": 4,
+          "avg_sentiment_together": 0.5503,
+          "avg_sentiment_either_alone": 0.4818,
+          "delta_vs_either_alone": 0.0685,
+          "confidence": 0.4,
+          "explanation": "meditation + social_media appeared together 4 times; sentiment was +0.07 vs either habit alone."
+        }
+      ],
+      "confidence": 0.9,
+      "explanation": "Social_media mentioned 9 times; mood was -0.55 lower on those days."
+    },
+    {
+      "habit": "coffee",
+      "mention_count": 11,
+      "avg_sentiment_when_mentioned": 0.1625,
+      "avg_sentiment_other_days": 0.6745,
+      "delta": -0.512,
+      "correlation_label": "negative",
+      "streak_length": 2,
+      "consistency_percentage": 36.67,
+      "co_occurring_pairs": [
+        {
+          "habit_a": "coding",
+          "habit_b": "coffee",
+          "mention_count": 4,
+          "avg_sentiment_together": -0.3403,
+          "avg_sentiment_either_alone": 0.5102,
+          "delta_vs_either_alone": -0.8505,
+          "confidence": 0.4,
+          "explanation": "coding + coffee appeared together 4 times; sentiment was -0.85 vs either habit alone."
+        },
+        {
+          "habit_a": "coffee",
+          "habit_b": "sleep",
+          "mention_count": 8,
+          "avg_sentiment_together": -0.1393,
+          "avg_sentiment_either_alone": 0.7011,
+          "delta_vs_either_alone": -0.8404,
+          "confidence": 0.8,
+          "explanation": "coffee + sleep appeared together 8 times; sentiment was -0.84 vs either habit alone."
+        },
+        {
+          "habit_a": "coffee",
+          "habit_b": "exercise",
+          "mention_count": 11,
+          "avg_sentiment_together": 0.1625,
+          "avg_sentiment_either_alone": 0.7188,
+          "delta_vs_either_alone": -0.5563,
+          "confidence": 1.0,
+          "explanation": "coffee + exercise appeared together 11 times; sentiment was -0.56 vs either habit alone."
+        },
+        {
+          "habit_a": "coffee",
+          "habit_b": "cooking",
+          "mention_count": 3,
+          "avg_sentiment_together": -0.0554,
+          "avg_sentiment_either_alone": 0.495,
+          "delta_vs_either_alone": -0.5504,
+          "confidence": 0.3,
+          "explanation": "coffee + cooking appeared together 3 times; sentiment was -0.55 vs either habit alone."
+        },
+        {
+          "habit_a": "coffee",
+          "habit_b": "reading",
+          "mention_count": 4,
+          "avg_sentiment_together": 0.0536,
+          "avg_sentiment_either_alone": 0.5201,
+          "delta_vs_either_alone": -0.4666,
+          "confidence": 0.4,
+          "explanation": "coffee + reading appeared together 4 times; sentiment was -0.47 vs either habit alone."
+        },
+        {
+          "habit_a": "coffee",
+          "habit_b": "social_media",
+          "mention_count": 6,
+          "avg_sentiment_together": -0.0232,
+          "avg_sentiment_either_alone": 0.3695,
+          "delta_vs_either_alone": -0.3928,
+          "confidence": 0.6,
+          "explanation": "coffee + social_media appeared together 6 times; sentiment was -0.39 vs either habit alone."
+        },
+        {
+          "habit_a": "coffee",
+          "habit_b": "meditation",
+          "mention_count": 5,
+          "avg_sentiment_together": 0.6354,
+          "avg_sentiment_either_alone": 0.4291,
+          "delta_vs_either_alone": 0.2063,
+          "confidence": 0.5,
+          "explanation": "coffee + meditation appeared together 5 times; sentiment was +0.21 vs either habit alone."
+        }
+      ],
+      "confidence": 1.0,
+      "explanation": "Coffee mentioned 11 times; mood was -0.51 lower on those days."
+    },
+    {
+      "habit": "sleep",
+      "mention_count": 19,
+      "avg_sentiment_when_mentioned": 0.3052,
+      "avg_sentiment_other_days": 0.8005,
+      "delta": -0.4953,
+      "correlation_label": "negative",
+      "streak_length": 1,
+      "consistency_percentage": 63.33,
+      "co_occurring_pairs": [
+        {
+          "habit_a": "coding",
+          "habit_b": "sleep",
+          "mention_count": 4,
+          "avg_sentiment_together": -0.3403,
+          "avg_sentiment_either_alone": 0.5058,
+          "delta_vs_either_alone": -0.846,
+          "confidence": 0.4,
+          "explanation": "coding + sleep appeared together 4 times; sentiment was -0.85 vs either habit alone."
+        },
+        {
+          "habit_a": "coffee",
+          "habit_b": "sleep",
+          "mention_count": 8,
+          "avg_sentiment_together": -0.1393,
+          "avg_sentiment_either_alone": 0.7011,
+          "delta_vs_either_alone": -0.8404,
+          "confidence": 0.8,
+          "explanation": "coffee + sleep appeared together 8 times; sentiment was -0.84 vs either habit alone."
+        },
+        {
+          "habit_a": "sleep",
+          "habit_b": "social_media",
+          "mention_count": 8,
+          "avg_sentiment_together": -0.0118,
+          "avg_sentiment_either_alone": 0.5731,
+          "delta_vs_either_alone": -0.5849,
+          "confidence": 0.8,
+          "explanation": "sleep + social_media appeared together 8 times; sentiment was -0.58 vs either habit alone."
+        },
+        {
+          "habit_a": "exercise",
+          "habit_b": "sleep",
+          "mention_count": 18,
+          "avg_sentiment_together": 0.3424,
+          "avg_sentiment_either_alone": 0.6799,
+          "delta_vs_either_alone": -0.3374,
+          "confidence": 1.0,
+          "explanation": "exercise + sleep appeared together 18 times; sentiment was -0.34 vs either habit alone."
+        },
+        {
+          "habit_a": "reading",
+          "habit_b": "sleep",
+          "mention_count": 11,
+          "avg_sentiment_together": 0.295,
+          "avg_sentiment_either_alone": 0.5966,
+          "delta_vs_either_alone": -0.3016,
+          "confidence": 1.0,
+          "explanation": "reading + sleep appeared together 11 times; sentiment was -0.30 vs either habit alone."
+        },
+        {
+          "habit_a": "cooking",
+          "habit_b": "sleep",
+          "mention_count": 7,
+          "avg_sentiment_together": 0.5344,
+          "avg_sentiment_either_alone": 0.2573,
+          "delta_vs_either_alone": 0.2772,
+          "confidence": 0.7,
+          "explanation": "cooking + sleep appeared together 7 times; sentiment was +0.28 vs either habit alone."
+        },
+        {
+          "habit_a": "meditation",
+          "habit_b": "sleep",
+          "mention_count": 9,
+          "avg_sentiment_together": 0.5892,
+          "avg_sentiment_either_alone": 0.417,
+          "delta_vs_either_alone": 0.1722,
+          "confidence": 0.9,
+          "explanation": "meditation + sleep appeared together 9 times; sentiment was +0.17 vs either habit alone."
+        }
+      ],
+      "confidence": 1.0,
+      "explanation": "Sleep mentioned 19 times; mood was -0.5 lower on those days."
+    },
+    {
+      "habit": "exercise",
+      "mention_count": 28,
+      "avg_sentiment_when_mentioned": 0.5003,
+      "avg_sentiment_other_days": 0.2976,
+      "delta": 0.2027,
+      "correlation_label": "positive",
+      "streak_length": 3,
+      "consistency_percentage": 93.33,
+      "co_occurring_pairs": [
+        {
+          "habit_a": "coding",
+          "habit_b": "exercise",
+          "mention_count": 5,
+          "avg_sentiment_together": -0.0856,
+          "avg_sentiment_either_alone": 0.6276,
+          "delta_vs_either_alone": -0.7132,
+          "confidence": 0.5,
+          "explanation": "coding + exercise appeared together 5 times; sentiment was -0.71 vs either habit alone."
+        },
+        {
+          "habit_a": "exercise",
+          "habit_b": "social_media",
+          "mention_count": 9,
+          "avg_sentiment_together": 0.0989,
+          "avg_sentiment_either_alone": 0.6904,
+          "delta_vs_either_alone": -0.5916,
+          "confidence": 0.9,
+          "explanation": "exercise + social_media appeared together 9 times; sentiment was -0.59 vs either habit alone."
+        },
+        {
+          "habit_a": "exercise",
+          "habit_b": "meditation",
+          "mention_count": 17,
+          "avg_sentiment_together": 0.7384,
+          "avg_sentiment_either_alone": 0.1577,
+          "delta_vs_either_alone": 0.5807,
+          "confidence": 1.0,
+          "explanation": "exercise + meditation appeared together 17 times; sentiment was +0.58 vs either habit alone."
+        },
+        {
+          "habit_a": "coffee",
+          "habit_b": "exercise",
+          "mention_count": 11,
+          "avg_sentiment_together": 0.1625,
+          "avg_sentiment_either_alone": 0.7188,
+          "delta_vs_either_alone": -0.5563,
+          "confidence": 1.0,
+          "explanation": "coffee + exercise appeared together 11 times; sentiment was -0.56 vs either habit alone."
+        },
+        {
+          "habit_a": "exercise",
+          "habit_b": "sleep",
+          "mention_count": 18,
+          "avg_sentiment_together": 0.3424,
+          "avg_sentiment_either_alone": 0.6799,
+          "delta_vs_either_alone": -0.3374,
+          "confidence": 1.0,
+          "explanation": "exercise + sleep appeared together 18 times; sentiment was -0.34 vs either habit alone."
+        },
+        {
+          "habit_a": "exercise",
+          "habit_b": "reading",
+          "mention_count": 15,
+          "avg_sentiment_together": 0.5632,
+          "avg_sentiment_either_alone": 0.4103,
+          "delta_vs_either_alone": 0.1529,
+          "confidence": 1.0,
+          "explanation": "exercise + reading appeared together 15 times; sentiment was +0.15 vs either habit alone."
+        },
+        {
+          "habit_a": "cooking",
+          "habit_b": "exercise",
+          "mention_count": 11,
+          "avg_sentiment_together": 0.5273,
+          "avg_sentiment_either_alone": 0.4828,
+          "delta_vs_either_alone": 0.0446,
+          "confidence": 1.0,
+          "explanation": "cooking + exercise appeared together 11 times; sentiment was +0.04 vs either habit alone."
+        }
+      ],
+      "confidence": 1.0,
+      "explanation": "Exercise mentioned 28 times; mood was +0.2 higher on those days."
+    },
+    {
+      "habit": "reading",
+      "mention_count": 17,
+      "avg_sentiment_when_mentioned": 0.532,
+      "avg_sentiment_other_days": 0.4277,
+      "delta": 0.1043,
+      "correlation_label": "positive",
+      "streak_length": 1,
+      "consistency_percentage": 56.67,
+      "co_occurring_pairs": [
+        {
+          "habit_a": "reading",
+          "habit_b": "social_media",
+          "mention_count": 6,
+          "avg_sentiment_together": 0.0473,
+          "avg_sentiment_either_alone": 0.669,
+          "delta_vs_either_alone": -0.6217,
+          "confidence": 0.6,
+          "explanation": "reading + social_media appeared together 6 times; sentiment was -0.62 vs either habit alone."
+        },
+        {
+          "habit_a": "coffee",
+          "habit_b": "reading",
+          "mention_count": 4,
+          "avg_sentiment_together": 0.0536,
+          "avg_sentiment_either_alone": 0.5201,
+          "delta_vs_either_alone": -0.4666,
+          "confidence": 0.4,
+          "explanation": "coffee + reading appeared together 4 times; sentiment was -0.47 vs either habit alone."
+        },
+        {
+          "habit_a": "cooking",
+          "habit_b": "reading",
+          "mention_count": 7,
+          "avg_sentiment_together": 0.7282,
+          "avg_sentiment_either_alone": 0.3321,
+          "delta_vs_either_alone": 0.3961,
+          "confidence": 0.7,
+          "explanation": "cooking + reading appeared together 7 times; sentiment was +0.40 vs either habit alone."
+        },
+        {
+          "habit_a": "reading",
+          "habit_b": "sleep",
+          "mention_count": 11,
+          "avg_sentiment_together": 0.295,
+          "avg_sentiment_either_alone": 0.5966,
+          "delta_vs_either_alone": -0.3016,
+          "confidence": 1.0,
+          "explanation": "reading + sleep appeared together 11 times; sentiment was -0.30 vs either habit alone."
+        },
+        {
+          "habit_a": "exercise",
+          "habit_b": "reading",
+          "mention_count": 15,
+          "avg_sentiment_together": 0.5632,
+          "avg_sentiment_either_alone": 0.4103,
+          "delta_vs_either_alone": 0.1529,
+          "confidence": 1.0,
+          "explanation": "exercise + reading appeared together 15 times; sentiment was +0.15 vs either habit alone."
+        },
+        {
+          "habit_a": "meditation",
+          "habit_b": "reading",
+          "mention_count": 11,
+          "avg_sentiment_together": 0.6536,
+          "avg_sentiment_either_alone": 0.558,
+          "delta_vs_either_alone": 0.0957,
+          "confidence": 1.0,
+          "explanation": "meditation + reading appeared together 11 times; sentiment was +0.10 vs either habit alone."
+        }
+      ],
+      "confidence": 1.0,
+      "explanation": "Reading mentioned 17 times; mood was +0.1 higher on those days."
+    },
+    {
+      "habit": "cooking",
+      "mention_count": 11,
+      "avg_sentiment_when_mentioned": 0.5273,
+      "avg_sentiment_other_days": 0.4633,
+      "delta": 0.064,
+      "correlation_label": "neutral",
+      "streak_length": 1,
+      "consistency_percentage": 36.67,
+      "co_occurring_pairs": [
+        {
+          "habit_a": "coffee",
+          "habit_b": "cooking",
+          "mention_count": 3,
+          "avg_sentiment_together": -0.0554,
+          "avg_sentiment_either_alone": 0.495,
+          "delta_vs_either_alone": -0.5504,
+          "confidence": 0.3,
+          "explanation": "coffee + cooking appeared together 3 times; sentiment was -0.55 vs either habit alone."
+        },
+        {
+          "habit_a": "cooking",
+          "habit_b": "reading",
+          "mention_count": 7,
+          "avg_sentiment_together": 0.7282,
+          "avg_sentiment_either_alone": 0.3321,
+          "delta_vs_either_alone": 0.3961,
+          "confidence": 0.7,
+          "explanation": "cooking + reading appeared together 7 times; sentiment was +0.40 vs either habit alone."
+        },
+        {
+          "habit_a": "cooking",
+          "habit_b": "sleep",
+          "mention_count": 7,
+          "avg_sentiment_together": 0.5344,
+          "avg_sentiment_either_alone": 0.2573,
+          "delta_vs_either_alone": 0.2772,
+          "confidence": 0.7,
+          "explanation": "cooking + sleep appeared together 7 times; sentiment was +0.28 vs either habit alone."
+        },
+        {
+          "habit_a": "cooking",
+          "habit_b": "social_media",
+          "mention_count": 4,
+          "avg_sentiment_together": 0.2018,
+          "avg_sentiment_either_alone": 0.423,
+          "delta_vs_either_alone": -0.2212,
+          "confidence": 0.4,
+          "explanation": "cooking + social_media appeared together 4 times; sentiment was -0.22 vs either habit alone."
+        },
+        {
+          "habit_a": "cooking",
+          "habit_b": "meditation",
+          "mention_count": 9,
+          "avg_sentiment_together": 0.5832,
+          "avg_sentiment_either_alone": 0.7042,
+          "delta_vs_either_alone": -0.121,
+          "confidence": 0.9,
+          "explanation": "cooking + meditation appeared together 9 times; sentiment was -0.12 vs either habit alone."
+        },
+        {
+          "habit_a": "cooking",
+          "habit_b": "exercise",
+          "mention_count": 11,
+          "avg_sentiment_together": 0.5273,
+          "avg_sentiment_either_alone": 0.4828,
+          "delta_vs_either_alone": 0.0446,
+          "confidence": 1.0,
+          "explanation": "cooking + exercise appeared together 11 times; sentiment was +0.04 vs either habit alone."
+        }
+      ],
+      "confidence": 1.0,
+      "explanation": "Cooking mentioned 11 times; mood was +0.06 higher on those days."
     }
   ],
   "relationships": [
     {
-      "person": "Sarah",
-      "mention_count": 10,
-      "avg_sentiment": 0.196,
-      "dominant_emotion": "pride",
-      "last_mentioned": "2026-08-20T18:15:00Z",
+      "person": "Meera",
+      "mention_count": 28,
+      "avg_sentiment": 0.4518,
+      "dominant_emotion": "disappointment",
+      "last_mentioned": "2026-08-21T12:00:00Z",
       "trend": "improving",
-      "relationship_type": "colleague",
-      "relationship_type_confidence": 1.0,
+      "relationship_type": "unknown",
+      "relationship_type_confidence": 0.9643,
       "relationship_type_ambiguity": "",
-      "closeness_score": 2.7601,
+      "closeness_score": 4.5582,
       "sentiment_trend": "improving",
       "co_mentioned_with": {
-        "Maya": 2
+        "Anjali": 8,
+        "Neha": 6,
+        "Ma": 3,
+        "Priya": 2,
+        "Papa": 2,
+        "Instagram": 1,
+        "Rohan": 1,
+        "Twitter": 1,
+        "Told Meera": 1,
+        "Arjun": 1,
+        "Felt": 1
       },
       "confidence": 1.0,
-      "explanation": "Based on 10 entries mentioning Sarah; usually pride, trend improving."
+      "explanation": "Based on 28 entries mentioning Meera; usually disappointment, trend improving."
     },
     {
-      "person": "Maya",
-      "mention_count": 9,
-      "avg_sentiment": 0.1933,
-      "dominant_emotion": "joy",
-      "last_mentioned": "2026-08-20T18:15:00Z",
-      "trend": "improving",
-      "relationship_type": "friend",
+      "person": "Anjali",
+      "mention_count": 8,
+      "avg_sentiment": 0.7392,
+      "dominant_emotion": "realization",
+      "last_mentioned": "2026-08-20T12:00:00Z",
+      "trend": "declining",
+      "relationship_type": "unknown",
+      "relationship_type_confidence": 0.875,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 1.2379,
+      "sentiment_trend": "declining",
+      "co_mentioned_with": {
+        "Meera": 8,
+        "Neha": 2,
+        "Told Meera": 1,
+        "Arjun": 1
+      },
+      "confidence": 0.8,
+      "explanation": "Based on 8 entries mentioning Anjali; usually realization, trend declining."
+    },
+    {
+      "person": "Neha",
+      "mention_count": 6,
+      "avg_sentiment": 0.6553,
+      "dominant_emotion": "neutral",
+      "last_mentioned": "2026-08-21T12:00:00Z",
+      "trend": "declining",
+      "relationship_type": "unknown",
+      "relationship_type_confidence": 0.8333,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 1.7788,
+      "sentiment_trend": "declining",
+      "co_mentioned_with": {
+        "Meera": 6,
+        "Anjali": 2
+      },
+      "confidence": 0.6,
+      "explanation": "Based on 6 entries mentioning Neha; usually neutral, trend declining."
+    },
+    {
+      "person": "Ma",
+      "mention_count": 4,
+      "avg_sentiment": 0.0351,
+      "dominant_emotion": "confusion",
+      "last_mentioned": "2026-08-14T12:00:00Z",
+      "trend": "stable",
+      "relationship_type": "unknown",
       "relationship_type_confidence": 1.0,
       "relationship_type_ambiguity": "",
-      "closeness_score": 2.7266,
+      "closeness_score": 0.2406,
+      "sentiment_trend": "stable",
+      "co_mentioned_with": {
+        "Meera": 3,
+        "Priya": 1,
+        "Instagram": 1,
+        "Papa": 1,
+        "Told Meera": 1
+      },
+      "confidence": 0.4,
+      "explanation": "Based on 4 entries mentioning Ma; usually confusion, trend stable."
+    },
+    {
+      "person": "Told Meera",
+      "mention_count": 2,
+      "avg_sentiment": 0.9828,
+      "dominant_emotion": "realization",
+      "last_mentioned": "2026-08-14T12:00:00Z",
+      "trend": "stable",
+      "relationship_type": "unknown",
+      "relationship_type_confidence": 1.0,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 0.2386,
+      "sentiment_trend": "stable",
+      "co_mentioned_with": {
+        "Anjali": 1,
+        "Meera": 1,
+        "Ma": 1
+      },
+      "confidence": 0.2,
+      "explanation": "Based on 2 entries mentioning Told Meera; usually realization, trend stable."
+    },
+    {
+      "person": "Priya",
+      "mention_count": 2,
+      "avg_sentiment": 0.5091,
+      "dominant_emotion": "confusion",
+      "last_mentioned": "2026-08-11T12:00:00Z",
+      "trend": "improving",
+      "relationship_type": "colleague",
+      "relationship_type_confidence": 0.5,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 0.1137,
       "sentiment_trend": "improving",
       "co_mentioned_with": {
-        "Sarah": 2
+        "Meera": 2,
+        "Ma": 1,
+        "Instagram": 1
       },
-      "confidence": 0.9,
-      "explanation": "Based on 9 entries mentioning Maya; usually joy, trend improving."
+      "confidence": 0.2,
+      "explanation": "Based on 2 entries mentioning Priya; usually confusion, trend improving."
+    },
+    {
+      "person": "Papa",
+      "mention_count": 2,
+      "avg_sentiment": 0.4655,
+      "dominant_emotion": "neutral",
+      "last_mentioned": "2026-07-30T12:00:00Z",
+      "trend": "improving",
+      "relationship_type": "unknown",
+      "relationship_type_confidence": 1.0,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 0.0105,
+      "sentiment_trend": "improving",
+      "co_mentioned_with": {
+        "Meera": 2,
+        "Ma": 1
+      },
+      "confidence": 0.2,
+      "explanation": "Based on 2 entries mentioning Papa; usually neutral, trend improving."
     }
   ],
   "insights": [
-    "You've mentioned health 16 times in the last 30 days, often with relief.",
+    "You've mentioned health 30 times in the last 30 days, often with disappointment.",
     "Your sentiment around health has been increasing recently.",
-    "You've mentioned career 15 times in the last 30 days, often with optimism.",
+    "You've mentioned career 22 times in the last 30 days, often with disappointment.",
     "Your sentiment around career has been increasing recently.",
-    "Sarah comes up often in your entries, usually with pride."
+    "You've mentioned money 21 times in the last 30 days, often with disappointment."
   ]
 }
