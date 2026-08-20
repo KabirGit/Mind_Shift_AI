@@ -1,0 +1,390 @@
+{
+  "range": "Last 30 days",
+  "lookback_days": 30,
+  "emotion_over_time": [
+    {
+      "date": "2026-07-22",
+      "emotion": "optimism",
+      "count": 1
+    },
+    {
+      "date": "2026-07-23",
+      "emotion": "pride",
+      "count": 1
+    },
+    {
+      "date": "2026-07-24",
+      "emotion": "joy",
+      "count": 1
+    },
+    {
+      "date": "2026-07-25",
+      "emotion": "stress",
+      "count": 1
+    },
+    {
+      "date": "2026-07-26",
+      "emotion": "fear",
+      "count": 1
+    },
+    {
+      "date": "2026-07-27",
+      "emotion": "sadness",
+      "count": 1
+    },
+    {
+      "date": "2026-07-28",
+      "emotion": "relief",
+      "count": 1
+    },
+    {
+      "date": "2026-07-29",
+      "emotion": "remorse",
+      "count": 1
+    },
+    {
+      "date": "2026-07-30",
+      "emotion": "annoyance",
+      "count": 1
+    },
+    {
+      "date": "2026-07-31",
+      "emotion": "sadness",
+      "count": 1
+    },
+    {
+      "date": "2026-08-01",
+      "emotion": "fear",
+      "count": 1
+    },
+    {
+      "date": "2026-08-02",
+      "emotion": "sadness",
+      "count": 1
+    },
+    {
+      "date": "2026-08-03",
+      "emotion": "relief",
+      "count": 1
+    },
+    {
+      "date": "2026-08-04",
+      "emotion": "anger",
+      "count": 1
+    },
+    {
+      "date": "2026-08-05",
+      "emotion": "realization",
+      "count": 1
+    },
+    {
+      "date": "2026-08-06",
+      "emotion": "sadness",
+      "count": 1
+    },
+    {
+      "date": "2026-08-07",
+      "emotion": "relief",
+      "count": 1
+    },
+    {
+      "date": "2026-08-08",
+      "emotion": "optimism",
+      "count": 1
+    },
+    {
+      "date": "2026-08-09",
+      "emotion": "caring",
+      "count": 1
+    },
+    {
+      "date": "2026-08-10",
+      "emotion": "joy",
+      "count": 1
+    },
+    {
+      "date": "2026-08-11",
+      "emotion": "realization",
+      "count": 1
+    },
+    {
+      "date": "2026-08-12",
+      "emotion": "pride",
+      "count": 1
+    },
+    {
+      "date": "2026-08-13",
+      "emotion": "joy",
+      "count": 1
+    },
+    {
+      "date": "2026-08-14",
+      "emotion": "optimism",
+      "count": 1
+    },
+    {
+      "date": "2026-08-15",
+      "emotion": "relief",
+      "count": 1
+    },
+    {
+      "date": "2026-08-16",
+      "emotion": "optimism",
+      "count": 1
+    },
+    {
+      "date": "2026-08-17",
+      "emotion": "pride",
+      "count": 1
+    },
+    {
+      "date": "2026-08-18",
+      "emotion": "caring",
+      "count": 1
+    },
+    {
+      "date": "2026-08-19",
+      "emotion": "gratitude",
+      "count": 1
+    },
+    {
+      "date": "2026-08-20",
+      "emotion": "realization",
+      "count": 1
+    }
+  ],
+  "pattern_summary": {
+    "recurring_emotions": {
+      "realization": 3,
+      "gratitude": 1,
+      "caring": 2,
+      "pride": 3,
+      "optimism": 4,
+      "relief": 4,
+      "joy": 3,
+      "sadness": 4,
+      "anger": 1,
+      "fear": 2,
+      "annoyance": 1,
+      "remorse": 1,
+      "stress": 1
+    },
+    "recurring_topics": {
+      "career": 15,
+      "relationship": 9,
+      "health": 16,
+      "money": 5
+    },
+    "recurring_people": {
+      "Sarah": 10,
+      "Maya": 9
+    },
+    "emotion_trends": {
+      "realization": "increasing",
+      "caring": "increasing",
+      "pride": "increasing",
+      "optimism": "stable",
+      "relief": "increasing",
+      "joy": "stable",
+      "sadness": "stable",
+      "fear": "decreasing"
+    },
+    "topic_trends": {
+      "career": "increasing",
+      "relationship": "increasing",
+      "health": "increasing",
+      "money": "increasing"
+    },
+    "triggers": [
+      {
+        "topic": "career",
+        "frequency": 15,
+        "avg_sentiment": 0.124,
+        "dominant_emotion": "optimism",
+        "trend": "increasing",
+        "confidence": 1.0,
+        "explanation": "Based on 15 entries mentioning career; avg sentiment +0.12, trend increasing."
+      },
+      {
+        "topic": "relationship",
+        "frequency": 9,
+        "avg_sentiment": 0.1933,
+        "dominant_emotion": "joy",
+        "trend": "increasing",
+        "confidence": 0.9,
+        "explanation": "Based on 9 entries mentioning relationship; avg sentiment +0.19, trend increasing."
+      },
+      {
+        "topic": "health",
+        "frequency": 16,
+        "avg_sentiment": 0.1225,
+        "dominant_emotion": "relief",
+        "trend": "increasing",
+        "confidence": 1.0,
+        "explanation": "Based on 16 entries mentioning health; avg sentiment +0.12, trend increasing."
+      },
+      {
+        "topic": "money",
+        "frequency": 5,
+        "avg_sentiment": -0.254,
+        "dominant_emotion": "sadness",
+        "trend": "increasing",
+        "confidence": 0.5,
+        "explanation": "Based on 5 entries mentioning money; avg sentiment -0.25, trend increasing."
+      }
+    ],
+    "period_entry_count": 30
+  },
+  "recurring_topics": {
+    "career": 15,
+    "relationship": 9,
+    "health": 16,
+    "money": 5
+  },
+  "triggers": [
+    {
+      "topic": "career",
+      "frequency": 15,
+      "avg_sentiment": 0.124,
+      "dominant_emotion": "optimism",
+      "trend": "increasing",
+      "confidence": 1.0,
+      "explanation": "Based on 15 entries mentioning career; avg sentiment +0.12, trend increasing."
+    },
+    {
+      "topic": "relationship",
+      "frequency": 9,
+      "avg_sentiment": 0.1933,
+      "dominant_emotion": "joy",
+      "trend": "increasing",
+      "confidence": 0.9,
+      "explanation": "Based on 9 entries mentioning relationship; avg sentiment +0.19, trend increasing."
+    },
+    {
+      "topic": "health",
+      "frequency": 16,
+      "avg_sentiment": 0.1225,
+      "dominant_emotion": "relief",
+      "trend": "increasing",
+      "confidence": 1.0,
+      "explanation": "Based on 16 entries mentioning health; avg sentiment +0.12, trend increasing."
+    },
+    {
+      "topic": "money",
+      "frequency": 5,
+      "avg_sentiment": -0.254,
+      "dominant_emotion": "sadness",
+      "trend": "increasing",
+      "confidence": 0.5,
+      "explanation": "Based on 5 entries mentioning money; avg sentiment -0.25, trend increasing."
+    }
+  ],
+  "habits": [
+    {
+      "habit": "exercise",
+      "mention_count": 8,
+      "avg_sentiment_when_mentioned": 0.495,
+      "avg_sentiment_other_days": -0.0345,
+      "delta": 0.5295,
+      "correlation_label": "positive",
+      "streak_length": 3,
+      "consistency_percentage": 26.67,
+      "co_occurring_pairs": [
+        {
+          "habit_a": "exercise",
+          "habit_b": "sleep",
+          "mention_count": 2,
+          "avg_sentiment_together": 0.575,
+          "avg_sentiment_either_alone": 0.2478,
+          "delta_vs_either_alone": 0.3272,
+          "confidence": 0.2,
+          "explanation": "exercise + sleep appeared together 2 times; sentiment was +0.33 vs either habit alone."
+        }
+      ],
+      "confidence": 0.8,
+      "explanation": "Exercise mentioned 8 times; mood was +0.53 higher on those days."
+    },
+    {
+      "habit": "cooking",
+      "mention_count": 2,
+      "avg_sentiment_when_mentioned": 0.37,
+      "avg_sentiment_other_days": 0.0879,
+      "delta": 0.2821,
+      "correlation_label": "positive",
+      "streak_length": 1,
+      "consistency_percentage": 6.67,
+      "co_occurring_pairs": [],
+      "confidence": 0.2,
+      "explanation": "Cooking mentioned 2 times; mood was +0.28 higher on those days."
+    },
+    {
+      "habit": "sleep",
+      "mention_count": 5,
+      "avg_sentiment_when_mentioned": 0.114,
+      "avg_sentiment_other_days": 0.1052,
+      "delta": 0.0088,
+      "correlation_label": "neutral",
+      "streak_length": 1,
+      "consistency_percentage": 16.67,
+      "co_occurring_pairs": [
+        {
+          "habit_a": "exercise",
+          "habit_b": "sleep",
+          "mention_count": 2,
+          "avg_sentiment_together": 0.575,
+          "avg_sentiment_either_alone": 0.2478,
+          "delta_vs_either_alone": 0.3272,
+          "confidence": 0.2,
+          "explanation": "exercise + sleep appeared together 2 times; sentiment was +0.33 vs either habit alone."
+        }
+      ],
+      "confidence": 0.5,
+      "explanation": "Sleep mentioned 5 times; mood was +0.01 higher on those days."
+    }
+  ],
+  "relationships": [
+    {
+      "person": "Sarah",
+      "mention_count": 10,
+      "avg_sentiment": 0.196,
+      "dominant_emotion": "pride",
+      "last_mentioned": "2026-08-20T18:15:00Z",
+      "trend": "improving",
+      "relationship_type": "colleague",
+      "relationship_type_confidence": 1.0,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 2.7601,
+      "sentiment_trend": "improving",
+      "co_mentioned_with": {
+        "Maya": 2
+      },
+      "confidence": 1.0,
+      "explanation": "Based on 10 entries mentioning Sarah; usually pride, trend improving."
+    },
+    {
+      "person": "Maya",
+      "mention_count": 9,
+      "avg_sentiment": 0.1933,
+      "dominant_emotion": "joy",
+      "last_mentioned": "2026-08-20T18:15:00Z",
+      "trend": "improving",
+      "relationship_type": "friend",
+      "relationship_type_confidence": 1.0,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 2.7266,
+      "sentiment_trend": "improving",
+      "co_mentioned_with": {
+        "Sarah": 2
+      },
+      "confidence": 0.9,
+      "explanation": "Based on 9 entries mentioning Maya; usually joy, trend improving."
+    }
+  ],
+  "insights": [
+    "You've mentioned health 16 times in the last 30 days, often with relief.",
+    "Your sentiment around health has been increasing recently.",
+    "You've mentioned career 15 times in the last 30 days, often with optimism.",
+    "Your sentiment around career has been increasing recently.",
+    "Sarah comes up often in your entries, usually with pride."
+  ]
+}

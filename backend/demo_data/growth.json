@@ -1,0 +1,21 @@
+{
+  "snapshots": [
+    {
+      "period_label": "2026-07",
+      "entry_count": 10,
+      "avg_sentiment": -0.049,
+      "dominant_emotion": "sadness",
+      "top_topic": "career",
+      "snapshot_date": "2026-08-20T18:17:39.169225Z"
+    },
+    {
+      "period_label": "2026-08",
+      "entry_count": 20,
+      "avg_sentiment": 0.1845,
+      "dominant_emotion": "realization",
+      "top_topic": "health",
+      "snapshot_date": "2026-08-20T18:17:39.169225Z"
+    }
+  ],
+  "narrative": "From 2026-W30 to 2026-W34, average sentiment changed by +0.46, entries changed by -1, and the leading topic moved from health to career. You've written 30 entries total."
+}

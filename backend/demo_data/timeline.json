@@ -1,0 +1,210 @@
+{
+  "events": [
+    {
+      "timestamp": "2026-07-22T09:15:00Z",
+      "title": "career \u2014 feeling optimism",
+      "description": "I started the month with a strong workout before work. The release plan feels big, but manageable.",
+      "emotion": "optimism",
+      "sentiment": 0.48,
+      "significance_score": 0.48,
+      "event_type": "positive_peak"
+    },
+    {
+      "timestamp": "2026-07-23T10:15:00Z",
+      "title": "career \u2014 feeling pride",
+      "description": "My manager Sarah liked the first project draft and said the promotion path is visible if I keep lead",
+      "emotion": "pride",
+      "sentiment": 0.36,
+      "primary_person": "Sarah",
+      "significance_score": 0.36,
+      "event_type": "normal"
+    },
+    {
+      "timestamp": "2026-07-24T11:15:00Z",
+      "title": "relationship \u2014 feeling joy",
+      "description": "My friend Maya and I had dinner after a long day. It was easy to talk and I felt lighter afterward.",
+      "emotion": "joy",
+      "sentiment": 0.44,
+      "primary_person": "Maya",
+      "significance_score": 0.44,
+      "event_type": "positive_peak"
+    },
+    {
+      "timestamp": "2026-07-26T13:15:00Z",
+      "title": "money \u2014 feeling fear",
+      "description": "I slept badly after thinking about the launch budget and rent. Money is starting to sit in the backg",
+      "emotion": "fear",
+      "sentiment": -0.36,
+      "significance_score": 0.36,
+      "event_type": "normal"
+    },
+    {
+      "timestamp": "2026-07-27T14:15:00Z",
+      "title": "career \u2014 feeling sadness",
+      "description": "Sarah asked for another revision. Her notes were fair, but I took them personally and felt deflated.",
+      "emotion": "sadness",
+      "sentiment": -0.42,
+      "baseline_sentiment": 0.36,
+      "primary_person": "Sarah",
+      "significance_score": 0.78,
+      "event_type": "negative_peak"
+    },
+    {
+      "timestamp": "2026-07-29T16:15:00Z",
+      "title": "relationship \u2014 feeling remorse",
+      "description": "Maya checked in and I answered too quickly. I think I sounded distant, then felt guilty about it.",
+      "emotion": "remorse",
+      "sentiment": -0.28,
+      "baseline_sentiment": 0.44,
+      "primary_person": "Maya",
+      "significance_score": 0.72,
+      "event_type": "negative_peak"
+    },
+    {
+      "timestamp": "2026-07-31T18:15:00Z",
+      "title": "health \u2014 feeling sadness",
+      "description": "No workout again. I scrolled late while worrying about money, slept poorly, and woke up already behi",
+      "emotion": "sadness",
+      "sentiment": -0.46,
+      "significance_score": 0.46,
+      "event_type": "negative_peak"
+    },
+    {
+      "timestamp": "2026-08-01T09:15:00Z",
+      "title": "career \u2014 feeling fear",
+      "description": "Sarah and I disagreed about priorities. I left the call convinced I was failing the team.",
+      "emotion": "fear",
+      "sentiment": -0.55,
+      "baseline_sentiment": -0.03,
+      "primary_person": "Sarah",
+      "significance_score": 0.52,
+      "event_type": "negative_peak"
+    },
+    {
+      "timestamp": "2026-08-02T10:15:00Z",
+      "title": "relationship \u2014 feeling sadness",
+      "description": "Maya invited me for a walk, but I cancelled because I felt too tired to explain myself.",
+      "emotion": "sadness",
+      "sentiment": -0.38,
+      "baseline_sentiment": 0.08,
+      "primary_person": "Maya",
+      "significance_score": 0.46,
+      "event_type": "negative_peak"
+    },
+    {
+      "timestamp": "2026-08-04T12:15:00Z",
+      "title": "career \u2014 feeling anger",
+      "description": "The work backlog is real. I did not exercise and I can feel my patience thinning.",
+      "emotion": "anger",
+      "sentiment": -0.33,
+      "significance_score": 0.33,
+      "event_type": "normal"
+    },
+    {
+      "timestamp": "2026-08-06T14:15:00Z",
+      "title": "money \u2014 feeling sadness",
+      "description": "Mid-month low point. I skipped the gym, worried about money, and avoided texting Maya back.",
+      "emotion": "sadness",
+      "sentiment": -0.62,
+      "baseline_sentiment": -0.0733,
+      "primary_person": "Maya",
+      "significance_score": 0.5467,
+      "event_type": "negative_peak"
+    },
+    {
+      "timestamp": "2026-08-09T17:15:00Z",
+      "title": "relationship \u2014 feeling caring",
+      "description": "Maya and I talked honestly. I apologized for disappearing and she said she understood.",
+      "emotion": "caring",
+      "sentiment": 0.34,
+      "baseline_sentiment": -0.21,
+      "primary_person": "Maya",
+      "significance_score": 0.55,
+      "event_type": "positive_peak"
+    },
+    {
+      "timestamp": "2026-08-10T18:15:00Z",
+      "title": "health \u2014 feeling joy",
+      "description": "First proper workout in days. My mood was noticeably steadier afterward.",
+      "emotion": "joy",
+      "sentiment": 0.52,
+      "significance_score": 0.52,
+      "event_type": "positive_peak"
+    },
+    {
+      "timestamp": "2026-08-12T10:15:00Z",
+      "title": "career \u2014 feeling pride",
+      "description": "I did a morning run before the standup. Sarah noticed I was calmer during planning.",
+      "emotion": "pride",
+      "sentiment": 0.46,
+      "baseline_sentiment": -0.13,
+      "primary_person": "Sarah",
+      "significance_score": 0.59,
+      "event_type": "positive_peak"
+    },
+    {
+      "timestamp": "2026-08-13T11:15:00Z",
+      "title": "relationship \u2014 feeling joy",
+      "description": "Maya sent a voice note that made me laugh. The friendship feels repaired, not perfect, but warmer.",
+      "emotion": "joy",
+      "sentiment": 0.5,
+      "baseline_sentiment": -0.1,
+      "primary_person": "Maya",
+      "significance_score": 0.6,
+      "event_type": "positive_peak"
+    },
+    {
+      "timestamp": "2026-08-14T12:15:00Z",
+      "title": "career \u2014 feeling optimism",
+      "description": "Work was still intense, yet I handled feedback without spiraling. That felt new.",
+      "emotion": "optimism",
+      "sentiment": 0.28,
+      "baseline_sentiment": -0.11,
+      "primary_person": "Sarah",
+      "significance_score": 0.39,
+      "event_type": "normal"
+    },
+    {
+      "timestamp": "2026-08-15T13:15:00Z",
+      "title": "health \u2014 feeling relief",
+      "description": "Gym after work, simple dinner, early sleep. The combination made the day feel recoverable.",
+      "emotion": "relief",
+      "sentiment": 0.58,
+      "significance_score": 0.58,
+      "event_type": "positive_peak"
+    },
+    {
+      "timestamp": "2026-08-17T15:15:00Z",
+      "title": "career \u2014 feeling pride",
+      "description": "Sarah approved the final project plan and said it supports my promotion case. I felt trusted again i",
+      "emotion": "pride",
+      "sentiment": 0.62,
+      "baseline_sentiment": 0.03,
+      "primary_person": "Sarah",
+      "significance_score": 0.59,
+      "event_type": "positive_peak"
+    },
+    {
+      "timestamp": "2026-08-18T16:15:00Z",
+      "title": "relationship \u2014 feeling caring",
+      "description": "Maya and I walked after dinner. We talked about stress without it taking over the whole evening.",
+      "emotion": "caring",
+      "sentiment": 0.49,
+      "baseline_sentiment": -0.088,
+      "primary_person": "Maya",
+      "significance_score": 0.578,
+      "event_type": "positive_peak"
+    },
+    {
+      "timestamp": "2026-08-19T17:15:00Z",
+      "title": "career \u2014 feeling gratitude",
+      "description": "This week feels better. Exercise is back, work is clearer, and I am not carrying everything alone.",
+      "emotion": "gratitude",
+      "sentiment": 0.68,
+      "baseline_sentiment": 0.264,
+      "primary_person": "Sarah",
+      "significance_score": 0.416,
+      "event_type": "positive_peak"
+    }
+  ]
+}

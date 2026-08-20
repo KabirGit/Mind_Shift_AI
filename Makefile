@@ -1,4 +1,4 @@
-.PHONY: install install-dev run seed test lint typecheck clean help
+.PHONY: install install-dev run seed demo-snapshot test lint typecheck clean help
 
 help:           ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -18,6 +18,9 @@ run:            ## Start the Streamlit app
 seed:           ## Populate demo data (deletes existing DB and FAISS store first)
 	@echo "Seeding demo data..."
 	python scripts/seed_demo_data.py
+
+demo-snapshot:  ## Regenerate static recruiter demo JSON under backend/demo_data
+	python scripts/generate_demo_snapshot.py
 
 test:           ## Run all tests
 	pytest -v

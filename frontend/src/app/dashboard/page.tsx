@@ -24,6 +24,7 @@ import {
 
 import { AppShell } from "@/components/AppShell";
 import { Card } from "@/components/Card";
+import { useDemoMode } from "@/components/DemoModeProvider";
 import { EmptyState } from "@/components/EmptyState";
 import { ProgressBar } from "@/components/ProgressBar";
 import { RelationshipGraph } from "@/components/RelationshipGraph";
@@ -45,6 +46,7 @@ import { percent, signed, titleCase } from "@/lib/format";
 const RANGES = ["Last 7 days", "Last 30 days", "All time"];
 
 export default function DashboardPage() {
+  const { mode } = useDemoMode();
   const [range, setRange] = useState(RANGES[1]);
   const [story, setStory] = useState<DashboardStory | null>(null);
   const [timeline, setTimeline] = useState<TimelineEvent[]>([]);
@@ -62,10 +64,10 @@ export default function DashboardPage() {
       setError(null);
       try {
         const [storyData, timelineData, diag, peopleGraphData] = await Promise.all([
-          getDashboardStory(range),
-          getTimeline(),
-          getDiagnostics(),
-          getPeopleGraph()
+          getDashboardStory(range, mode),
+          getTimeline(mode),
+          getDiagnostics(mode),
+          getPeopleGraph(mode)
         ]);
         if (cancelled) return;
         setStory(storyData);
@@ -84,7 +86,7 @@ export default function DashboardPage() {
     return () => {
       cancelled = true;
     };
-  }, [range]);
+  }, [range, mode]);
 
   const thresholds = story?.thresholds;
   const working = useMemo(() => {
@@ -122,7 +124,7 @@ export default function DashboardPage() {
   async function runGraphSearch() {
     const node = graphNode.trim();
     if (!node) return;
-    setGraph(await queryGraph(node));
+    setGraph(await queryGraph(node, mode));
   }
 
   return (

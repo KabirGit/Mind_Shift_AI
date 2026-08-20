@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "User",
+      "label": "You",
+      "type": "user",
+      "relationship_type": "self",
+      "mention_count": 0
+    },
+    {
+      "id": "Sarah",
+      "label": "Sarah",
+      "type": "person",
+      "relationship_type": "colleague",
+      "mention_count": 10
+    },
+    {
+      "id": "Maya",
+      "label": "Maya",
+      "type": "person",
+      "relationship_type": "friend",
+      "mention_count": 9
+    }
+  ],
+  "edges": [
+    {
+      "source": "User",
+      "target": "Sarah",
+      "sentiment": 0.196,
+      "weight": 10,
+      "closeness_score": 2.7601
+    },
+    {
+      "source": "User",
+      "target": "Maya",
+      "sentiment": 0.1933,
+      "weight": 9,
+      "closeness_score": 2.7266
+    }
+  ]
+}

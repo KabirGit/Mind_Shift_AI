@@ -1,0 +1,19 @@
+{
+  "retrieval_precision": {
+    "precision_at_k": 0.7333,
+    "k": 3,
+    "n_samples_used": 10,
+    "note": "Approximation using topic overlap as relevance proxy."
+  },
+  "emotion_confidence": {
+    "mean_confidence": 0.8373,
+    "min": 0.77,
+    "max": 0.9,
+    "low_confidence_ratio": 0.0
+  },
+  "latency": {
+    "avg_ms": 0.0,
+    "p95_ms": 0.0,
+    "sample_count": 0
+  }
+}

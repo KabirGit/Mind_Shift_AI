@@ -1,0 +1,19 @@
+{
+  "sentiment_forecast": {
+    "horizon_days": 7,
+    "predicted_sentiment": 0.8312,
+    "direction": "improving",
+    "confidence": 0.3883,
+    "forecast_accuracy_note": "Forecast accuracy is not tracked yet because historical forecasts are not persisted for later comparison.",
+    "explanation": "Based on 14 entries. Trend slope: +0.032/day. R\u00b2: 0.39."
+  },
+  "burnout_risk": {
+    "risk_level": "low",
+    "score": 0.15,
+    "contributing_factors": [
+      "high career focus"
+    ],
+    "confidence": 1.0,
+    "explanation": "Score 15% from 14 recent entries. This is a statistical pattern only, not a clinical assessment."
+  }
+}

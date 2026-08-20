@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
 from backend.analytics._stats_utils import filter_window
+from backend.api.demo import router as demo_router
 from backend.api.rag_service import RAGService
 from backend.api.schemas import (
     ChatRequest,
@@ -57,6 +58,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(demo_router)
 
 _SERVICE: RAGService | None = None
 

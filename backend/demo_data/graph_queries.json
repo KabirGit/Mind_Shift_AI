@@ -1,0 +1,203 @@
+{
+  "user": {
+    "node": "User",
+    "summary": "'User' connects to: health, career, Sarah, relationship, Maya.",
+    "neighbors": [
+      "career",
+      "relationship",
+      "health",
+      "money",
+      "Sarah",
+      "Maya"
+    ],
+    "edge_data": [
+      {
+        "weight": 15,
+        "sentiment": 0.124,
+        "type": "topic",
+        "neighbor": "career"
+      },
+      {
+        "weight": 9,
+        "sentiment": 0.1933,
+        "type": "topic",
+        "neighbor": "relationship"
+      },
+      {
+        "weight": 16,
+        "sentiment": 0.1225,
+        "type": "topic",
+        "neighbor": "health"
+      },
+      {
+        "weight": 5,
+        "sentiment": -0.254,
+        "type": "topic",
+        "neighbor": "money"
+      },
+      {
+        "weight": 10,
+        "sentiment": 0.196,
+        "type": "person",
+        "relationship_type": "colleague",
+        "closeness_score": 2.7601,
+        "neighbor": "Sarah"
+      },
+      {
+        "weight": 9,
+        "sentiment": 0.1933,
+        "type": "person",
+        "relationship_type": "friend",
+        "closeness_score": 2.7266,
+        "neighbor": "Maya"
+      }
+    ]
+  },
+  "career": {
+    "node": "career",
+    "summary": "'career' connects to: User, Sarah, exercise, Maya, sleep.",
+    "neighbors": [
+      "Sarah",
+      "Maya",
+      "exercise",
+      "sleep",
+      "coffee",
+      "User"
+    ],
+    "edge_data": [
+      {
+        "weight": 10,
+        "type": "co_occurs",
+        "neighbor": "Sarah"
+      },
+      {
+        "weight": 2,
+        "type": "co_occurs",
+        "neighbor": "Maya"
+      },
+      {
+        "weight": 5,
+        "type": "co_occurs",
+        "neighbor": "exercise"
+      },
+      {
+        "weight": 1,
+        "type": "co_occurs",
+        "neighbor": "sleep"
+      },
+      {
+        "weight": 1,
+        "type": "co_occurs",
+        "neighbor": "coffee"
+      },
+      {
+        "weight": 15,
+        "sentiment": 0.124,
+        "type": "topic",
+        "neighbor": "User"
+      }
+    ]
+  },
+  "exercise": {
+    "node": "exercise",
+    "summary": "'exercise' connects to: health, career, relationship.",
+    "neighbors": [
+      "career",
+      "relationship",
+      "health"
+    ],
+    "edge_data": [
+      {
+        "weight": 5,
+        "type": "co_occurs",
+        "neighbor": "career"
+      },
+      {
+        "weight": 3,
+        "type": "co_occurs",
+        "neighbor": "relationship"
+      },
+      {
+        "weight": 8,
+        "type": "co_occurs",
+        "neighbor": "health"
+      }
+    ]
+  },
+  "maya": {
+    "node": "Maya",
+    "summary": "'Maya' connects to: relationship, User, health, career, money.",
+    "neighbors": [
+      "career",
+      "relationship",
+      "health",
+      "money",
+      "User"
+    ],
+    "edge_data": [
+      {
+        "weight": 2,
+        "type": "co_occurs",
+        "neighbor": "career"
+      },
+      {
+        "weight": 9,
+        "type": "co_occurs",
+        "neighbor": "relationship"
+      },
+      {
+        "weight": 5,
+        "type": "co_occurs",
+        "neighbor": "health"
+      },
+      {
+        "weight": 1,
+        "type": "co_occurs",
+        "neighbor": "money"
+      },
+      {
+        "weight": 9,
+        "sentiment": 0.1933,
+        "type": "person",
+        "relationship_type": "friend",
+        "closeness_score": 2.7266,
+        "neighbor": "User"
+      }
+    ]
+  },
+  "sarah": {
+    "node": "Sarah",
+    "summary": "'Sarah' connects to: career, User, health, relationship.",
+    "neighbors": [
+      "career",
+      "relationship",
+      "health",
+      "User"
+    ],
+    "edge_data": [
+      {
+        "weight": 10,
+        "type": "co_occurs",
+        "neighbor": "career"
+      },
+      {
+        "weight": 2,
+        "type": "co_occurs",
+        "neighbor": "relationship"
+      },
+      {
+        "weight": 3,
+        "type": "co_occurs",
+        "neighbor": "health"
+      },
+      {
+        "weight": 10,
+        "sentiment": 0.196,
+        "type": "person",
+        "relationship_type": "colleague",
+        "closeness_score": 2.7601,
+        "neighbor": "User"
+      }
+    ]
+  }
+}

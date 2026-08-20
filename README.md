@@ -15,6 +15,32 @@ A local-first journaling companion that turns your entries into explainable, det
 - **Explainable outputs:** every engine output carries a confidence score and a one-sentence explanation of its evidence.
 - **Proactive alerts:** the system surfaces meaningful changes without waiting to be asked.
 
+## Recruiter Demo Mode
+
+The deployed Next.js app defaults to `demo` mode on fresh load. Demo mode serves:
+
+- Dashboard/story JSON from `/api/demo/dashboard/*`
+- Relationship graph JSON from `/api/demo/graph/*`
+- A read-only sample transcript from `/api/demo/chat-history`
+- Static files committed under `backend/demo_data/`
+
+This is decoupled from Render free-tier ephemeral storage: opening the deployed site
+does not require live SQLite records, FAISS indexes, or Mistral calls. The persistent
+banner CTA switches the client to `live` mode, which uses `/api/dashboard/*` and
+`/api/chat` with the real pipeline.
+
+Regenerate the snapshot with:
+
+```bash
+make demo-snapshot
+```
+
+The generator builds a 30-day synthetic persona in a throwaway local SQLite store,
+runs the real deterministic analytics engines, and writes static JSON. If valid
+Mistral credentials and network access are available, the script can freeze
+live-generated sample replies; otherwise the JSON metadata records that offline
+fallback transcript text was used.
+
 ## Architecture
 
 ```
@@ -62,6 +88,7 @@ git clone <repo> && cd <repo>
 cp .env.example .env    # add your Mistral API key
 make install-dev
 make seed               # optional: populate 30 days of demo data
+make demo-snapshot      # regenerate static recruiter demo JSON
 make run                # opens http://localhost:8501
 ```
 
@@ -88,7 +115,7 @@ pip install -r requirements-ml.txt
 make test
 ```
 
-**99 tests passing** across emotion, retrieval, storage, NLP, analytics, profile, orchestrator, memory, graph, reports, evaluation, and integration. The LLM is mocked, so tests need no API key.
+**120 tests passing** across emotion, retrieval, storage, NLP, analytics, profile, orchestrator, memory, graph, reports, evaluation, API, and integration. The LLM is mocked, so tests need no API key.
 
 ## Project Structure
 

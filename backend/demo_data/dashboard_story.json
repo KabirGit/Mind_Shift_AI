@@ -1,0 +1,217 @@
+{
+  "range": "Last 30 days",
+  "lookback_days": 30,
+  "headline": {
+    "baseline_sentiment": 0.1067,
+    "current_sentiment": 0.4914,
+    "sentiment_delta": 0.3847,
+    "dominant_emotion_start": "sadness",
+    "dominant_emotion_end": "optimism",
+    "recovery_speed_days_start": 1.04,
+    "recovery_speed_days_end": 1.04,
+    "entry_count": 30,
+    "days_in_range": 30,
+    "growth_score": 0.6924,
+    "growth_narrative": "From 2026-W30 to 2026-W34, average sentiment changed by +0.46, entries changed by -1, and the leading topic moved from health to career. You've written 30 entries total.",
+    "has_sufficient_data": true,
+    "minimum_entry_count": 5
+  },
+  "top_working": [
+    {
+      "habit": "exercise",
+      "mention_count": 8,
+      "avg_sentiment_when_mentioned": 0.495,
+      "avg_sentiment_other_days": -0.0345,
+      "delta": 0.5295,
+      "correlation_label": "positive",
+      "streak_length": 3,
+      "consistency_percentage": 26.67,
+      "co_occurring_pairs": [
+        {
+          "habit_a": "exercise",
+          "habit_b": "sleep",
+          "mention_count": 2,
+          "avg_sentiment_together": 0.575,
+          "avg_sentiment_either_alone": 0.2478,
+          "delta_vs_either_alone": 0.3272,
+          "confidence": 0.2,
+          "explanation": "exercise + sleep appeared together 2 times; sentiment was +0.33 vs either habit alone."
+        }
+      ],
+      "confidence": 0.8,
+      "explanation": "Exercise mentioned 8 times; mood was +0.53 higher on those days."
+    },
+    {
+      "habit": "sleep",
+      "mention_count": 5,
+      "avg_sentiment_when_mentioned": 0.114,
+      "avg_sentiment_other_days": 0.1052,
+      "delta": 0.0088,
+      "correlation_label": "neutral",
+      "streak_length": 1,
+      "consistency_percentage": 16.67,
+      "co_occurring_pairs": [
+        {
+          "habit_a": "exercise",
+          "habit_b": "sleep",
+          "mention_count": 2,
+          "avg_sentiment_together": 0.575,
+          "avg_sentiment_either_alone": 0.2478,
+          "delta_vs_either_alone": 0.3272,
+          "confidence": 0.2,
+          "explanation": "exercise + sleep appeared together 2 times; sentiment was +0.33 vs either habit alone."
+        }
+      ],
+      "confidence": 0.5,
+      "explanation": "Sleep mentioned 5 times; mood was +0.01 higher on those days."
+    }
+  ],
+  "top_draining": [
+    {
+      "topic": "money",
+      "frequency": 5,
+      "avg_sentiment": -0.254,
+      "dominant_emotion": "sadness",
+      "trend": "increasing",
+      "confidence": 0.5,
+      "explanation": "Based on 5 entries mentioning money; avg sentiment -0.25, trend increasing."
+    }
+  ],
+  "people": [
+    {
+      "person": "Sarah",
+      "mention_count": 10,
+      "avg_sentiment": 0.196,
+      "dominant_emotion": "pride",
+      "last_mentioned": "2026-08-20T18:15:00Z",
+      "trend": "improving",
+      "relationship_type": "colleague",
+      "relationship_type_confidence": 1.0,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 2.7601,
+      "sentiment_trend": "improving",
+      "co_mentioned_with": {
+        "Maya": 2
+      },
+      "confidence": 1.0,
+      "explanation": "Based on 10 entries mentioning Sarah; usually pride, trend improving."
+    },
+    {
+      "person": "Maya",
+      "mention_count": 9,
+      "avg_sentiment": 0.1933,
+      "dominant_emotion": "joy",
+      "last_mentioned": "2026-08-20T18:15:00Z",
+      "trend": "improving",
+      "relationship_type": "friend",
+      "relationship_type_confidence": 1.0,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 2.7266,
+      "sentiment_trend": "improving",
+      "co_mentioned_with": {
+        "Sarah": 2
+      },
+      "confidence": 0.9,
+      "explanation": "Based on 9 entries mentioning Maya; usually joy, trend improving."
+    }
+  ],
+  "rhythm": {
+    "topic": "health",
+    "peak_day_of_week": "Sunday",
+    "peak_time_of_day": "morning",
+    "day_time_crossing": "Wednesday morning",
+    "day_time_sample_size": 2,
+    "peak_day_avg_sentiment": -0.37,
+    "peak_time_avg_sentiment": 0.47,
+    "baseline_avg_sentiment": 0.1225,
+    "delta": -0.4925,
+    "confidence": 1.0,
+    "explanation": "Health sentiment peaks on Sundays (-0.49, below its baseline)."
+  },
+  "weekly_buckets": [
+    {
+      "label": "Jul 20-Jul 26",
+      "avg_sentiment": 0.134,
+      "dominant_emotion": "optimism",
+      "top_topic": "career",
+      "entry_count": 5
+    },
+    {
+      "label": "Jul 27-Aug 02",
+      "avg_sentiment": -0.2986,
+      "dominant_emotion": "sadness",
+      "top_topic": "career",
+      "entry_count": 7
+    },
+    {
+      "label": "Aug 03-Aug 09",
+      "avg_sentiment": -0.0357,
+      "dominant_emotion": "relief",
+      "top_topic": "health",
+      "entry_count": 7
+    },
+    {
+      "label": "Aug 10-Aug 16",
+      "avg_sentiment": 0.3586,
+      "dominant_emotion": "joy",
+      "top_topic": "health",
+      "entry_count": 7
+    },
+    {
+      "label": "Aug 17-Aug 23",
+      "avg_sentiment": 0.59,
+      "dominant_emotion": "pride",
+      "top_topic": "career",
+      "entry_count": 4
+    }
+  ],
+  "forecast": {
+    "sentiment_forecast": {
+      "horizon_days": 7,
+      "predicted_sentiment": 0.8312,
+      "direction": "improving",
+      "confidence": 0.3883,
+      "forecast_accuracy_note": "Forecast accuracy is not tracked yet because historical forecasts are not persisted for later comparison.",
+      "explanation": "Based on 14 entries. Trend slope: +0.032/day. R\u00b2: 0.39."
+    },
+    "burnout_risk": {
+      "risk_level": "low",
+      "score": 0.15,
+      "contributing_factors": [
+        "high career focus"
+      ],
+      "confidence": 1.0,
+      "explanation": "Score 15% from 14 recent entries. This is a statistical pattern only, not a clinical assessment."
+    }
+  },
+  "goals": [
+    {
+      "goal_keyword": "promotion",
+      "first_mentioned": "2026-07-23T10:15:00Z",
+      "last_mentioned": "2026-08-17T15:15:00Z",
+      "mention_count": 3,
+      "avg_sentiment": 0.2867,
+      "sentiment_trend": "improving",
+      "phase": "ramping",
+      "estimated_progress": 0.6928,
+      "confidence": 0.3,
+      "explanation": "Promotion mentioned 3 times; sentiment trend improving; phase ramping."
+    }
+  ],
+  "highlight_memory": {
+    "timestamp": "2026-07-27T14:15:00Z",
+    "title": "career \u2014 feeling sadness",
+    "description": "Sarah asked for another revision. Her notes were fair, but I took them personally and felt deflated.",
+    "emotion": "sadness",
+    "sentiment": -0.42,
+    "baseline_sentiment": 0.36,
+    "primary_person": "Sarah",
+    "significance_score": 0.78,
+    "event_type": "negative_peak"
+  },
+  "thresholds": {
+    "min_insight_confidence": 0.5,
+    "min_mention_count": 3,
+    "min_entry_count": 5
+  }
+}

@@ -6,6 +6,7 @@ const fallbackApiUrl =
     : "http://127.0.0.1:8501";
 
 export const API_BASE_URL = configuredApiUrl || fallbackApiUrl;
+export type EndpointMode = "demo" | "live";
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
@@ -81,6 +82,21 @@ export type HabitCorrelation = {
   consistency_percentage: number;
   confidence: number;
   explanation: string;
+};
+
+export type DemoChatHistory = {
+  mode: "demo";
+  persona: string;
+  generated_with_live_llm: boolean;
+  messages: Array<{
+    role: "user" | "assistant";
+    content: string;
+    emotion?: EmotionResult;
+    memory_replay?: Record<string, unknown> | null;
+    crisis?: ChatResponse["crisis"];
+    retrieved_memories?: Array<Record<string, unknown>>;
+    prompt?: string | null;
+  }>;
 };
 
 export type RelationshipProfile = {
@@ -267,50 +283,69 @@ export function sendChat(
   });
 }
 
-export function getDashboardSummary(range: string): Promise<DashboardSummary> {
+function demoPrefix(mode: EndpointMode): string {
+  return mode === "demo" ? "/api/demo" : "/api";
+}
+
+export function getDashboardSummary(
+  range: string,
+  mode: EndpointMode = "live"
+): Promise<DashboardSummary> {
   return apiFetch<DashboardSummary>(
-    `/api/dashboard/summary?range=${encodeURIComponent(range)}`
+    `${demoPrefix(mode)}/dashboard/summary?range=${encodeURIComponent(range)}`
   );
 }
 
-export function getDashboardStory(range: string): Promise<DashboardStory> {
+export function getDashboardStory(
+  range: string,
+  mode: EndpointMode = "live"
+): Promise<DashboardStory> {
   return apiFetch<DashboardStory>(
-    `/api/dashboard/story?range=${encodeURIComponent(range)}`
+    `${demoPrefix(mode)}/dashboard/story?range=${encodeURIComponent(range)}`
   );
 }
 
-export function getGoals(): Promise<{ goals: GoalProgress[] }> {
-  return apiFetch<{ goals: GoalProgress[] }>("/api/dashboard/goals");
+export function getGoals(mode: EndpointMode = "live"): Promise<{ goals: GoalProgress[] }> {
+  return apiFetch<{ goals: GoalProgress[] }>(`${demoPrefix(mode)}/dashboard/goals`);
 }
 
-export function getPredictions(): Promise<{
+export function getPredictions(mode: EndpointMode = "live"): Promise<{
   sentiment_forecast: SentimentForecast;
   burnout_risk: BurnoutRisk;
 }> {
-  return apiFetch("/api/dashboard/predictions");
+  return apiFetch(`${demoPrefix(mode)}/dashboard/predictions`);
 }
 
-export function getTimeline(): Promise<{ events: TimelineEvent[] }> {
-  return apiFetch<{ events: TimelineEvent[] }>("/api/dashboard/timeline");
+export function getTimeline(mode: EndpointMode = "live"): Promise<{ events: TimelineEvent[] }> {
+  return apiFetch<{ events: TimelineEvent[] }>(`${demoPrefix(mode)}/dashboard/timeline`);
 }
 
-export function getGrowth(): Promise<{
+export function getGrowth(mode: EndpointMode = "live"): Promise<{
   snapshots: GrowthSnapshot[];
   narrative: string;
 }> {
-  return apiFetch("/api/dashboard/growth");
+  return apiFetch(`${demoPrefix(mode)}/dashboard/growth`);
 }
 
-export function queryGraph(node: string): Promise<GraphQuery> {
-  return apiFetch<GraphQuery>(`/api/graph/query?node=${encodeURIComponent(node)}`);
+export function queryGraph(
+  node: string,
+  mode: EndpointMode = "live"
+): Promise<GraphQuery> {
+  return apiFetch<GraphQuery>(
+    `${demoPrefix(mode)}/graph/query?node=${encodeURIComponent(node)}`
+  );
 }
 
-export function getPeopleGraph(): Promise<PeopleGraph> {
-  return apiFetch<PeopleGraph>("/api/graph/people");
+export function getPeopleGraph(mode: EndpointMode = "live"): Promise<PeopleGraph> {
+  return apiFetch<PeopleGraph>(`${demoPrefix(mode)}/graph/people`);
 }
 
-export function getDiagnostics(): Promise<Diagnostics> {
-  return apiFetch<Diagnostics>("/api/diagnostics");
+export function getDiagnostics(mode: EndpointMode = "live"): Promise<Diagnostics> {
+  return apiFetch<Diagnostics>(`${demoPrefix(mode)}/diagnostics`);
+}
+
+export function getDemoChatHistory(): Promise<DemoChatHistory> {
+  return apiFetch<DemoChatHistory>("/api/demo/chat-history");
 }
 
 export function weeklyReportUrl(): string {

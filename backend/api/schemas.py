@@ -4,7 +4,7 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
-from backend.analytics.dashboard_story import DashboardStoryResponse
+from backend.analytics.dashboard_story import DashboardStoryResponse as DashboardStoryResponse
 from backend.analytics.goal_engine import GoalProgress
 from backend.analytics.growth_tracker import GrowthSnapshot
 from backend.analytics.habit_engine import HabitCorrelation
@@ -36,6 +36,13 @@ class ChatResponse(BaseModel):
     stored_entry: dict[str, Any] | None = None
     packet: IntelligencePacket | None = None
     prompt: str | None = None
+
+
+class DemoChatHistoryResponse(BaseModel):
+    mode: str = "demo"
+    persona: str
+    generated_with_live_llm: bool = False
+    messages: list[dict[str, Any]] = Field(default_factory=list)
 
 
 class EmotionPoint(BaseModel):

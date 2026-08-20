@@ -594,6 +594,35 @@ def test_dashboard_story_low_data_path_is_explicit():
     assert headline["minimum_entry_count"] == 5
 
 
+def test_demo_endpoints_return_static_json_without_service():
+    def _boom():
+        raise AssertionError("demo endpoints must not touch RAGService")
+
+    app.dependency_overrides[get_service] = _boom
+    client = TestClient(app)
+
+    checks = {
+        "/api/demo/dashboard/summary": "pattern_summary",
+        "/api/demo/dashboard/story": "headline",
+        "/api/demo/dashboard/goals": "goals",
+        "/api/demo/dashboard/predictions": "sentiment_forecast",
+        "/api/demo/dashboard/timeline": "events",
+        "/api/demo/dashboard/growth": "narrative",
+        "/api/demo/diagnostics": "retrieval_precision",
+        "/api/demo/graph/people": "nodes",
+        "/api/demo/graph/query?node=career": "neighbors",
+        "/api/demo/chat-history": "messages",
+    }
+    for path, expected_key in checks.items():
+        response = client.get(path)
+        assert response.status_code == 200, path
+        assert expected_key in response.json(), path
+
+    chat = client.get("/api/demo/chat-history").json()
+    assert chat["mode"] == "demo"
+    assert len(chat["messages"]) >= 4
+
+
 def test_dashboard_and_support_endpoints_empty_data_path():
     client = _client(FakeService(empty=True))
 

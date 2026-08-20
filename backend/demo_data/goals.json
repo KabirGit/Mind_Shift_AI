@@ -1,0 +1,16 @@
+{
+  "goals": [
+    {
+      "goal_keyword": "promotion",
+      "first_mentioned": "2026-07-23T10:15:00Z",
+      "last_mentioned": "2026-08-17T15:15:00Z",
+      "mention_count": 3,
+      "avg_sentiment": 0.2867,
+      "sentiment_trend": "improving",
+      "phase": "ramping",
+      "estimated_progress": 0.6928,
+      "confidence": 0.3,
+      "explanation": "Promotion mentioned 3 times; sentiment trend improving; phase ramping."
+    }
+  ]
+}

@@ -1,11 +1,17 @@
 "use client";
 
 import { AlertTriangle, ChevronDown, FileText, Send } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { AppShell } from "@/components/AppShell";
 import { Card } from "@/components/Card";
-import { type ChatMessage, type ChatResponse, sendChat } from "@/lib/api";
+import { useDemoMode } from "@/components/DemoModeProvider";
+import {
+  type ChatMessage,
+  type ChatResponse,
+  getDemoChatHistory,
+  sendChat
+} from "@/lib/api";
 import { percent, titleCase } from "@/lib/format";
 
 type ThreadItem = ChatMessage & {
@@ -17,16 +23,56 @@ type ThreadItem = ChatMessage & {
 };
 
 export default function ChatPage() {
+  const { mode } = useDemoMode();
   const [thread, setThread] = useState<ThreadItem[]>([]);
   const [input, setInput] = useState("");
   const [pending, setPending] = useState(false);
   const [showDebug, setShowDebug] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const isDemo = mode === "demo";
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadDemo() {
+      if (!isDemo) {
+        setThread([]);
+        setError(null);
+        return;
+      }
+      setPending(true);
+      setError(null);
+      try {
+        const demo = await getDemoChatHistory();
+        if (cancelled) return;
+        setThread(
+          demo.messages.map((message) => ({
+            role: message.role,
+            content: message.content,
+            emotion: message.emotion,
+            memoryReplay: message.memory_replay,
+            crisis: message.crisis,
+            retrieved: message.retrieved_memories,
+            prompt: message.prompt
+          }))
+        );
+      } catch (exc) {
+        if (!cancelled) {
+          setError(exc instanceof Error ? exc.message : "Demo chat request failed.");
+        }
+      } finally {
+        if (!cancelled) setPending(false);
+      }
+    }
+    void loadDemo();
+    return () => {
+      cancelled = true;
+    };
+  }, [isDemo]);
 
   async function submit() {
     const text = input.trim();
-    if (!text || pending) return;
+    if (!text || pending || isDemo) return;
 
     const visibleHistory = thread.map(({ role, content }) => ({ role, content }));
     const userItem: ThreadItem = { role: "user", content: text };
@@ -81,9 +127,10 @@ export default function ChatPage() {
             </div>
             <button
               className="rounded-lg border border-line bg-[#fffdf8] px-4 py-2 text-sm font-semibold text-ink"
+              disabled={isDemo}
               onClick={() => setThread([])}
             >
-              Reset
+              {isDemo ? "Read-only demo" : "Reset"}
             </button>
           </div>
 
@@ -160,8 +207,15 @@ export default function ChatPage() {
           ) : null}
 
           <div className="mt-4 rounded-xl border border-line bg-[#fffdf8] p-3">
+            {isDemo ? (
+              <div className="rounded-lg border border-line bg-canvas p-4 text-sm leading-6 text-body">
+                This is a frozen demo transcript. Use the banner CTA to switch to live
+                mode and write a new entry through the real pipeline.
+              </div>
+            ) : null}
             <textarea
-              className="min-h-28 w-full resize-none bg-transparent p-2 text-base leading-7 text-ink outline-none placeholder:text-muted"
+              className="min-h-28 w-full resize-none bg-transparent p-2 text-base leading-7 text-ink outline-none placeholder:text-muted disabled:opacity-60"
+              disabled={isDemo}
               onChange={(event) => setInput(event.target.value)}
               onKeyDown={(event) => {
                 if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) {
@@ -184,7 +238,8 @@ export default function ChatPage() {
                   type="file"
                 />
                 <button
-                  className="inline-flex items-center gap-2 rounded-lg border border-line px-3 py-2 text-sm font-semibold text-ink"
+                  className="inline-flex items-center gap-2 rounded-lg border border-line px-3 py-2 text-sm font-semibold text-ink disabled:opacity-60"
+                  disabled={isDemo}
                   onClick={() => fileRef.current?.click()}
                 >
                   <FileText className="size-4" />
@@ -201,7 +256,7 @@ export default function ChatPage() {
               </div>
               <button
                 className="inline-flex items-center gap-2 rounded-lg bg-coral px-4 py-2 text-sm font-semibold text-white hover:bg-coralDark disabled:opacity-60"
-                disabled={pending || !input.trim()}
+                disabled={pending || !input.trim() || isDemo}
                 onClick={() => void submit()}
               >
                 <Send className="size-4" />
