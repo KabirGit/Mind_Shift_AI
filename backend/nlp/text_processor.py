@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from typing import Any
 
 logger = logging.getLogger(__name__)
@@ -38,6 +39,7 @@ _EMPTY: dict[str, Any] = {
     "keywords": [],
     "topics": [],
     "habits": [],
+    "person_relationship_types": {},
     "sentiment_compound": 0.0,
     "sentiment_valence": 0.0,
 }
@@ -53,6 +55,27 @@ HABIT_KEYWORDS: dict[str, list[str]] = {
     "cooking": ["cook", "cooking", "recipe"],
     "coding": ["code", "coding", "programming"],
 }
+
+
+RELATIONSHIP_TYPE_KEYWORDS: dict[str, list[str]] = {
+    "family": [
+        "mom", "mother", "dad", "father", "sister", "brother", "parent",
+        "parents", "son", "daughter", "child", "cousin", "aunt", "uncle",
+        "grandma", "grandmother", "grandpa", "grandfather", "family",
+    ],
+    "friend": ["friend", "best friend", "roommate"],
+    "colleague": [
+        "coworker", "co-worker", "colleague", "boss", "manager", "teammate",
+        "mentor", "client", "professor", "teacher",
+    ],
+    "partner": [
+        "wife", "husband", "partner", "girlfriend", "boyfriend", "spouse",
+        "fiance", "fiancee",
+    ],
+    "other": ["neighbor", "therapist", "doctor", "coach"],
+}
+
+RELATIONSHIP_UNKNOWN = "unknown"
 
 
 class TextProcessor:
@@ -88,9 +111,11 @@ class TextProcessor:
             doc = nlp(text)
 
             people, places, orgs = [], [], []
+            person_spans: list[tuple[str, int, int]] = []
             for ent in doc.ents:
                 if ent.label_ == "PERSON":
                     people.append(ent.text)
+                    person_spans.append((ent.text, ent.start_char, ent.end_char))
                 elif ent.label_ in {"GPE", "LOC"}:
                     places.append(ent.text)
                 elif ent.label_ == "ORG":
@@ -121,14 +146,19 @@ class TextProcessor:
 
             vader = self._get_vader()
             compound = float(vader.polarity_scores(text).get("compound", 0.0))
+            deduped_people = self._dedupe(people)
+            relationship_types = self._relationship_types(
+                text, deduped_people, person_spans
+            )
 
             return {
-                "entities_people": self._dedupe(people),
+                "entities_people": deduped_people,
                 "entities_places": self._dedupe(places),
                 "entities_orgs": self._dedupe(orgs),
                 "keywords": keywords,
                 "topics": topics,
                 "habits": habits,
+                "person_relationship_types": relationship_types,
                 "sentiment_compound": compound,
                 "sentiment_valence": compound,
             }
@@ -147,3 +177,54 @@ class TextProcessor:
                 seen.add(low)
                 out.append(key)
         return out
+
+    @classmethod
+    def _relationship_types(
+        cls,
+        text: str,
+        people: list[str],
+        person_spans: list[tuple[str, int, int]],
+        window_chars: int = 64,
+    ) -> dict[str, str]:
+        if not people:
+            return {}
+
+        lowered = text.lower()
+        spans_by_person: dict[str, list[tuple[int, int]]] = {p: [] for p in people}
+        for ent_text, start, end in person_spans:
+            for person in people:
+                if ent_text.strip().lower() == person.strip().lower():
+                    spans_by_person[person].append((start, end))
+
+        for person in people:
+            if spans_by_person[person]:
+                continue
+            pattern = re.compile(rf"\b{re.escape(person.lower())}\b")
+            spans_by_person[person] = [m.span() for m in pattern.finditer(lowered)]
+
+        return {
+            person: cls._classify_person_relationship(
+                lowered, spans_by_person[person], window_chars
+            )
+            for person in people
+        }
+
+    @staticmethod
+    def _classify_person_relationship(
+        lowered_text: str,
+        spans: list[tuple[int, int]],
+        window_chars: int,
+    ) -> str:
+        best: tuple[int, str] | None = None
+        for start, end in spans:
+            left = max(0, start - window_chars)
+            right = min(len(lowered_text), end + window_chars)
+            window = lowered_text[left:right]
+            entity_mid = start - left + max(1, end - start) // 2
+            for rel_type, keywords in RELATIONSHIP_TYPE_KEYWORDS.items():
+                for keyword in keywords:
+                    for match in re.finditer(rf"\b{re.escape(keyword)}\b", window):
+                        distance = abs(match.start() - entity_mid)
+                        if best is None or distance < best[0]:
+                            best = (distance, rel_type)
+        return best[1] if best is not None else RELATIONSHIP_UNKNOWN

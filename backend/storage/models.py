@@ -21,6 +21,7 @@ class JournalRecord(BaseModel):
     keywords: list[str] = Field(default_factory=list)
     topics: list[str] = Field(default_factory=list)
     habits: list[str] = Field(default_factory=list)
+    person_relationship_types: dict[str, str] = Field(default_factory=dict)
 
     sentiment_compound: float = 0.0  # VADER compound score, -1 to 1
     sentiment_valence: float = 0.0  # alias/derived, -1 to 1

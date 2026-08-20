@@ -14,6 +14,7 @@ class MemoryEntry:
     emotion_intensity: float = 0.0
     tags: list[str] = field(default_factory=list)
     topics: list[str] = field(default_factory=list)
+    person_relationship_types: dict[str, str] = field(default_factory=dict)
 
     def to_metadata(self) -> dict:
         return {
@@ -25,4 +26,5 @@ class MemoryEntry:
             "emotion_score": float(self.emotion_intensity),
             "tags": self.tags,
             "topics": self.topics,
+            "person_relationship_types": self.person_relationship_types,
         }

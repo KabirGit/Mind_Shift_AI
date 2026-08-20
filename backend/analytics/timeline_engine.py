@@ -16,6 +16,8 @@ class TimelineEvent(BaseModel):
     description: str
     emotion: str
     sentiment: float
+    baseline_sentiment: float | None = None
+    primary_person: str | None = None
     significance_score: float
     event_type: str  # "positive_peak" | "negative_peak" | "normal"
 
@@ -32,12 +34,25 @@ class TimelineEngine:
             if not records:
                 return []
 
+            person_history: dict[str, list[float]] = {}
             events: list[TimelineEvent] = []
-            for r in records:
+            for r in sorted(records, key=lambda row: sort_key(row.timestamp)):
                 s = r.sentiment_compound
-                if s > 0.4:
+                primary_person = (r.entities_people or [None])[0]
+                baseline = None
+                significance = abs(s)
+                if primary_person and person_history.get(primary_person):
+                    prior = person_history[primary_person][-5:]
+                    baseline = sum(prior) / len(prior)
+                    significance = abs(s - baseline)
+
+                if baseline is not None and s - baseline > 0.4:
                     etype = "positive_peak"
-                elif s < -0.4:
+                elif baseline is not None and s - baseline < -0.4:
+                    etype = "negative_peak"
+                elif baseline is None and s > 0.4:
+                    etype = "positive_peak"
+                elif baseline is None and s < -0.4:
                     etype = "negative_peak"
                 else:
                     etype = "normal"
@@ -50,10 +65,16 @@ class TimelineEngine:
                         description=(r.text or "")[:100],
                         emotion=r.emotion,
                         sentiment=round(s, 4),
-                        significance_score=round(abs(s), 4),
+                        baseline_sentiment=(
+                            round(baseline, 4) if baseline is not None else None
+                        ),
+                        primary_person=primary_person,
+                        significance_score=round(significance, 4),
                         event_type=etype,
                     )
                 )
+                for person in r.entities_people or []:
+                    person_history.setdefault(person, []).append(s)
 
             # Keep all peaks + top-significance normals, dedupe by timestamp.
             peaks = [e for e in events if e.event_type != "normal"]

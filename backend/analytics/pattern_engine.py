@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import logging
 from collections import Counter
-from datetime import UTC, datetime, timedelta
 
+from backend.analytics._stats_utils import filter_window, half_split_trend, sort_key
 from backend.analytics.models import PatternSummary, TriggerStat, compute_confidence
 from backend.storage.db import JournalDB
 from backend.storage.models import JournalRecord
@@ -23,7 +23,7 @@ class PatternEngine:
     def analyze(self, lookback_days: int = 30) -> PatternSummary:
         try:
             records = self.db.get_all()
-            filtered = self._filter_window(records, lookback_days)
+            filtered = filter_window(records, lookback_days)
 
             if not filtered:
                 return PatternSummary(period_entry_count=0)
@@ -41,28 +41,21 @@ class PatternEngine:
             recurring_people = dict(people_counter)
 
             triggers = self._build_triggers(filtered, topic_counter)
+            emotion_trends = self._trends_by_field(filtered, "emotion", recurring_emotions)
+            topic_trends = self._trends_by_list_field(filtered, "topics", topic_counter)
 
             return PatternSummary(
                 recurring_emotions=recurring_emotions,
                 recurring_topics=recurring_topics,
                 recurring_people=recurring_people,
+                emotion_trends=emotion_trends,
+                topic_trends=topic_trends,
                 triggers=triggers,
                 period_entry_count=len(filtered),
             )
         except Exception as exc:
             logger.exception("PatternEngine.analyze failed: %s", exc)
             return PatternSummary(period_entry_count=0)
-
-    def _filter_window(
-        self, records: list[JournalRecord], lookback_days: int
-    ) -> list[JournalRecord]:
-        cutoff = datetime.now(UTC) - timedelta(days=lookback_days)
-        out: list[JournalRecord] = []
-        for r in records:
-            dt = self._parse_ts(r.timestamp)
-            if dt is not None and dt >= cutoff:
-                out.append(r)
-        return out
 
     def _build_triggers(
         self, records: list[JournalRecord], topic_counter: Counter[str]
@@ -72,7 +65,7 @@ class PatternEngine:
             if freq < 2:
                 continue
             topic_records = [r for r in records if topic in (r.topics or [])]
-            topic_records.sort(key=lambda r: self._sort_key(r.timestamp))
+            topic_records.sort(key=lambda r: sort_key(r.timestamp))
 
             sentiments = [r.sentiment_compound for r in topic_records]
             avg_sentiment = sum(sentiments) / len(sentiments) if sentiments else 0.0
@@ -82,7 +75,7 @@ class PatternEngine:
                 Counter(emotions).most_common(1)[0][0] if emotions else "neutral"
             )
 
-            trend = self._compute_trend(sentiments)
+            trend = half_split_trend(sentiments)
 
             triggers.append(
                 TriggerStat(
@@ -101,35 +94,37 @@ class PatternEngine:
         return triggers
 
     @staticmethod
-    def _compute_trend(sentiments: list[float]) -> str:
-        n = len(sentiments)
-        if n < 2:
-            return "stable"
-        mid = n // 2
-        first = sentiments[:mid]
-        second = sentiments[mid:]
-        first_avg = sum(first) / len(first) if first else 0.0
-        second_avg = sum(second) / len(second) if second else 0.0
-        diff = second_avg - first_avg
-        if diff > 0.1:
-            return "increasing"
-        if diff < -0.1:
-            return "decreasing"
-        return "stable"
+    def _trends_by_field(
+        records: list[JournalRecord],
+        field: str,
+        counts: dict[str, int],
+    ) -> dict[str, str]:
+        trends: dict[str, str] = {}
+        ordered = sorted(records, key=lambda r: sort_key(r.timestamp))
+        for value, count in counts.items():
+            if count < 2:
+                continue
+            sentiments = [
+                r.sentiment_compound for r in ordered if getattr(r, field, None) == value
+            ]
+            trends[value] = half_split_trend(sentiments)
+        return trends
 
     @staticmethod
-    def _parse_ts(timestamp: str):
-        if not timestamp:
-            return None
-        try:
-            dt = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
-            if dt.tzinfo is None:
-                dt = dt.replace(tzinfo=UTC)
-            return dt
-        except (ValueError, TypeError):
-            return None
-
-    @classmethod
-    def _sort_key(cls, timestamp: str):
-        dt = cls._parse_ts(timestamp)
-        return dt if dt is not None else datetime.min.replace(tzinfo=UTC)
+    def _trends_by_list_field(
+        records: list[JournalRecord],
+        field: str,
+        counts: Counter[str],
+    ) -> dict[str, str]:
+        trends: dict[str, str] = {}
+        ordered = sorted(records, key=lambda r: sort_key(r.timestamp))
+        for value, count in counts.items():
+            if count < 2:
+                continue
+            sentiments = [
+                r.sentiment_compound
+                for r in ordered
+                if value in (getattr(r, field, None) or [])
+            ]
+            trends[value] = half_split_trend(sentiments)
+        return trends

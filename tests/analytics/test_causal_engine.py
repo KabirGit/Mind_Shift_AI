@@ -30,6 +30,8 @@ def test_exercise_lifts_mood(tmp_path):
     assert ex
     assert ex[0].probability > ex[0].base_rate
     assert ex[0].lift > 0
+    assert ex[0].lag_lifts
+    assert 1 <= ex[0].strongest_lag_days <= 3
     assert ex[0].sample_size == 4
     assert "%" in ex[0].explanation
 

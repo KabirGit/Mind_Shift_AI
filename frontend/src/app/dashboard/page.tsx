@@ -24,17 +24,20 @@ import { AppShell } from "@/components/AppShell";
 import { Card } from "@/components/Card";
 import { EmptyState } from "@/components/EmptyState";
 import { ProgressBar } from "@/components/ProgressBar";
+import { RelationshipGraph } from "@/components/RelationshipGraph";
 import {
   type DashboardSummary,
   type Diagnostics,
   type GoalProgress,
   type GraphQuery,
   type GrowthSnapshot,
+  type PeopleGraph,
   type TimelineEvent,
   getDashboardSummary,
   getDiagnostics,
   getGoals,
   getGrowth,
+  getPeopleGraph,
   getPredictions,
   getTimeline,
   queryGraph,
@@ -55,6 +58,7 @@ export default function DashboardPage() {
   const [timeline, setTimeline] = useState<TimelineEvent[]>([]);
   const [growth, setGrowth] = useState<GrowthState | null>(null);
   const [diagnostics, setDiagnostics] = useState<Diagnostics | null>(null);
+  const [peopleGraph, setPeopleGraph] = useState<PeopleGraph | null>(null);
   const [graphNode, setGraphNode] = useState("");
   const [graph, setGraph] = useState<GraphQuery | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -66,14 +70,23 @@ export default function DashboardPage() {
       setLoading(true);
       setError(null);
       try {
-        const [summaryData, goalsData, predictionData, timelineData, growthData, diag] =
+        const [
+          summaryData,
+          goalsData,
+          predictionData,
+          timelineData,
+          growthData,
+          diag,
+          peopleGraphData
+        ] =
           await Promise.all([
             getDashboardSummary(range),
             getGoals(),
             getPredictions(),
             getTimeline(),
             getGrowth(),
-            getDiagnostics()
+            getDiagnostics(),
+            getPeopleGraph()
           ]);
         if (cancelled) return;
         setSummary(summaryData);
@@ -82,6 +95,7 @@ export default function DashboardPage() {
         setTimeline(timelineData.events);
         setGrowth(growthData);
         setDiagnostics(diag);
+        setPeopleGraph(peopleGraphData);
       } catch (exc) {
         if (!cancelled) {
           setError(exc instanceof Error ? exc.message : "Dashboard request failed.");
@@ -282,7 +296,10 @@ export default function DashboardPage() {
         </Card>
 
         <Card tone="light">
-          <SectionTitle icon={<Search />} title="Knowledge graph search" />
+          <SectionTitle icon={<Search />} title="Relationship graph" />
+          <div className="mt-4">
+            <RelationshipGraph graph={peopleGraph} />
+          </div>
           <div className="mt-4 flex gap-3">
             <input
               className="min-w-0 flex-1 rounded-lg border border-line bg-[#fffdf8] px-4 py-2 text-ink outline-none focus:border-coral"
@@ -316,7 +333,7 @@ export default function DashboardPage() {
             </div>
           ) : (
             <p className="mt-4 text-sm text-muted">
-              Search one node to see how it connects to your topics, people, and habits.
+              Search one node for text details across topics, people, and habits.
             </p>
           )}
         </Card>

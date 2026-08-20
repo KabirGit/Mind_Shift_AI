@@ -207,6 +207,24 @@ class FakeKnowledgeGraph:
             return f"No connections found for '{node}'."
         return "'User' connects to: career."
 
+    def people_graph(self, lookback_days: int = 90):
+        if self.empty:
+            return {"nodes": [{"id": "User", "label": "You", "type": "user",
+                               "relationship_type": "self", "mention_count": 0}],
+                    "edges": []}
+        return {
+            "nodes": [
+                {"id": "User", "label": "You", "type": "user",
+                 "relationship_type": "self", "mention_count": 0},
+                {"id": "Alice", "label": "Alice", "type": "person",
+                 "relationship_type": "friend", "mention_count": 2},
+            ],
+            "edges": [
+                {"source": "User", "target": "Alice", "sentiment": 0.1,
+                 "weight": 2, "closeness_score": 1.4}
+            ],
+        }
+
 
 class FakeReportGenerator:
     def generate(self, lookback_days: int = 30):
@@ -389,6 +407,11 @@ def test_dashboard_and_support_endpoints_happy_path():
     graph = client.get("/api/graph/query?node=User")
     assert graph.status_code == 200
     assert graph.json()["neighbors"] == ["career"]
+
+    people_graph = client.get("/api/graph/people")
+    assert people_graph.status_code == 200
+    assert people_graph.json()["nodes"][1]["relationship_type"] == "friend"
+    assert people_graph.json()["edges"][0]["closeness_score"] == 1.4
 
     report = client.get("/api/report/weekly")
     assert report.status_code == 200

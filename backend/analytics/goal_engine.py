@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+from datetime import timedelta
 
 import numpy as np
 from pydantic import BaseModel
@@ -28,6 +29,7 @@ class GoalProgress(BaseModel):
     mention_count: int
     avg_sentiment: float
     sentiment_trend: str  # "improving" | "declining" | "stable"
+    phase: str = "starting"  # "starting" | "ramping" | "plateaued"
     estimated_progress: float  # 0.0-1.0
     confidence: float
     explanation: str
@@ -68,6 +70,8 @@ class GoalEngine:
 
                 slope_norm = max(-0.5, min(0.5, slope * 20))
                 progress = max(0.0, min(1.0, slope_norm + 0.5))
+                recent_mentions = self._recent_count(matched, days=14)
+                phase = self._phase(trend, len(matched), recent_mentions)
 
                 results.append(
                     GoalProgress(
@@ -77,11 +81,12 @@ class GoalEngine:
                         mention_count=len(matched),
                         avg_sentiment=round(avg_sent, 4),
                         sentiment_trend=trend,
+                        phase=phase,
                         estimated_progress=round(progress, 4),
                         confidence=compute_confidence(len(matched)),
                         explanation=(
                             f"{goal.replace('_', ' ').capitalize()} mentioned "
-                            f"{len(matched)} times; sentiment trend {trend}."
+                            f"{len(matched)} times; sentiment trend {trend}; phase {phase}."
                         ),
                     )
                 )
@@ -105,3 +110,22 @@ class GoalEngine:
         if len(xs) < 2:
             return 0.0
         return float(np.polyfit(np.array(xs), np.array(ys), 1)[0])
+
+    @staticmethod
+    def _recent_count(records, days: int) -> int:
+        latest = parse_ts(records[-1].timestamp)
+        if latest is None:
+            return 0
+        cutoff = latest - timedelta(days=days)
+        return sum(
+            1 for r in records
+            if (dt := parse_ts(r.timestamp)) is not None and dt >= cutoff
+        )
+
+    @staticmethod
+    def _phase(trend: str, mention_count: int, recent_mentions: int) -> str:
+        if mention_count <= 2 or recent_mentions <= 1:
+            return "starting"
+        if trend in {"improving", "declining"} or recent_mentions >= 3:
+            return "ramping"
+        return "plateaued"

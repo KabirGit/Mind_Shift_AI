@@ -42,7 +42,12 @@ class ReflectionEngine:
             for name, patterns in PATTERNS.items()
         }
 
-    def detect(self, text: str, replay: dict | None = None) -> list[str]:
+    def detect(
+        self,
+        text: str,
+        replay: dict | None = None,
+        context: dict | None = None,
+    ) -> list[str]:
         if not text or not text.strip():
             return []
         try:
@@ -53,7 +58,7 @@ class ReflectionEngine:
                 if len(questions) >= 2:
                     break
 
-            personalized = self._personalized_question(replay)
+            personalized = self._context_question(context) or self._personalized_question(replay)
             if personalized:
                 if len(questions) >= 2:
                     # Prefer the personalized one over a generic regex match.
@@ -77,4 +82,20 @@ class ReflectionEngine:
                 f"You navigated something like this {days_ago} days ago. "
                 "What was different about how you handled it then?"
             )
+        return None
+
+    @staticmethod
+    def _context_question(context: dict | None) -> str | None:
+        if not context:
+            return None
+        kind = context.get("kind")
+        name = context.get("name")
+        if not kind or not name:
+            return None
+        if kind == "trigger":
+            return f"When {name} shows up, what is the earliest signal that it is affecting you?"
+        if kind == "habit":
+            return f"What changes on the days when {name} is present?"
+        if kind == "person":
+            return f"What do you usually need before or after interactions involving {name}?"
         return None

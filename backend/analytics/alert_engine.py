@@ -18,6 +18,7 @@ class ProactiveAlert(BaseModel):
     severity: str  # "info" | "watch" | "flag"
     message: str
     evidence: str
+    alert_type: str = "general"
 
 
 class AlertEngine:
@@ -34,6 +35,7 @@ class AlertEngine:
             self._consecutive_stress,
             self._trigger_spike,
             self._positive_streak,
+            self._resilience_event,
             self._habit_absence,
         ):
             try:
@@ -60,6 +62,7 @@ class AlertEngine:
                 severity="watch",
                 message=f"You've had {n} consecutive difficult entries. How are you holding up?",
                 evidence=f"{n} most-recent entries were sad/fearful or sentiment < -0.2.",
+                alert_type="consecutive_stress",
             )
         return None
 
@@ -75,6 +78,7 @@ class AlertEngine:
                 severity="info",
                 message=f"You've had {n} positive entries in a row — something's going well.",
                 evidence=f"{n} most-recent entries had sentiment > 0.2.",
+                alert_type="positive_streak",
             )
         return None
 
@@ -98,6 +102,7 @@ class AlertEngine:
                     severity="watch",
                     message=f"{topic} stress has doubled this week compared to last week.",
                     evidence=f"{topic}: {cur} mentions this week vs {prior} last week.",
+                    alert_type="trigger_spike",
                 )
         return None
 
@@ -121,5 +126,38 @@ class AlertEngine:
                         "you'd noted it helps your mood."
                     ),
                     evidence=f"{habit} appeared in {days} of the last 14 days, none of the last 5.",
+                    alert_type="habit_absence",
                 )
+        return None
+
+    def _resilience_event(self, recent, recovery_days: int = 3):
+        ordered = sorted(recent, key=lambda r: parse_ts(r.timestamp) or datetime.min.replace(tzinfo=UTC))
+        for i, cur in enumerate(ordered[:-1]):
+            if cur.sentiment_compound > -0.2:
+                continue
+            t0 = parse_ts(cur.timestamp)
+            if t0 is None:
+                continue
+            for nxt in ordered[i + 1:]:
+                t1 = parse_ts(nxt.timestamp)
+                if t1 is None:
+                    continue
+                days = (t1 - t0).total_seconds() / 86400.0
+                if days < 0:
+                    continue
+                if days > recovery_days:
+                    break
+                if nxt.sentiment_compound > 0.1:
+                    return ProactiveAlert(
+                        severity="info",
+                        message=(
+                            "You bounced back after a difficult entry within "
+                            f"{round(days, 1)} day(s)."
+                        ),
+                        evidence=(
+                            f"Sentiment moved from {cur.sentiment_compound:+.2f} "
+                            f"to {nxt.sentiment_compound:+.2f} within {recovery_days} days."
+                        ),
+                        alert_type="resilience_event",
+                    )
         return None

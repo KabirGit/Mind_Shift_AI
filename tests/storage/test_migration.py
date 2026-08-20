@@ -42,17 +42,21 @@ def test_migration_adds_habits_column(tmp_path):
     db = JournalDB(path)  # triggers migration
     cols = {row[1] for row in sqlite3.connect(path).execute("PRAGMA table_info(journal_records)")}
     assert "habits" in cols
+    assert "person_relationship_types" in cols
 
-    # Legacy row still readable, habits defaults to [].
+    # Legacy row still readable, additive fields default safely.
     rows = db.get_all()
     assert len(rows) == 1
     assert rows[0].habits == []
+    assert rows[0].person_relationship_types == {}
 
     # New insert with habits round-trips.
     db.insert(JournalRecord(id="new", text="t", timestamp="2026-06-21T00:00:00Z",
-                            emotion="joy", emotion_confidence=0.9, habits=["exercise"]))
+                            emotion="joy", emotion_confidence=0.9, habits=["exercise"],
+                            person_relationship_types={"Alice": "friend"}))
     got = {r.id: r for r in db.get_all()}
     assert got["new"].habits == ["exercise"]
+    assert got["new"].person_relationship_types == {"Alice": "friend"}
 
 
 def test_migration_idempotent_on_fresh_and_repeated(tmp_path):

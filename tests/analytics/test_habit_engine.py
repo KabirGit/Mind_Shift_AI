@@ -52,6 +52,27 @@ def test_habit_correlation_exact(tmp_path):
     assert abs(ex.avg_sentiment_other_days - (-0.2)) < 1e-6
     assert abs(ex.delta - 0.8) < 1e-6
     assert ex.correlation_label == "positive"
+    assert ex.streak_length >= 1
+    assert ex.consistency_percentage > 0
+
+
+def test_co_occurring_habit_pairs(tmp_path):
+    db = JournalDB(str(tmp_path / "j.db"))
+    rows = [
+        ("a", ["exercise", "sleep"], 0.6),
+        ("b", ["exercise", "sleep"], 0.4),
+        ("c", ["exercise"], 0.1),
+        ("d", ["sleep"], 0.0),
+    ]
+    for i, (rid, habits, sent) in enumerate(rows):
+        db.insert(JournalRecord(id=rid, text="t", timestamp=_ts(10 - i),
+                                emotion="joy", emotion_confidence=0.9,
+                                habits=habits, sentiment_compound=sent))
+    pairs = HabitEngine(db).analyze_pairs(lookback_days=30)
+    assert pairs
+    assert pairs[0].habit_a == "exercise"
+    assert pairs[0].habit_b == "sleep"
+    assert pairs[0].delta_vs_either_alone > 0
 
 
 def test_fewer_than_two_mentions_excluded(tmp_path):

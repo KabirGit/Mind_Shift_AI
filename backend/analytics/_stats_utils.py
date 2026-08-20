@@ -30,6 +30,24 @@ def filter_window(records, lookback_days: int):
     return out
 
 
+def recency_decay(
+    timestamp: str,
+    half_life_hours: float = 72.0,
+    *,
+    now: datetime | None = None,
+    default: float = 0.3,
+) -> float:
+    """Recency score using the retriever's half-life formula."""
+    dt = parse_ts(timestamp)
+    if dt is None:
+        return default
+    anchor = now or datetime.now(UTC)
+    if anchor.tzinfo is None:
+        anchor = anchor.replace(tzinfo=UTC)
+    age_hours = max(0.0, (anchor - dt).total_seconds() / 3600.0)
+    return 0.5 ** (age_hours / max(1.0, half_life_hours))
+
+
 def half_split_trend(
     sentiments: list[float],
     threshold: float = 0.1,

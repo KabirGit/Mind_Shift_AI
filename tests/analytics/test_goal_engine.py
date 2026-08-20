@@ -24,6 +24,7 @@ def test_improving_goal_progress(tmp_path):
     js = [g for g in goals if g.goal_keyword == "job_search"]
     assert js
     assert js[0].sentiment_trend == "improving"
+    assert js[0].phase in {"starting", "ramping", "plateaued"}
     assert js[0].estimated_progress > 0.5
 
 

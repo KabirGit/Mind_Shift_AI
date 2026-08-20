@@ -63,3 +63,13 @@ def test_no_personalized_when_negative_outcome():
     replay = {"days_ago": 5, "next_entry_sentiment": -0.3}
     out = eng.detect("just a calm day", replay=replay)
     assert out == []
+
+
+def test_context_question_uses_real_entity_name():
+    out = ReflectionEngine().detect(
+        "just a calm day",
+        context={"kind": "trigger", "name": "career", "confidence": 0.7},
+    )
+    assert out == [
+        "When career shows up, what is the earliest signal that it is affecting you?"
+    ]

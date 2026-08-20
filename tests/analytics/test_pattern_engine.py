@@ -52,6 +52,8 @@ def test_analyze_deterministic(tmp_path):
     assert summary.recurring_emotions == {"sadness": 1, "fear": 1, "joy": 4, "neutral": 1}
     assert summary.recurring_topics == {"career": 4, "health": 2, "relationship": 1}
     assert summary.recurring_people == {"Alice": 2, "Bob": 1}
+    assert summary.topic_trends["career"] == "increasing"
+    assert summary.emotion_trends["joy"] == "increasing"
 
     triggers = {t.topic: t for t in summary.triggers}
     # relationship excluded (freq 1 < 2)

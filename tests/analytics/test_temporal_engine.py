@@ -36,6 +36,8 @@ def test_peak_day_detected(tmp_path):
     p = career[0]
     assert p.peak_day_of_week == "Monday"
     assert p.delta < 0  # Monday below baseline
+    assert p.day_time_crossing is not None
+    assert p.day_time_sample_size >= 2
     assert p.confidence > 0
 
 

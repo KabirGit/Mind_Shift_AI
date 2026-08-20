@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from datetime import UTC, datetime
 from typing import Any
 
+from backend.analytics._stats_utils import recency_decay
 from backend.retrieval.vector_store import FaissVectorStore
 
 # Coarse valence grouping for fine-grained (GoEmotions-style) labels. Used to
@@ -107,13 +107,4 @@ class Retriever:
         return 0.0
 
     def _recency_weight(self, timestamp: str) -> float:
-        if not timestamp:
-            return 0.3
-        try:
-            dt = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
-            if dt.tzinfo is None:
-                dt = dt.replace(tzinfo=UTC)
-            age_hours = max(0.0, (datetime.now(UTC) - dt).total_seconds() / 3600.0)
-            return 0.5 ** (age_hours / self.half_life_hours)
-        except ValueError:
-            return 0.3
+        return recency_decay(timestamp, self.half_life_hours)

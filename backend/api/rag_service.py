@@ -228,6 +228,7 @@ class RAGService:
                 keywords=extracted.get("keywords", []),
                 topics=extracted.get("topics", []),
                 habits=extracted.get("habits", []),
+                person_relationship_types=extracted.get("person_relationship_types", {}),
                 sentiment_compound=float(extracted.get("sentiment_compound", 0.0)),
                 sentiment_valence=float(extracted.get("sentiment_valence", 0.0)),
             )
@@ -251,10 +252,61 @@ class RAGService:
     def _safe_reflection(self, text: str, replay: dict | None = None) -> list[str]:
         """Per-message reflective questions; never raise into the pipeline."""
         try:
-            return self.reflection_engine.detect(text, replay=replay)
+            return self.reflection_engine.detect(
+                text, replay=replay, context=self._reflection_context()
+            )
         except Exception as exc:
             logger.exception("Failed to generate reflection prompts: %s", exc)
             return []
+
+    def _reflection_context(self) -> dict[str, Any] | None:
+        candidates: list[tuple[float, str, str]] = []
+        try:
+            summary = self.pattern_engine.analyze(lookback_days=30)
+            for trig in summary.triggers:
+                candidates.append((trig.confidence, "trigger", trig.topic))
+        except Exception:
+            pass
+        try:
+            for habit in self.habit_engine.analyze(lookback_days=30):
+                candidates.append((habit.confidence, "habit", habit.habit))
+        except Exception:
+            pass
+        try:
+            for person in self.relationship_engine.analyze(lookback_days=30):
+                candidates.append((person.confidence, "person", person.person))
+        except Exception:
+            pass
+        if not candidates:
+            return None
+        confidence, kind, name = max(candidates, key=lambda c: c[0])
+        if confidence <= 0:
+            return None
+        return {"kind": kind, "name": name, "confidence": confidence}
+
+    def _store_memory_entry(
+        self,
+        *,
+        text: str,
+        tags: list[str] | None,
+        emotion: dict[str, Any],
+        extracted: dict[str, Any],
+    ) -> dict[str, Any]:
+        try:
+            return self.memory.store_entry(
+                text=text,
+                tags=tags,
+                emotion_signal=emotion,
+                topics=extracted.get("topics", []),
+                person_relationship_types=extracted.get("person_relationship_types", {}),
+            )
+        except TypeError:
+            return self.memory.store_entry(
+                text=text,
+                tags=tags,
+                emotion_signal=emotion,
+                topics=extracted.get("topics", []),
+            )
 
     @staticmethod
     def _try(fn, default):
@@ -361,11 +413,11 @@ class RAGService:
         # Phase 2: local NLP enrichment (entities/keywords/topics/sentiment).
         extracted = self.text_processor.extract(text)
 
-        stored_entry = self.memory.store_entry(
+        stored_entry = self._store_memory_entry(
             text=text,
             tags=tags,
-            emotion_signal=emotion,
-            topics=extracted.get("topics", []),
+            emotion=emotion,
+            extracted=extracted,
         )
         # Phase 1+2: write structured record with enrichment fields.
         self._persist_journal_record(text=text, emotion=emotion, extracted=extracted)

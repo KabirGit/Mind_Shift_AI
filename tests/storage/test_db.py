@@ -26,6 +26,7 @@ def test_insert_retrieve_roundtrip(tmp_path):
         entities_orgs=["Acme"],
         keywords=["work", "trip"],
         topics=["career"],
+        person_relationship_types={"Alice": "friend"},
         sentiment_compound=0.5,
         sentiment_valence=0.5,
     )
@@ -39,6 +40,7 @@ def test_insert_retrieve_roundtrip(tmp_path):
     assert got.entities_orgs == ["Acme"]
     assert got.keywords == ["work", "trip"]
     assert got.topics == ["career"]
+    assert got.person_relationship_types == {"Alice": "friend"}
     assert got.sentiment_compound == 0.5
 
 

@@ -37,30 +37,7 @@ class GrowthTracker:
                     continue
                 groups[dt.strftime("%Y-%m")].append(r)
 
-            snapshots: list[GrowthSnapshot] = []
-            for label in sorted(groups.keys()):
-                recs = groups[label]
-                sentiments = [r.sentiment_compound for r in recs]
-                emotions = [r.emotion for r in recs if r.emotion]
-                topics: Counter[str] = Counter()
-                for r in recs:
-                    topics.update(r.topics or [])
-                snapshots.append(
-                    GrowthSnapshot(
-                        period_label=label,
-                        entry_count=len(recs),
-                        avg_sentiment=round(sum(sentiments) / len(sentiments), 4),
-                        dominant_emotion=(
-                            Counter(emotions).most_common(1)[0][0]
-                            if emotions else "neutral"
-                        ),
-                        top_topic=(
-                            topics.most_common(1)[0][0] if topics else "none"
-                        ),
-                        snapshot_date=self._now(),
-                    )
-                )
-            return snapshots
+            return self._snapshots_from_groups(groups)
         except Exception as exc:
             logger.exception("GrowthTracker.compute_snapshots failed: %s", exc)
             return []
@@ -82,10 +59,22 @@ class GrowthTracker:
 
     def narrative(self) -> str:
         snaps = self.compute_snapshots()
+        weekly = self._weekly_snapshots()
         total = sum(s.entry_count for s in snaps)
         suffix = f" You've written {total} entries total."
+        if len(weekly) >= 2:
+            first = weekly[0]
+            current = weekly[-1]
+            sent_delta = current.avg_sentiment - first.avg_sentiment
+            entry_delta = current.entry_count - first.entry_count
+            return (
+                f"From {first.period_label} to {current.period_label}, average "
+                f"sentiment changed by {sent_delta:+.2f}, entries changed by "
+                f"{entry_delta:+d}, and the leading topic moved from "
+                f"{first.top_topic} to {current.top_topic}."
+            ) + suffix
         if len(snaps) < 2:
-            return "Keep journaling — your growth story starts here." + suffix
+            return "Keep journaling - your growth story starts here." + suffix
         deltas = self.compute_growth_deltas()
         latest = deltas[-1]["sentiment_delta"]
         if latest > 0.1:
@@ -95,6 +84,41 @@ class GrowthTracker:
         else:
             base = "Your emotional patterns have been consistent across months."
         return base + suffix
+
+    def _weekly_snapshots(self) -> list[GrowthSnapshot]:
+        records = self.db.get_all()
+        groups: dict[str, list] = defaultdict(list)
+        for r in records:
+            dt = parse_ts(r.timestamp)
+            if dt is None:
+                continue
+            iso = dt.isocalendar()
+            groups[f"{iso.year}-W{iso.week:02d}"].append(r)
+        return self._snapshots_from_groups(groups)
+
+    def _snapshots_from_groups(self, groups: dict[str, list]) -> list[GrowthSnapshot]:
+        snapshots: list[GrowthSnapshot] = []
+        for label in sorted(groups.keys()):
+            recs = groups[label]
+            sentiments = [r.sentiment_compound for r in recs]
+            emotions = [r.emotion for r in recs if r.emotion]
+            topics: Counter[str] = Counter()
+            for r in recs:
+                topics.update(r.topics or [])
+            snapshots.append(
+                GrowthSnapshot(
+                    period_label=label,
+                    entry_count=len(recs),
+                    avg_sentiment=round(sum(sentiments) / len(sentiments), 4),
+                    dominant_emotion=(
+                        Counter(emotions).most_common(1)[0][0]
+                        if emotions else "neutral"
+                    ),
+                    top_topic=topics.most_common(1)[0][0] if topics else "none",
+                    snapshot_date=self._now(),
+                )
+            )
+        return snapshots
 
     @staticmethod
     def _now() -> str:

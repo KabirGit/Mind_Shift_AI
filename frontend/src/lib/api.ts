@@ -77,6 +77,8 @@ export type HabitCorrelation = {
   avg_sentiment_other_days: number;
   delta: number;
   correlation_label: string;
+  streak_length: number;
+  consistency_percentage: number;
   confidence: number;
   explanation: string;
 };
@@ -88,6 +90,12 @@ export type RelationshipProfile = {
   dominant_emotion: string;
   last_mentioned: string;
   trend: string;
+  relationship_type: string;
+  relationship_type_confidence: number;
+  relationship_type_ambiguity: string;
+  closeness_score: number;
+  sentiment_trend: string;
+  co_mentioned_with: Record<string, number>;
   confidence: number;
   explanation: string;
 };
@@ -110,6 +118,7 @@ export type GoalProgress = {
   mention_count: number;
   avg_sentiment: number;
   sentiment_trend: string;
+  phase: string;
   estimated_progress: number;
   confidence: number;
   explanation: string;
@@ -137,6 +146,8 @@ export type TimelineEvent = {
   description: string;
   emotion: string;
   sentiment: number;
+  baseline_sentiment?: number | null;
+  primary_person?: string | null;
   significance_score: number;
   event_type: string;
 };
@@ -155,6 +166,27 @@ export type GraphQuery = {
   summary: string;
   neighbors: string[];
   edge_data: Array<Record<string, unknown>>;
+};
+
+export type PeopleGraphNode = {
+  id: string;
+  label: string;
+  type: "user" | "person";
+  relationship_type: string;
+  mention_count: number;
+};
+
+export type PeopleGraphEdge = {
+  source: string;
+  target: string;
+  sentiment: number;
+  weight: number;
+  closeness_score: number;
+};
+
+export type PeopleGraph = {
+  nodes: PeopleGraphNode[];
+  edges: PeopleGraphEdge[];
 };
 
 export type Diagnostics = {
@@ -204,6 +236,10 @@ export function getGrowth(): Promise<{
 
 export function queryGraph(node: string): Promise<GraphQuery> {
   return apiFetch<GraphQuery>(`/api/graph/query?node=${encodeURIComponent(node)}`);
+}
+
+export function getPeopleGraph(): Promise<PeopleGraph> {
+  return apiFetch<PeopleGraph>("/api/graph/people");
 }
 
 export function getDiagnostics(): Promise<Diagnostics> {

@@ -26,6 +26,7 @@ class MemoryManager:
         tags: list[str] | None = None,
         emotion_signal: dict[str, Any] | None = None,
         topics: list[str] | None = None,
+        person_relationship_types: dict[str, str] | None = None,
     ) -> dict[str, Any]:
         signal = emotion_signal or self.emotion_detector.detect(text)
         entry = MemoryEntry(
@@ -34,6 +35,7 @@ class MemoryManager:
             emotion_intensity=signal["confidence"],
             tags=tags or [],
             topics=topics or [],
+            person_relationship_types=person_relationship_types or {},
         )
         self.stm.append(entry)
         self.vector_store.add_entries([entry.to_metadata()], save=True)

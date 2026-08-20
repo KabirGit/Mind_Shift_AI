@@ -80,6 +80,27 @@ class GraphQueryResponse(BaseModel):
     edge_data: list[dict[str, Any]] = Field(default_factory=list)
 
 
+class GraphPeopleNode(BaseModel):
+    id: str
+    label: str
+    type: str
+    relationship_type: str = "unknown"
+    mention_count: int = 0
+
+
+class GraphPeopleEdge(BaseModel):
+    source: str
+    target: str
+    sentiment: float = 0.0
+    weight: int = 0
+    closeness_score: float = 0.0
+
+
+class GraphPeopleResponse(BaseModel):
+    nodes: list[GraphPeopleNode] = Field(default_factory=list)
+    edges: list[GraphPeopleEdge] = Field(default_factory=list)
+
+
 class DiagnosticsResponse(BaseModel):
     retrieval_precision: dict[str, Any]
     emotion_confidence: dict[str, Any]

@@ -17,10 +17,12 @@ def _seed(db: JournalDB) -> None:
     db.insert(JournalRecord(id="1", text="work with Sarah", timestamp=_ts(5),
                             emotion="joy", emotion_confidence=0.9,
                             topics=["career"], entities_people=["Sarah"],
+                            person_relationship_types={"Sarah": "colleague"},
                             habits=["exercise"], sentiment_compound=0.3))
     db.insert(JournalRecord(id="2", text="career and Sarah again", timestamp=_ts(3),
                             emotion="fear", emotion_confidence=0.9,
                             topics=["career"], entities_people=["Sarah"],
+                            person_relationship_types={"Sarah": "colleague"},
                             sentiment_compound=-0.1))
 
 
@@ -42,6 +44,26 @@ def test_build_and_query(tmp_path):
 
     summary = kg.summarize_node(g, "career")
     assert "career" in summary
+
+
+def test_people_graph_shape(tmp_path):
+    db = JournalDB(str(tmp_path / "j.db"))
+    _seed(db)
+    out = KnowledgeGraph(db).people_graph(lookback_days=90)
+    assert out["nodes"][0] == {
+        "id": "User",
+        "label": "You",
+        "type": "user",
+        "relationship_type": "self",
+        "mention_count": 0,
+    }
+    sarah = [node for node in out["nodes"] if node["id"] == "Sarah"][0]
+    assert sarah["relationship_type"] == "colleague"
+    edge = out["edges"][0]
+    assert edge["source"] == "User"
+    assert edge["target"] == "Sarah"
+    assert edge["weight"] == 2
+    assert edge["closeness_score"] > 0
 
 
 def test_missing_node_safe(tmp_path):

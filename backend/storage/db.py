@@ -18,9 +18,11 @@ _LIST_FIELDS = (
     "topics",
     "habits",
 )
+_OBJECT_FIELDS = ("person_relationship_types",)
 
 # New list-type columns added after the initial schema; migrated idempotently.
 _MIGRATION_LIST_COLUMNS = ("habits",)
+_MIGRATION_OBJECT_COLUMNS = ("person_relationship_types",)
 
 
 class JournalDB:
@@ -61,6 +63,8 @@ class JournalDB:
                     entities_orgs TEXT NOT NULL DEFAULT '[]',
                     keywords TEXT NOT NULL DEFAULT '[]',
                     topics TEXT NOT NULL DEFAULT '[]',
+                    habits TEXT NOT NULL DEFAULT '[]',
+                    person_relationship_types TEXT NOT NULL DEFAULT '{}',
                     sentiment_compound REAL NOT NULL DEFAULT 0.0,
                     sentiment_valence REAL NOT NULL DEFAULT 0.0
                 )
@@ -86,6 +90,11 @@ class JournalDB:
                         conn.execute(
                             f"ALTER TABLE journal_records ADD COLUMN {col} TEXT DEFAULT '[]'"
                         )
+                for col in _MIGRATION_OBJECT_COLUMNS:
+                    if col not in existing:
+                        conn.execute(
+                            f"ALTER TABLE journal_records ADD COLUMN {col} TEXT DEFAULT '{{}}'"
+                        )
                 conn.commit()
         except Exception as exc:
             logger.exception("JournalDB migration failed: %s", exc)
@@ -99,8 +108,9 @@ class JournalDB:
                     INSERT INTO journal_records (
                         id, text, timestamp, emotion, emotion_confidence,
                         entities_people, entities_places, entities_orgs,
-                        keywords, topics, habits, sentiment_compound, sentiment_valence
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        keywords, topics, habits, person_relationship_types,
+                        sentiment_compound, sentiment_valence
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     ON CONFLICT(id) DO UPDATE SET
                         text=excluded.text,
                         timestamp=excluded.timestamp,
@@ -112,6 +122,7 @@ class JournalDB:
                         keywords=excluded.keywords,
                         topics=excluded.topics,
                         habits=excluded.habits,
+                        person_relationship_types=excluded.person_relationship_types,
                         sentiment_compound=excluded.sentiment_compound,
                         sentiment_valence=excluded.sentiment_valence
                     """,
@@ -127,6 +138,7 @@ class JournalDB:
                         json.dumps(record.keywords),
                         json.dumps(record.topics),
                         json.dumps(record.habits),
+                        json.dumps(record.person_relationship_types),
                         record.sentiment_compound,
                         record.sentiment_valence,
                     ),
@@ -143,6 +155,13 @@ class JournalDB:
                 data[field] = json.loads(raw) if isinstance(raw, str) else list(raw or [])
             except Exception:
                 data[field] = []
+        for field in _OBJECT_FIELDS:
+            raw = data.get(field, "{}")
+            try:
+                value = json.loads(raw) if isinstance(raw, str) else dict(raw or {})
+                data[field] = value if isinstance(value, dict) else {}
+            except Exception:
+                data[field] = {}
         return JournalRecord(**data)
 
     def get_recent(self, limit: int = 50) -> list[JournalRecord]:

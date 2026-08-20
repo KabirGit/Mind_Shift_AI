@@ -45,3 +45,21 @@ def test_no_network_calls(processor, monkeypatch):
     monkeypatch.setattr(socket.socket, "connect", _boom)
     out = processor.extract("My friend Alice helped me study for the exam.")
     assert "relationship" in out["topics"] or "education" in out["topics"]
+
+
+def test_relationship_type_classifier_examples():
+    examples = [
+        ("My mom Sarah called me today.", "Sarah", "family"),
+        ("My sister Priya helped me study.", "Priya", "family"),
+        ("My wife Nina made dinner.", "Nina", "partner"),
+        ("My friend Alice checked in.", "Alice", "friend"),
+        ("My coworker Omar reviewed the project.", "Omar", "colleague"),
+        ("My boss Morgan was supportive.", "Morgan", "colleague"),
+        ("I talked with Jordan after class.", "Jordan", "unknown"),
+    ]
+    for text, person, expected in examples:
+        start = text.index(person)
+        out = TextProcessor._relationship_types(
+            text, [person], [(person, start, start + len(person))]
+        )
+        assert out[person] == expected

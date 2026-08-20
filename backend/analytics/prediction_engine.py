@@ -19,6 +19,10 @@ class SentimentForecast(BaseModel):
     predicted_sentiment: float = 0.0
     direction: str = "stable"  # "improving" | "declining" | "stable"
     confidence: float = 0.0
+    forecast_accuracy_note: str = (
+        "Forecast accuracy is not tracked yet because historical forecasts are not "
+        "persisted for later comparison."
+    )
     explanation: str = ""
 
 

@@ -24,5 +24,7 @@ class PatternSummary(BaseModel):
     recurring_emotions: dict[str, int] = Field(default_factory=dict)
     recurring_topics: dict[str, int] = Field(default_factory=dict)
     recurring_people: dict[str, int] = Field(default_factory=dict)
+    emotion_trends: dict[str, str] = Field(default_factory=dict)
+    topic_trends: dict[str, str] = Field(default_factory=dict)
     triggers: list[TriggerStat] = Field(default_factory=list)
     period_entry_count: int = 0

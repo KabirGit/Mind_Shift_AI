@@ -6,6 +6,7 @@ from collections import defaultdict
 import networkx as nx
 
 from backend.analytics._stats_utils import filter_window
+from backend.analytics.relationship_engine import RelationshipEngine
 from backend.storage.db import JournalDB
 
 logger = logging.getLogger(__name__)
@@ -61,8 +62,32 @@ class KnowledgeGraph:
                                type="topic")
             for p, count in person_count.items():
                 avg = sum(person_sent[p]) / len(person_sent[p])
-                graph.add_edge("User", p, weight=count, sentiment=round(avg, 4),
-                               type="person")
+                graph.add_edge(
+                    "User",
+                    p,
+                    weight=count,
+                    sentiment=round(avg, 4),
+                    type="person",
+                    relationship_type="unknown",
+                    closeness_score=0.0,
+                )
+
+            for profile in RelationshipEngine(self.db).analyze(lookback_days=lookback_days):
+                graph.add_node(
+                    profile.person,
+                    type="person",
+                    relationship_type=profile.relationship_type,
+                    mention_count=profile.mention_count,
+                )
+                graph.add_edge(
+                    "User",
+                    profile.person,
+                    weight=profile.mention_count,
+                    sentiment=profile.avg_sentiment,
+                    type="person",
+                    relationship_type=profile.relationship_type,
+                    closeness_score=profile.closeness_score,
+                )
 
             return graph
         except Exception as exc:
@@ -97,3 +122,36 @@ class KnowledgeGraph:
         if not top:
             return f"'{node}' has no connections yet."
         return f"'{node}' connects to: {', '.join(top)}."
+
+    def people_graph(self, lookback_days: int = 90) -> dict:
+        profiles = RelationshipEngine(self.db).analyze(lookback_days=lookback_days)
+        nodes = [
+            {
+                "id": "User",
+                "label": "You",
+                "type": "user",
+                "relationship_type": "self",
+                "mention_count": 0,
+            }
+        ]
+        edges = []
+        for profile in profiles:
+            nodes.append(
+                {
+                    "id": profile.person,
+                    "label": profile.person,
+                    "type": "person",
+                    "relationship_type": profile.relationship_type,
+                    "mention_count": profile.mention_count,
+                }
+            )
+            edges.append(
+                {
+                    "source": "User",
+                    "target": profile.person,
+                    "sentiment": profile.avg_sentiment,
+                    "weight": profile.mention_count,
+                    "closeness_score": profile.closeness_score,
+                }
+            )
+        return {"nodes": nodes, "edges": edges}

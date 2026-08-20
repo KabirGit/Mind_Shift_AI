@@ -47,6 +47,15 @@ def test_positive_streak_alert():
     assert any(a.severity == "info" and "positive entries in a row" in a.message for a in alerts)
 
 
+def test_resilience_event_alert():
+    recent = [
+        _rec(1, "joy", 0.4, days_ago=1),
+        _rec(2, "sadness", -0.5, days_ago=2),
+    ]
+    alerts = AlertEngine(_FakeDB(recent), None).check()
+    assert any(a.alert_type == "resilience_event" for a in alerts)
+
+
 def test_neutral_no_alerts():
     recent = [
         _rec(1, "neutral", 0.05, days_ago=1),

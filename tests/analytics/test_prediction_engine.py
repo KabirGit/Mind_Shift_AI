@@ -24,6 +24,7 @@ def test_declining_trend(tmp_path):
     fc = PredictionEngine(db).forecast_sentiment(days_back=14, horizon=7)
     assert fc.direction == "declining"
     assert fc.confidence > 0
+    assert "not tracked yet" in fc.forecast_accuracy_note
 
 
 def test_burnout_medium_or_high_for_negative(tmp_path):

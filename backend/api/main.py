@@ -18,6 +18,7 @@ from backend.api.schemas import (
     DiagnosticsResponse,
     EmotionPoint,
     GoalsResponse,
+    GraphPeopleResponse,
     GraphQueryResponse,
     GrowthResponse,
     HealthResponse,
@@ -201,6 +202,13 @@ def graph_query(
         neighbors=result.get("neighbors", []),
         edge_data=result.get("edge_data", []),
     )
+
+
+@app.get("/api/graph/people", response_model=GraphPeopleResponse)
+def graph_people(
+    service: Annotated[RAGService, Depends(get_service)],
+) -> GraphPeopleResponse:
+    return GraphPeopleResponse(**service.knowledge_graph.people_graph(lookback_days=90))
 
 
 @app.get("/api/report/weekly")

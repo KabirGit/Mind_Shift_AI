@@ -47,6 +47,20 @@ def test_peaks_always_kept(tmp_path):
     assert "positive_peak" in peak_ids and "negative_peak" in peak_ids
 
 
+def test_person_rolling_baseline_classification(tmp_path):
+    db = JournalDB(str(tmp_path / "j.db"))
+    db.insert(JournalRecord(id="a", text="steady with Alice", timestamp=_ts(5),
+                            emotion="neutral", emotion_confidence=0.9,
+                            entities_people=["Alice"], sentiment_compound=0.1))
+    db.insert(JournalRecord(id="b", text="hard talk with Alice", timestamp=_ts(4),
+                            emotion="sadness", emotion_confidence=0.9,
+                            entities_people=["Alice"], sentiment_compound=-0.6))
+    events = TimelineEngine(db).build()
+    alice_event = [event for event in events if event.primary_person == "Alice"][-1]
+    assert alice_event.baseline_sentiment == 0.1
+    assert alice_event.event_type == "negative_peak"
+
+
 def test_zero_data(tmp_path):
     db = JournalDB(str(tmp_path / "empty.db"))
     assert TimelineEngine(db).build() == []
