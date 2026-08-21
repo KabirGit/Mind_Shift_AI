@@ -69,6 +69,11 @@ export type TriggerStat = {
   trend: string;
   confidence: number;
   explanation: string;
+  source_type?: string;
+  display_label?: string;
+  sentiment_score?: number;
+  sentiment_label?: string;
+  sentiment_summary?: string;
 };
 
 export type HabitCorrelation = {
@@ -82,6 +87,9 @@ export type HabitCorrelation = {
   consistency_percentage: number;
   confidence: number;
   explanation: string;
+  delta_direction?: string;
+  delta_label?: string;
+  delta_summary?: string;
 };
 
 export type DemoChatHistory = {
@@ -114,6 +122,9 @@ export type RelationshipProfile = {
   co_mentioned_with: Record<string, number>;
   confidence: number;
   explanation: string;
+  sentiment_score?: number;
+  sentiment_label?: string;
+  impact_summary?: string;
 };
 
 export type DashboardSummary = {
@@ -141,6 +152,11 @@ export type DashboardHeadline = {
   growth_narrative: string;
   has_sufficient_data: boolean;
   minimum_entry_count: number;
+  baseline_mood_score?: number;
+  current_mood_score?: number;
+  sentiment_delta_direction?: string;
+  sentiment_delta_label?: string;
+  sentiment_delta_summary?: string;
 };
 
 export type GoalProgress = {
@@ -154,6 +170,7 @@ export type GoalProgress = {
   estimated_progress: number;
   confidence: number;
   explanation: string;
+  metric_note?: string;
 };
 
 export type SentimentForecast = {
@@ -163,6 +180,8 @@ export type SentimentForecast = {
   confidence: number;
   forecast_accuracy_note?: string;
   explanation: string;
+  predicted_mood_score?: number;
+  metric_note?: string;
 };
 
 export type BurnoutRisk = {
@@ -171,6 +190,7 @@ export type BurnoutRisk = {
   contributing_factors: string[];
   confidence: number;
   explanation: string;
+  metric_note?: string;
 };
 
 export type TemporalPattern = {
@@ -197,6 +217,8 @@ export type TimelineEvent = {
   primary_person?: string | null;
   significance_score: number;
   event_type: string;
+  mood_score?: number;
+  mood_label?: string;
 };
 
 export type GrowthSnapshot = {
@@ -214,6 +236,8 @@ export type WeeklyBucket = {
   dominant_emotion: string;
   top_topic: string;
   entry_count: number;
+  mood_score?: number;
+  mood_label?: string;
 };
 
 export type DashboardStory = {

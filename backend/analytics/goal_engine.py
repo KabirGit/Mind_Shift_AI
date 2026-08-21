@@ -33,6 +33,9 @@ class GoalProgress(BaseModel):
     estimated_progress: float  # 0.0-1.0
     confidence: float
     explanation: str
+    metric_note: str = (
+        "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
+    )
 
 
 class GoalEngine:

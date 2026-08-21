@@ -174,18 +174,15 @@
       "education": 6
     },
     "recurring_people": {
-      "Meera": 28,
+      "Meera": 29,
       "Neha": 6,
+      "Papa": 17,
       "Anjali": 8,
       "Ma": 4,
-      "Told Meera": 2,
       "Priya": 2,
       "Felt": 1,
       "Arjun": 1,
-      "Papa": 2,
-      "Rohan": 1,
-      "Twitter": 1,
-      "Instagram": 1
+      "Rohan": 1
     },
     "emotion_trends": {
       "neutral": "stable",
@@ -209,7 +206,12 @@
         "dominant_emotion": "disappointment",
         "trend": "increasing",
         "confidence": 1.0,
-        "explanation": "Based on 22 entries mentioning career; avg sentiment +0.4, trend increasing."
+        "explanation": "Based on 22 entries mentioning career; avg sentiment +0.4, trend increasing.",
+        "source_type": "topic",
+        "display_label": "",
+        "sentiment_score": 50,
+        "sentiment_label": "",
+        "sentiment_summary": ""
       },
       {
         "topic": "health",
@@ -218,7 +220,12 @@
         "dominant_emotion": "disappointment",
         "trend": "increasing",
         "confidence": 1.0,
-        "explanation": "Based on 30 entries mentioning health; avg sentiment +0.49, trend increasing."
+        "explanation": "Based on 30 entries mentioning health; avg sentiment +0.49, trend increasing.",
+        "source_type": "topic",
+        "display_label": "",
+        "sentiment_score": 50,
+        "sentiment_label": "",
+        "sentiment_summary": ""
       },
       {
         "topic": "relationship",
@@ -227,7 +234,12 @@
         "dominant_emotion": "neutral",
         "trend": "increasing",
         "confidence": 1.0,
-        "explanation": "Based on 13 entries mentioning relationship; avg sentiment +0.65, trend increasing."
+        "explanation": "Based on 13 entries mentioning relationship; avg sentiment +0.65, trend increasing.",
+        "source_type": "topic",
+        "display_label": "",
+        "sentiment_score": 50,
+        "sentiment_label": "",
+        "sentiment_summary": ""
       },
       {
         "topic": "money",
@@ -236,7 +248,12 @@
         "dominant_emotion": "disappointment",
         "trend": "increasing",
         "confidence": 1.0,
-        "explanation": "Based on 21 entries mentioning money; avg sentiment +0.57, trend increasing."
+        "explanation": "Based on 21 entries mentioning money; avg sentiment +0.57, trend increasing.",
+        "source_type": "topic",
+        "display_label": "",
+        "sentiment_score": 50,
+        "sentiment_label": "",
+        "sentiment_summary": ""
       },
       {
         "topic": "education",
@@ -245,7 +262,12 @@
         "dominant_emotion": "disappointment",
         "trend": "stable",
         "confidence": 0.6,
-        "explanation": "Based on 6 entries mentioning education; avg sentiment +0.49, trend stable."
+        "explanation": "Based on 6 entries mentioning education; avg sentiment +0.49, trend stable.",
+        "source_type": "topic",
+        "display_label": "",
+        "sentiment_score": 50,
+        "sentiment_label": "",
+        "sentiment_summary": ""
       }
     ],
     "period_entry_count": 30
@@ -265,7 +287,12 @@
       "dominant_emotion": "disappointment",
       "trend": "increasing",
       "confidence": 1.0,
-      "explanation": "Based on 22 entries mentioning career; avg sentiment +0.4, trend increasing."
+      "explanation": "Based on 22 entries mentioning career; avg sentiment +0.4, trend increasing.",
+      "source_type": "topic",
+      "display_label": "",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "sentiment_summary": ""
     },
     {
       "topic": "health",
@@ -274,7 +301,12 @@
       "dominant_emotion": "disappointment",
       "trend": "increasing",
       "confidence": 1.0,
-      "explanation": "Based on 30 entries mentioning health; avg sentiment +0.49, trend increasing."
+      "explanation": "Based on 30 entries mentioning health; avg sentiment +0.49, trend increasing.",
+      "source_type": "topic",
+      "display_label": "",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "sentiment_summary": ""
     },
     {
       "topic": "relationship",
@@ -283,7 +315,12 @@
       "dominant_emotion": "neutral",
       "trend": "increasing",
       "confidence": 1.0,
-      "explanation": "Based on 13 entries mentioning relationship; avg sentiment +0.65, trend increasing."
+      "explanation": "Based on 13 entries mentioning relationship; avg sentiment +0.65, trend increasing.",
+      "source_type": "topic",
+      "display_label": "",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "sentiment_summary": ""
     },
     {
       "topic": "money",
@@ -292,7 +329,12 @@
       "dominant_emotion": "disappointment",
       "trend": "increasing",
       "confidence": 1.0,
-      "explanation": "Based on 21 entries mentioning money; avg sentiment +0.57, trend increasing."
+      "explanation": "Based on 21 entries mentioning money; avg sentiment +0.57, trend increasing.",
+      "source_type": "topic",
+      "display_label": "",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "sentiment_summary": ""
     },
     {
       "topic": "education",
@@ -301,7 +343,12 @@
       "dominant_emotion": "disappointment",
       "trend": "stable",
       "confidence": 0.6,
-      "explanation": "Based on 6 entries mentioning education; avg sentiment +0.49, trend stable."
+      "explanation": "Based on 6 entries mentioning education; avg sentiment +0.49, trend stable.",
+      "source_type": "topic",
+      "display_label": "",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "sentiment_summary": ""
     }
   ],
   "habits": [
@@ -367,7 +414,10 @@
         }
       ],
       "confidence": 0.5,
-      "explanation": "Coding mentioned 5 times; mood was -0.69 lower on those days."
+      "explanation": "Coding mentioned 5 times; mood was -0.69 lower on those days.",
+      "delta_direction": "",
+      "delta_label": "",
+      "delta_summary": ""
     },
     {
       "habit": "meditation",
@@ -451,7 +501,10 @@
         }
       ],
       "confidence": 1.0,
-      "explanation": "Meditation mentioned 19 times; mood was +0.56 higher on those days."
+      "explanation": "Meditation mentioned 19 times; mood was +0.56 higher on those days.",
+      "delta_direction": "",
+      "delta_label": "",
+      "delta_summary": ""
     },
     {
       "habit": "social_media",
@@ -535,7 +588,10 @@
         }
       ],
       "confidence": 0.9,
-      "explanation": "Social_media mentioned 9 times; mood was -0.55 lower on those days."
+      "explanation": "Social_media mentioned 9 times; mood was -0.55 lower on those days.",
+      "delta_direction": "",
+      "delta_label": "",
+      "delta_summary": ""
     },
     {
       "habit": "coffee",
@@ -619,7 +675,10 @@
         }
       ],
       "confidence": 1.0,
-      "explanation": "Coffee mentioned 11 times; mood was -0.51 lower on those days."
+      "explanation": "Coffee mentioned 11 times; mood was -0.51 lower on those days.",
+      "delta_direction": "",
+      "delta_label": "",
+      "delta_summary": ""
     },
     {
       "habit": "sleep",
@@ -703,7 +762,10 @@
         }
       ],
       "confidence": 1.0,
-      "explanation": "Sleep mentioned 19 times; mood was -0.5 lower on those days."
+      "explanation": "Sleep mentioned 19 times; mood was -0.5 lower on those days.",
+      "delta_direction": "",
+      "delta_label": "",
+      "delta_summary": ""
     },
     {
       "habit": "exercise",
@@ -787,7 +849,10 @@
         }
       ],
       "confidence": 1.0,
-      "explanation": "Exercise mentioned 28 times; mood was +0.2 higher on those days."
+      "explanation": "Exercise mentioned 28 times; mood was +0.2 higher on those days.",
+      "delta_direction": "",
+      "delta_label": "",
+      "delta_summary": ""
     },
     {
       "habit": "reading",
@@ -861,7 +926,10 @@
         }
       ],
       "confidence": 1.0,
-      "explanation": "Reading mentioned 17 times; mood was +0.1 higher on those days."
+      "explanation": "Reading mentioned 17 times; mood was +0.1 higher on those days.",
+      "delta_direction": "",
+      "delta_label": "",
+      "delta_summary": ""
     },
     {
       "habit": "cooking",
@@ -935,37 +1003,66 @@
         }
       ],
       "confidence": 1.0,
-      "explanation": "Cooking mentioned 11 times; mood was +0.06 higher on those days."
+      "explanation": "Cooking mentioned 11 times; mood was +0.06 higher on those days.",
+      "delta_direction": "",
+      "delta_label": "",
+      "delta_summary": ""
     }
   ],
   "relationships": [
     {
       "person": "Meera",
-      "mention_count": 28,
-      "avg_sentiment": 0.4518,
+      "mention_count": 29,
+      "avg_sentiment": 0.4704,
       "dominant_emotion": "disappointment",
       "last_mentioned": "2026-08-21T12:00:00Z",
       "trend": "improving",
-      "relationship_type": "unknown",
-      "relationship_type_confidence": 0.9643,
+      "relationship_type": "family",
+      "relationship_type_confidence": 0.0345,
       "relationship_type_ambiguity": "",
-      "closeness_score": 4.5582,
+      "closeness_score": 4.7461,
       "sentiment_trend": "improving",
       "co_mentioned_with": {
+        "Papa": 16,
         "Anjali": 8,
         "Neha": 6,
-        "Ma": 3,
+        "Ma": 4,
         "Priya": 2,
-        "Papa": 2,
-        "Instagram": 1,
         "Rohan": 1,
-        "Twitter": 1,
-        "Told Meera": 1,
         "Arjun": 1,
         "Felt": 1
       },
       "confidence": 1.0,
-      "explanation": "Based on 28 entries mentioning Meera; usually disappointment, trend improving."
+      "explanation": "Based on 29 entries mentioning Meera; usually disappointment, trend improving.",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "impact_summary": ""
+    },
+    {
+      "person": "Papa",
+      "mention_count": 17,
+      "avg_sentiment": 0.5296,
+      "dominant_emotion": "neutral",
+      "last_mentioned": "2026-08-21T12:00:00Z",
+      "trend": "improving",
+      "relationship_type": "family",
+      "relationship_type_confidence": 1.0,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 2.5727,
+      "sentiment_trend": "improving",
+      "co_mentioned_with": {
+        "Meera": 16,
+        "Neha": 5,
+        "Anjali": 5,
+        "Ma": 4,
+        "Priya": 1,
+        "Arjun": 1
+      },
+      "confidence": 1.0,
+      "explanation": "Based on 17 entries mentioning Papa; usually neutral, trend improving.",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "impact_summary": ""
     },
     {
       "person": "Anjali",
@@ -974,19 +1071,22 @@
       "dominant_emotion": "realization",
       "last_mentioned": "2026-08-20T12:00:00Z",
       "trend": "declining",
-      "relationship_type": "unknown",
-      "relationship_type_confidence": 0.875,
+      "relationship_type": "other",
+      "relationship_type_confidence": 0.125,
       "relationship_type_ambiguity": "",
-      "closeness_score": 1.2379,
+      "closeness_score": 1.2259,
       "sentiment_trend": "declining",
       "co_mentioned_with": {
         "Meera": 8,
+        "Papa": 5,
         "Neha": 2,
-        "Told Meera": 1,
         "Arjun": 1
       },
       "confidence": 0.8,
-      "explanation": "Based on 8 entries mentioning Anjali; usually realization, trend declining."
+      "explanation": "Based on 8 entries mentioning Anjali; usually realization, trend declining.",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "impact_summary": ""
     },
     {
       "person": "Neha",
@@ -995,17 +1095,21 @@
       "dominant_emotion": "neutral",
       "last_mentioned": "2026-08-21T12:00:00Z",
       "trend": "declining",
-      "relationship_type": "unknown",
-      "relationship_type_confidence": 0.8333,
+      "relationship_type": "family",
+      "relationship_type_confidence": 0.1667,
       "relationship_type_ambiguity": "",
-      "closeness_score": 1.7788,
+      "closeness_score": 1.7712,
       "sentiment_trend": "declining",
       "co_mentioned_with": {
         "Meera": 6,
+        "Papa": 5,
         "Anjali": 2
       },
       "confidence": 0.6,
-      "explanation": "Based on 6 entries mentioning Neha; usually neutral, trend declining."
+      "explanation": "Based on 6 entries mentioning Neha; usually neutral, trend declining.",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "impact_summary": ""
     },
     {
       "person": "Ma",
@@ -1014,40 +1118,21 @@
       "dominant_emotion": "confusion",
       "last_mentioned": "2026-08-14T12:00:00Z",
       "trend": "stable",
-      "relationship_type": "unknown",
+      "relationship_type": "family",
       "relationship_type_confidence": 1.0,
       "relationship_type_ambiguity": "",
-      "closeness_score": 0.2406,
+      "closeness_score": 0.2383,
       "sentiment_trend": "stable",
       "co_mentioned_with": {
-        "Meera": 3,
-        "Priya": 1,
-        "Instagram": 1,
-        "Papa": 1,
-        "Told Meera": 1
+        "Meera": 4,
+        "Papa": 4,
+        "Priya": 1
       },
       "confidence": 0.4,
-      "explanation": "Based on 4 entries mentioning Ma; usually confusion, trend stable."
-    },
-    {
-      "person": "Told Meera",
-      "mention_count": 2,
-      "avg_sentiment": 0.9828,
-      "dominant_emotion": "realization",
-      "last_mentioned": "2026-08-14T12:00:00Z",
-      "trend": "stable",
-      "relationship_type": "unknown",
-      "relationship_type_confidence": 1.0,
-      "relationship_type_ambiguity": "",
-      "closeness_score": 0.2386,
-      "sentiment_trend": "stable",
-      "co_mentioned_with": {
-        "Anjali": 1,
-        "Meera": 1,
-        "Ma": 1
-      },
-      "confidence": 0.2,
-      "explanation": "Based on 2 entries mentioning Told Meera; usually realization, trend stable."
+      "explanation": "Based on 4 entries mentioning Ma; usually confusion, trend stable.",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "impact_summary": ""
     },
     {
       "person": "Priya",
@@ -1059,34 +1144,18 @@
       "relationship_type": "colleague",
       "relationship_type_confidence": 0.5,
       "relationship_type_ambiguity": "",
-      "closeness_score": 0.1137,
+      "closeness_score": 0.1126,
       "sentiment_trend": "improving",
       "co_mentioned_with": {
         "Meera": 2,
         "Ma": 1,
-        "Instagram": 1
+        "Papa": 1
       },
       "confidence": 0.2,
-      "explanation": "Based on 2 entries mentioning Priya; usually confusion, trend improving."
-    },
-    {
-      "person": "Papa",
-      "mention_count": 2,
-      "avg_sentiment": 0.4655,
-      "dominant_emotion": "neutral",
-      "last_mentioned": "2026-07-30T12:00:00Z",
-      "trend": "improving",
-      "relationship_type": "unknown",
-      "relationship_type_confidence": 1.0,
-      "relationship_type_ambiguity": "",
-      "closeness_score": 0.0105,
-      "sentiment_trend": "improving",
-      "co_mentioned_with": {
-        "Meera": 2,
-        "Ma": 1
-      },
-      "confidence": 0.2,
-      "explanation": "Based on 2 entries mentioning Papa; usually neutral, trend improving."
+      "explanation": "Based on 2 entries mentioning Priya; usually confusion, trend improving.",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "impact_summary": ""
     }
   ],
   "insights": [

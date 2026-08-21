@@ -16,6 +16,9 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  Line,
+  LineChart,
+  ReferenceDot,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -30,12 +33,10 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { RelationshipGraph } from "@/components/RelationshipGraph";
 import {
   type DashboardStory,
-  type Diagnostics,
   type GraphQuery,
   type PeopleGraph,
   type TimelineEvent,
   getDashboardStory,
-  getDiagnostics,
   getPeopleGraph,
   getTimeline,
   queryGraph,
@@ -50,7 +51,6 @@ export default function DashboardPage() {
   const [range, setRange] = useState(RANGES[1]);
   const [story, setStory] = useState<DashboardStory | null>(null);
   const [timeline, setTimeline] = useState<TimelineEvent[]>([]);
-  const [diagnostics, setDiagnostics] = useState<Diagnostics | null>(null);
   const [peopleGraph, setPeopleGraph] = useState<PeopleGraph | null>(null);
   const [graphNode, setGraphNode] = useState("");
   const [graph, setGraph] = useState<GraphQuery | null>(null);
@@ -63,16 +63,14 @@ export default function DashboardPage() {
       setLoading(true);
       setError(null);
       try {
-        const [storyData, timelineData, diag, peopleGraphData] = await Promise.all([
+        const [storyData, timelineData, peopleGraphData] = await Promise.all([
           getDashboardStory(range, mode),
           getTimeline(mode),
-          getDiagnostics(mode),
           getPeopleGraph(mode)
         ]);
         if (cancelled) return;
         setStory(storyData);
         setTimeline(timelineData.events);
-        setDiagnostics(diag);
         setPeopleGraph(peopleGraphData);
       } catch (exc) {
         if (!cancelled) {
@@ -116,7 +114,8 @@ export default function DashboardPage() {
   const weekRows = useMemo(() => {
     return (story?.weekly_buckets ?? []).slice(-4).map((bucket) => ({
       ...bucket,
-      sentiment_label: signed(bucket.avg_sentiment),
+      sentiment_label: bucket.mood_label ?? fallbackSentimentLabel(bucket.avg_sentiment),
+      mood_score: bucket.mood_score ?? fallbackMoodScore(bucket.avg_sentiment),
       topic: titleCase(bucket.top_topic)
     }));
   }, [story]);
@@ -178,19 +177,20 @@ export default function DashboardPage() {
         <PeopleSection rows={people} />
       </div>
 
-      {story?.rhythm ? (
+      {story ? (
         <Card className="mt-6" tone="light">
           <SectionTitle icon={<CalendarDays />} title="Your Rhythm" />
           <p className="mt-3 text-lg font-semibold text-ink">
-            {titleCase(story.rhythm.topic)} tends to feel {story.rhythm.delta >= 0 ? "lighter" : "heavier"} on{" "}
-            {story.rhythm.day_time_crossing ?? story.rhythm.peak_day_of_week}.
+            {recoverySentence(story)}
           </p>
-          <p className="mt-2 text-sm leading-6 text-body">{story.rhythm.explanation}</p>
+          <p className="mt-2 text-sm leading-6 text-body">
+            {story.rhythm
+              ? story.rhythm.explanation
+              : "No day or time pattern cleared the confidence gate for this range."}
+          </p>
           <EvidenceLine
-            confidence={story.rhythm.confidence}
-            detail={`Delta ${signed(story.rhythm.delta)} against baseline ${signed(
-              story.rhythm.baseline_avg_sentiment
-            )}`}
+            confidence={story.rhythm?.confidence ?? 1}
+            detail={`Recovery speed ${story.headline.recovery_speed_days_start.toFixed(2)} to ${story.headline.recovery_speed_days_end.toFixed(2)} day(s)`}
           />
         </Card>
       ) : null}
@@ -204,9 +204,9 @@ export default function DashboardPage() {
                 <BarChart data={weekRows}>
                   <CartesianGrid stroke="#d2c3b2" strokeDasharray="3 3" />
                   <XAxis dataKey="label" tick={{ fill: "#6c6a64", fontSize: 12 }} />
-                  <YAxis domain={[-1, 1]} tick={{ fill: "#6c6a64", fontSize: 12 }} />
+                  <YAxis domain={[0, 100]} tick={{ fill: "#6c6a64", fontSize: 12 }} />
                   <Tooltip />
-                  <Bar dataKey="avg_sentiment" fill="#5db8a6" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="mood_score" fill="#5db8a6" radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
               <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
@@ -215,7 +215,9 @@ export default function DashboardPage() {
                     <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
                       {bucket.label}
                     </p>
-                    <p className="mt-1 font-semibold text-ink">{bucket.sentiment_label}</p>
+                    <p className="mt-1 font-semibold text-ink">
+                      {bucket.mood_score}% - {titleCase(bucket.sentiment_label)}
+                    </p>
                     <p className="text-xs text-body">
                       {bucket.entry_count} entries - {titleCase(bucket.dominant_emotion)} - {bucket.topic}
                     </p>
@@ -236,7 +238,7 @@ export default function DashboardPage() {
 
       <details className="mt-6 rounded-xl border border-line bg-[#fffdf8] p-5 text-ink">
         <summary className="cursor-pointer font-display text-3xl">Explore Further</summary>
-        <div className="mt-5 grid gap-6 xl:grid-cols-[1.1fr_.9fr]">
+        <div className="mt-5">
           <Card tone="light">
             <SectionTitle icon={<Search />} title="Relationship graph" />
             <div className="mt-4">
@@ -275,29 +277,12 @@ export default function DashboardPage() {
               </div>
             ) : null}
           </Card>
-
-          <Card tone="dark">
-            <h2 className="font-display text-3xl">Diagnostics</h2>
-            <pre className="mt-4 overflow-auto rounded-lg bg-nightLift p-4 font-mono text-xs leading-6 text-[#d7d1c7]">
-              {JSON.stringify(diagnostics ?? {}, null, 2)}
-            </pre>
-          </Card>
         </div>
 
         <Card className="mt-6" tone="light">
           <SectionTitle title="Full timeline" />
           {timeline.length ? (
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
-              {timeline.map((event) => (
-                <div className="border-l-2 border-coral pl-4" key={event.timestamp}>
-                  <p className="text-sm font-semibold text-muted">
-                    {event.timestamp.slice(0, 10)} - {titleCase(event.event_type)}
-                  </p>
-                  <h3 className="mt-1 font-semibold text-ink">{event.title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-body">{event.description}</p>
-                </div>
-              ))}
-            </div>
+            <TimelineMoodChart events={timeline} />
           ) : (
             <EmptyState
               detail="Significant journal moments will appear as the timeline grows."
@@ -312,6 +297,8 @@ export default function DashboardPage() {
 
 function MonthHero({ story }: { story: DashboardStory }) {
   const headline = story.headline;
+  const baselineMood = headline.baseline_mood_score ?? fallbackMoodScore(headline.baseline_sentiment);
+  const currentMood = headline.current_mood_score ?? fallbackMoodScore(headline.current_sentiment);
   if (!headline.has_sufficient_data) {
     return (
       <div>
@@ -336,14 +323,14 @@ function MonthHero({ story }: { story: DashboardStory }) {
           {headline.entry_count} entries - {headline.days_in_range} days
         </p>
         <h2 className="mt-3 font-display text-4xl leading-tight">
-          Your mood shifted from {titleCase(headline.dominant_emotion_start)} to{" "}
-          {titleCase(headline.dominant_emotion_end)} over the past{" "}
-          {headline.days_in_range} days.
+          Your month moved from {titleCase(headline.dominant_emotion_start)} to{" "}
+          {titleCase(headline.dominant_emotion_end)}, with mood score moving from{" "}
+          {baselineMood}% to {currentMood}%.
         </h2>
         <p className="mt-3 max-w-3xl leading-7 text-white/90">
-          Sentiment moved {signed(headline.sentiment_delta)} from baseline{" "}
-          {signed(headline.baseline_sentiment)} to current{" "}
-          {signed(headline.current_sentiment)}. Recovery speed moved from{" "}
+          {headline.sentiment_delta_summary ??
+            `Mood score moved from ${baselineMood}% to ${currentMood}%.`} Recovery
+          speed moved from{" "}
           {headline.recovery_speed_days_start.toFixed(2)} to{" "}
           {headline.recovery_speed_days_end.toFixed(2)} day(s).
         </p>
@@ -371,12 +358,13 @@ function WorkingSection({ rows }: { rows: DashboardStory["top_working"] }) {
           {rows.map((habit) => (
             <div className="rounded-lg border border-line bg-canvas p-3" key={habit.habit}>
               <p className="font-semibold text-ink">
-                {titleCase(habit.habit)} days trend {signed(habit.delta)} higher than other days.
+                {habit.delta_summary ??
+                  `${titleCase(habit.habit)} days look ${deltaPlain(habit.delta)}.`}
               </p>
               <p className="mt-2 text-sm leading-6 text-body">{habit.explanation}</p>
               <EvidenceLine
                 confidence={habit.confidence}
-                detail={`${habit.mention_count} mentions - ${habit.streak_length} day streak`}
+                detail={`${habit.mention_count} mentions - ${habit.streak_length} day streak - raw delta ${signed(habit.delta)}`}
               />
             </div>
           ))}
@@ -400,13 +388,13 @@ function DrainingSection({ rows }: { rows: DashboardStory["top_draining"] }) {
           {rows.map((trigger) => (
             <div className="rounded-lg border border-line bg-canvas p-3" key={trigger.topic}>
               <p className="font-semibold text-ink">
-                {titleCase(trigger.topic)} appears with average sentiment{" "}
-                {signed(trigger.avg_sentiment)}.
+                {titleCase(trigger.display_label ?? trigger.topic)} appears as a{" "}
+                {trigger.sentiment_summary ?? fallbackSentimentSummary(trigger.avg_sentiment)} pattern.
               </p>
               <p className="mt-2 text-sm leading-6 text-body">{trigger.explanation}</p>
               <EvidenceLine
                 confidence={trigger.confidence}
-                detail={`${trigger.frequency} mentions - ${titleCase(trigger.dominant_emotion)}`}
+                detail={`${trigger.frequency} mentions - ${titleCase(trigger.dominant_emotion)} - raw average ${signed(trigger.avg_sentiment)}`}
               />
             </div>
           ))}
@@ -430,13 +418,17 @@ function PeopleSection({ rows }: { rows: DashboardStory["people"] }) {
           {rows.map((person) => (
             <div className="rounded-lg border border-line bg-canvas p-3" key={person.person}>
               <p className="font-semibold text-ink">
-                {person.person} shows up as {person.relationship_type} with sentiment{" "}
-                {signed(person.avg_sentiment)}.
+                {person.impact_summary ??
+                  `${person.person} appears across ${person.mention_count} entries with a ${titleCase(
+                    person.sentiment_trend
+                  )} trend.`}
               </p>
               <p className="mt-2 text-sm leading-6 text-body">{person.explanation}</p>
               <EvidenceLine
                 confidence={person.confidence}
-                detail={`${person.mention_count} mentions - ${titleCase(person.sentiment_trend)}`}
+                detail={`${person.mention_count} mentions - ${titleCase(
+                  person.relationship_type === "unknown" ? "connection" : person.relationship_type
+                )} - ${titleCase(person.sentiment_trend)} - raw average ${signed(person.avg_sentiment)}`}
               />
             </div>
           ))}
@@ -465,7 +457,13 @@ function LookingAhead({ story }: { story: DashboardStory | null }) {
               {titleCase(story.forecast.sentiment_forecast.direction)}
             </h3>
             <p className="mt-2 text-sm leading-6 text-[#d7d1c7]">
-              {story.forecast.sentiment_forecast.explanation}
+              Predicted mood score:{" "}
+              {story.forecast.sentiment_forecast.predicted_mood_score ??
+                fallbackMoodScore(story.forecast.sentiment_forecast.predicted_sentiment)}
+              %. {story.forecast.sentiment_forecast.explanation}
+            </p>
+            <p className="mt-2 text-xs leading-5 text-[#d7d1c7]">
+              {story.forecast.sentiment_forecast.metric_note}
             </p>
             {story.forecast.sentiment_forecast.forecast_accuracy_note ? (
               <p className="mt-2 text-xs leading-5 text-[#d7d1c7]">
@@ -484,6 +482,9 @@ function LookingAhead({ story }: { story: DashboardStory | null }) {
             <p className="mt-2 text-sm leading-6 text-[#d7d1c7]">
               {story.forecast.burnout_risk.explanation}
             </p>
+            <p className="mt-2 text-xs leading-5 text-[#d7d1c7]">
+              {story.forecast.burnout_risk.metric_note}
+            </p>
           </div>
 
           {story.goals.length ? (
@@ -498,6 +499,9 @@ function LookingAhead({ story }: { story: DashboardStory | null }) {
                   </div>
                   <ProgressBar value={goal.estimated_progress} />
                   <p className="mt-2 text-sm leading-6 text-[#d7d1c7]">{goal.explanation}</p>
+                  <p className="mt-1 text-xs leading-5 text-[#d7d1c7]">
+                    {goal.metric_note}
+                  </p>
                 </div>
               ))}
             </div>
@@ -524,6 +528,75 @@ function LookingAhead({ story }: { story: DashboardStory | null }) {
         <p className="mt-4 text-sm text-[#d7d1c7]">Loading forecast.</p>
       )}
     </Card>
+  );
+}
+
+function TimelineMoodChart({ events }: { events: TimelineEvent[] }) {
+  const points = events.map((event, index) => ({
+    ...event,
+    point: index + 1,
+    date: event.timestamp.slice(5, 10),
+    mood_score: event.mood_score ?? fallbackMoodScore(event.sentiment)
+  }));
+  const labels = points
+    .filter((event) => event.event_type !== "normal")
+    .sort((a, b) => b.significance_score - a.significance_score)
+    .slice(0, 5);
+
+  return (
+    <div className="mt-4">
+      <ResponsiveContainer height={300} width="100%">
+        <LineChart data={points} margin={{ bottom: 12, left: 0, right: 20, top: 26 }}>
+          <CartesianGrid stroke="#d2c3b2" strokeDasharray="3 3" />
+          <XAxis
+            dataKey="point"
+            tick={{ fill: "#6c6a64", fontSize: 12 }}
+            tickFormatter={(value) => points[Number(value) - 1]?.date ?? ""}
+          />
+          <YAxis domain={[0, 100]} tick={{ fill: "#6c6a64", fontSize: 12 }} />
+          <Tooltip
+            formatter={(value) => [`${value}%`, "Mood score"]}
+            labelFormatter={(value) => {
+              const point = points[Number(value) - 1];
+              return point ? `${point.timestamp.slice(0, 10)} - ${point.title}` : "";
+            }}
+          />
+          <Line
+            dataKey="mood_score"
+            dot={false}
+            stroke="#cc785c"
+            strokeWidth={3}
+            type="monotone"
+          />
+          {labels.map((event) => (
+            <ReferenceDot
+              fill={event.event_type === "positive_peak" ? "#3d915e" : "#c64545"}
+              key={event.timestamp}
+              r={5}
+              stroke="#fffdf8"
+              strokeWidth={2}
+              x={event.point}
+              y={event.mood_score}
+              label={{
+                fill: "#292722",
+                fontSize: 11,
+                fontWeight: 700,
+                position: "top",
+                value: titleCase(event.event_type.replace(/_/g, " "))
+              }}
+            />
+          ))}
+        </LineChart>
+      </ResponsiveContainer>
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        {labels.map((event) => (
+          <p className="rounded-lg border border-line bg-canvas p-3 text-sm text-body" key={event.timestamp}>
+            <span className="font-semibold text-ink">{event.timestamp.slice(0, 10)}</span>{" "}
+            {event.title}: {event.description}
+          </p>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -558,4 +631,41 @@ function EvidenceLine({
       {detail} - Confidence {percent(confidence)}
     </p>
   );
+}
+
+function fallbackMoodScore(sentiment: number): number {
+  return Math.round((Math.max(-1, Math.min(1, sentiment)) + 1) * 50);
+}
+
+function fallbackSentimentLabel(sentiment: number): string {
+  if (sentiment >= 0.55) return "strongly positive";
+  if (sentiment >= 0.2) return "positive";
+  if (sentiment > -0.2) return "mixed";
+  if (sentiment > -0.55) return "heavy";
+  return "very heavy";
+}
+
+function fallbackSentimentSummary(sentiment: number): string {
+  return `${fallbackSentimentLabel(sentiment)} mood score ${fallbackMoodScore(sentiment)}%`;
+}
+
+function deltaPlain(delta: number): string {
+  const direction = delta > 0.05 ? "lighter" : delta < -0.05 ? "heavier" : "steady";
+  const magnitude = Math.abs(delta);
+  if (direction === "steady") return "about steady";
+  if (magnitude < 0.15) return `slightly ${direction}`;
+  if (magnitude < 0.35) return `noticeably ${direction}`;
+  return `strongly ${direction}`;
+}
+
+function recoverySentence(story: DashboardStory): string {
+  const start = story.headline.recovery_speed_days_start;
+  const end = story.headline.recovery_speed_days_end;
+  if (end + 0.05 < start) {
+    return `Recovery after heavier entries became faster, moving from ${start.toFixed(2)} to ${end.toFixed(2)} day(s).`;
+  }
+  if (end > start + 0.05) {
+    return `Recovery after heavier entries slowed, moving from ${start.toFixed(2)} to ${end.toFixed(2)} day(s).`;
+  }
+  return `Recovery after heavier entries stayed about steady at ${end.toFixed(2)} day(s).`;
 }

@@ -10,7 +10,8 @@
       "phase": "ramping",
       "estimated_progress": 0.2842,
       "confidence": 1.0,
-      "explanation": "Mental health mentioned 12 times; sentiment trend declining; phase ramping."
+      "explanation": "Mental health mentioned 12 times; sentiment trend declining; phase ramping.",
+      "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
     },
     {
       "goal_keyword": "fitness",
@@ -22,7 +23,8 @@
       "phase": "ramping",
       "estimated_progress": 1.0,
       "confidence": 0.3,
-      "explanation": "Fitness mentioned 3 times; sentiment trend improving; phase ramping."
+      "explanation": "Fitness mentioned 3 times; sentiment trend improving; phase ramping.",
+      "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
     },
     {
       "goal_keyword": "education",
@@ -34,7 +36,8 @@
       "phase": "starting",
       "estimated_progress": 1.0,
       "confidence": 0.3,
-      "explanation": "Education mentioned 3 times; sentiment trend improving; phase starting."
+      "explanation": "Education mentioned 3 times; sentiment trend improving; phase starting.",
+      "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
     }
   ]
 }

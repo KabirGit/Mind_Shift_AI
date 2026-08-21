@@ -12,8 +12,8 @@
     "low_confidence_ratio": 0.7667
   },
   "latency": {
-    "avg_ms": 1119.35,
-    "p95_ms": 1263.36,
+    "avg_ms": 1167.97,
+    "p95_ms": 1455.59,
     "sample_count": 30
   }
 }

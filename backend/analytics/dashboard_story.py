@@ -15,7 +15,15 @@ from backend.analytics._stats_utils import (
 )
 from backend.analytics.goal_engine import GoalProgress
 from backend.analytics.habit_engine import HabitCorrelation
-from backend.analytics.models import TriggerStat
+from backend.analytics.models import TriggerStat, compute_confidence
+from backend.analytics.presentation import (
+    delta_direction,
+    delta_summary,
+    mood_score,
+    relationship_impact_summary,
+    sentiment_label,
+    sentiment_summary,
+)
 from backend.analytics.prediction_engine import BurnoutRisk, SentimentForecast
 from backend.analytics.relationship_engine import RelationshipProfile
 from backend.analytics.temporal_engine import TemporalPattern
@@ -49,6 +57,11 @@ class DashboardHeadline(BaseModel):
     growth_narrative: str = ""
     has_sufficient_data: bool = False
     minimum_entry_count: int = MIN_ENTRY_COUNT
+    baseline_mood_score: int = 50
+    current_mood_score: int = 50
+    sentiment_delta_direction: str = "steady"
+    sentiment_delta_label: str = "steady"
+    sentiment_delta_summary: str = "about steady"
 
 
 class WeeklyBucket(BaseModel):
@@ -57,6 +70,8 @@ class WeeklyBucket(BaseModel):
     dominant_emotion: str
     top_topic: str
     entry_count: int
+    mood_score: int = 50
+    mood_label: str = "mixed"
 
 
 class ForecastBlock(BaseModel):
@@ -121,7 +136,11 @@ class DashboardStoryComposer:
             lookback_days=lookback_days,
             headline=headline,
             top_working=self._top_working(habits),
-            top_draining=self._top_draining(summary.triggers),
+            top_draining=self._top_draining(
+                summary.triggers,
+                relationships,
+                profile.baseline_sentiment,
+            ),
             people=self._people(relationships, profile.baseline_sentiment),
             rhythm=self._rhythm(temporal),
             weekly_buckets=self._weekly_buckets(ordered),
@@ -132,12 +151,13 @@ class DashboardStoryComposer:
 
     def _headline(self, records, *, lookback_days: int, profile, growth_narrative: str):
         start, end = self._split(records)
+        sentiment_delta = round(
+            profile.current_sentiment - profile.baseline_sentiment, 4
+        )
         return DashboardHeadline(
             baseline_sentiment=profile.baseline_sentiment,
             current_sentiment=profile.current_sentiment,
-            sentiment_delta=round(
-                profile.current_sentiment - profile.baseline_sentiment, 4
-            ),
+            sentiment_delta=sentiment_delta,
             dominant_emotion_start=self._dominant_emotion(start),
             dominant_emotion_end=self._dominant_emotion(end),
             recovery_speed_days_start=round(recovery_speed_days(start), 2),
@@ -148,6 +168,15 @@ class DashboardStoryComposer:
             growth_narrative=growth_narrative,
             has_sufficient_data=len(records) >= MIN_ENTRY_COUNT,
             minimum_entry_count=MIN_ENTRY_COUNT,
+            baseline_mood_score=mood_score(profile.baseline_sentiment),
+            current_mood_score=mood_score(profile.current_sentiment),
+            sentiment_delta_direction=delta_direction(sentiment_delta),
+            sentiment_delta_label=delta_summary(sentiment_delta),
+            sentiment_delta_summary=(
+                f"Mood score moved from {mood_score(profile.baseline_sentiment)}% "
+                f"to {mood_score(profile.current_sentiment)}%, a "
+                f"{delta_summary(sentiment_delta)} shift."
+            ),
         )
 
     @staticmethod
@@ -170,16 +199,76 @@ class DashboardStoryComposer:
             if h.confidence >= MIN_INSIGHT_CONFIDENCE and h.delta > 0
         ]
         eligible.sort(key=lambda h: abs(h.delta), reverse=True)
-        return eligible[:3]
+        return [
+            _copy_model(
+                h,
+                delta_direction=delta_direction(h.delta),
+                delta_label=delta_summary(h.delta),
+                delta_summary=(
+                    f"{h.habit.capitalize()} days look {delta_summary(h.delta)} "
+                    "than non-mention days."
+                ),
+            )
+            for h in eligible[:3]
+        ]
 
     @staticmethod
-    def _top_draining(triggers: list[TriggerStat]) -> list[TriggerStat]:
+    def _top_draining(
+        triggers: list[TriggerStat],
+        relationships: list[RelationshipProfile],
+        baseline_sentiment: float,
+    ) -> list[TriggerStat]:
         # Confidence below 0.5 is treated as exploratory, so it is not narrated.
-        eligible = [
-            t for t in triggers
-            if t.confidence >= MIN_INSIGHT_CONFIDENCE and t.avg_sentiment < 0
+        eligible: list[TriggerStat] = [
+            _copy_model(
+                t,
+                display_label=t.display_label or t.topic,
+                sentiment_score=mood_score(t.avg_sentiment),
+                sentiment_label=sentiment_label(t.avg_sentiment),
+                sentiment_summary=sentiment_summary(t.avg_sentiment),
+            )
+            for t in triggers
+            if t.confidence >= MIN_INSIGHT_CONFIDENCE
+            and (t.avg_sentiment < 0 or baseline_sentiment - t.avg_sentiment >= 0.15)
         ]
-        eligible.sort(key=lambda t: abs(t.avg_sentiment), reverse=True)
+        for person in relationships:
+            if (
+                person.mention_count < MIN_MENTION_COUNT
+                or baseline_sentiment - person.avg_sentiment < 0.15
+            ):
+                continue
+            relation = (
+                person.relationship_type
+                if person.relationship_type != "unknown"
+                else "recurring connection"
+            )
+            if relation == "other":
+                relation = "support contact"
+            eligible.append(
+                TriggerStat(
+                    topic=person.person,
+                    source_type="person",
+                    display_label=person.person,
+                    frequency=person.mention_count,
+                    avg_sentiment=person.avg_sentiment,
+                    dominant_emotion=person.dominant_emotion,
+                    trend=person.sentiment_trend,
+                    confidence=compute_confidence(person.mention_count, MIN_MENTION_COUNT),
+                    explanation=(
+                        f"{person.person} appears as {relation} in "
+                        f"{person.mention_count} entries; dominant emotion "
+                        f"{person.dominant_emotion}, trend {person.sentiment_trend}. "
+                        f"Average sentiment {person.avg_sentiment:+.2f} sits below "
+                        f"the current baseline {baseline_sentiment:+.2f}."
+                    ),
+                    sentiment_score=mood_score(person.avg_sentiment),
+                    sentiment_label=sentiment_label(person.avg_sentiment),
+                    sentiment_summary=(
+                        f"{sentiment_summary(person.avg_sentiment)} below baseline"
+                    ),
+                )
+            )
+        eligible.sort(key=lambda t: (t.avg_sentiment, -t.frequency))
         return eligible[:3]
 
     @staticmethod
@@ -196,7 +285,23 @@ class DashboardStoryComposer:
             key=lambda p: (abs(p.avg_sentiment - baseline_sentiment), p.mention_count),
             reverse=True,
         )
-        return eligible[:3]
+        return [
+            _copy_model(
+                p,
+                sentiment_score=mood_score(p.avg_sentiment),
+                sentiment_label=sentiment_label(p.avg_sentiment),
+                impact_summary=relationship_impact_summary(
+                    person=p.person,
+                    relationship_type=p.relationship_type,
+                    mention_count=p.mention_count,
+                    avg_sentiment=p.avg_sentiment,
+                    dominant_emotion=p.dominant_emotion,
+                    sentiment_trend=p.sentiment_trend,
+                    closeness_score=p.closeness_score,
+                ),
+            )
+            for p in eligible[:3]
+        ]
 
     @staticmethod
     def _rhythm(patterns: list[TemporalPattern]) -> TemporalPattern | None:
@@ -242,6 +347,17 @@ class DashboardStoryComposer:
                     ),
                     top_topic=topics.most_common(1)[0][0] if topics else "none",
                     entry_count=len(recs),
+                    mood_score=mood_score(sum(sentiments) / len(sentiments)),
+                    mood_label=sentiment_label(sum(sentiments) / len(sentiments)),
                 )
             )
         return buckets
+
+
+def _copy_model(model, **updates):
+    if hasattr(model, "model_dump"):
+        data = model.model_dump()
+    else:
+        data = model.dict()
+    data.update(updates)
+    return model.__class__(**data)

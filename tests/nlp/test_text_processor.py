@@ -63,3 +63,24 @@ def test_relationship_type_classifier_examples():
             text, [person], [(person, start, start + len(person))]
         )
         assert out[person] == expected
+
+
+def test_relationship_cue_extraction_adds_people_when_ner_misses():
+    out = TextProcessor().extract(
+        "My wife Meera found a therapist named Dr. Anjali, and my old friend Sameer called."
+    )
+
+    assert "Meera" in out["entities_people"]
+    assert "Anjali" in out["entities_people"]
+    assert "Sameer" in out["entities_people"]
+    assert out["person_relationship_types"]["Meera"] == "partner"
+    assert out["person_relationship_types"]["Anjali"] == "other"
+    assert out["person_relationship_types"]["Sameer"] == "friend"
+
+
+def test_relationship_aliases_are_treated_as_people():
+    out = TextProcessor().extract("Ma asked if Papa and my younger brother Rohan had eaten.")
+
+    assert out["person_relationship_types"]["Ma"] == "family"
+    assert out["person_relationship_types"]["Papa"] == "family"
+    assert out["person_relationship_types"]["Rohan"] == "family"

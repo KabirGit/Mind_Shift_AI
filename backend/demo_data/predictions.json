@@ -5,7 +5,9 @@
     "direction": "improving",
     "confidence": 0.0068,
     "forecast_accuracy_note": "Forecast accuracy is not tracked yet because historical forecasts are not persisted for later comparison.",
-    "explanation": "Based on 15 entries. Trend slope: +0.012/day. R²: 0.01."
+    "explanation": "Based on 15 entries. Trend slope: +0.012/day. R²: 0.01.",
+    "predicted_mood_score": 91,
+    "metric_note": "Mood direction is a 7-day linear forecast from recent VADER sentiment scores."
   },
   "burnout_risk": {
     "risk_level": "low",
@@ -15,6 +17,7 @@
       "high career focus"
     ],
     "confidence": 1.0,
-    "explanation": "Score 24% from 15 recent entries. This is a statistical pattern only, not a clinical assessment."
+    "explanation": "Score 24% from 15 recent entries. This is a statistical pattern only, not a clinical assessment.",
+    "metric_note": "Stress pattern combines recent negative-entry share, stress-linked emotions, declining trend, and high career focus."
   }
 }

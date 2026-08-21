@@ -37,6 +37,9 @@ class HabitCorrelation(BaseModel):
     co_occurring_pairs: list[HabitPairCorrelation] = Field(default_factory=list)
     confidence: float = 0.0
     explanation: str = ""
+    delta_direction: str = ""
+    delta_label: str = ""
+    delta_summary: str = ""
 
 
 class HabitEngine:

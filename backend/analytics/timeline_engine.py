@@ -5,6 +5,7 @@ import logging
 from pydantic import BaseModel
 
 from backend.analytics._stats_utils import filter_window, sort_key
+from backend.analytics.presentation import mood_score, sentiment_label
 from backend.storage.db import JournalDB
 
 logger = logging.getLogger(__name__)
@@ -20,6 +21,8 @@ class TimelineEvent(BaseModel):
     primary_person: str | None = None
     significance_score: float
     event_type: str  # "positive_peak" | "negative_peak" | "normal"
+    mood_score: int = 50
+    mood_label: str = "mixed"
 
 
 class TimelineEngine:
@@ -71,6 +74,8 @@ class TimelineEngine:
                         primary_person=primary_person,
                         significance_score=round(significance, 4),
                         event_type=etype,
+                        mood_score=mood_score(s),
+                        mood_label=sentiment_label(s),
                     )
                 )
                 for person in r.entities_people or []:

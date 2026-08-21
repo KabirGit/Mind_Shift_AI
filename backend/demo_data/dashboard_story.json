@@ -14,7 +14,12 @@
     "growth_score": 0.6354,
     "growth_narrative": "From 2026-W30 to 2026-W34, average sentiment changed by +0.73, entries changed by +1, and the leading topic moved from career to health. You've written 30 entries total.",
     "has_sufficient_data": true,
-    "minimum_entry_count": 5
+    "minimum_entry_count": 5,
+    "baseline_mood_score": 74,
+    "current_mood_score": 88,
+    "sentiment_delta_direction": "lighter",
+    "sentiment_delta_label": "noticeably lighter",
+    "sentiment_delta_summary": "Mood score moved from 74% to 88%, a noticeably lighter shift."
   },
   "top_working": [
     {
@@ -99,7 +104,10 @@
         }
       ],
       "confidence": 1.0,
-      "explanation": "Meditation mentioned 19 times; mood was +0.56 higher on those days."
+      "explanation": "Meditation mentioned 19 times; mood was +0.56 higher on those days.",
+      "delta_direction": "lighter",
+      "delta_label": "strongly lighter",
+      "delta_summary": "Meditation days look strongly lighter than non-mention days."
     },
     {
       "habit": "exercise",
@@ -183,7 +191,10 @@
         }
       ],
       "confidence": 1.0,
-      "explanation": "Exercise mentioned 28 times; mood was +0.2 higher on those days."
+      "explanation": "Exercise mentioned 28 times; mood was +0.2 higher on those days.",
+      "delta_direction": "lighter",
+      "delta_label": "noticeably lighter",
+      "delta_summary": "Exercise days look noticeably lighter than non-mention days."
     },
     {
       "habit": "reading",
@@ -257,10 +268,28 @@
         }
       ],
       "confidence": 1.0,
-      "explanation": "Reading mentioned 17 times; mood was +0.1 higher on those days."
+      "explanation": "Reading mentioned 17 times; mood was +0.1 higher on those days.",
+      "delta_direction": "lighter",
+      "delta_label": "slightly lighter",
+      "delta_summary": "Reading days look slightly lighter than non-mention days."
     }
   ],
-  "top_draining": [],
+  "top_draining": [
+    {
+      "topic": "Ma",
+      "frequency": 4,
+      "avg_sentiment": 0.0351,
+      "dominant_emotion": "confusion",
+      "trend": "stable",
+      "confidence": 1.0,
+      "explanation": "Ma appears as family in 4 entries; dominant emotion confusion, trend stable. Average sentiment +0.04 sits below the current baseline +0.49.",
+      "source_type": "person",
+      "display_label": "Ma",
+      "sentiment_score": 52,
+      "sentiment_label": "mixed",
+      "sentiment_summary": "mixed mood score 52% below baseline"
+    }
+  ],
   "people": [
     {
       "person": "Ma",
@@ -269,20 +298,21 @@
       "dominant_emotion": "confusion",
       "last_mentioned": "2026-08-14T12:00:00Z",
       "trend": "stable",
-      "relationship_type": "unknown",
+      "relationship_type": "family",
       "relationship_type_confidence": 1.0,
       "relationship_type_ambiguity": "",
-      "closeness_score": 0.2406,
+      "closeness_score": 0.2383,
       "sentiment_trend": "stable",
       "co_mentioned_with": {
-        "Meera": 3,
-        "Priya": 1,
-        "Instagram": 1,
-        "Papa": 1,
-        "Told Meera": 1
+        "Meera": 4,
+        "Papa": 4,
+        "Priya": 1
       },
       "confidence": 0.4,
-      "explanation": "Based on 4 entries mentioning Ma; usually confusion, trend stable."
+      "explanation": "Based on 4 entries mentioning Ma; usually confusion, trend stable.",
+      "sentiment_score": 52,
+      "sentiment_label": "mixed",
+      "impact_summary": "Ma appears as family across 4 entries; the pattern is mixed, most often confusion, with a stable trend and closeness score 0.24."
     },
     {
       "person": "Anjali",
@@ -291,19 +321,22 @@
       "dominant_emotion": "realization",
       "last_mentioned": "2026-08-20T12:00:00Z",
       "trend": "declining",
-      "relationship_type": "unknown",
-      "relationship_type_confidence": 0.875,
+      "relationship_type": "other",
+      "relationship_type_confidence": 0.125,
       "relationship_type_ambiguity": "",
-      "closeness_score": 1.2379,
+      "closeness_score": 1.2259,
       "sentiment_trend": "declining",
       "co_mentioned_with": {
         "Meera": 8,
+        "Papa": 5,
         "Neha": 2,
-        "Told Meera": 1,
         "Arjun": 1
       },
       "confidence": 0.8,
-      "explanation": "Based on 8 entries mentioning Anjali; usually realization, trend declining."
+      "explanation": "Based on 8 entries mentioning Anjali; usually realization, trend declining.",
+      "sentiment_score": 87,
+      "sentiment_label": "strongly positive",
+      "impact_summary": "Anjali appears as a support contact across 8 entries; the pattern is strongly positive, most often realization, with a declining trend and closeness score 1.23."
     },
     {
       "person": "Neha",
@@ -312,17 +345,21 @@
       "dominant_emotion": "neutral",
       "last_mentioned": "2026-08-21T12:00:00Z",
       "trend": "declining",
-      "relationship_type": "unknown",
-      "relationship_type_confidence": 0.8333,
+      "relationship_type": "family",
+      "relationship_type_confidence": 0.1667,
       "relationship_type_ambiguity": "",
-      "closeness_score": 1.7788,
+      "closeness_score": 1.7712,
       "sentiment_trend": "declining",
       "co_mentioned_with": {
         "Meera": 6,
+        "Papa": 5,
         "Anjali": 2
       },
       "confidence": 0.6,
-      "explanation": "Based on 6 entries mentioning Neha; usually neutral, trend declining."
+      "explanation": "Based on 6 entries mentioning Neha; usually neutral, trend declining.",
+      "sentiment_score": 83,
+      "sentiment_label": "strongly positive",
+      "impact_summary": "Neha appears as family across 6 entries; the pattern is strongly positive, most often neutral, with a declining trend and closeness score 1.77."
     }
   ],
   "rhythm": {
@@ -344,35 +381,45 @@
       "avg_sentiment": -0.108,
       "dominant_emotion": "disappointment",
       "top_topic": "career",
-      "entry_count": 4
+      "entry_count": 4,
+      "mood_score": 45,
+      "mood_label": "mixed"
     },
     {
       "label": "Jul 27-Aug 02",
       "avg_sentiment": 0.2715,
       "dominant_emotion": "neutral",
       "top_topic": "career",
-      "entry_count": 7
+      "entry_count": 7,
+      "mood_score": 64,
+      "mood_label": "positive"
     },
     {
       "label": "Aug 03-Aug 09",
       "avg_sentiment": 0.7194,
       "dominant_emotion": "realization",
       "top_topic": "health",
-      "entry_count": 7
+      "entry_count": 7,
+      "mood_score": 86,
+      "mood_label": "strongly positive"
     },
     {
       "label": "Aug 10-Aug 16",
       "avg_sentiment": 0.7124,
       "dominant_emotion": "joy",
       "top_topic": "health",
-      "entry_count": 7
+      "entry_count": 7,
+      "mood_score": 86,
+      "mood_label": "strongly positive"
     },
     {
       "label": "Aug 17-Aug 23",
       "avg_sentiment": 0.6225,
       "dominant_emotion": "realization",
       "top_topic": "health",
-      "entry_count": 5
+      "entry_count": 5,
+      "mood_score": 81,
+      "mood_label": "strongly positive"
     }
   ],
   "forecast": {
@@ -382,7 +429,9 @@
       "direction": "improving",
       "confidence": 0.0068,
       "forecast_accuracy_note": "Forecast accuracy is not tracked yet because historical forecasts are not persisted for later comparison.",
-      "explanation": "Based on 15 entries. Trend slope: +0.012/day. R²: 0.01."
+      "explanation": "Based on 15 entries. Trend slope: +0.012/day. R²: 0.01.",
+      "predicted_mood_score": 91,
+      "metric_note": "Mood direction is a 7-day linear forecast from recent VADER sentiment scores."
     },
     "burnout_risk": {
       "risk_level": "low",
@@ -392,7 +441,8 @@
         "high career focus"
       ],
       "confidence": 1.0,
-      "explanation": "Score 24% from 15 recent entries. This is a statistical pattern only, not a clinical assessment."
+      "explanation": "Score 24% from 15 recent entries. This is a statistical pattern only, not a clinical assessment.",
+      "metric_note": "Stress pattern combines recent negative-entry share, stress-linked emotions, declining trend, and high career focus."
     }
   },
   "goals": [
@@ -406,7 +456,8 @@
       "phase": "ramping",
       "estimated_progress": 0.2842,
       "confidence": 1.0,
-      "explanation": "Mental health mentioned 12 times; sentiment trend declining; phase ramping."
+      "explanation": "Mental health mentioned 12 times; sentiment trend declining; phase ramping.",
+      "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
     },
     {
       "goal_keyword": "fitness",
@@ -418,7 +469,8 @@
       "phase": "ramping",
       "estimated_progress": 1.0,
       "confidence": 0.3,
-      "explanation": "Fitness mentioned 3 times; sentiment trend improving; phase ramping."
+      "explanation": "Fitness mentioned 3 times; sentiment trend improving; phase ramping.",
+      "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
     },
     {
       "goal_keyword": "education",
@@ -430,7 +482,8 @@
       "phase": "starting",
       "estimated_progress": 1.0,
       "confidence": 0.3,
-      "explanation": "Education mentioned 3 times; sentiment trend improving; phase starting."
+      "explanation": "Education mentioned 3 times; sentiment trend improving; phase starting.",
+      "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
     }
   ],
   "highlight_memory": {
@@ -442,7 +495,9 @@
     "baseline_sentiment": 0.9509,
     "primary_person": "Meera",
     "significance_score": 1.5969,
-    "event_type": "negative_peak"
+    "event_type": "negative_peak",
+    "mood_score": 18,
+    "mood_label": "very heavy"
   },
   "thresholds": {
     "min_insight_confidence": 0.5,

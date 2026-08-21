@@ -108,6 +108,21 @@ def test_relationship_type_conflict_notes_ambiguity(tmp_path):
     assert "Conflicting relationship cues" in profile.relationship_type_ambiguity
 
 
+def test_relationship_type_prefers_meaningful_cue_over_unknown(tmp_path):
+    db = JournalDB(str(tmp_path / "j.db"))
+    for idx, rel_type in enumerate(["unknown", "unknown", "friend"], start=1):
+        db.insert(JournalRecord(id=f"r{idx}", text="t", timestamp=_ts(4 - idx),
+                                emotion="joy", emotion_confidence=0.9,
+                                entities_people=["Sam"],
+                                person_relationship_types={"Sam": rel_type},
+                                sentiment_compound=0.2))
+
+    profile = RelationshipEngine(db).analyze(lookback_days=30)[0]
+
+    assert profile.relationship_type == "friend"
+    assert profile.relationship_type_confidence == 0.3333
+
+
 def test_zero_data(tmp_path):
     db = JournalDB(str(tmp_path / "empty.db"))
     assert RelationshipEngine(db).analyze(lookback_days=30) == []

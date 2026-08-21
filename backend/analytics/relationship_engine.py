@@ -32,6 +32,9 @@ class RelationshipProfile(BaseModel):
     co_mentioned_with: dict[str, int] = Field(default_factory=dict)
     confidence: float = 0.0
     explanation: str = ""
+    sentiment_score: int = 50
+    sentiment_label: str = ""
+    impact_summary: str = ""
 
 
 class RelationshipEngine:
@@ -117,9 +120,12 @@ class RelationshipEngine:
         if not counts:
             return "unknown", 0.0, ""
 
-        rel_type, count = counts.most_common(1)[0]
-        confidence = round(count / sum(counts.values()), 4)
         meaningful = {k: v for k, v in counts.items() if k != "unknown" and v > 0}
+        if meaningful:
+            rel_type, count = Counter(meaningful).most_common(1)[0]
+        else:
+            rel_type, count = counts.most_common(1)[0]
+        confidence = round(count / sum(counts.values()), 4)
         ambiguity = ""
         if len(meaningful) > 1:
             parts = ", ".join(f"{k}:{v}" for k, v in sorted(meaningful.items()))

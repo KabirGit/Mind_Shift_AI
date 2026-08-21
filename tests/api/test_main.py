@@ -401,14 +401,14 @@ class FakeStoryRelationshipEngine:
             ),
             RelationshipProfile(
                 person="Bob",
-                mention_count=2,
-                avg_sentiment=0.2,
-                dominant_emotion="joy",
+                mention_count=4,
+                avg_sentiment=-0.3,
+                dominant_emotion="fear",
                 last_mentioned=TS,
-                trend="stable",
+                trend="declining",
                 relationship_type="colleague",
                 confidence=0.6,
-                explanation="Bob is below mention threshold.",
+                explanation="Bob appears stressful.",
             ),
         ]
 
@@ -574,8 +574,11 @@ def test_dashboard_story_happy_path_applies_thresholds():
     assert body["headline"]["sentiment_delta"] == 0.25
     assert body["top_working"][0]["habit"] == "exercise"
     assert all(item["confidence"] >= 0.5 for item in body["top_working"])
-    assert [item["topic"] for item in body["top_draining"]] == ["career"]
-    assert [person["person"] for person in body["people"]] == ["Alice"]
+    assert [item["topic"] for item in body["top_draining"]] == ["career", "Bob"]
+    assert body["top_draining"][1]["source_type"] == "person"
+    assert [person["person"] for person in body["people"]] == ["Bob", "Alice"]
+    assert all(person["impact_summary"] for person in body["people"])
+    assert body["weekly_buckets"][0]["mood_score"] >= 0
     assert body["rhythm"]["day_time_crossing"] == "Monday morning"
     assert body["weekly_buckets"]
     assert "not a clinical assessment" in body["forecast"]["burnout_risk"]["explanation"]

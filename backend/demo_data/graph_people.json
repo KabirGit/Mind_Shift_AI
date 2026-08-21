@@ -11,36 +11,36 @@
       "id": "Meera",
       "label": "Meera",
       "type": "person",
-      "relationship_type": "unknown",
-      "mention_count": 28
+      "relationship_type": "family",
+      "mention_count": 29
+    },
+    {
+      "id": "Papa",
+      "label": "Papa",
+      "type": "person",
+      "relationship_type": "family",
+      "mention_count": 17
     },
     {
       "id": "Anjali",
       "label": "Anjali",
       "type": "person",
-      "relationship_type": "unknown",
+      "relationship_type": "other",
       "mention_count": 8
     },
     {
       "id": "Neha",
       "label": "Neha",
       "type": "person",
-      "relationship_type": "unknown",
+      "relationship_type": "family",
       "mention_count": 6
     },
     {
       "id": "Ma",
       "label": "Ma",
       "type": "person",
-      "relationship_type": "unknown",
+      "relationship_type": "family",
       "mention_count": 4
-    },
-    {
-      "id": "Told Meera",
-      "label": "Told Meera",
-      "type": "person",
-      "relationship_type": "unknown",
-      "mention_count": 2
     },
     {
       "id": "Priya",
@@ -48,64 +48,50 @@
       "type": "person",
       "relationship_type": "colleague",
       "mention_count": 2
-    },
-    {
-      "id": "Papa",
-      "label": "Papa",
-      "type": "person",
-      "relationship_type": "unknown",
-      "mention_count": 2
     }
   ],
   "edges": [
     {
       "source": "User",
       "target": "Meera",
-      "sentiment": 0.4518,
-      "weight": 28,
-      "closeness_score": 4.5582
+      "sentiment": 0.4704,
+      "weight": 29,
+      "closeness_score": 4.7461
+    },
+    {
+      "source": "User",
+      "target": "Papa",
+      "sentiment": 0.5296,
+      "weight": 17,
+      "closeness_score": 2.5727
     },
     {
       "source": "User",
       "target": "Anjali",
       "sentiment": 0.7392,
       "weight": 8,
-      "closeness_score": 1.2379
+      "closeness_score": 1.2259
     },
     {
       "source": "User",
       "target": "Neha",
       "sentiment": 0.6553,
       "weight": 6,
-      "closeness_score": 1.7788
+      "closeness_score": 1.7712
     },
     {
       "source": "User",
       "target": "Ma",
       "sentiment": 0.0351,
       "weight": 4,
-      "closeness_score": 0.2406
-    },
-    {
-      "source": "User",
-      "target": "Told Meera",
-      "sentiment": 0.9828,
-      "weight": 2,
-      "closeness_score": 0.2386
+      "closeness_score": 0.2383
     },
     {
       "source": "User",
       "target": "Priya",
       "sentiment": 0.5091,
       "weight": 2,
-      "closeness_score": 0.1137
-    },
-    {
-      "source": "User",
-      "target": "Papa",
-      "sentiment": 0.4655,
-      "weight": 2,
-      "closeness_score": 0.0105
+      "closeness_score": 0.1126
     }
   ]
 }

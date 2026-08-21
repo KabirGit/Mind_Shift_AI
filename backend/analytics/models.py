@@ -18,6 +18,11 @@ class TriggerStat(BaseModel):
     trend: str  # "increasing" | "decreasing" | "stable"
     confidence: float = 0.0  # min(1.0, frequency / 10)
     explanation: str = ""
+    source_type: str = "topic"  # "topic" | "person"
+    display_label: str = ""
+    sentiment_score: int = 50
+    sentiment_label: str = ""
+    sentiment_summary: str = ""
 
 
 class PatternSummary(BaseModel):

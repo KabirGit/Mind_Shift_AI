@@ -9,7 +9,9 @@
       "baseline_sentiment": null,
       "primary_person": "Rohan",
       "significance_score": 0.9892,
-      "event_type": "negative_peak"
+      "event_type": "negative_peak",
+      "mood_score": 1,
+      "mood_label": "very heavy"
     },
     {
       "timestamp": "2026-07-25T12:00:00Z",
@@ -20,7 +22,9 @@
       "baseline_sentiment": -0.4788,
       "primary_person": "Meera",
       "significance_score": 1.4141,
-      "event_type": "positive_peak"
+      "event_type": "positive_peak",
+      "mood_score": 97,
+      "mood_label": "strongly positive"
     },
     {
       "timestamp": "2026-07-26T12:00:00Z",
@@ -31,7 +35,9 @@
       "baseline_sentiment": -0.0074,
       "primary_person": "Meera",
       "significance_score": 0.4024,
-      "event_type": "negative_peak"
+      "event_type": "negative_peak",
+      "mood_score": 30,
+      "mood_label": "heavy"
     },
     {
       "timestamp": "2026-07-28T12:00:00Z",
@@ -42,7 +48,9 @@
       "baseline_sentiment": null,
       "primary_person": "Neha",
       "significance_score": 0.8918,
-      "event_type": "positive_peak"
+      "event_type": "positive_peak",
+      "mood_score": 95,
+      "mood_label": "strongly positive"
     },
     {
       "timestamp": "2026-07-29T12:00:00Z",
@@ -53,7 +61,9 @@
       "baseline_sentiment": 0.0799,
       "primary_person": "Meera",
       "significance_score": 0.8295,
-      "event_type": "positive_peak"
+      "event_type": "positive_peak",
+      "mood_score": 95,
+      "mood_label": "strongly positive"
     },
     {
       "timestamp": "2026-07-30T12:00:00Z",
@@ -61,10 +71,12 @@
       "description": "I actually went. Six in the morning, alarm screaming, every part of me wanting to cancel on Vikram, ",
       "emotion": "neutral",
       "sentiment": 0.9598,
-      "baseline_sentiment": -0.0288,
+      "baseline_sentiment": 0.5479,
       "primary_person": "Papa",
-      "significance_score": 0.9886,
-      "event_type": "positive_peak"
+      "significance_score": 0.4119,
+      "event_type": "positive_peak",
+      "mood_score": 98,
+      "mood_label": "strongly positive"
     },
     {
       "timestamp": "2026-07-31T12:00:00Z",
@@ -75,7 +87,9 @@
       "baseline_sentiment": 0.4645,
       "primary_person": "Meera",
       "significance_score": 1.4174,
-      "event_type": "negative_peak"
+      "event_type": "negative_peak",
+      "mood_score": 2,
+      "mood_label": "very heavy"
     },
     {
       "timestamp": "2026-08-01T12:00:00Z",
@@ -86,7 +100,9 @@
       "baseline_sentiment": 0.0014,
       "primary_person": "Ma",
       "significance_score": 0.8548,
-      "event_type": "negative_peak"
+      "event_type": "negative_peak",
+      "mood_score": 7,
+      "mood_label": "very heavy"
     },
     {
       "timestamp": "2026-08-03T12:00:00Z",
@@ -97,7 +113,22 @@
       "baseline_sentiment": 0.2075,
       "primary_person": "Meera",
       "significance_score": 0.7538,
-      "event_type": "positive_peak"
+      "event_type": "positive_peak",
+      "mood_score": 98,
+      "mood_label": "strongly positive"
+    },
+    {
+      "timestamp": "2026-08-04T12:00:00Z",
+      "title": "health — feeling realization",
+      "description": "Finally called Rohan back properly tonight about the loan instead of texting one-line non-answers. S",
+      "emotion": "realization",
+      "sentiment": 0.5137,
+      "baseline_sentiment": 0.2178,
+      "primary_person": "Meera",
+      "significance_score": 0.2959,
+      "event_type": "normal",
+      "mood_score": 76,
+      "mood_label": "positive"
     },
     {
       "timestamp": "2026-08-05T12:00:00Z",
@@ -108,7 +139,22 @@
       "baseline_sentiment": 0.1286,
       "primary_person": "Meera",
       "significance_score": 0.8575,
-      "event_type": "positive_peak"
+      "event_type": "positive_peak",
+      "mood_score": 99,
+      "mood_label": "strongly positive"
+    },
+    {
+      "timestamp": "2026-08-06T12:00:00Z",
+      "title": "career — feeling joy",
+      "description": "Tried a longer meditation session this morning before work, ten minutes instead of the usual five be",
+      "emotion": "joy",
+      "sentiment": 0.9842,
+      "baseline_sentiment": 0.8459,
+      "primary_person": "Anjali",
+      "significance_score": 0.1383,
+      "event_type": "normal",
+      "mood_score": 99,
+      "mood_label": "strongly positive"
     },
     {
       "timestamp": "2026-08-08T12:00:00Z",
@@ -119,7 +165,9 @@
       "baseline_sentiment": 0.8736,
       "primary_person": "Anjali",
       "significance_score": 1.2394,
-      "event_type": "negative_peak"
+      "event_type": "negative_peak",
+      "mood_score": 32,
+      "mood_label": "heavy"
     },
     {
       "timestamp": "2026-08-09T12:00:00Z",
@@ -130,7 +178,9 @@
       "baseline_sentiment": 0.6218,
       "primary_person": "Meera",
       "significance_score": 0.3437,
-      "event_type": "normal"
+      "event_type": "normal",
+      "mood_score": 98,
+      "mood_label": "strongly positive"
     },
     {
       "timestamp": "2026-08-10T12:00:00Z",
@@ -141,7 +191,9 @@
       "baseline_sentiment": 0.7122,
       "primary_person": "Meera",
       "significance_score": 1.547,
-      "event_type": "negative_peak"
+      "event_type": "negative_peak",
+      "mood_score": 8,
+      "mood_label": "very heavy"
     },
     {
       "timestamp": "2026-08-11T12:00:00Z",
@@ -152,7 +204,9 @@
       "baseline_sentiment": 0.348,
       "primary_person": "Meera",
       "significance_score": 0.6386,
-      "event_type": "positive_peak"
+      "event_type": "positive_peak",
+      "mood_score": 99,
+      "mood_label": "strongly positive"
     },
     {
       "timestamp": "2026-08-13T12:00:00Z",
@@ -163,7 +217,9 @@
       "baseline_sentiment": 0.6185,
       "primary_person": "Anjali",
       "significance_score": 0.3352,
-      "event_type": "normal"
+      "event_type": "normal",
+      "mood_score": 98,
+      "mood_label": "strongly positive"
     },
     {
       "timestamp": "2026-08-14T12:00:00Z",
@@ -174,7 +230,9 @@
       "baseline_sentiment": -0.2835,
       "primary_person": "Ma",
       "significance_score": 1.2746,
-      "event_type": "positive_peak"
+      "event_type": "positive_peak",
+      "mood_score": 100,
+      "mood_label": "strongly positive"
     },
     {
       "timestamp": "2026-08-15T12:00:00Z",
@@ -182,32 +240,12 @@
       "description": "Presentation to leadership today on the completed migration, something I'd been quietly dreading for",
       "emotion": "joy",
       "sentiment": 0.9837,
-      "baseline_sentiment": 0.6008,
+      "baseline_sentiment": 0.606,
       "primary_person": "Meera",
-      "significance_score": 0.3829,
-      "event_type": "normal"
-    },
-    {
-      "timestamp": "2026-08-16T12:00:00Z",
-      "title": "health — feeling joy",
-      "description": "Fourth Saturday run in a row with Vikram now, a real streak at this point rather than something I'm ",
-      "emotion": "joy",
-      "sentiment": 0.9732,
-      "baseline_sentiment": 0.6045,
-      "primary_person": "Meera",
-      "significance_score": 0.3687,
-      "event_type": "normal"
-    },
-    {
-      "timestamp": "2026-08-18T12:00:00Z",
-      "title": "health — feeling approval",
-      "description": "Called Rohan tonight to check in properly, not about money this time, just to see how the bike shop ",
-      "emotion": "approval",
-      "sentiment": 0.961,
-      "baseline_sentiment": null,
-      "primary_person": null,
-      "significance_score": 0.961,
-      "event_type": "positive_peak"
+      "significance_score": 0.3777,
+      "event_type": "normal",
+      "mood_score": 99,
+      "mood_label": "strongly positive"
     },
     {
       "timestamp": "2026-08-21T12:00:00Z",
@@ -218,7 +256,9 @@
       "baseline_sentiment": 0.9509,
       "primary_person": "Meera",
       "significance_score": 1.5969,
-      "event_type": "negative_peak"
+      "event_type": "negative_peak",
+      "mood_score": 18,
+      "mood_label": "very heavy"
     }
   ]
 }

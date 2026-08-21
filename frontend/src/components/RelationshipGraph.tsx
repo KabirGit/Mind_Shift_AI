@@ -25,15 +25,16 @@ type GraphLink = PeopleGraph["edges"][number] &
   SimulationLinkDatum<GraphNode>;
 
 const WIDTH = 760;
-const HEIGHT = 420;
+const HEIGHT = 500;
+const GRAPH_MARGIN = 58;
 const CLUSTER_POINTS: Record<string, { x: number; y: number }> = {
   self: { x: WIDTH / 2, y: HEIGHT / 2 },
-  family: { x: WIDTH * 0.26, y: HEIGHT * 0.32 },
-  friend: { x: WIDTH * 0.72, y: HEIGHT * 0.3 },
-  colleague: { x: WIDTH * 0.28, y: HEIGHT * 0.72 },
-  partner: { x: WIDTH * 0.72, y: HEIGHT * 0.68 },
-  other: { x: WIDTH * 0.5, y: HEIGHT * 0.18 },
-  unknown: { x: WIDTH * 0.5, y: HEIGHT * 0.82 }
+  family: { x: WIDTH * 0.2, y: HEIGHT * 0.26 },
+  friend: { x: WIDTH * 0.8, y: HEIGHT * 0.26 },
+  colleague: { x: WIDTH * 0.22, y: HEIGHT * 0.76 },
+  partner: { x: WIDTH * 0.78, y: HEIGHT * 0.74 },
+  other: { x: WIDTH * 0.5, y: HEIGHT * 0.14 },
+  unknown: { x: WIDTH * 0.5, y: HEIGHT * 0.88 }
 };
 
 export function RelationshipGraph({ graph }: { graph: PeopleGraph | null }) {
@@ -50,7 +51,7 @@ export function RelationshipGraph({ graph }: { graph: PeopleGraph | null }) {
       radius:
         node.type === "user"
           ? 24
-          : 10 + Math.sqrt(node.mention_count / maxMentions) * 18
+          : 12 + Math.sqrt(node.mention_count / maxMentions) * 20
     }));
     const nextLinks: GraphLink[] = rawLinks.map((edge) => ({ ...edge }));
     return { nodes: nextNodes, links: nextLinks };
@@ -73,21 +74,25 @@ export function RelationshipGraph({ graph }: { graph: PeopleGraph | null }) {
         "link",
         forceLink<GraphNode, GraphLink>(linkCopies)
           .id((node) => node.id)
-          .distance((link) => 185 - (link.closeness_score / maxCloseness) * 105)
-          .strength((link) => Math.min(0.8, 0.2 + link.weight * 0.08))
+          .distance((link) => 250 - (link.closeness_score / maxCloseness) * 95)
+          .strength((link) => Math.min(0.7, 0.18 + link.weight * 0.06))
       )
-      .force("charge", forceManyBody().strength(-180))
+      .force("charge", forceManyBody().strength(-430))
       .force("center", forceCenter(WIDTH / 2, HEIGHT / 2))
       .force(
         "clusterX",
-        forceX<GraphNode>((node) => clusterPoint(node).x).strength(0.18)
+        forceX<GraphNode>((node) => clusterPoint(node).x).strength(0.11)
       )
       .force(
         "clusterY",
-        forceY<GraphNode>((node) => clusterPoint(node).y).strength(0.18)
+        forceY<GraphNode>((node) => clusterPoint(node).y).strength(0.11)
       )
-      .force("collide", forceCollide<GraphNode>((node) => node.radius + 10))
+      .force("collide", forceCollide<GraphNode>((node) => node.radius + 34).iterations(2))
       .on("tick", () => {
+        for (const node of nodeCopies) {
+          node.x = Math.max(GRAPH_MARGIN, Math.min(WIDTH - GRAPH_MARGIN, node.x ?? WIDTH / 2));
+          node.y = Math.max(GRAPH_MARGIN, Math.min(HEIGHT - GRAPH_MARGIN, node.y ?? HEIGHT / 2));
+        }
         tickRef.current += 1;
         if (tickRef.current % 2 === 0) {
           setNodes([...nodeCopies]);
@@ -119,7 +124,7 @@ export function RelationshipGraph({ graph }: { graph: PeopleGraph | null }) {
     <div className="min-w-0">
       <svg
         aria-label="Relationship graph"
-        className="h-[360px] w-full rounded-lg border border-line bg-canvas"
+        className="h-[430px] w-full rounded-lg border border-line bg-canvas"
         role="img"
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
       >
@@ -164,6 +169,9 @@ export function RelationshipGraph({ graph }: { graph: PeopleGraph | null }) {
                 fill="#292722"
                 fontSize="13"
                 fontWeight="700"
+                paintOrder="stroke"
+                stroke="#fffdf8"
+                strokeWidth="4"
                 textAnchor="middle"
               >
                 {node.label}

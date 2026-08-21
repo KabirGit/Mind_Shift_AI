@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 
 from backend.analytics._stats_utils import filter_window, parse_ts, sort_key
 from backend.analytics.models import compute_confidence
+from backend.analytics.presentation import mood_score
 from backend.storage.db import JournalDB
 
 logger = logging.getLogger(__name__)
@@ -24,6 +25,10 @@ class SentimentForecast(BaseModel):
         "persisted for later comparison."
     )
     explanation: str = ""
+    predicted_mood_score: int = 50
+    metric_note: str = (
+        "Mood direction is a 7-day linear forecast from recent VADER sentiment scores."
+    )
 
 
 class BurnoutRisk(BaseModel):
@@ -32,6 +37,10 @@ class BurnoutRisk(BaseModel):
     contributing_factors: list[str] = Field(default_factory=list)
     confidence: float = 0.0
     explanation: str = ""
+    metric_note: str = (
+        "Stress pattern combines recent negative-entry share, stress-linked emotions, "
+        "declining trend, and high career focus."
+    )
 
 
 class PredictionEngine:
@@ -88,6 +97,7 @@ class PredictionEngine:
                 predicted_sentiment=round(float(max(-1.0, min(1.0, pred))), 4),
                 direction=direction,
                 confidence=round(max(0.0, min(1.0, r2)), 4),
+                predicted_mood_score=mood_score(pred),
                 explanation=(
                     f"Based on {len(records)} entries. Trend slope: {m:+.3f}/day. "
                     f"R\u00b2: {r2:.2f}."
