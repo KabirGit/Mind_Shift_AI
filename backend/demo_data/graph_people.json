@@ -11,7 +11,7 @@
       "id": "Meera",
       "label": "Meera",
       "type": "person",
-      "relationship_type": "family",
+      "relationship_type": "friend",
       "mention_count": 29
     },
     {
@@ -25,8 +25,15 @@
       "id": "Vikram",
       "label": "Vikram",
       "type": "person",
-      "relationship_type": "unknown",
+      "relationship_type": "friend",
       "mention_count": 14
+    },
+    {
+      "id": "Sameer",
+      "label": "Sameer",
+      "type": "person",
+      "relationship_type": "friend",
+      "mention_count": 12
     },
     {
       "id": "Rohan",
@@ -36,24 +43,17 @@
       "mention_count": 12
     },
     {
-      "id": "Sameer",
-      "label": "Sameer",
+      "id": "Priya",
+      "label": "Priya",
       "type": "person",
-      "relationship_type": "unknown",
-      "mention_count": 11
+      "relationship_type": "colleague",
+      "mention_count": 9
     },
     {
       "id": "Anjali",
       "label": "Anjali",
       "type": "person",
       "relationship_type": "other",
-      "mention_count": 8
-    },
-    {
-      "id": "Priya",
-      "label": "Priya",
-      "type": "person",
-      "relationship_type": "colleague",
       "mention_count": 8
     },
     {
@@ -69,6 +69,13 @@
       "type": "person",
       "relationship_type": "family",
       "mention_count": 4
+    },
+    {
+      "id": "Arjun",
+      "label": "Arjun",
+      "type": "person",
+      "relationship_type": "unknown",
+      "mention_count": 4
     }
   ],
   "edges": [
@@ -77,63 +84,70 @@
       "target": "Meera",
       "sentiment": 0.4704,
       "weight": 29,
-      "closeness_score": 4.7349
+      "closeness_score": 4.7179
     },
     {
       "source": "User",
       "target": "Papa",
       "sentiment": 0.5296,
       "weight": 17,
-      "closeness_score": 2.568
+      "closeness_score": 2.5609
     },
     {
       "source": "User",
       "target": "Vikram",
       "sentiment": 0.7127,
       "weight": 14,
-      "closeness_score": 3.9647
+      "closeness_score": 3.9511
+    },
+    {
+      "source": "User",
+      "target": "Sameer",
+      "sentiment": 0.5948,
+      "weight": 12,
+      "closeness_score": 2.7862
     },
     {
       "source": "User",
       "target": "Rohan",
       "sentiment": 0.277,
       "weight": 12,
-      "closeness_score": 2.5433
+      "closeness_score": 2.5363
     },
     {
       "source": "User",
-      "target": "Sameer",
-      "sentiment": 0.5611,
-      "weight": 11,
-      "closeness_score": 2.7245
+      "target": "Priya",
+      "sentiment": 0.2779,
+      "weight": 9,
+      "closeness_score": 0.1948
     },
     {
       "source": "User",
       "target": "Anjali",
       "sentiment": 0.7392,
       "weight": 8,
-      "closeness_score": 1.2222
-    },
-    {
-      "source": "User",
-      "target": "Priya",
-      "sentiment": 0.3638,
-      "weight": 8,
-      "closeness_score": 0.193
+      "closeness_score": 1.2167
     },
     {
       "source": "User",
       "target": "Neha",
       "sentiment": 0.6553,
       "weight": 6,
-      "closeness_score": 1.7689
+      "closeness_score": 1.7654
     },
     {
       "source": "User",
       "target": "Ma",
       "sentiment": 0.0351,
       "weight": 4,
-      "closeness_score": 0.2376
+      "closeness_score": 0.2365
+    },
+    {
+      "source": "User",
+      "target": "Arjun",
+      "sentiment": 0.144,
+      "weight": 4,
+      "closeness_score": 0.083
     }
   ]
 }

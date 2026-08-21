@@ -16,7 +16,7 @@ export function AppShell({ children }: AppShellProps) {
     <div className="min-h-screen bg-canvas text-ink">
       <header className="sticky top-0 z-20 border-b border-line/80 bg-canvas/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-          <Link href="/chat" className="flex items-center gap-3 font-semibold">
+          <Link href="/dashboard" className="flex items-center gap-3 font-semibold">
             <span className="grid size-8 place-items-center rounded-full bg-coral text-white">
               *
             </span>

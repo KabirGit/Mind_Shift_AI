@@ -77,6 +77,11 @@ def presence_label(mention_count: int) -> str:
     return "an occasional presence"
 
 
+def trend_phrase(sentiment_trend: str) -> str:
+    article = "an" if sentiment_trend[:1].lower() in {"a", "e", "i", "o", "u"} else "a"
+    return f"{article} {sentiment_trend} trend"
+
+
 def relationship_impact_summary(
     *,
     person: str,
@@ -98,5 +103,6 @@ def relationship_impact_summary(
     return (
         f"{person} appears as {relation} across {mention_count} entries; "
         f"the pattern is {sentiment_label(avg_sentiment)}, most often {dominant_emotion}, "
-        f"with a {sentiment_trend} trend. This reads as {presence_label(mention_count)}."
+        f"with {trend_phrase(sentiment_trend)}. "
+        f"This reads as {presence_label(mention_count)}."
     )

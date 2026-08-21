@@ -23,6 +23,7 @@ from backend.analytics.presentation import (
     relationship_impact_summary,
     sentiment_label,
     sentiment_summary,
+    trend_phrase,
 )
 from backend.analytics.prediction_engine import BurnoutRisk, SentimentForecast
 from backend.analytics.relationship_engine import RelationshipProfile
@@ -257,8 +258,8 @@ class DashboardStoryComposer:
                     explanation=(
                         f"{person.person} appears as {relation} in "
                         f"{person.mention_count} entries; dominant emotion "
-                        f"{person.dominant_emotion}, trend {person.sentiment_trend}. "
-                        f"Its mood score is {mood_score(person.avg_sentiment)}%, below "
+                        f"{person.dominant_emotion}, with {trend_phrase(person.sentiment_trend)}. "
+                        f"The linked mood score is {mood_score(person.avg_sentiment)}%, below "
                         f"the current baseline mood score of {mood_score(baseline_sentiment)}%."
                     ),
                     sentiment_score=mood_score(person.avg_sentiment),

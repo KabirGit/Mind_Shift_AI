@@ -11,7 +11,8 @@ TOPIC_KEYWORDS: dict[str, list[str]] = {
     "career": [
         "job", "work", "career", "boss", "manager", "office", "promotion",
         "interview", "colleague", "project", "deadline", "meeting", "salary",
-        "leadership", "slack", "sprint", "migration", "code", "coding",
+        "leadership", "launch", "deliverable", "code", "coding", "code review",
+        "performance review",
     ],
     "health": [
         "health", "sick", "ill", "doctor", "hospital", "sleep", "tired",
@@ -95,12 +96,13 @@ _PERSON_LEADING_NOISE = {
 }
 _PERSON_STOPWORDS = {
     "api",
+    "diwali",
     "friday",
     "felt",
+    "finally",
     "he",
     "instagram",
     "monday",
-    "pune",
     "saturday",
     "slack",
     "she",
@@ -116,22 +118,29 @@ _PERSON_STOPWORDS = {
 _NAME_PATTERN = r"(?:Dr\.\s*)?[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?"
 _INTERACTION_VERBS = (
     r"texted|called|asked|said|mentioned|noticed|replied|agreed|suggested|"
-    r"listened|visited|came|joined|told|helped|checked|met|wanted|found"
+    r"listened|visited|came|joined|told|helped|checked|met|wanted|found|"
+    r"caught|reviewed|paired"
 )
 _RELATIONSHIP_CUE_PATTERN = (
-    r"best friend|old friend|close friend|friend|wife|husband|partner|"
+    r"best friend|old friend|close friend|longtime friend|college friend|"
+    r"childhood friend|friendship|friends?|wife|husband|partner|"
     r"girlfriend|boyfriend|spouse|fiancee?|mom|mother|dad|father|"
     r"younger brother|older brother|younger sister|older sister|brother|sister|"
     r"cousin|manager|boss|coworker|co-worker|colleague|teammate|mentor|"
     r"professor|teacher|therapist|doctor|coach|neighbor"
 )
 _RELATIONSHIP_ALIAS_TYPES = {
+    "amma": "family",
+    "appa": "family",
+    "baba": "family",
+    "daddy": "family",
     "ma": "family",
     "papa": "family",
     "mom": "family",
     "dad": "family",
     "mum": "family",
     "mama": "family",
+    "mummy": "family",
 }
 
 
@@ -272,7 +281,19 @@ class TextProcessor:
             rf"\b(?P<name>{_NAME_PATTERN})\s*,?\s+"
             rf"(?:my|our|his|her|their)\s+(?P<cue>{_RELATIONSHIP_CUE_PATTERN})\b"
         )
-        alias = re.compile(r"\b(?P<name>Ma|Papa|Mom|Dad|Mum|Mama)\b")
+        friendship_context = re.compile(
+            rf"\b(?P<name>{_NAME_PATTERN})\b[^.!?\n]{{0,180}}\b"
+            rf"(?:friendship|friends?|(?:has\s+known|known|knows)\s+me\s+since\s+"
+            rf"(?:college|school|childhood|we\s+were\s+kids))\b"
+        )
+        alias_names = "|".join(
+            sorted(
+                (re.escape(name.title()) for name in _RELATIONSHIP_ALIAS_TYPES),
+                key=len,
+                reverse=True,
+            )
+        )
+        alias = re.compile(rf"\b(?P<name>{alias_names})\b")
 
         for pattern in (before_name, after_name):
             for match in pattern.finditer(text):
@@ -282,6 +303,13 @@ class TextProcessor:
                     continue
                 spans.setdefault(person, []).append(match.span("name"))
                 types.setdefault(person, rel_type)
+
+        for match in friendship_context.finditer(text):
+            person = cls._normalize_person_name(match.group("name"))
+            if not person:
+                continue
+            spans.setdefault(person, []).append(match.span("name"))
+            types.setdefault(person, "friend")
 
         for match in alias.finditer(text):
             person = cls._normalize_person_name(match.group("name"))
@@ -299,9 +327,16 @@ class TextProcessor:
             rf"\b(?P<name>{_NAME_PATTERN})\s+(?P<verb>{_INTERACTION_VERBS})\b"
         )
         preposition_name = re.compile(
-            rf"\b(?:with|from|to|about|for)\s+(?P<name>{_NAME_PATTERN})\b"
+            rf"\b(?:with|from|to|about|for|at)\s+(?P<name>{_NAME_PATTERN})\b"
         )
-        for pattern in (subject_action, preposition_name):
+        object_action = re.compile(
+            rf"\b(?:texted|called|asked|told|met|saw|visited|helped|thanked|"
+            rf"messaged|apologized\s+to)\s+(?P<name>{_NAME_PATTERN})\b"
+        )
+        name_and_self = re.compile(
+            rf"\b(?P<name>{_NAME_PATTERN})\s+and\s+(?:I|me)\b"
+        )
+        for pattern in (subject_action, preposition_name, object_action, name_and_self):
             for match in pattern.finditer(text):
                 person = cls._normalize_person_name(match.group("name"))
                 if not person:
@@ -359,7 +394,7 @@ class TextProcessor:
         people: list[str],
         person_spans: list[tuple[str, int, int]],
         direct_relationship_types: dict[str, str] | None = None,
-        window_chars: int = 64,
+        window_chars: int = 120,
     ) -> dict[str, str]:
         if not people:
             return {}

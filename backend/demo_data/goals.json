@@ -1,42 +1,16 @@
 {
   "goals": [
     {
-      "goal_keyword": "mental_health",
-      "first_mentioned": "2026-07-28T12:00:00Z",
-      "last_mentioned": "2026-08-21T12:00:00Z",
-      "mention_count": 12,
-      "avg_sentiment": 0.669,
-      "sentiment_trend": "declining",
-      "phase": "ramping",
-      "estimated_progress": 0.2842,
-      "confidence": 1.0,
-      "explanation": "Mental health mentioned 12 times; sentiment trend declining; phase ramping.",
-      "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
-    },
-    {
       "goal_keyword": "fitness",
-      "first_mentioned": "2026-08-01T12:00:00Z",
-      "last_mentioned": "2026-08-14T12:00:00Z",
-      "mention_count": 3,
-      "avg_sentiment": 0.357,
+      "first_mentioned": "2026-07-24T12:00:00Z",
+      "last_mentioned": "2026-08-16T12:00:00Z",
+      "mention_count": 8,
+      "avg_sentiment": 0.4816,
       "sentiment_trend": "improving",
       "phase": "ramping",
       "estimated_progress": 1.0,
-      "confidence": 0.3,
-      "explanation": "Fitness mentioned 3 times; sentiment trend improving; phase ramping.",
-      "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
-    },
-    {
-      "goal_keyword": "education",
-      "first_mentioned": "2026-07-26T12:00:00Z",
-      "last_mentioned": "2026-08-12T12:00:00Z",
-      "mention_count": 3,
-      "avg_sentiment": 0.4717,
-      "sentiment_trend": "improving",
-      "phase": "starting",
-      "estimated_progress": 1.0,
-      "confidence": 0.3,
-      "explanation": "Education mentioned 3 times; sentiment trend improving; phase starting.",
+      "confidence": 0.8,
+      "explanation": "Fitness mentioned 8 times; sentiment trend improving; phase ramping.",
       "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
     }
   ]

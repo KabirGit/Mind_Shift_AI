@@ -282,12 +282,26 @@
       "dominant_emotion": "confusion",
       "trend": "stable",
       "confidence": 1.0,
-      "explanation": "Ma appears as family in 4 entries; dominant emotion confusion, trend stable. Its mood score is 52%, below the current baseline mood score of 74%.",
+      "explanation": "Ma appears as family in 4 entries; dominant emotion confusion, with a stable trend. The linked mood score is 52%, below the current baseline mood score of 74%.",
       "source_type": "person",
       "display_label": "Ma",
       "sentiment_score": 52,
       "sentiment_label": "mixed",
       "sentiment_summary": "mixed mood score 52% below baseline"
+    },
+    {
+      "topic": "Arjun",
+      "frequency": 4,
+      "avg_sentiment": 0.144,
+      "dominant_emotion": "disappointment",
+      "trend": "improving",
+      "confidence": 1.0,
+      "explanation": "Arjun appears as recurring connection in 4 entries; dominant emotion disappointment, with an improving trend. The linked mood score is 57%, below the current baseline mood score of 74%.",
+      "source_type": "person",
+      "display_label": "Arjun",
+      "sentiment_score": 57,
+      "sentiment_label": "mixed",
+      "sentiment_summary": "mixed mood score 57% below baseline"
     },
     {
       "topic": "Rohan",
@@ -296,7 +310,7 @@
       "dominant_emotion": "realization",
       "trend": "improving",
       "confidence": 1.0,
-      "explanation": "Rohan appears as family in 12 entries; dominant emotion realization, trend improving. Its mood score is 64%, below the current baseline mood score of 74%.",
+      "explanation": "Rohan appears as family in 12 entries; dominant emotion realization, with an improving trend. The linked mood score is 64%, below the current baseline mood score of 74%.",
       "source_type": "person",
       "display_label": "Rohan",
       "sentiment_score": 64,
@@ -315,7 +329,7 @@
       "relationship_type": "family",
       "relationship_type_confidence": 1.0,
       "relationship_type_ambiguity": "",
-      "closeness_score": 0.2376,
+      "closeness_score": 0.2365,
       "sentiment_trend": "stable",
       "co_mentioned_with": {
         "Meera": 4,
@@ -331,6 +345,32 @@
       "impact_summary": "Ma appears as family across 4 entries; the pattern is mixed, most often confusion, with a stable trend. This reads as an occasional but repeated presence."
     },
     {
+      "person": "Arjun",
+      "mention_count": 4,
+      "avg_sentiment": 0.144,
+      "dominant_emotion": "disappointment",
+      "last_mentioned": "2026-08-07T12:00:00Z",
+      "trend": "improving",
+      "relationship_type": "unknown",
+      "relationship_type_confidence": 1.0,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 0.083,
+      "sentiment_trend": "improving",
+      "co_mentioned_with": {
+        "Meera": 4,
+        "Priya": 3,
+        "Rohan": 2,
+        "Sameer": 1,
+        "Anjali": 1,
+        "Papa": 1
+      },
+      "confidence": 0.4,
+      "explanation": "Based on 4 entries mentioning Arjun; usually disappointment, trend improving.",
+      "sentiment_score": 57,
+      "sentiment_label": "mixed",
+      "impact_summary": "Arjun appears as a recurring connection across 4 entries; the pattern is mixed, most often disappointment, with an improving trend. This reads as an occasional but repeated presence."
+    },
+    {
       "person": "Anjali",
       "mention_count": 8,
       "avg_sentiment": 0.7392,
@@ -340,7 +380,7 @@
       "relationship_type": "other",
       "relationship_type_confidence": 0.125,
       "relationship_type_ambiguity": "",
-      "closeness_score": 1.2222,
+      "closeness_score": 1.2167,
       "sentiment_trend": "declining",
       "co_mentioned_with": {
         "Meera": 8,
@@ -350,43 +390,14 @@
         "Rohan": 4,
         "Neha": 2,
         "Priya": 2,
-        "Finally": 1,
-        "Arjun": 1
+        "Arjun": 1,
+        "Ended": 1
       },
       "confidence": 0.8,
       "explanation": "Based on 8 entries mentioning Anjali; usually realization, trend declining.",
       "sentiment_score": 87,
       "sentiment_label": "strongly positive",
       "impact_summary": "Anjali appears as a support contact across 8 entries; the pattern is strongly positive, most often realization, with a declining trend. This reads as a recurring presence."
-    },
-    {
-      "person": "Vikram",
-      "mention_count": 14,
-      "avg_sentiment": 0.7127,
-      "dominant_emotion": "realization",
-      "last_mentioned": "2026-08-21T12:00:00Z",
-      "trend": "stable",
-      "relationship_type": "unknown",
-      "relationship_type_confidence": 1.0,
-      "relationship_type_ambiguity": "",
-      "closeness_score": 3.9647,
-      "sentiment_trend": "stable",
-      "co_mentioned_with": {
-        "Meera": 13,
-        "Papa": 10,
-        "Sameer": 8,
-        "Rohan": 6,
-        "Anjali": 5,
-        "Neha": 5,
-        "Priya": 3,
-        "Ma": 2,
-        "Diwali": 1
-      },
-      "confidence": 1.0,
-      "explanation": "Based on 14 entries mentioning Vikram; usually realization, trend stable.",
-      "sentiment_score": 86,
-      "sentiment_label": "strongly positive",
-      "impact_summary": "Vikram appears as a recurring connection across 14 entries; the pattern is strongly positive, most often realization, with a stable trend. This reads as someone you mention often."
     }
   ],
   "rhythm": {
@@ -397,17 +408,17 @@
     "day_time_sample_size": 4,
     "peak_day_avg_sentiment": -0.3992,
     "peak_time_avg_sentiment": -0.3992,
-    "baseline_avg_sentiment": 0.4322,
-    "delta": -0.8315,
+    "baseline_avg_sentiment": 0.451,
+    "delta": -0.8503,
     "confidence": 1.0,
-    "explanation": "Relationship sentiment peaks on Fridays (-0.83, below its baseline)."
+    "explanation": "Relationship sentiment peaks on Fridays (-0.85, below its baseline)."
   },
   "weekly_buckets": [
     {
       "label": "Jul 20-Jul 26",
       "avg_sentiment": -0.108,
       "dominant_emotion": "disappointment",
-      "top_topic": "career",
+      "top_topic": "health",
       "entry_count": 4,
       "mood_score": 45,
       "mood_label": "mixed"
@@ -474,42 +485,16 @@
   },
   "goals": [
     {
-      "goal_keyword": "mental_health",
-      "first_mentioned": "2026-07-28T12:00:00Z",
-      "last_mentioned": "2026-08-21T12:00:00Z",
-      "mention_count": 12,
-      "avg_sentiment": 0.669,
-      "sentiment_trend": "declining",
-      "phase": "ramping",
-      "estimated_progress": 0.2842,
-      "confidence": 1.0,
-      "explanation": "Mental health mentioned 12 times; sentiment trend declining; phase ramping.",
-      "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
-    },
-    {
       "goal_keyword": "fitness",
-      "first_mentioned": "2026-08-01T12:00:00Z",
-      "last_mentioned": "2026-08-14T12:00:00Z",
-      "mention_count": 3,
-      "avg_sentiment": 0.357,
+      "first_mentioned": "2026-07-24T12:00:00Z",
+      "last_mentioned": "2026-08-16T12:00:00Z",
+      "mention_count": 8,
+      "avg_sentiment": 0.4816,
       "sentiment_trend": "improving",
       "phase": "ramping",
       "estimated_progress": 1.0,
-      "confidence": 0.3,
-      "explanation": "Fitness mentioned 3 times; sentiment trend improving; phase ramping.",
-      "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
-    },
-    {
-      "goal_keyword": "education",
-      "first_mentioned": "2026-07-26T12:00:00Z",
-      "last_mentioned": "2026-08-12T12:00:00Z",
-      "mention_count": 3,
-      "avg_sentiment": 0.4717,
-      "sentiment_trend": "improving",
-      "phase": "starting",
-      "estimated_progress": 1.0,
-      "confidence": 0.3,
-      "explanation": "Education mentioned 3 times; sentiment trend improving; phase starting.",
+      "confidence": 0.8,
+      "explanation": "Fitness mentioned 8 times; sentiment trend improving; phase ramping.",
       "metric_note": "Estimated progress is a sentiment-trend proxy across entries that mention this goal."
     }
   ],

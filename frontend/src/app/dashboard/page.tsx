@@ -425,9 +425,9 @@ function PeopleSection({ rows }: { rows: DashboardStory["people"] }) {
             <div className="rounded-lg border border-line bg-canvas p-3" key={person.person}>
               <p className="font-semibold text-ink">
                 {person.impact_summary ??
-                  `${person.person} appears across ${person.mention_count} entries with a ${titleCase(
+                  `${person.person} appears across ${person.mention_count} entries with ${trendPhrase(
                     person.sentiment_trend
-                  )} trend.`}
+                  )}.`}
               </p>
               <p className="mt-2 text-sm leading-6 text-body">{person.explanation}</p>
               <EvidenceLine
@@ -671,4 +671,9 @@ function forecastPlainSentence(direction: string): string {
     return "Recent entries point to a heavier near-term mood direction.";
   }
   return "Recent entries point to a steady near-term mood direction.";
+}
+
+function trendPhrase(trend: string): string {
+  const article = /^[aeiou]/i.test(trend) ? "an" : "a";
+  return `${article} ${trend} trend`;
 }

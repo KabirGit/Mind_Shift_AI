@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from datetime import timedelta
 
 import numpy as np
@@ -15,11 +16,32 @@ logger = logging.getLogger(__name__)
 GOAL_PATTERNS: dict[str, list[str]] = {
     "internship": ["internship", "intern", "application"],
     "job_search": ["job", "offer", "interview", "hiring"],
-    "fitness": ["weight", "fitness", "diet", "gym goal"],
+    "fitness": ["weight", "fitness", "diet", "gym goal", "run", "running", "10k"],
     "mental_health": ["therapy", "anxiety", "stress management"],
     "education": ["exam", "degree", "graduation", "course"],
     "promotion": ["promotion", "raise", "performance review"],
 }
+
+_GOAL_INTENT_PATTERNS = (
+    "aim",
+    "committed",
+    "goal",
+    "going to",
+    "hope",
+    "hoping",
+    "improve",
+    "keep",
+    "plan",
+    "planning",
+    "practice",
+    "progress",
+    "signing up",
+    "streak",
+    "trying",
+    "want",
+    "working on",
+)
+_FIRST_PERSON_RE = r"\b(i|i'm|i've|i'll|i'd|my|me|we|we're|we've|we'll|our)\b"
 
 
 class GoalProgress(BaseModel):
@@ -54,7 +76,7 @@ class GoalEngine:
             for goal, keywords in GOAL_PATTERNS.items():
                 matched = [
                     r for r in records
-                    if any(k in (r.text or "").lower() for k in keywords)
+                    if self._mentions_user_goal(r.text or "", keywords)
                 ]
                 if len(matched) < 2:
                     continue
@@ -99,6 +121,42 @@ class GoalEngine:
         except Exception as exc:
             logger.exception("GoalEngine.analyze failed: %s", exc)
             return []
+
+    @classmethod
+    def _mentions_user_goal(cls, text: str, keywords: list[str]) -> bool:
+        for sentence in cls._sentences(text):
+            lowered = sentence.lower()
+            if not cls._has_keyword(lowered, keywords):
+                continue
+            if not cls._has_first_person(lowered):
+                continue
+            if cls._has_goal_intent(lowered):
+                return True
+        return False
+
+    @staticmethod
+    def _sentences(text: str) -> list[str]:
+        return [
+            part.strip()
+            for part in re.split(r"(?<=[.!?])\s+|\n+", text)
+            if part.strip()
+        ]
+
+    @staticmethod
+    def _has_keyword(lowered_sentence: str, keywords: list[str]) -> bool:
+        for keyword in keywords:
+            pattern = rf"(?<![a-z0-9]){re.escape(keyword.lower())}(?![a-z0-9])"
+            if re.search(pattern, lowered_sentence):
+                return True
+        return False
+
+    @staticmethod
+    def _has_first_person(lowered_sentence: str) -> bool:
+        return bool(re.search(_FIRST_PERSON_RE, lowered_sentence))
+
+    @staticmethod
+    def _has_goal_intent(lowered_sentence: str) -> bool:
+        return any(pattern in lowered_sentence for pattern in _GOAL_INTENT_PATTERNS)
 
     @staticmethod
     def _slope(records) -> float:

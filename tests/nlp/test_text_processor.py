@@ -90,12 +90,12 @@ def test_topics_are_ranked_by_evidence_not_static_bucket_order():
     processor = TextProcessor()
 
     health = processor.extract(
-        "Papa's follow-up appointment was today. The cardiology medication change "
+        "My father's follow-up appointment was today. The asthma medication change "
         "worked, the medical test looked good, and the doctor sounded relieved. "
         "I took one quick work call after dinner."
     )
     relationship = processor.extract(
-        "Long honest conversation with Meera on the balcony. We talked about how "
+        "Long honest conversation with Elena on the balcony. We talked about how "
         "distant and lonely the marriage had felt during my work stress, and how "
         "much the relationship needed real attention."
     )
@@ -106,9 +106,20 @@ def test_topics_are_ranked_by_evidence_not_static_bucket_order():
 
 def test_person_action_cues_recover_names_spacy_can_miss():
     out = TextProcessor().extract(
-        "Sameer texted after work. Run with Vikram felt steady, and Rohan called later."
+        "Marcus texted after work. Run with Elena felt steady, and Omar called later."
     )
 
-    assert "Sameer" in out["entities_people"]
-    assert "Vikram" in out["entities_people"]
-    assert "Rohan" in out["entities_people"]
+    assert "Marcus" in out["entities_people"]
+    assert "Elena" in out["entities_people"]
+    assert "Omar" in out["entities_people"]
+
+
+def test_friendship_context_types_people_without_name_specific_rules():
+    out = TextProcessor().extract(
+        "Nina mentioned today that she has known me since college. "
+        "Later, Carlos and I grabbed coffee after work."
+    )
+
+    assert "Nina" in out["entities_people"]
+    assert "Carlos" in out["entities_people"]
+    assert out["person_relationship_types"]["Nina"] == "friend"

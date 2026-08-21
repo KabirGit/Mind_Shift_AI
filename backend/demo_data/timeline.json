@@ -106,7 +106,7 @@
     },
     {
       "timestamp": "2026-08-03T12:00:00Z",
-      "title": "career — feeling approval",
+      "title": "relationship — feeling approval",
       "description": "Second run with Vikram this morning, and it was noticeably easier than Saturday, less gasping, more ",
       "emotion": "approval",
       "sentiment": 0.9613,
@@ -171,7 +171,7 @@
     },
     {
       "timestamp": "2026-08-09T12:00:00Z",
-      "title": "health — feeling disappointment",
+      "title": "relationship — feeling disappointment",
       "description": "Woke up exactly as rough as I expected, headache, low energy, that familiar hollow guilt sitting in ",
       "emotion": "disappointment",
       "sentiment": 0.9655,
