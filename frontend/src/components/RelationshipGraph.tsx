@@ -145,7 +145,7 @@ export function RelationshipGraph({ graph }: { graph: PeopleGraph | null }) {
                 y2={target.y ?? HEIGHT / 2}
               >
                 <title>
-                  {`${source.label} to ${target.label}: sentiment ${link.sentiment}, closeness ${link.closeness_score}`}
+                  {`${source.label} to ${target.label}: ${link.weight} shared mention signal(s)`}
                 </title>
               </line>
             );

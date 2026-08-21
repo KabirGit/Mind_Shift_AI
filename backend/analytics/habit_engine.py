@@ -8,6 +8,7 @@ from pydantic import BaseModel, Field
 
 from backend.analytics._stats_utils import filter_window, parse_ts
 from backend.analytics.models import compute_confidence
+from backend.analytics.presentation import delta_summary
 from backend.nlp.text_processor import HABIT_KEYWORDS
 from backend.storage.db import JournalDB
 
@@ -91,8 +92,7 @@ class HabitEngine:
                         confidence=compute_confidence(len(mentioned)),
                         explanation=(
                             f"{habit.capitalize()} mentioned {len(mentioned)} times; "
-                            f"mood was {round(delta, 2):+} {'higher' if delta >= 0 else 'lower'} "
-                            f"on those days."
+                            f"those days look {delta_summary(delta)} than non-mention days."
                         ),
                     )
                 )
@@ -141,7 +141,7 @@ class HabitEngine:
                     confidence=compute_confidence(len(together)),
                     explanation=(
                         f"{a} + {b} appeared together {len(together)} times; "
-                        f"sentiment was {delta:+.2f} vs either habit alone."
+                        f"the combined pattern looks {delta_summary(delta)} than either habit alone."
                     ),
                 )
             )

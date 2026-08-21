@@ -62,6 +62,21 @@ def sentiment_summary(value: float | None) -> str:
     return f"{sentiment_label(value)} mood score {mood_score(value)}%"
 
 
+def presence_label(mention_count: int) -> str:
+    """Qualitative mention-frequency bands for relationship cards.
+
+    Thresholds are intentionally simple and count-based:
+    10+ mentions = often, 5-9 = recurring, 3-4 = occasional but repeated.
+    """
+    if mention_count >= 10:
+        return "someone you mention often"
+    if mention_count >= 5:
+        return "a recurring presence"
+    if mention_count >= 3:
+        return "an occasional but repeated presence"
+    return "an occasional presence"
+
+
 def relationship_impact_summary(
     *,
     person: str,
@@ -83,5 +98,5 @@ def relationship_impact_summary(
     return (
         f"{person} appears as {relation} across {mention_count} entries; "
         f"the pattern is {sentiment_label(avg_sentiment)}, most often {dominant_emotion}, "
-        f"with a {sentiment_trend} trend and closeness score {closeness_score:.2f}."
+        f"with a {sentiment_trend} trend. This reads as {presence_label(mention_count)}."
     )

@@ -2,13 +2,13 @@
   "events": [
     {
       "timestamp": "2026-07-24T12:00:00Z",
-      "title": "career — feeling disappointment",
+      "title": "health — feeling disappointment",
       "description": "Another rough night. I keep waking up around two and just lying there running through everything Pri",
       "emotion": "disappointment",
       "sentiment": -0.9892,
-      "baseline_sentiment": null,
+      "baseline_sentiment": 0.0316,
       "primary_person": "Rohan",
-      "significance_score": 0.9892,
+      "significance_score": 1.0208,
       "event_type": "negative_peak",
       "mood_score": 1,
       "mood_label": "very heavy"
@@ -28,7 +28,7 @@
     },
     {
       "timestamp": "2026-07-26T12:00:00Z",
-      "title": "career — feeling disappointment",
+      "title": "health — feeling disappointment",
       "description": "Woke up with a pounding headache and that specific kind of hollow, ashamed feeling that follows a ni",
       "emotion": "disappointment",
       "sentiment": -0.4098,
@@ -41,7 +41,7 @@
     },
     {
       "timestamp": "2026-07-28T12:00:00Z",
-      "title": "career — feeling joy",
+      "title": "relationship — feeling joy",
       "description": "Neha came over this afternoon, my cousin, seventeen years old and somehow always the most alive pers",
       "emotion": "joy",
       "sentiment": 0.8918,
@@ -54,7 +54,7 @@
     },
     {
       "timestamp": "2026-07-29T12:00:00Z",
-      "title": "career — feeling disappointment",
+      "title": "health — feeling disappointment",
       "description": "End of a genuinely hard week, and I'm trying to actually sit with that instead of just pushing throu",
       "emotion": "disappointment",
       "sentiment": 0.9094,
@@ -67,7 +67,7 @@
     },
     {
       "timestamp": "2026-07-30T12:00:00Z",
-      "title": "career — feeling neutral",
+      "title": "health — feeling neutral",
       "description": "I actually went. Six in the morning, alarm screaming, every part of me wanting to cancel on Vikram, ",
       "emotion": "neutral",
       "sentiment": 0.9598,
@@ -80,7 +80,7 @@
     },
     {
       "timestamp": "2026-07-31T12:00:00Z",
-      "title": "career — feeling fear",
+      "title": "health — feeling fear",
       "description": "Today was brutal. The migration hit a wall none of us anticipated, a data integrity issue that meant",
       "emotion": "fear",
       "sentiment": -0.9529,
@@ -93,7 +93,7 @@
     },
     {
       "timestamp": "2026-08-01T12:00:00Z",
-      "title": "career — feeling disappointment",
+      "title": "health — feeling disappointment",
       "description": "Lowest day in a while, maybe the lowest since this whole stretch started. Woke up already exhausted ",
       "emotion": "disappointment",
       "sentiment": -0.8534,
@@ -132,7 +132,7 @@
     },
     {
       "timestamp": "2026-08-05T12:00:00Z",
-      "title": "career — feeling realization",
+      "title": "health — feeling realization",
       "description": "Two weeks since I started actually writing these down, and looking back at where I was on day one ve",
       "emotion": "realization",
       "sentiment": 0.9861,
@@ -145,7 +145,7 @@
     },
     {
       "timestamp": "2026-08-06T12:00:00Z",
-      "title": "career — feeling joy",
+      "title": "health — feeling joy",
       "description": "Tried a longer meditation session this morning before work, ten minutes instead of the usual five be",
       "emotion": "joy",
       "sentiment": 0.9842,
@@ -184,7 +184,7 @@
     },
     {
       "timestamp": "2026-08-10T12:00:00Z",
-      "title": "career — feeling sadness",
+      "title": "relationship — feeling sadness",
       "description": "Long, honest conversation with Meera today, the kind we haven't really had in months, maybe longer i",
       "emotion": "sadness",
       "sentiment": -0.8348,
@@ -197,7 +197,7 @@
     },
     {
       "timestamp": "2026-08-11T12:00:00Z",
-      "title": "career — feeling neutral",
+      "title": "health — feeling neutral",
       "description": "Run with Vikram this morning, five kilometers, the longest yet, and it felt genuinely good rather th",
       "emotion": "neutral",
       "sentiment": 0.9866,
@@ -223,7 +223,7 @@
     },
     {
       "timestamp": "2026-08-14T12:00:00Z",
-      "title": "career — feeling joy",
+      "title": "health — feeling joy",
       "description": "Papa's follow-up appointment today, and the news was genuinely good, the medication is working, the ",
       "emotion": "joy",
       "sentiment": 0.9911,
@@ -249,7 +249,7 @@
     },
     {
       "timestamp": "2026-08-21T12:00:00Z",
-      "title": "career — feeling neutral",
+      "title": "health — feeling neutral",
       "description": "One month exactly since my first entry, and I went back and reread it tonight, that first one about ",
       "emotion": "neutral",
       "sentiment": -0.646,

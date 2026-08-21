@@ -11,15 +11,21 @@ TOPIC_KEYWORDS: dict[str, list[str]] = {
     "career": [
         "job", "work", "career", "boss", "manager", "office", "promotion",
         "interview", "colleague", "project", "deadline", "meeting", "salary",
+        "leadership", "slack", "sprint", "migration", "code", "coding",
     ],
     "health": [
         "health", "sick", "ill", "doctor", "hospital", "sleep", "tired",
         "exercise", "gym", "diet", "pain", "anxiety", "stress", "therapy",
+        "cardiology", "checkup", "check-up", "follow-up", "appointment",
+        "medication", "dosage", "medical", "test", "chest", "headache",
+        "fatigue", "run", "running", "meditation",
     ],
     "relationship": [
         "friend", "family", "partner", "wife", "husband", "girlfriend",
         "boyfriend", "mother", "father", "mom", "dad", "love", "relationship",
-        "breakup", "marriage", "date",
+        "breakup", "marriage", "date", "conversation", "talk", "talked",
+        "apologize", "distant", "lonely", "support", "together", "cousin",
+        "brother", "sister", "hand", "hurt", "worried",
     ],
     "money": [
         "money", "rent", "bills", "debt", "loan", "savings", "budget",
@@ -87,8 +93,31 @@ _PERSON_LEADING_NOISE = {
     "talked",
     "told",
 }
-_PERSON_STOPWORDS = {"instagram", "twitter", "tiktok"}
+_PERSON_STOPWORDS = {
+    "api",
+    "friday",
+    "felt",
+    "he",
+    "instagram",
+    "monday",
+    "pune",
+    "saturday",
+    "slack",
+    "she",
+    "sunday",
+    "thursday",
+    "tiktok",
+    "today",
+    "tuesday",
+    "twitter",
+    "wednesday",
+    "we",
+}
 _NAME_PATTERN = r"(?:Dr\.\s*)?[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?"
+_INTERACTION_VERBS = (
+    r"texted|called|asked|said|mentioned|noticed|replied|agreed|suggested|"
+    r"listened|visited|came|joined|told|helped|checked|met|wanted|found"
+)
 _RELATIONSHIP_CUE_PATTERN = (
     r"best friend|old friend|close friend|friend|wife|husband|partner|"
     r"girlfriend|boyfriend|spouse|fiancee?|mom|mother|dad|father|"
@@ -155,6 +184,10 @@ class TextProcessor:
             for person, spans in cue_spans.items():
                 people.append(person)
                 person_spans.extend((person, start, end) for start, end in spans)
+            action_spans = self._person_action_cues(text)
+            for person, spans in action_spans.items():
+                people.append(person)
+                person_spans.extend((person, start, end) for start, end in spans)
 
             # Keywords: deduped lowercased noun chunks, max 10.
             keywords: list[str] = []
@@ -167,14 +200,9 @@ class TextProcessor:
                 if len(keywords) >= 10:
                     break
 
+            habits: list[str] = []
             lowered = text.lower()
             kw_blob = " ".join(keywords)
-            topics: list[str] = []
-            for topic, bucket in TOPIC_KEYWORDS.items():
-                if any(word in lowered or word in kw_blob for word in bucket):
-                    topics.append(topic)
-
-            habits: list[str] = []
             for habit, bucket in HABIT_KEYWORDS.items():
                 if any(word in lowered or word in kw_blob for word in bucket):
                     habits.append(habit)
@@ -185,6 +213,7 @@ class TextProcessor:
             relationship_types = self._relationship_types(
                 text, deduped_people, person_spans, direct_relationship_types
             )
+            topics = self._topics(text, keywords, deduped_people, relationship_types)
 
             return {
                 "entities_people": deduped_people,
@@ -262,6 +291,57 @@ class TextProcessor:
             types.setdefault(person, _RELATIONSHIP_ALIAS_TYPES[person.lower()])
 
         return spans, types
+
+    @classmethod
+    def _person_action_cues(cls, text: str) -> dict[str, list[tuple[int, int]]]:
+        spans: dict[str, list[tuple[int, int]]] = {}
+        subject_action = re.compile(
+            rf"\b(?P<name>{_NAME_PATTERN})\s+(?P<verb>{_INTERACTION_VERBS})\b"
+        )
+        preposition_name = re.compile(
+            rf"\b(?:with|from|to|about|for)\s+(?P<name>{_NAME_PATTERN})\b"
+        )
+        for pattern in (subject_action, preposition_name):
+            for match in pattern.finditer(text):
+                person = cls._normalize_person_name(match.group("name"))
+                if not person:
+                    continue
+                spans.setdefault(person, []).append(match.span("name"))
+        return spans
+
+    @classmethod
+    def _topics(
+        cls,
+        text: str,
+        keywords: list[str],
+        people: list[str],
+        relationship_types: dict[str, str],
+    ) -> list[str]:
+        lowered = text.lower()
+        kw_blob = " ".join(keywords)
+        scores: dict[str, int] = {}
+        for topic, bucket in TOPIC_KEYWORDS.items():
+            score = 0
+            for word in bucket:
+                score += cls._phrase_count(lowered, word)
+                score += cls._phrase_count(kw_blob, word)
+            if topic == "relationship" and people:
+                relation_hits = sum(
+                    1 for rel_type in relationship_types.values()
+                    if rel_type != RELATIONSHIP_UNKNOWN
+                )
+                score += min(4, relation_hits)
+            if score > 0:
+                scores[topic] = score
+
+        order = {topic: idx for idx, topic in enumerate(TOPIC_KEYWORDS)}
+        return sorted(scores, key=lambda topic: (-scores[topic], order[topic]))
+
+    @staticmethod
+    def _phrase_count(text: str, phrase: str) -> int:
+        escaped = re.escape(phrase.lower())
+        pattern = rf"(?<![a-z0-9]){escaped}(?![a-z0-9])"
+        return len(re.findall(pattern, text))
 
     @staticmethod
     def _relationship_type_from_cue(cue: str) -> str:

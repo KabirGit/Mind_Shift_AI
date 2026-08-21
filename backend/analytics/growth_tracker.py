@@ -7,6 +7,7 @@ from datetime import UTC, datetime
 from pydantic import BaseModel
 
 from backend.analytics._stats_utils import parse_ts
+from backend.analytics.presentation import delta_summary, mood_score
 from backend.storage.db import JournalDB
 
 logger = logging.getLogger(__name__)
@@ -68,9 +69,10 @@ class GrowthTracker:
             sent_delta = current.avg_sentiment - first.avg_sentiment
             entry_delta = current.entry_count - first.entry_count
             return (
-                f"From {first.period_label} to {current.period_label}, average "
-                f"sentiment changed by {sent_delta:+.2f}, entries changed by "
-                f"{entry_delta:+d}, and the leading topic moved from "
+                f"From {first.period_label} to {current.period_label}, mood score "
+                f"moved from {mood_score(first.avg_sentiment)}% to "
+                f"{mood_score(current.avg_sentiment)}%, a {delta_summary(sent_delta)} "
+                f"shift. Entry volume changed by {entry_delta:+d}, and the leading topic moved from "
                 f"{first.top_topic} to {current.top_topic}."
             ) + suffix
         if len(snaps) < 2:

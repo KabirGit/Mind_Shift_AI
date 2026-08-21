@@ -1,30 +1,27 @@
 {
   "user": {
     "node": "User",
-    "summary": "'User' connects to: health, Meera, career, money, Papa.",
+    "summary": "'User' connects to: health, Meera, relationship, career, Papa.",
     "neighbors": [
-      "career",
       "health",
       "relationship",
+      "career",
       "money",
       "education",
       "Meera",
       "Neha",
       "Papa",
+      "Sameer",
+      "Vikram",
+      "Rohan",
       "Anjali",
+      "Diwali",
       "Ma",
       "Priya",
-      "Felt",
       "Arjun",
-      "Rohan"
+      "Finally"
     ],
     "edge_data": [
-      {
-        "weight": 22,
-        "sentiment": 0.3959,
-        "type": "topic",
-        "neighbor": "career"
-      },
       {
         "weight": 30,
         "sentiment": 0.4868,
@@ -32,14 +29,20 @@
         "neighbor": "health"
       },
       {
-        "weight": 13,
-        "sentiment": 0.6459,
+        "weight": 27,
+        "sentiment": 0.4322,
         "type": "topic",
         "neighbor": "relationship"
       },
       {
         "weight": 21,
-        "sentiment": 0.5682,
+        "sentiment": 0.3696,
+        "type": "topic",
+        "neighbor": "career"
+      },
+      {
+        "weight": 9,
+        "sentiment": 0.3716,
         "type": "topic",
         "neighbor": "money"
       },
@@ -54,7 +57,7 @@
         "sentiment": 0.4704,
         "type": "person",
         "relationship_type": "family",
-        "closeness_score": 4.7461,
+        "closeness_score": 4.7349,
         "neighbor": "Meera"
       },
       {
@@ -62,7 +65,7 @@
         "sentiment": 0.6553,
         "type": "person",
         "relationship_type": "family",
-        "closeness_score": 1.7712,
+        "closeness_score": 1.7689,
         "neighbor": "Neha"
       },
       {
@@ -70,40 +73,64 @@
         "sentiment": 0.5296,
         "type": "person",
         "relationship_type": "family",
-        "closeness_score": 2.5727,
+        "closeness_score": 2.568,
         "neighbor": "Papa"
+      },
+      {
+        "weight": 11,
+        "sentiment": 0.5611,
+        "type": "person",
+        "relationship_type": "unknown",
+        "closeness_score": 2.7245,
+        "neighbor": "Sameer"
+      },
+      {
+        "weight": 14,
+        "sentiment": 0.7127,
+        "type": "person",
+        "relationship_type": "unknown",
+        "closeness_score": 3.9647,
+        "neighbor": "Vikram"
+      },
+      {
+        "weight": 12,
+        "sentiment": 0.277,
+        "type": "person",
+        "relationship_type": "family",
+        "closeness_score": 2.5433,
+        "neighbor": "Rohan"
       },
       {
         "weight": 8,
         "sentiment": 0.7392,
         "type": "person",
         "relationship_type": "other",
-        "closeness_score": 1.2259,
+        "closeness_score": 1.2222,
         "neighbor": "Anjali"
+      },
+      {
+        "weight": 1,
+        "sentiment": 0.961,
+        "type": "person",
+        "relationship_type": "unknown",
+        "closeness_score": 0.0,
+        "neighbor": "Diwali"
       },
       {
         "weight": 4,
         "sentiment": 0.0351,
         "type": "person",
         "relationship_type": "family",
-        "closeness_score": 0.2383,
+        "closeness_score": 0.2376,
         "neighbor": "Ma"
       },
       {
-        "weight": 2,
-        "sentiment": 0.5091,
+        "weight": 8,
+        "sentiment": 0.3638,
         "type": "person",
         "relationship_type": "colleague",
-        "closeness_score": 0.1126,
+        "closeness_score": 0.193,
         "neighbor": "Priya"
-      },
-      {
-        "weight": 1,
-        "sentiment": -0.8348,
-        "type": "person",
-        "relationship_type": "unknown",
-        "closeness_score": 0.0,
-        "neighbor": "Felt"
       },
       {
         "weight": 1,
@@ -115,45 +142,40 @@
       },
       {
         "weight": 1,
-        "sentiment": -0.9892,
+        "sentiment": 0.5137,
         "type": "person",
         "relationship_type": "unknown",
         "closeness_score": 0.0,
-        "neighbor": "Rohan"
+        "neighbor": "Finally"
       }
     ]
   },
   "meera": {
     "node": "Meera",
-    "summary": "'Meera' connects to: health, User, career, money, relationship.",
+    "summary": "'Meera' connects to: health, User, relationship, career, money.",
     "neighbors": [
-      "career",
       "health",
       "relationship",
-      "money",
+      "career",
       "education",
+      "money",
       "User"
     ],
     "edge_data": [
-      {
-        "weight": 22,
-        "type": "co_occurs",
-        "neighbor": "career"
-      },
       {
         "weight": 29,
         "type": "co_occurs",
         "neighbor": "health"
       },
       {
-        "weight": 12,
+        "weight": 26,
         "type": "co_occurs",
         "neighbor": "relationship"
       },
       {
-        "weight": 20,
+        "weight": 21,
         "type": "co_occurs",
-        "neighbor": "money"
+        "neighbor": "career"
       },
       {
         "weight": 6,
@@ -161,44 +183,49 @@
         "neighbor": "education"
       },
       {
+        "weight": 8,
+        "type": "co_occurs",
+        "neighbor": "money"
+      },
+      {
         "weight": 29,
         "sentiment": 0.4704,
         "type": "person",
         "relationship_type": "family",
-        "closeness_score": 4.7461,
+        "closeness_score": 4.7349,
         "neighbor": "User"
       }
     ]
   },
   "papa": {
     "node": "Papa",
-    "summary": "'Papa' connects to: health, User, career, money, relationship.",
+    "summary": "'Papa' connects to: health, relationship, User, career, money.",
     "neighbors": [
-      "career",
       "health",
       "relationship",
+      "career",
       "money",
       "education",
       "User"
     ],
     "edge_data": [
       {
-        "weight": 13,
-        "type": "co_occurs",
-        "neighbor": "career"
-      },
-      {
         "weight": 17,
         "type": "co_occurs",
         "neighbor": "health"
       },
       {
-        "weight": 7,
+        "weight": 17,
         "type": "co_occurs",
         "neighbor": "relationship"
       },
       {
-        "weight": 13,
+        "weight": 12,
+        "type": "co_occurs",
+        "neighbor": "career"
+      },
+      {
+        "weight": 6,
         "type": "co_occurs",
         "neighbor": "money"
       },
@@ -212,87 +239,40 @@
         "sentiment": 0.5296,
         "type": "person",
         "relationship_type": "family",
-        "closeness_score": 2.5727,
+        "closeness_score": 2.568,
         "neighbor": "User"
       }
     ]
   },
-  "anjali": {
-    "node": "Anjali",
-    "summary": "'Anjali' connects to: health, User, money, relationship, career.",
+  "vikram": {
+    "node": "Vikram",
+    "summary": "'Vikram' connects to: health, User, relationship, career, money.",
     "neighbors": [
       "health",
       "relationship",
-      "money",
-      "education",
       "career",
-      "User"
-    ],
-    "edge_data": [
-      {
-        "weight": 8,
-        "type": "co_occurs",
-        "neighbor": "health"
-      },
-      {
-        "weight": 4,
-        "type": "co_occurs",
-        "neighbor": "relationship"
-      },
-      {
-        "weight": 7,
-        "type": "co_occurs",
-        "neighbor": "money"
-      },
-      {
-        "weight": 1,
-        "type": "co_occurs",
-        "neighbor": "education"
-      },
-      {
-        "weight": 4,
-        "type": "co_occurs",
-        "neighbor": "career"
-      },
-      {
-        "weight": 8,
-        "sentiment": 0.7392,
-        "type": "person",
-        "relationship_type": "other",
-        "closeness_score": 1.2259,
-        "neighbor": "User"
-      }
-    ]
-  },
-  "neha": {
-    "node": "Neha",
-    "summary": "'Neha' connects to: health, User, relationship, money, career.",
-    "neighbors": [
-      "career",
-      "health",
-      "relationship",
       "money",
       "education",
       "User"
     ],
     "edge_data": [
       {
-        "weight": 4,
-        "type": "co_occurs",
-        "neighbor": "career"
-      },
-      {
-        "weight": 6,
+        "weight": 14,
         "type": "co_occurs",
         "neighbor": "health"
       },
       {
-        "weight": 5,
+        "weight": 13,
         "type": "co_occurs",
         "neighbor": "relationship"
       },
       {
-        "weight": 5,
+        "weight": 9,
+        "type": "co_occurs",
+        "neighbor": "career"
+      },
+      {
+        "weight": 4,
         "type": "co_occurs",
         "neighbor": "money"
       },
@@ -302,52 +282,105 @@
         "neighbor": "education"
       },
       {
-        "weight": 6,
-        "sentiment": 0.6553,
+        "weight": 14,
+        "sentiment": 0.7127,
         "type": "person",
-        "relationship_type": "family",
-        "closeness_score": 1.7712,
+        "relationship_type": "unknown",
+        "closeness_score": 3.9647,
         "neighbor": "User"
       }
     ]
   },
-  "ma": {
-    "node": "Ma",
-    "summary": "'Ma' connects to: career, health, User, relationship, money.",
+  "rohan": {
+    "node": "Rohan",
+    "summary": "'Rohan' connects to: health, User, relationship, career, money.",
     "neighbors": [
-      "career",
       "health",
       "relationship",
+      "career",
+      "money",
+      "education",
+      "User"
+    ],
+    "edge_data": [
+      {
+        "weight": 12,
+        "type": "co_occurs",
+        "neighbor": "health"
+      },
+      {
+        "weight": 11,
+        "type": "co_occurs",
+        "neighbor": "relationship"
+      },
+      {
+        "weight": 9,
+        "type": "co_occurs",
+        "neighbor": "career"
+      },
+      {
+        "weight": 8,
+        "type": "co_occurs",
+        "neighbor": "money"
+      },
+      {
+        "weight": 2,
+        "type": "co_occurs",
+        "neighbor": "education"
+      },
+      {
+        "weight": 12,
+        "sentiment": 0.277,
+        "type": "person",
+        "relationship_type": "family",
+        "closeness_score": 2.5433,
+        "neighbor": "User"
+      }
+    ]
+  },
+  "sameer": {
+    "node": "Sameer",
+    "summary": "'Sameer' connects to: health, User, relationship, career, education.",
+    "neighbors": [
+      "health",
+      "relationship",
+      "career",
+      "education",
       "money",
       "User"
     ],
     "edge_data": [
       {
-        "weight": 4,
-        "type": "co_occurs",
-        "neighbor": "career"
-      },
-      {
-        "weight": 4,
+        "weight": 11,
         "type": "co_occurs",
         "neighbor": "health"
       },
       {
-        "weight": 1,
+        "weight": 10,
         "type": "co_occurs",
         "neighbor": "relationship"
       },
       {
-        "weight": 1,
+        "weight": 8,
+        "type": "co_occurs",
+        "neighbor": "career"
+      },
+      {
+        "weight": 3,
+        "type": "co_occurs",
+        "neighbor": "education"
+      },
+      {
+        "weight": 3,
         "type": "co_occurs",
         "neighbor": "money"
       },
       {
-        "weight": 4,
-        "sentiment": 0.0351,
+        "weight": 11,
+        "sentiment": 0.5611,
         "type": "person",
-        "relationship_type": "family",
-        "closeness_score": 0.2383,
+        "relationship_type": "unknown",
+        "closeness_score": 2.7245,
         "neighbor": "User"
       }
     ]
@@ -359,6 +392,9 @@
       "Meera",
       "Neha",
       "Papa",
+      "Sameer",
+      "Vikram",
+      "Rohan",
       "exercise",
       "sleep",
       "reading",
@@ -367,12 +403,12 @@
       "coffee",
       "cooking",
       "Anjali",
+      "Diwali",
       "Ma",
       "coding",
       "Priya",
-      "Felt",
       "Arjun",
-      "Rohan",
+      "Finally",
       "User"
     ],
     "edge_data": [
@@ -390,6 +426,21 @@
         "weight": 17,
         "type": "co_occurs",
         "neighbor": "Papa"
+      },
+      {
+        "weight": 11,
+        "type": "co_occurs",
+        "neighbor": "Sameer"
+      },
+      {
+        "weight": 14,
+        "type": "co_occurs",
+        "neighbor": "Vikram"
+      },
+      {
+        "weight": 12,
+        "type": "co_occurs",
+        "neighbor": "Rohan"
       },
       {
         "weight": 28,
@@ -432,6 +483,11 @@
         "neighbor": "Anjali"
       },
       {
+        "weight": 1,
+        "type": "co_occurs",
+        "neighbor": "Diwali"
+      },
+      {
         "weight": 4,
         "type": "co_occurs",
         "neighbor": "Ma"
@@ -442,14 +498,9 @@
         "neighbor": "coding"
       },
       {
-        "weight": 2,
+        "weight": 8,
         "type": "co_occurs",
         "neighbor": "Priya"
-      },
-      {
-        "weight": 1,
-        "type": "co_occurs",
-        "neighbor": "Felt"
       },
       {
         "weight": 1,
@@ -459,11 +510,146 @@
       {
         "weight": 1,
         "type": "co_occurs",
-        "neighbor": "Rohan"
+        "neighbor": "Finally"
       },
       {
         "weight": 30,
         "sentiment": 0.4868,
+        "type": "topic",
+        "neighbor": "User"
+      }
+    ]
+  },
+  "relationship": {
+    "node": "relationship",
+    "summary": "'relationship' connects to: User, Meera, exercise, sleep, Papa.",
+    "neighbors": [
+      "Meera",
+      "Neha",
+      "Papa",
+      "Sameer",
+      "Vikram",
+      "Rohan",
+      "exercise",
+      "sleep",
+      "reading",
+      "meditation",
+      "social_media",
+      "coffee",
+      "cooking",
+      "Diwali",
+      "Ma",
+      "Anjali",
+      "coding",
+      "Priya",
+      "Arjun",
+      "Finally",
+      "User"
+    ],
+    "edge_data": [
+      {
+        "weight": 26,
+        "type": "co_occurs",
+        "neighbor": "Meera"
+      },
+      {
+        "weight": 6,
+        "type": "co_occurs",
+        "neighbor": "Neha"
+      },
+      {
+        "weight": 17,
+        "type": "co_occurs",
+        "neighbor": "Papa"
+      },
+      {
+        "weight": 10,
+        "type": "co_occurs",
+        "neighbor": "Sameer"
+      },
+      {
+        "weight": 13,
+        "type": "co_occurs",
+        "neighbor": "Vikram"
+      },
+      {
+        "weight": 11,
+        "type": "co_occurs",
+        "neighbor": "Rohan"
+      },
+      {
+        "weight": 25,
+        "type": "co_occurs",
+        "neighbor": "exercise"
+      },
+      {
+        "weight": 18,
+        "type": "co_occurs",
+        "neighbor": "sleep"
+      },
+      {
+        "weight": 16,
+        "type": "co_occurs",
+        "neighbor": "reading"
+      },
+      {
+        "weight": 16,
+        "type": "co_occurs",
+        "neighbor": "meditation"
+      },
+      {
+        "weight": 9,
+        "type": "co_occurs",
+        "neighbor": "social_media"
+      },
+      {
+        "weight": 9,
+        "type": "co_occurs",
+        "neighbor": "coffee"
+      },
+      {
+        "weight": 11,
+        "type": "co_occurs",
+        "neighbor": "cooking"
+      },
+      {
+        "weight": 1,
+        "type": "co_occurs",
+        "neighbor": "Diwali"
+      },
+      {
+        "weight": 4,
+        "type": "co_occurs",
+        "neighbor": "Ma"
+      },
+      {
+        "weight": 7,
+        "type": "co_occurs",
+        "neighbor": "Anjali"
+      },
+      {
+        "weight": 4,
+        "type": "co_occurs",
+        "neighbor": "coding"
+      },
+      {
+        "weight": 7,
+        "type": "co_occurs",
+        "neighbor": "Priya"
+      },
+      {
+        "weight": 1,
+        "type": "co_occurs",
+        "neighbor": "Arjun"
+      },
+      {
+        "weight": 1,
+        "type": "co_occurs",
+        "neighbor": "Finally"
+      },
+      {
+        "weight": 27,
+        "sentiment": 0.4322,
         "type": "topic",
         "neighbor": "User"
       }
@@ -476,6 +662,9 @@
       "Meera",
       "Neha",
       "Papa",
+      "Sameer",
+      "Vikram",
+      "Rohan",
       "exercise",
       "sleep",
       "reading",
@@ -483,18 +672,16 @@
       "social_media",
       "coffee",
       "cooking",
-      "Ma",
-      "Priya",
-      "Felt",
       "coding",
+      "Priya",
       "Anjali",
       "Arjun",
-      "Rohan",
+      "Ma",
       "User"
     ],
     "edge_data": [
       {
-        "weight": 22,
+        "weight": 21,
         "type": "co_occurs",
         "neighbor": "Meera"
       },
@@ -504,22 +691,37 @@
         "neighbor": "Neha"
       },
       {
-        "weight": 13,
+        "weight": 12,
         "type": "co_occurs",
         "neighbor": "Papa"
       },
       {
-        "weight": 22,
+        "weight": 8,
+        "type": "co_occurs",
+        "neighbor": "Sameer"
+      },
+      {
+        "weight": 9,
+        "type": "co_occurs",
+        "neighbor": "Vikram"
+      },
+      {
+        "weight": 9,
+        "type": "co_occurs",
+        "neighbor": "Rohan"
+      },
+      {
+        "weight": 21,
         "type": "co_occurs",
         "neighbor": "exercise"
       },
       {
-        "weight": 16,
+        "weight": 15,
         "type": "co_occurs",
         "neighbor": "sleep"
       },
       {
-        "weight": 12,
+        "weight": 10,
         "type": "co_occurs",
         "neighbor": "reading"
       },
@@ -539,29 +741,19 @@
         "neighbor": "coffee"
       },
       {
-        "weight": 9,
+        "weight": 8,
         "type": "co_occurs",
         "neighbor": "cooking"
       },
       {
-        "weight": 4,
-        "type": "co_occurs",
-        "neighbor": "Ma"
-      },
-      {
-        "weight": 2,
-        "type": "co_occurs",
-        "neighbor": "Priya"
-      },
-      {
-        "weight": 1,
-        "type": "co_occurs",
-        "neighbor": "Felt"
-      },
-      {
-        "weight": 4,
+        "weight": 5,
         "type": "co_occurs",
         "neighbor": "coding"
+      },
+      {
+        "weight": 8,
+        "type": "co_occurs",
+        "neighbor": "Priya"
       },
       {
         "weight": 4,
@@ -574,13 +766,13 @@
         "neighbor": "Arjun"
       },
       {
-        "weight": 1,
+        "weight": 3,
         "type": "co_occurs",
-        "neighbor": "Rohan"
+        "neighbor": "Ma"
       },
       {
-        "weight": 22,
-        "sentiment": 0.3959,
+        "weight": 21,
+        "sentiment": 0.3696,
         "type": "topic",
         "neighbor": "User"
       }
@@ -588,184 +780,104 @@
   },
   "money": {
     "node": "money",
-    "summary": "'money' connects to: User, Meera, exercise, sleep, Papa.",
+    "summary": "'money' connects to: User, Rohan, Meera, exercise, sleep.",
     "neighbors": [
-      "Meera",
-      "Neha",
       "Papa",
-      "exercise",
-      "sleep",
+      "Diwali",
+      "Vikram",
+      "Rohan",
       "reading",
       "meditation",
-      "social_media",
-      "coffee",
-      "cooking",
+      "Meera",
       "Anjali",
-      "coding",
+      "Finally",
+      "exercise",
+      "sleep",
+      "cooking",
       "Priya",
-      "Rohan",
+      "Sameer",
+      "coffee",
+      "coding",
+      "Neha",
+      "social_media",
       "Ma",
       "User"
     ],
     "edge_data": [
       {
-        "weight": 20,
-        "type": "co_occurs",
-        "neighbor": "Meera"
-      },
-      {
-        "weight": 5,
-        "type": "co_occurs",
-        "neighbor": "Neha"
-      },
-      {
-        "weight": 13,
+        "weight": 6,
         "type": "co_occurs",
         "neighbor": "Papa"
       },
       {
-        "weight": 19,
+        "weight": 1,
         "type": "co_occurs",
-        "neighbor": "exercise"
-      },
-      {
-        "weight": 15,
-        "type": "co_occurs",
-        "neighbor": "sleep"
-      },
-      {
-        "weight": 12,
-        "type": "co_occurs",
-        "neighbor": "reading"
-      },
-      {
-        "weight": 13,
-        "type": "co_occurs",
-        "neighbor": "meditation"
-      },
-      {
-        "weight": 5,
-        "type": "co_occurs",
-        "neighbor": "social_media"
-      },
-      {
-        "weight": 7,
-        "type": "co_occurs",
-        "neighbor": "coffee"
-      },
-      {
-        "weight": 6,
-        "type": "co_occurs",
-        "neighbor": "cooking"
-      },
-      {
-        "weight": 7,
-        "type": "co_occurs",
-        "neighbor": "Anjali"
+        "neighbor": "Diwali"
       },
       {
         "weight": 4,
         "type": "co_occurs",
-        "neighbor": "coding"
+        "neighbor": "Vikram"
       },
       {
-        "weight": 2,
-        "type": "co_occurs",
-        "neighbor": "Priya"
-      },
-      {
-        "weight": 1,
+        "weight": 8,
         "type": "co_occurs",
         "neighbor": "Rohan"
       },
       {
-        "weight": 1,
-        "type": "co_occurs",
-        "neighbor": "Ma"
-      },
-      {
-        "weight": 21,
-        "sentiment": 0.5682,
-        "type": "topic",
-        "neighbor": "User"
-      }
-    ]
-  },
-  "relationship": {
-    "node": "relationship",
-    "summary": "'relationship' connects to: User, Meera, exercise, meditation, Papa.",
-    "neighbors": [
-      "Meera",
-      "Neha",
-      "Papa",
-      "exercise",
-      "sleep",
-      "reading",
-      "meditation",
-      "social_media",
-      "coffee",
-      "cooking",
-      "Anjali",
-      "coding",
-      "Priya",
-      "Ma",
-      "User"
-    ],
-    "edge_data": [
-      {
-        "weight": 12,
-        "type": "co_occurs",
-        "neighbor": "Meera"
-      },
-      {
         "weight": 5,
-        "type": "co_occurs",
-        "neighbor": "Neha"
-      },
-      {
-        "weight": 7,
-        "type": "co_occurs",
-        "neighbor": "Papa"
-      },
-      {
-        "weight": 12,
-        "type": "co_occurs",
-        "neighbor": "exercise"
-      },
-      {
-        "weight": 7,
-        "type": "co_occurs",
-        "neighbor": "sleep"
-      },
-      {
-        "weight": 6,
         "type": "co_occurs",
         "neighbor": "reading"
       },
       {
-        "weight": 10,
+        "weight": 3,
         "type": "co_occurs",
         "neighbor": "meditation"
       },
       {
-        "weight": 4,
+        "weight": 8,
         "type": "co_occurs",
-        "neighbor": "social_media"
+        "neighbor": "Meera"
       },
       {
-        "weight": 5,
+        "weight": 3,
         "type": "co_occurs",
-        "neighbor": "coffee"
+        "neighbor": "Anjali"
       },
       {
-        "weight": 6,
+        "weight": 1,
+        "type": "co_occurs",
+        "neighbor": "Finally"
+      },
+      {
+        "weight": 8,
+        "type": "co_occurs",
+        "neighbor": "exercise"
+      },
+      {
+        "weight": 8,
+        "type": "co_occurs",
+        "neighbor": "sleep"
+      },
+      {
+        "weight": 1,
         "type": "co_occurs",
         "neighbor": "cooking"
       },
       {
-        "weight": 4,
+        "weight": 5,
         "type": "co_occurs",
-        "neighbor": "Anjali"
+        "neighbor": "Priya"
+      },
+      {
+        "weight": 3,
+        "type": "co_occurs",
+        "neighbor": "Sameer"
+      },
+      {
+        "weight": 3,
+        "type": "co_occurs",
+        "neighbor": "coffee"
       },
       {
         "weight": 2,
@@ -775,7 +887,12 @@
       {
         "weight": 1,
         "type": "co_occurs",
-        "neighbor": "Priya"
+        "neighbor": "Neha"
+      },
+      {
+        "weight": 3,
+        "type": "co_occurs",
+        "neighbor": "social_media"
       },
       {
         "weight": 1,
@@ -783,8 +900,8 @@
         "neighbor": "Ma"
       },
       {
-        "weight": 13,
-        "sentiment": 0.6459,
+        "weight": 9,
+        "sentiment": 0.3716,
         "type": "topic",
         "neighbor": "User"
       }
@@ -796,6 +913,7 @@
     "neighbors": [
       "Meera",
       "Papa",
+      "Vikram",
       "exercise",
       "sleep",
       "reading",
@@ -805,6 +923,8 @@
       "Neha",
       "coding",
       "Anjali",
+      "Sameer",
+      "Rohan",
       "coffee",
       "User"
     ],
@@ -818,6 +938,11 @@
         "weight": 4,
         "type": "co_occurs",
         "neighbor": "Papa"
+      },
+      {
+        "weight": 2,
+        "type": "co_occurs",
+        "neighbor": "Vikram"
       },
       {
         "weight": 5,
@@ -863,6 +988,16 @@
         "weight": 1,
         "type": "co_occurs",
         "neighbor": "Anjali"
+      },
+      {
+        "weight": 3,
+        "type": "co_occurs",
+        "neighbor": "Sameer"
+      },
+      {
+        "weight": 2,
+        "type": "co_occurs",
+        "neighbor": "Rohan"
       },
       {
         "weight": 1,
@@ -879,108 +1014,108 @@
   },
   "exercise": {
     "node": "exercise",
-    "summary": "'exercise' connects to: health, career, money, relationship, education.",
+    "summary": "'exercise' connects to: health, relationship, career, money, education.",
     "neighbors": [
-      "career",
       "health",
       "relationship",
-      "money",
-      "education"
+      "career",
+      "education",
+      "money"
     ],
     "edge_data": [
-      {
-        "weight": 22,
-        "type": "co_occurs",
-        "neighbor": "career"
-      },
       {
         "weight": 28,
         "type": "co_occurs",
         "neighbor": "health"
       },
       {
-        "weight": 12,
+        "weight": 25,
         "type": "co_occurs",
         "neighbor": "relationship"
       },
       {
-        "weight": 19,
+        "weight": 21,
         "type": "co_occurs",
-        "neighbor": "money"
+        "neighbor": "career"
       },
       {
         "weight": 5,
         "type": "co_occurs",
         "neighbor": "education"
+      },
+      {
+        "weight": 8,
+        "type": "co_occurs",
+        "neighbor": "money"
       }
     ]
   },
   "sleep": {
     "node": "sleep",
-    "summary": "'sleep' connects to: health, career, money, relationship, education.",
+    "summary": "'sleep' connects to: health, relationship, career, money, education.",
     "neighbors": [
-      "career",
       "health",
       "relationship",
-      "money",
-      "education"
+      "career",
+      "education",
+      "money"
     ],
     "edge_data": [
-      {
-        "weight": 16,
-        "type": "co_occurs",
-        "neighbor": "career"
-      },
       {
         "weight": 19,
         "type": "co_occurs",
         "neighbor": "health"
       },
       {
-        "weight": 7,
+        "weight": 18,
         "type": "co_occurs",
         "neighbor": "relationship"
       },
       {
         "weight": 15,
         "type": "co_occurs",
-        "neighbor": "money"
+        "neighbor": "career"
       },
       {
         "weight": 5,
         "type": "co_occurs",
         "neighbor": "education"
+      },
+      {
+        "weight": 8,
+        "type": "co_occurs",
+        "neighbor": "money"
       }
     ]
   },
   "meditation": {
     "node": "meditation",
-    "summary": "'meditation' connects to: health, money, career, relationship, education.",
+    "summary": "'meditation' connects to: health, relationship, career, money, education.",
     "neighbors": [
-      "career",
       "health",
       "relationship",
+      "career",
       "money",
       "education"
     ],
     "edge_data": [
-      {
-        "weight": 11,
-        "type": "co_occurs",
-        "neighbor": "career"
-      },
       {
         "weight": 19,
         "type": "co_occurs",
         "neighbor": "health"
       },
       {
-        "weight": 10,
+        "weight": 16,
         "type": "co_occurs",
         "neighbor": "relationship"
       },
       {
-        "weight": 13,
+        "weight": 11,
+        "type": "co_occurs",
+        "neighbor": "career"
+      },
+      {
+        "weight": 3,
         "type": "co_occurs",
         "neighbor": "money"
       },
@@ -993,32 +1128,32 @@
   },
   "reading": {
     "node": "reading",
-    "summary": "'reading' connects to: health, career, money, relationship, education.",
+    "summary": "'reading' connects to: health, relationship, career, money, education.",
     "neighbors": [
-      "career",
       "health",
       "relationship",
+      "career",
       "money",
       "education"
     ],
     "edge_data": [
-      {
-        "weight": 12,
-        "type": "co_occurs",
-        "neighbor": "career"
-      },
       {
         "weight": 17,
         "type": "co_occurs",
         "neighbor": "health"
       },
       {
-        "weight": 6,
+        "weight": 16,
         "type": "co_occurs",
         "neighbor": "relationship"
       },
       {
-        "weight": 12,
+        "weight": 10,
+        "type": "co_occurs",
+        "neighbor": "career"
+      },
+      {
+        "weight": 5,
         "type": "co_occurs",
         "neighbor": "money"
       },
@@ -1031,32 +1166,32 @@
   },
   "coffee": {
     "node": "coffee",
-    "summary": "'coffee' connects to: health, career, money, relationship, education.",
+    "summary": "'coffee' connects to: health, career, relationship, money, education.",
     "neighbors": [
-      "career",
       "health",
       "relationship",
+      "career",
       "money",
       "education"
     ],
     "edge_data": [
-      {
-        "weight": 10,
-        "type": "co_occurs",
-        "neighbor": "career"
-      },
       {
         "weight": 11,
         "type": "co_occurs",
         "neighbor": "health"
       },
       {
-        "weight": 5,
+        "weight": 9,
         "type": "co_occurs",
         "neighbor": "relationship"
       },
       {
-        "weight": 7,
+        "weight": 10,
+        "type": "co_occurs",
+        "neighbor": "career"
+      },
+      {
+        "weight": 3,
         "type": "co_occurs",
         "neighbor": "money"
       },

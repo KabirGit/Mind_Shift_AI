@@ -258,8 +258,8 @@ class DashboardStoryComposer:
                         f"{person.person} appears as {relation} in "
                         f"{person.mention_count} entries; dominant emotion "
                         f"{person.dominant_emotion}, trend {person.sentiment_trend}. "
-                        f"Average sentiment {person.avg_sentiment:+.2f} sits below "
-                        f"the current baseline {baseline_sentiment:+.2f}."
+                        f"Its mood score is {mood_score(person.avg_sentiment)}%, below "
+                        f"the current baseline mood score of {mood_score(baseline_sentiment)}%."
                     ),
                     sentiment_score=mood_score(person.avg_sentiment),
                     sentiment_label=sentiment_label(person.avg_sentiment),

@@ -32,7 +32,8 @@ def test_snapshots_and_deltas(tmp_path):
     assert deltas[-1]["sentiment_delta"] > 0.1
     assert deltas[-1]["emotion_changed"] is True
 
-    assert "average sentiment changed" in gt.narrative()
+    assert "mood score moved" in gt.narrative()
+    assert "average sentiment changed" not in gt.narrative()
     assert "6 entries total" in gt.narrative()
 
 

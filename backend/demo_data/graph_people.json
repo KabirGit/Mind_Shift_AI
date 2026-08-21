@@ -22,10 +22,38 @@
       "mention_count": 17
     },
     {
+      "id": "Vikram",
+      "label": "Vikram",
+      "type": "person",
+      "relationship_type": "unknown",
+      "mention_count": 14
+    },
+    {
+      "id": "Rohan",
+      "label": "Rohan",
+      "type": "person",
+      "relationship_type": "family",
+      "mention_count": 12
+    },
+    {
+      "id": "Sameer",
+      "label": "Sameer",
+      "type": "person",
+      "relationship_type": "unknown",
+      "mention_count": 11
+    },
+    {
       "id": "Anjali",
       "label": "Anjali",
       "type": "person",
       "relationship_type": "other",
+      "mention_count": 8
+    },
+    {
+      "id": "Priya",
+      "label": "Priya",
+      "type": "person",
+      "relationship_type": "colleague",
       "mention_count": 8
     },
     {
@@ -41,13 +69,6 @@
       "type": "person",
       "relationship_type": "family",
       "mention_count": 4
-    },
-    {
-      "id": "Priya",
-      "label": "Priya",
-      "type": "person",
-      "relationship_type": "colleague",
-      "mention_count": 2
     }
   ],
   "edges": [
@@ -56,42 +77,63 @@
       "target": "Meera",
       "sentiment": 0.4704,
       "weight": 29,
-      "closeness_score": 4.7461
+      "closeness_score": 4.7349
     },
     {
       "source": "User",
       "target": "Papa",
       "sentiment": 0.5296,
       "weight": 17,
-      "closeness_score": 2.5727
+      "closeness_score": 2.568
+    },
+    {
+      "source": "User",
+      "target": "Vikram",
+      "sentiment": 0.7127,
+      "weight": 14,
+      "closeness_score": 3.9647
+    },
+    {
+      "source": "User",
+      "target": "Rohan",
+      "sentiment": 0.277,
+      "weight": 12,
+      "closeness_score": 2.5433
+    },
+    {
+      "source": "User",
+      "target": "Sameer",
+      "sentiment": 0.5611,
+      "weight": 11,
+      "closeness_score": 2.7245
     },
     {
       "source": "User",
       "target": "Anjali",
       "sentiment": 0.7392,
       "weight": 8,
-      "closeness_score": 1.2259
+      "closeness_score": 1.2222
+    },
+    {
+      "source": "User",
+      "target": "Priya",
+      "sentiment": 0.3638,
+      "weight": 8,
+      "closeness_score": 0.193
     },
     {
       "source": "User",
       "target": "Neha",
       "sentiment": 0.6553,
       "weight": 6,
-      "closeness_score": 1.7712
+      "closeness_score": 1.7689
     },
     {
       "source": "User",
       "target": "Ma",
       "sentiment": 0.0351,
       "weight": 4,
-      "closeness_score": 0.2383
-    },
-    {
-      "source": "User",
-      "target": "Priya",
-      "sentiment": 0.5091,
-      "weight": 2,
-      "closeness_score": 0.1126
+      "closeness_score": 0.2376
     }
   ]
 }

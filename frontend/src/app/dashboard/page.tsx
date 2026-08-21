@@ -42,7 +42,13 @@ import {
   queryGraph,
   weeklyReportUrl
 } from "@/lib/api";
-import { percent, signed, titleCase } from "@/lib/format";
+import { percent, titleCase } from "@/lib/format";
+import {
+  deltaPlain,
+  moodScore,
+  sentimentLabel,
+  sentimentSummary
+} from "@/lib/presentation";
 
 const RANGES = ["Last 7 days", "Last 30 days", "All time"];
 
@@ -114,8 +120,8 @@ export default function DashboardPage() {
   const weekRows = useMemo(() => {
     return (story?.weekly_buckets ?? []).slice(-4).map((bucket) => ({
       ...bucket,
-      sentiment_label: bucket.mood_label ?? fallbackSentimentLabel(bucket.avg_sentiment),
-      mood_score: bucket.mood_score ?? fallbackMoodScore(bucket.avg_sentiment),
+      sentiment_label: bucket.mood_label ?? sentimentLabel(bucket.avg_sentiment),
+      mood_score: bucket.mood_score ?? moodScore(bucket.avg_sentiment),
       topic: titleCase(bucket.top_topic)
     }));
   }, [story]);
@@ -185,7 +191,7 @@ export default function DashboardPage() {
           </p>
           <p className="mt-2 text-sm leading-6 text-body">
             {story.rhythm
-              ? story.rhythm.explanation
+              ? rhythmSentence(story)
               : "No day or time pattern cleared the confidence gate for this range."}
           </p>
           <EvidenceLine
@@ -297,8 +303,8 @@ export default function DashboardPage() {
 
 function MonthHero({ story }: { story: DashboardStory }) {
   const headline = story.headline;
-  const baselineMood = headline.baseline_mood_score ?? fallbackMoodScore(headline.baseline_sentiment);
-  const currentMood = headline.current_mood_score ?? fallbackMoodScore(headline.current_sentiment);
+  const baselineMood = headline.baseline_mood_score ?? moodScore(headline.baseline_sentiment);
+  const currentMood = headline.current_mood_score ?? moodScore(headline.current_sentiment);
   if (!headline.has_sufficient_data) {
     return (
       <div>
@@ -364,7 +370,7 @@ function WorkingSection({ rows }: { rows: DashboardStory["top_working"] }) {
               <p className="mt-2 text-sm leading-6 text-body">{habit.explanation}</p>
               <EvidenceLine
                 confidence={habit.confidence}
-                detail={`${habit.mention_count} mentions - ${habit.streak_length} day streak - raw delta ${signed(habit.delta)}`}
+                detail={`${habit.mention_count} mentions - ${habit.streak_length} day streak`}
               />
             </div>
           ))}
@@ -389,12 +395,12 @@ function DrainingSection({ rows }: { rows: DashboardStory["top_draining"] }) {
             <div className="rounded-lg border border-line bg-canvas p-3" key={trigger.topic}>
               <p className="font-semibold text-ink">
                 {titleCase(trigger.display_label ?? trigger.topic)} appears as a{" "}
-                {trigger.sentiment_summary ?? fallbackSentimentSummary(trigger.avg_sentiment)} pattern.
+                {trigger.sentiment_summary ?? sentimentSummary(trigger.avg_sentiment)} pattern.
               </p>
               <p className="mt-2 text-sm leading-6 text-body">{trigger.explanation}</p>
               <EvidenceLine
                 confidence={trigger.confidence}
-                detail={`${trigger.frequency} mentions - ${titleCase(trigger.dominant_emotion)} - raw average ${signed(trigger.avg_sentiment)}`}
+                detail={`${trigger.frequency} mentions - ${titleCase(trigger.dominant_emotion)}`}
               />
             </div>
           ))}
@@ -428,7 +434,7 @@ function PeopleSection({ rows }: { rows: DashboardStory["people"] }) {
                 confidence={person.confidence}
                 detail={`${person.mention_count} mentions - ${titleCase(
                   person.relationship_type === "unknown" ? "connection" : person.relationship_type
-                )} - ${titleCase(person.sentiment_trend)} - raw average ${signed(person.avg_sentiment)}`}
+                )} - ${titleCase(person.sentiment_trend)}`}
               />
             </div>
           ))}
@@ -459,16 +465,20 @@ function LookingAhead({ story }: { story: DashboardStory | null }) {
             <p className="mt-2 text-sm leading-6 text-[#d7d1c7]">
               Predicted mood score:{" "}
               {story.forecast.sentiment_forecast.predicted_mood_score ??
-                fallbackMoodScore(story.forecast.sentiment_forecast.predicted_sentiment)}
-              %. {story.forecast.sentiment_forecast.explanation}
+                moodScore(story.forecast.sentiment_forecast.predicted_sentiment)}
+              %. {forecastPlainSentence(story.forecast.sentiment_forecast.direction)}
             </p>
             <p className="mt-2 text-xs leading-5 text-[#d7d1c7]">
               {story.forecast.sentiment_forecast.metric_note}
             </p>
             {story.forecast.sentiment_forecast.forecast_accuracy_note ? (
-              <p className="mt-2 text-xs leading-5 text-[#d7d1c7]">
-                {story.forecast.sentiment_forecast.forecast_accuracy_note}
-              </p>
+              <details className="mt-2 text-xs leading-5 text-[#d7d1c7]">
+                <summary className="cursor-pointer font-semibold">Forecast details</summary>
+                <p className="mt-1">{story.forecast.sentiment_forecast.explanation}</p>
+                <p className="mt-1">
+                  {story.forecast.sentiment_forecast.forecast_accuracy_note}
+                </p>
+              </details>
             ) : null}
           </div>
 
@@ -536,7 +546,7 @@ function TimelineMoodChart({ events }: { events: TimelineEvent[] }) {
     ...event,
     point: index + 1,
     date: event.timestamp.slice(5, 10),
-    mood_score: event.mood_score ?? fallbackMoodScore(event.sentiment)
+    mood_score: event.mood_score ?? moodScore(event.sentiment)
   }));
   const labels = points
     .filter((event) => event.event_type !== "normal")
@@ -546,14 +556,15 @@ function TimelineMoodChart({ events }: { events: TimelineEvent[] }) {
   return (
     <div className="mt-4">
       <ResponsiveContainer height={300} width="100%">
-        <LineChart data={points} margin={{ bottom: 12, left: 0, right: 20, top: 26 }}>
+        <LineChart data={points} margin={{ bottom: 16, left: 24, right: 88, top: 52 }}>
           <CartesianGrid stroke="#d2c3b2" strokeDasharray="3 3" />
           <XAxis
             dataKey="point"
+            padding={{ left: 32, right: 48 }}
             tick={{ fill: "#6c6a64", fontSize: 12 }}
             tickFormatter={(value) => points[Number(value) - 1]?.date ?? ""}
           />
-          <YAxis domain={[0, 100]} tick={{ fill: "#6c6a64", fontSize: 12 }} />
+          <YAxis domain={[-5, 105]} tick={{ fill: "#6c6a64", fontSize: 12 }} />
           <Tooltip
             formatter={(value) => [`${value}%`, "Mood score"]}
             labelFormatter={(value) => {
@@ -573,6 +584,7 @@ function TimelineMoodChart({ events }: { events: TimelineEvent[] }) {
               fill={event.event_type === "positive_peak" ? "#3d915e" : "#c64545"}
               key={event.timestamp}
               r={5}
+              ifOverflow="visible"
               stroke="#fffdf8"
               strokeWidth={2}
               x={event.point}
@@ -633,31 +645,6 @@ function EvidenceLine({
   );
 }
 
-function fallbackMoodScore(sentiment: number): number {
-  return Math.round((Math.max(-1, Math.min(1, sentiment)) + 1) * 50);
-}
-
-function fallbackSentimentLabel(sentiment: number): string {
-  if (sentiment >= 0.55) return "strongly positive";
-  if (sentiment >= 0.2) return "positive";
-  if (sentiment > -0.2) return "mixed";
-  if (sentiment > -0.55) return "heavy";
-  return "very heavy";
-}
-
-function fallbackSentimentSummary(sentiment: number): string {
-  return `${fallbackSentimentLabel(sentiment)} mood score ${fallbackMoodScore(sentiment)}%`;
-}
-
-function deltaPlain(delta: number): string {
-  const direction = delta > 0.05 ? "lighter" : delta < -0.05 ? "heavier" : "steady";
-  const magnitude = Math.abs(delta);
-  if (direction === "steady") return "about steady";
-  if (magnitude < 0.15) return `slightly ${direction}`;
-  if (magnitude < 0.35) return `noticeably ${direction}`;
-  return `strongly ${direction}`;
-}
-
 function recoverySentence(story: DashboardStory): string {
   const start = story.headline.recovery_speed_days_start;
   const end = story.headline.recovery_speed_days_end;
@@ -668,4 +655,20 @@ function recoverySentence(story: DashboardStory): string {
     return `Recovery after heavier entries slowed, moving from ${start.toFixed(2)} to ${end.toFixed(2)} day(s).`;
   }
   return `Recovery after heavier entries stayed about steady at ${end.toFixed(2)} day(s).`;
+}
+
+function rhythmSentence(story: DashboardStory): string {
+  if (!story.rhythm) return "";
+  const feltDelta = deltaPlain(story.rhythm.delta);
+  return `${titleCase(story.rhythm.topic)} has a ${feltDelta} cadence in this range; the exact day/time signal is treated as supporting detail rather than the main takeaway.`;
+}
+
+function forecastPlainSentence(direction: string): string {
+  if (direction === "improving") {
+    return "Recent entries point to a lighter near-term mood direction.";
+  }
+  if (direction === "declining") {
+    return "Recent entries point to a heavier near-term mood direction.";
+  }
+  return "Recent entries point to a steady near-term mood direction.";
 }

@@ -5,6 +5,7 @@ from collections import Counter
 
 from backend.analytics._stats_utils import filter_window, half_split_trend, sort_key
 from backend.analytics.models import PatternSummary, TriggerStat, compute_confidence
+from backend.analytics.presentation import sentiment_summary
 from backend.storage.db import JournalDB
 from backend.storage.models import JournalRecord
 
@@ -87,7 +88,7 @@ class PatternEngine:
                     confidence=compute_confidence(freq),
                     explanation=(
                         f"Based on {freq} entries mentioning {topic}; "
-                        f"avg sentiment {round(avg_sentiment, 2):+}, trend {trend}."
+                        f"{sentiment_summary(avg_sentiment)}, trend {trend}."
                     ),
                 )
             )
