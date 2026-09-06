@@ -3,212 +3,207 @@
   "lookback_days": 30,
   "emotion_over_time": [
     {
-      "date": "2026-07-23",
-      "emotion": "confusion",
-      "count": 1
-    },
-    {
-      "date": "2026-07-24",
-      "emotion": "disappointment",
-      "count": 1
-    },
-    {
-      "date": "2026-07-25",
-      "emotion": "disappointment",
-      "count": 1
-    },
-    {
-      "date": "2026-07-26",
-      "emotion": "disappointment",
-      "count": 1
-    },
-    {
-      "date": "2026-07-27",
-      "emotion": "neutral",
-      "count": 1
-    },
-    {
-      "date": "2026-07-28",
-      "emotion": "joy",
-      "count": 1
-    },
-    {
-      "date": "2026-07-29",
-      "emotion": "disappointment",
-      "count": 1
-    },
-    {
-      "date": "2026-07-30",
-      "emotion": "neutral",
-      "count": 1
-    },
-    {
-      "date": "2026-07-31",
-      "emotion": "fear",
-      "count": 1
-    },
-    {
-      "date": "2026-08-01",
-      "emotion": "disappointment",
-      "count": 1
-    },
-    {
-      "date": "2026-08-02",
-      "emotion": "realization",
-      "count": 1
-    },
-    {
-      "date": "2026-08-03",
-      "emotion": "approval",
-      "count": 1
-    },
-    {
-      "date": "2026-08-04",
-      "emotion": "realization",
-      "count": 1
-    },
-    {
-      "date": "2026-08-05",
-      "emotion": "realization",
-      "count": 1
-    },
-    {
-      "date": "2026-08-06",
-      "emotion": "joy",
-      "count": 1
-    },
-    {
       "date": "2026-08-07",
-      "emotion": "joy",
+      "emotion": "optimism",
       "count": 1
     },
     {
       "date": "2026-08-08",
-      "emotion": "disappointment",
+      "emotion": "pride",
       "count": 1
     },
     {
       "date": "2026-08-09",
-      "emotion": "disappointment",
+      "emotion": "joy",
       "count": 1
     },
     {
       "date": "2026-08-10",
-      "emotion": "sadness",
+      "emotion": "stress",
       "count": 1
     },
     {
       "date": "2026-08-11",
-      "emotion": "neutral",
+      "emotion": "fear",
       "count": 1
     },
     {
       "date": "2026-08-12",
-      "emotion": "amusement",
+      "emotion": "sadness",
       "count": 1
     },
     {
       "date": "2026-08-13",
-      "emotion": "neutral",
+      "emotion": "relief",
       "count": 1
     },
     {
       "date": "2026-08-14",
-      "emotion": "joy",
+      "emotion": "remorse",
       "count": 1
     },
     {
       "date": "2026-08-15",
-      "emotion": "joy",
+      "emotion": "annoyance",
       "count": 1
     },
     {
       "date": "2026-08-16",
-      "emotion": "joy",
+      "emotion": "sadness",
       "count": 1
     },
     {
       "date": "2026-08-17",
-      "emotion": "realization",
+      "emotion": "fear",
       "count": 1
     },
     {
       "date": "2026-08-18",
-      "emotion": "approval",
+      "emotion": "sadness",
       "count": 1
     },
     {
       "date": "2026-08-19",
-      "emotion": "admiration",
+      "emotion": "relief",
       "count": 1
     },
     {
       "date": "2026-08-20",
-      "emotion": "realization",
+      "emotion": "anger",
       "count": 1
     },
     {
       "date": "2026-08-21",
-      "emotion": "neutral",
+      "emotion": "realization",
+      "count": 1
+    },
+    {
+      "date": "2026-08-22",
+      "emotion": "sadness",
+      "count": 1
+    },
+    {
+      "date": "2026-08-23",
+      "emotion": "relief",
+      "count": 1
+    },
+    {
+      "date": "2026-08-24",
+      "emotion": "optimism",
+      "count": 1
+    },
+    {
+      "date": "2026-08-25",
+      "emotion": "caring",
+      "count": 1
+    },
+    {
+      "date": "2026-08-26",
+      "emotion": "joy",
+      "count": 1
+    },
+    {
+      "date": "2026-08-27",
+      "emotion": "realization",
+      "count": 1
+    },
+    {
+      "date": "2026-08-28",
+      "emotion": "pride",
+      "count": 1
+    },
+    {
+      "date": "2026-08-29",
+      "emotion": "joy",
+      "count": 1
+    },
+    {
+      "date": "2026-08-30",
+      "emotion": "optimism",
+      "count": 1
+    },
+    {
+      "date": "2026-08-31",
+      "emotion": "relief",
+      "count": 1
+    },
+    {
+      "date": "2026-09-01",
+      "emotion": "optimism",
+      "count": 1
+    },
+    {
+      "date": "2026-09-02",
+      "emotion": "pride",
+      "count": 1
+    },
+    {
+      "date": "2026-09-03",
+      "emotion": "caring",
+      "count": 1
+    },
+    {
+      "date": "2026-09-04",
+      "emotion": "gratitude",
+      "count": 1
+    },
+    {
+      "date": "2026-09-05",
+      "emotion": "realization",
       "count": 1
     }
   ],
   "pattern_summary": {
     "recurring_emotions": {
-      "neutral": 5,
-      "realization": 5,
-      "admiration": 1,
-      "approval": 2,
-      "joy": 6,
-      "amusement": 1,
-      "sadness": 1,
-      "disappointment": 7,
-      "fear": 1,
-      "confusion": 1
+      "realization": 3,
+      "gratitude": 1,
+      "caring": 2,
+      "pride": 3,
+      "optimism": 4,
+      "relief": 4,
+      "joy": 3,
+      "sadness": 4,
+      "anger": 1,
+      "fear": 2,
+      "annoyance": 1,
+      "remorse": 1,
+      "stress": 1
     },
     "recurring_topics": {
-      "health": 30,
-      "relationship": 28,
-      "career": 21,
-      "money": 9,
-      "education": 6
+      "career": 15,
+      "relationship": 9,
+      "health": 16,
+      "money": 5
     },
     "recurring_people": {
-      "Meera": 29,
-      "Neha": 6,
-      "Papa": 17,
-      "Sameer": 12,
-      "Vikram": 14,
-      "Rohan": 12,
-      "Anjali": 8,
-      "Ended": 1,
-      "Ma": 4,
-      "Priya": 9,
-      "Arjun": 4
+      "Sarah": 10,
+      "Maya": 9
     },
     "emotion_trends": {
-      "neutral": "stable",
       "realization": "increasing",
-      "approval": "stable",
+      "caring": "increasing",
+      "pride": "increasing",
+      "optimism": "stable",
+      "relief": "increasing",
       "joy": "stable",
-      "disappointment": "increasing"
+      "sadness": "stable",
+      "fear": "decreasing"
     },
     "topic_trends": {
-      "health": "increasing",
-      "relationship": "increasing",
       "career": "increasing",
-      "money": "increasing",
-      "education": "stable"
+      "relationship": "increasing",
+      "health": "increasing",
+      "money": "increasing"
     },
     "triggers": [
       {
-        "topic": "health",
-        "frequency": 30,
-        "avg_sentiment": 0.4868,
-        "dominant_emotion": "disappointment",
+        "topic": "career",
+        "frequency": 15,
+        "avg_sentiment": 0.124,
+        "dominant_emotion": "optimism",
         "trend": "increasing",
         "confidence": 1.0,
-        "explanation": "Based on 30 entries mentioning health; positive mood score 74%, trend increasing.",
+        "explanation": "Based on 15 entries mentioning career; mixed mood score 56%, trend increasing.",
         "source_type": "topic",
         "display_label": "",
         "sentiment_score": 50,
@@ -217,12 +212,12 @@
       },
       {
         "topic": "relationship",
-        "frequency": 28,
-        "avg_sentiment": 0.451,
-        "dominant_emotion": "disappointment",
+        "frequency": 9,
+        "avg_sentiment": 0.1933,
+        "dominant_emotion": "joy",
         "trend": "increasing",
-        "confidence": 1.0,
-        "explanation": "Based on 28 entries mentioning relationship; positive mood score 73%, trend increasing.",
+        "confidence": 0.9,
+        "explanation": "Based on 9 entries mentioning relationship; mixed mood score 60%, trend increasing.",
         "source_type": "topic",
         "display_label": "",
         "sentiment_score": 50,
@@ -230,13 +225,13 @@
         "sentiment_summary": ""
       },
       {
-        "topic": "career",
-        "frequency": 21,
-        "avg_sentiment": 0.3696,
-        "dominant_emotion": "disappointment",
+        "topic": "health",
+        "frequency": 16,
+        "avg_sentiment": 0.1225,
+        "dominant_emotion": "relief",
         "trend": "increasing",
         "confidence": 1.0,
-        "explanation": "Based on 21 entries mentioning career; positive mood score 68%, trend increasing.",
+        "explanation": "Based on 16 entries mentioning health; mixed mood score 56%, trend increasing.",
         "source_type": "topic",
         "display_label": "",
         "sentiment_score": 50,
@@ -245,26 +240,12 @@
       },
       {
         "topic": "money",
-        "frequency": 9,
-        "avg_sentiment": 0.3716,
-        "dominant_emotion": "disappointment",
+        "frequency": 5,
+        "avg_sentiment": -0.254,
+        "dominant_emotion": "sadness",
         "trend": "increasing",
-        "confidence": 0.9,
-        "explanation": "Based on 9 entries mentioning money; positive mood score 69%, trend increasing.",
-        "source_type": "topic",
-        "display_label": "",
-        "sentiment_score": 50,
-        "sentiment_label": "",
-        "sentiment_summary": ""
-      },
-      {
-        "topic": "education",
-        "frequency": 6,
-        "avg_sentiment": 0.493,
-        "dominant_emotion": "disappointment",
-        "trend": "stable",
-        "confidence": 0.6,
-        "explanation": "Based on 6 entries mentioning education; positive mood score 75%, trend stable.",
+        "confidence": 0.5,
+        "explanation": "Based on 5 entries mentioning money; heavy mood score 37%, trend increasing.",
         "source_type": "topic",
         "display_label": "",
         "sentiment_score": 50,
@@ -275,21 +256,20 @@
     "period_entry_count": 30
   },
   "recurring_topics": {
-    "health": 30,
-    "relationship": 28,
-    "career": 21,
-    "money": 9,
-    "education": 6
+    "career": 15,
+    "relationship": 9,
+    "health": 16,
+    "money": 5
   },
   "triggers": [
     {
-      "topic": "health",
-      "frequency": 30,
-      "avg_sentiment": 0.4868,
-      "dominant_emotion": "disappointment",
+      "topic": "career",
+      "frequency": 15,
+      "avg_sentiment": 0.124,
+      "dominant_emotion": "optimism",
       "trend": "increasing",
       "confidence": 1.0,
-      "explanation": "Based on 30 entries mentioning health; positive mood score 74%, trend increasing.",
+      "explanation": "Based on 15 entries mentioning career; mixed mood score 56%, trend increasing.",
       "source_type": "topic",
       "display_label": "",
       "sentiment_score": 50,
@@ -298,12 +278,12 @@
     },
     {
       "topic": "relationship",
-      "frequency": 28,
-      "avg_sentiment": 0.451,
-      "dominant_emotion": "disappointment",
+      "frequency": 9,
+      "avg_sentiment": 0.1933,
+      "dominant_emotion": "joy",
       "trend": "increasing",
-      "confidence": 1.0,
-      "explanation": "Based on 28 entries mentioning relationship; positive mood score 73%, trend increasing.",
+      "confidence": 0.9,
+      "explanation": "Based on 9 entries mentioning relationship; mixed mood score 60%, trend increasing.",
       "source_type": "topic",
       "display_label": "",
       "sentiment_score": 50,
@@ -311,13 +291,13 @@
       "sentiment_summary": ""
     },
     {
-      "topic": "career",
-      "frequency": 21,
-      "avg_sentiment": 0.3696,
-      "dominant_emotion": "disappointment",
+      "topic": "health",
+      "frequency": 16,
+      "avg_sentiment": 0.1225,
+      "dominant_emotion": "relief",
       "trend": "increasing",
       "confidence": 1.0,
-      "explanation": "Based on 21 entries mentioning career; positive mood score 68%, trend increasing.",
+      "explanation": "Based on 16 entries mentioning health; mixed mood score 56%, trend increasing.",
       "source_type": "topic",
       "display_label": "",
       "sentiment_score": 50,
@@ -326,26 +306,12 @@
     },
     {
       "topic": "money",
-      "frequency": 9,
-      "avg_sentiment": 0.3716,
-      "dominant_emotion": "disappointment",
+      "frequency": 5,
+      "avg_sentiment": -0.254,
+      "dominant_emotion": "sadness",
       "trend": "increasing",
-      "confidence": 0.9,
-      "explanation": "Based on 9 entries mentioning money; positive mood score 69%, trend increasing.",
-      "source_type": "topic",
-      "display_label": "",
-      "sentiment_score": 50,
-      "sentiment_label": "",
-      "sentiment_summary": ""
-    },
-    {
-      "topic": "education",
-      "frequency": 6,
-      "avg_sentiment": 0.493,
-      "dominant_emotion": "disappointment",
-      "trend": "stable",
-      "confidence": 0.6,
-      "explanation": "Based on 6 entries mentioning education; positive mood score 75%, trend stable.",
+      "confidence": 0.5,
+      "explanation": "Based on 5 entries mentioning money; heavy mood score 37%, trend increasing.",
       "source_type": "topic",
       "display_label": "",
       "sentiment_score": 50,
@@ -355,657 +321,71 @@
   ],
   "habits": [
     {
-      "habit": "coding",
-      "mention_count": 5,
-      "avg_sentiment_when_mentioned": -0.0856,
-      "avg_sentiment_other_days": 0.6012,
-      "delta": -0.6868,
-      "correlation_label": "negative",
-      "streak_length": 1,
-      "consistency_percentage": 16.67,
-      "co_occurring_pairs": [
-        {
-          "habit_a": "coding",
-          "habit_b": "social_media",
-          "mention_count": 2,
-          "avg_sentiment_together": -0.6995,
-          "avg_sentiment_either_alone": 0.326,
-          "delta_vs_either_alone": -1.0255,
-          "confidence": 0.2,
-          "explanation": "coding + social_media appeared together 2 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coding",
-          "habit_b": "coffee",
-          "mention_count": 4,
-          "avg_sentiment_together": -0.3403,
-          "avg_sentiment_either_alone": 0.5102,
-          "delta_vs_either_alone": -0.8505,
-          "confidence": 0.4,
-          "explanation": "coding + coffee appeared together 4 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coding",
-          "habit_b": "sleep",
-          "mention_count": 4,
-          "avg_sentiment_together": -0.3403,
-          "avg_sentiment_either_alone": 0.5058,
-          "delta_vs_either_alone": -0.846,
-          "confidence": 0.4,
-          "explanation": "coding + sleep appeared together 4 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coding",
-          "habit_b": "exercise",
-          "mention_count": 5,
-          "avg_sentiment_together": -0.0856,
-          "avg_sentiment_either_alone": 0.6276,
-          "delta_vs_either_alone": -0.7132,
-          "confidence": 0.5,
-          "explanation": "coding + exercise appeared together 5 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coding",
-          "habit_b": "meditation",
-          "mention_count": 2,
-          "avg_sentiment_together": 0.962,
-          "avg_sentiment_either_alone": 0.4436,
-          "delta_vs_either_alone": 0.5184,
-          "confidence": 0.2,
-          "explanation": "coding + meditation appeared together 2 times; the combined pattern looks strongly lighter than either habit alone."
-        }
-      ],
-      "confidence": 0.5,
-      "explanation": "Coding mentioned 5 times; those days look strongly heavier than non-mention days.",
-      "delta_direction": "",
-      "delta_label": "",
-      "delta_summary": ""
-    },
-    {
-      "habit": "meditation",
-      "mention_count": 19,
-      "avg_sentiment_when_mentioned": 0.692,
-      "avg_sentiment_other_days": 0.1323,
-      "delta": 0.5597,
-      "correlation_label": "positive",
-      "streak_length": 18,
-      "consistency_percentage": 63.33,
-      "co_occurring_pairs": [
-        {
-          "habit_a": "exercise",
-          "habit_b": "meditation",
-          "mention_count": 17,
-          "avg_sentiment_together": 0.7384,
-          "avg_sentiment_either_alone": 0.1577,
-          "delta_vs_either_alone": 0.5807,
-          "confidence": 1.0,
-          "explanation": "exercise + meditation appeared together 17 times; the combined pattern looks strongly lighter than either habit alone."
-        },
-        {
-          "habit_a": "coding",
-          "habit_b": "meditation",
-          "mention_count": 2,
-          "avg_sentiment_together": 0.962,
-          "avg_sentiment_either_alone": 0.4436,
-          "delta_vs_either_alone": 0.5184,
-          "confidence": 0.2,
-          "explanation": "coding + meditation appeared together 2 times; the combined pattern looks strongly lighter than either habit alone."
-        },
-        {
-          "habit_a": "coffee",
-          "habit_b": "meditation",
-          "mention_count": 5,
-          "avg_sentiment_together": 0.6354,
-          "avg_sentiment_either_alone": 0.4291,
-          "delta_vs_either_alone": 0.2063,
-          "confidence": 0.5,
-          "explanation": "coffee + meditation appeared together 5 times; the combined pattern looks noticeably lighter than either habit alone."
-        },
-        {
-          "habit_a": "meditation",
-          "habit_b": "sleep",
-          "mention_count": 9,
-          "avg_sentiment_together": 0.5892,
-          "avg_sentiment_either_alone": 0.417,
-          "delta_vs_either_alone": 0.1722,
-          "confidence": 0.9,
-          "explanation": "meditation + sleep appeared together 9 times; the combined pattern looks noticeably lighter than either habit alone."
-        },
-        {
-          "habit_a": "cooking",
-          "habit_b": "meditation",
-          "mention_count": 9,
-          "avg_sentiment_together": 0.5832,
-          "avg_sentiment_either_alone": 0.7042,
-          "delta_vs_either_alone": -0.121,
-          "confidence": 0.9,
-          "explanation": "cooking + meditation appeared together 9 times; the combined pattern looks slightly heavier than either habit alone."
-        },
-        {
-          "habit_a": "meditation",
-          "habit_b": "reading",
-          "mention_count": 11,
-          "avg_sentiment_together": 0.6536,
-          "avg_sentiment_either_alone": 0.558,
-          "delta_vs_either_alone": 0.0957,
-          "confidence": 1.0,
-          "explanation": "meditation + reading appeared together 11 times; the combined pattern looks slightly lighter than either habit alone."
-        },
-        {
-          "habit_a": "meditation",
-          "habit_b": "social_media",
-          "mention_count": 4,
-          "avg_sentiment_together": 0.5503,
-          "avg_sentiment_either_alone": 0.4818,
-          "delta_vs_either_alone": 0.0685,
-          "confidence": 0.4,
-          "explanation": "meditation + social_media appeared together 4 times; the combined pattern looks slightly lighter than either habit alone."
-        }
-      ],
-      "confidence": 1.0,
-      "explanation": "Meditation mentioned 19 times; those days look strongly lighter than non-mention days.",
-      "delta_direction": "",
-      "delta_label": "",
-      "delta_summary": ""
-    },
-    {
-      "habit": "social_media",
-      "mention_count": 9,
-      "avg_sentiment_when_mentioned": 0.0989,
-      "avg_sentiment_other_days": 0.653,
-      "delta": -0.5542,
-      "correlation_label": "negative",
-      "streak_length": 1,
-      "consistency_percentage": 30.0,
-      "co_occurring_pairs": [
-        {
-          "habit_a": "coding",
-          "habit_b": "social_media",
-          "mention_count": 2,
-          "avg_sentiment_together": -0.6995,
-          "avg_sentiment_either_alone": 0.326,
-          "delta_vs_either_alone": -1.0255,
-          "confidence": 0.2,
-          "explanation": "coding + social_media appeared together 2 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "reading",
-          "habit_b": "social_media",
-          "mention_count": 6,
-          "avg_sentiment_together": 0.0473,
-          "avg_sentiment_either_alone": 0.669,
-          "delta_vs_either_alone": -0.6217,
-          "confidence": 0.6,
-          "explanation": "reading + social_media appeared together 6 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "exercise",
-          "habit_b": "social_media",
-          "mention_count": 9,
-          "avg_sentiment_together": 0.0989,
-          "avg_sentiment_either_alone": 0.6904,
-          "delta_vs_either_alone": -0.5916,
-          "confidence": 0.9,
-          "explanation": "exercise + social_media appeared together 9 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "sleep",
-          "habit_b": "social_media",
-          "mention_count": 8,
-          "avg_sentiment_together": -0.0118,
-          "avg_sentiment_either_alone": 0.5731,
-          "delta_vs_either_alone": -0.5849,
-          "confidence": 0.8,
-          "explanation": "sleep + social_media appeared together 8 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coffee",
-          "habit_b": "social_media",
-          "mention_count": 6,
-          "avg_sentiment_together": -0.0232,
-          "avg_sentiment_either_alone": 0.3695,
-          "delta_vs_either_alone": -0.3928,
-          "confidence": 0.6,
-          "explanation": "coffee + social_media appeared together 6 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "cooking",
-          "habit_b": "social_media",
-          "mention_count": 4,
-          "avg_sentiment_together": 0.2018,
-          "avg_sentiment_either_alone": 0.423,
-          "delta_vs_either_alone": -0.2212,
-          "confidence": 0.4,
-          "explanation": "cooking + social_media appeared together 4 times; the combined pattern looks noticeably heavier than either habit alone."
-        },
-        {
-          "habit_a": "meditation",
-          "habit_b": "social_media",
-          "mention_count": 4,
-          "avg_sentiment_together": 0.5503,
-          "avg_sentiment_either_alone": 0.4818,
-          "delta_vs_either_alone": 0.0685,
-          "confidence": 0.4,
-          "explanation": "meditation + social_media appeared together 4 times; the combined pattern looks slightly lighter than either habit alone."
-        }
-      ],
-      "confidence": 0.9,
-      "explanation": "Social_media mentioned 9 times; those days look strongly heavier than non-mention days.",
-      "delta_direction": "",
-      "delta_label": "",
-      "delta_summary": ""
-    },
-    {
-      "habit": "coffee",
-      "mention_count": 11,
-      "avg_sentiment_when_mentioned": 0.1625,
-      "avg_sentiment_other_days": 0.6745,
-      "delta": -0.512,
-      "correlation_label": "negative",
-      "streak_length": 2,
-      "consistency_percentage": 36.67,
-      "co_occurring_pairs": [
-        {
-          "habit_a": "coding",
-          "habit_b": "coffee",
-          "mention_count": 4,
-          "avg_sentiment_together": -0.3403,
-          "avg_sentiment_either_alone": 0.5102,
-          "delta_vs_either_alone": -0.8505,
-          "confidence": 0.4,
-          "explanation": "coding + coffee appeared together 4 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coffee",
-          "habit_b": "sleep",
-          "mention_count": 8,
-          "avg_sentiment_together": -0.1393,
-          "avg_sentiment_either_alone": 0.7011,
-          "delta_vs_either_alone": -0.8404,
-          "confidence": 0.8,
-          "explanation": "coffee + sleep appeared together 8 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coffee",
-          "habit_b": "exercise",
-          "mention_count": 11,
-          "avg_sentiment_together": 0.1625,
-          "avg_sentiment_either_alone": 0.7188,
-          "delta_vs_either_alone": -0.5563,
-          "confidence": 1.0,
-          "explanation": "coffee + exercise appeared together 11 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coffee",
-          "habit_b": "cooking",
-          "mention_count": 3,
-          "avg_sentiment_together": -0.0554,
-          "avg_sentiment_either_alone": 0.495,
-          "delta_vs_either_alone": -0.5504,
-          "confidence": 0.3,
-          "explanation": "coffee + cooking appeared together 3 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coffee",
-          "habit_b": "reading",
-          "mention_count": 4,
-          "avg_sentiment_together": 0.0536,
-          "avg_sentiment_either_alone": 0.5201,
-          "delta_vs_either_alone": -0.4666,
-          "confidence": 0.4,
-          "explanation": "coffee + reading appeared together 4 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coffee",
-          "habit_b": "social_media",
-          "mention_count": 6,
-          "avg_sentiment_together": -0.0232,
-          "avg_sentiment_either_alone": 0.3695,
-          "delta_vs_either_alone": -0.3928,
-          "confidence": 0.6,
-          "explanation": "coffee + social_media appeared together 6 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coffee",
-          "habit_b": "meditation",
-          "mention_count": 5,
-          "avg_sentiment_together": 0.6354,
-          "avg_sentiment_either_alone": 0.4291,
-          "delta_vs_either_alone": 0.2063,
-          "confidence": 0.5,
-          "explanation": "coffee + meditation appeared together 5 times; the combined pattern looks noticeably lighter than either habit alone."
-        }
-      ],
-      "confidence": 1.0,
-      "explanation": "Coffee mentioned 11 times; those days look strongly heavier than non-mention days.",
-      "delta_direction": "",
-      "delta_label": "",
-      "delta_summary": ""
-    },
-    {
-      "habit": "sleep",
-      "mention_count": 19,
-      "avg_sentiment_when_mentioned": 0.3052,
-      "avg_sentiment_other_days": 0.8005,
-      "delta": -0.4953,
-      "correlation_label": "negative",
-      "streak_length": 1,
-      "consistency_percentage": 63.33,
-      "co_occurring_pairs": [
-        {
-          "habit_a": "coding",
-          "habit_b": "sleep",
-          "mention_count": 4,
-          "avg_sentiment_together": -0.3403,
-          "avg_sentiment_either_alone": 0.5058,
-          "delta_vs_either_alone": -0.846,
-          "confidence": 0.4,
-          "explanation": "coding + sleep appeared together 4 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coffee",
-          "habit_b": "sleep",
-          "mention_count": 8,
-          "avg_sentiment_together": -0.1393,
-          "avg_sentiment_either_alone": 0.7011,
-          "delta_vs_either_alone": -0.8404,
-          "confidence": 0.8,
-          "explanation": "coffee + sleep appeared together 8 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "sleep",
-          "habit_b": "social_media",
-          "mention_count": 8,
-          "avg_sentiment_together": -0.0118,
-          "avg_sentiment_either_alone": 0.5731,
-          "delta_vs_either_alone": -0.5849,
-          "confidence": 0.8,
-          "explanation": "sleep + social_media appeared together 8 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "exercise",
-          "habit_b": "sleep",
-          "mention_count": 18,
-          "avg_sentiment_together": 0.3424,
-          "avg_sentiment_either_alone": 0.6799,
-          "delta_vs_either_alone": -0.3374,
-          "confidence": 1.0,
-          "explanation": "exercise + sleep appeared together 18 times; the combined pattern looks noticeably heavier than either habit alone."
-        },
-        {
-          "habit_a": "reading",
-          "habit_b": "sleep",
-          "mention_count": 11,
-          "avg_sentiment_together": 0.295,
-          "avg_sentiment_either_alone": 0.5966,
-          "delta_vs_either_alone": -0.3016,
-          "confidence": 1.0,
-          "explanation": "reading + sleep appeared together 11 times; the combined pattern looks noticeably heavier than either habit alone."
-        },
-        {
-          "habit_a": "cooking",
-          "habit_b": "sleep",
-          "mention_count": 7,
-          "avg_sentiment_together": 0.5344,
-          "avg_sentiment_either_alone": 0.2573,
-          "delta_vs_either_alone": 0.2772,
-          "confidence": 0.7,
-          "explanation": "cooking + sleep appeared together 7 times; the combined pattern looks noticeably lighter than either habit alone."
-        },
-        {
-          "habit_a": "meditation",
-          "habit_b": "sleep",
-          "mention_count": 9,
-          "avg_sentiment_together": 0.5892,
-          "avg_sentiment_either_alone": 0.417,
-          "delta_vs_either_alone": 0.1722,
-          "confidence": 0.9,
-          "explanation": "meditation + sleep appeared together 9 times; the combined pattern looks noticeably lighter than either habit alone."
-        }
-      ],
-      "confidence": 1.0,
-      "explanation": "Sleep mentioned 19 times; those days look strongly heavier than non-mention days.",
-      "delta_direction": "",
-      "delta_label": "",
-      "delta_summary": ""
-    },
-    {
       "habit": "exercise",
-      "mention_count": 28,
-      "avg_sentiment_when_mentioned": 0.5003,
-      "avg_sentiment_other_days": 0.2976,
-      "delta": 0.2027,
+      "mention_count": 8,
+      "avg_sentiment_when_mentioned": 0.495,
+      "avg_sentiment_other_days": -0.0345,
+      "delta": 0.5295,
       "correlation_label": "positive",
       "streak_length": 3,
-      "consistency_percentage": 93.33,
+      "consistency_percentage": 26.67,
       "co_occurring_pairs": [
-        {
-          "habit_a": "coding",
-          "habit_b": "exercise",
-          "mention_count": 5,
-          "avg_sentiment_together": -0.0856,
-          "avg_sentiment_either_alone": 0.6276,
-          "delta_vs_either_alone": -0.7132,
-          "confidence": 0.5,
-          "explanation": "coding + exercise appeared together 5 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "exercise",
-          "habit_b": "social_media",
-          "mention_count": 9,
-          "avg_sentiment_together": 0.0989,
-          "avg_sentiment_either_alone": 0.6904,
-          "delta_vs_either_alone": -0.5916,
-          "confidence": 0.9,
-          "explanation": "exercise + social_media appeared together 9 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "exercise",
-          "habit_b": "meditation",
-          "mention_count": 17,
-          "avg_sentiment_together": 0.7384,
-          "avg_sentiment_either_alone": 0.1577,
-          "delta_vs_either_alone": 0.5807,
-          "confidence": 1.0,
-          "explanation": "exercise + meditation appeared together 17 times; the combined pattern looks strongly lighter than either habit alone."
-        },
-        {
-          "habit_a": "coffee",
-          "habit_b": "exercise",
-          "mention_count": 11,
-          "avg_sentiment_together": 0.1625,
-          "avg_sentiment_either_alone": 0.7188,
-          "delta_vs_either_alone": -0.5563,
-          "confidence": 1.0,
-          "explanation": "coffee + exercise appeared together 11 times; the combined pattern looks strongly heavier than either habit alone."
-        },
         {
           "habit_a": "exercise",
           "habit_b": "sleep",
-          "mention_count": 18,
-          "avg_sentiment_together": 0.3424,
-          "avg_sentiment_either_alone": 0.6799,
-          "delta_vs_either_alone": -0.3374,
-          "confidence": 1.0,
-          "explanation": "exercise + sleep appeared together 18 times; the combined pattern looks noticeably heavier than either habit alone."
-        },
-        {
-          "habit_a": "exercise",
-          "habit_b": "reading",
-          "mention_count": 15,
-          "avg_sentiment_together": 0.5632,
-          "avg_sentiment_either_alone": 0.4103,
-          "delta_vs_either_alone": 0.1529,
-          "confidence": 1.0,
-          "explanation": "exercise + reading appeared together 15 times; the combined pattern looks noticeably lighter than either habit alone."
-        },
-        {
-          "habit_a": "cooking",
-          "habit_b": "exercise",
-          "mention_count": 11,
-          "avg_sentiment_together": 0.5273,
-          "avg_sentiment_either_alone": 0.4828,
-          "delta_vs_either_alone": 0.0446,
-          "confidence": 1.0,
-          "explanation": "cooking + exercise appeared together 11 times; the combined pattern looks about steady than either habit alone."
+          "mention_count": 2,
+          "avg_sentiment_together": 0.575,
+          "avg_sentiment_either_alone": 0.2478,
+          "delta_vs_either_alone": 0.3272,
+          "confidence": 0.2,
+          "explanation": "exercise + sleep appeared together 2 times; the combined pattern looks noticeably lighter than either habit alone."
         }
       ],
-      "confidence": 1.0,
-      "explanation": "Exercise mentioned 28 times; those days look noticeably lighter than non-mention days.",
-      "delta_direction": "",
-      "delta_label": "",
-      "delta_summary": ""
-    },
-    {
-      "habit": "reading",
-      "mention_count": 17,
-      "avg_sentiment_when_mentioned": 0.532,
-      "avg_sentiment_other_days": 0.4277,
-      "delta": 0.1043,
-      "correlation_label": "positive",
-      "streak_length": 1,
-      "consistency_percentage": 56.67,
-      "co_occurring_pairs": [
-        {
-          "habit_a": "reading",
-          "habit_b": "social_media",
-          "mention_count": 6,
-          "avg_sentiment_together": 0.0473,
-          "avg_sentiment_either_alone": 0.669,
-          "delta_vs_either_alone": -0.6217,
-          "confidence": 0.6,
-          "explanation": "reading + social_media appeared together 6 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "coffee",
-          "habit_b": "reading",
-          "mention_count": 4,
-          "avg_sentiment_together": 0.0536,
-          "avg_sentiment_either_alone": 0.5201,
-          "delta_vs_either_alone": -0.4666,
-          "confidence": 0.4,
-          "explanation": "coffee + reading appeared together 4 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "cooking",
-          "habit_b": "reading",
-          "mention_count": 7,
-          "avg_sentiment_together": 0.7282,
-          "avg_sentiment_either_alone": 0.3321,
-          "delta_vs_either_alone": 0.3961,
-          "confidence": 0.7,
-          "explanation": "cooking + reading appeared together 7 times; the combined pattern looks strongly lighter than either habit alone."
-        },
-        {
-          "habit_a": "reading",
-          "habit_b": "sleep",
-          "mention_count": 11,
-          "avg_sentiment_together": 0.295,
-          "avg_sentiment_either_alone": 0.5966,
-          "delta_vs_either_alone": -0.3016,
-          "confidence": 1.0,
-          "explanation": "reading + sleep appeared together 11 times; the combined pattern looks noticeably heavier than either habit alone."
-        },
-        {
-          "habit_a": "exercise",
-          "habit_b": "reading",
-          "mention_count": 15,
-          "avg_sentiment_together": 0.5632,
-          "avg_sentiment_either_alone": 0.4103,
-          "delta_vs_either_alone": 0.1529,
-          "confidence": 1.0,
-          "explanation": "exercise + reading appeared together 15 times; the combined pattern looks noticeably lighter than either habit alone."
-        },
-        {
-          "habit_a": "meditation",
-          "habit_b": "reading",
-          "mention_count": 11,
-          "avg_sentiment_together": 0.6536,
-          "avg_sentiment_either_alone": 0.558,
-          "delta_vs_either_alone": 0.0957,
-          "confidence": 1.0,
-          "explanation": "meditation + reading appeared together 11 times; the combined pattern looks slightly lighter than either habit alone."
-        }
-      ],
-      "confidence": 1.0,
-      "explanation": "Reading mentioned 17 times; those days look slightly lighter than non-mention days.",
+      "confidence": 0.8,
+      "explanation": "Exercise mentioned 8 times; those days look strongly lighter than non-mention days.",
       "delta_direction": "",
       "delta_label": "",
       "delta_summary": ""
     },
     {
       "habit": "cooking",
-      "mention_count": 11,
-      "avg_sentiment_when_mentioned": 0.5273,
-      "avg_sentiment_other_days": 0.4633,
-      "delta": 0.064,
+      "mention_count": 2,
+      "avg_sentiment_when_mentioned": 0.37,
+      "avg_sentiment_other_days": 0.0879,
+      "delta": 0.2821,
+      "correlation_label": "positive",
+      "streak_length": 1,
+      "consistency_percentage": 6.67,
+      "co_occurring_pairs": [],
+      "confidence": 0.2,
+      "explanation": "Cooking mentioned 2 times; those days look noticeably lighter than non-mention days.",
+      "delta_direction": "",
+      "delta_label": "",
+      "delta_summary": ""
+    },
+    {
+      "habit": "sleep",
+      "mention_count": 5,
+      "avg_sentiment_when_mentioned": 0.114,
+      "avg_sentiment_other_days": 0.1052,
+      "delta": 0.0088,
       "correlation_label": "neutral",
       "streak_length": 1,
-      "consistency_percentage": 36.67,
+      "consistency_percentage": 16.67,
       "co_occurring_pairs": [
         {
-          "habit_a": "coffee",
-          "habit_b": "cooking",
-          "mention_count": 3,
-          "avg_sentiment_together": -0.0554,
-          "avg_sentiment_either_alone": 0.495,
-          "delta_vs_either_alone": -0.5504,
-          "confidence": 0.3,
-          "explanation": "coffee + cooking appeared together 3 times; the combined pattern looks strongly heavier than either habit alone."
-        },
-        {
-          "habit_a": "cooking",
-          "habit_b": "reading",
-          "mention_count": 7,
-          "avg_sentiment_together": 0.7282,
-          "avg_sentiment_either_alone": 0.3321,
-          "delta_vs_either_alone": 0.3961,
-          "confidence": 0.7,
-          "explanation": "cooking + reading appeared together 7 times; the combined pattern looks strongly lighter than either habit alone."
-        },
-        {
-          "habit_a": "cooking",
+          "habit_a": "exercise",
           "habit_b": "sleep",
-          "mention_count": 7,
-          "avg_sentiment_together": 0.5344,
-          "avg_sentiment_either_alone": 0.2573,
-          "delta_vs_either_alone": 0.2772,
-          "confidence": 0.7,
-          "explanation": "cooking + sleep appeared together 7 times; the combined pattern looks noticeably lighter than either habit alone."
-        },
-        {
-          "habit_a": "cooking",
-          "habit_b": "social_media",
-          "mention_count": 4,
-          "avg_sentiment_together": 0.2018,
-          "avg_sentiment_either_alone": 0.423,
-          "delta_vs_either_alone": -0.2212,
-          "confidence": 0.4,
-          "explanation": "cooking + social_media appeared together 4 times; the combined pattern looks noticeably heavier than either habit alone."
-        },
-        {
-          "habit_a": "cooking",
-          "habit_b": "meditation",
-          "mention_count": 9,
-          "avg_sentiment_together": 0.5832,
-          "avg_sentiment_either_alone": 0.7042,
-          "delta_vs_either_alone": -0.121,
-          "confidence": 0.9,
-          "explanation": "cooking + meditation appeared together 9 times; the combined pattern looks slightly heavier than either habit alone."
-        },
-        {
-          "habit_a": "cooking",
-          "habit_b": "exercise",
-          "mention_count": 11,
-          "avg_sentiment_together": 0.5273,
-          "avg_sentiment_either_alone": 0.4828,
-          "delta_vs_either_alone": 0.0446,
-          "confidence": 1.0,
-          "explanation": "cooking + exercise appeared together 11 times; the combined pattern looks about steady than either habit alone."
+          "mention_count": 2,
+          "avg_sentiment_together": 0.575,
+          "avg_sentiment_either_alone": 0.2478,
+          "delta_vs_either_alone": 0.3272,
+          "confidence": 0.2,
+          "explanation": "exercise + sleep appeared together 2 times; the combined pattern looks noticeably lighter than either habit alone."
         }
       ],
-      "confidence": 1.0,
-      "explanation": "Cooking mentioned 11 times; those days look slightly lighter than non-mention days.",
+      "confidence": 0.5,
+      "explanation": "Sleep mentioned 5 times; those days look about steady than non-mention days.",
       "delta_direction": "",
       "delta_label": "",
       "delta_summary": ""
@@ -1013,294 +393,53 @@
   ],
   "relationships": [
     {
-      "person": "Meera",
-      "mention_count": 29,
-      "avg_sentiment": 0.4704,
-      "dominant_emotion": "disappointment",
-      "last_mentioned": "2026-08-21T12:00:00Z",
-      "trend": "improving",
-      "relationship_type": "friend",
-      "relationship_type_confidence": 0.069,
-      "relationship_type_ambiguity": "Conflicting relationship cues across entries (family:1, friend:2).",
-      "closeness_score": 4.7179,
-      "sentiment_trend": "improving",
-      "co_mentioned_with": {
-        "Papa": 16,
-        "Vikram": 13,
-        "Sameer": 12,
-        "Rohan": 11,
-        "Priya": 9,
-        "Anjali": 8,
-        "Neha": 6,
-        "Ma": 4,
-        "Arjun": 4,
-        "Ended": 1
-      },
-      "confidence": 1.0,
-      "explanation": "Based on 29 entries mentioning Meera; usually disappointment, trend improving.",
-      "sentiment_score": 50,
-      "sentiment_label": "",
-      "impact_summary": ""
-    },
-    {
-      "person": "Papa",
-      "mention_count": 17,
-      "avg_sentiment": 0.5296,
-      "dominant_emotion": "neutral",
-      "last_mentioned": "2026-08-21T12:00:00Z",
-      "trend": "improving",
-      "relationship_type": "family",
-      "relationship_type_confidence": 1.0,
-      "relationship_type_ambiguity": "",
-      "closeness_score": 2.5609,
-      "sentiment_trend": "improving",
-      "co_mentioned_with": {
-        "Meera": 16,
-        "Vikram": 10,
-        "Rohan": 7,
-        "Sameer": 6,
-        "Priya": 5,
-        "Neha": 5,
-        "Anjali": 5,
-        "Ma": 4,
-        "Arjun": 1
-      },
-      "confidence": 1.0,
-      "explanation": "Based on 17 entries mentioning Papa; usually neutral, trend improving.",
-      "sentiment_score": 50,
-      "sentiment_label": "",
-      "impact_summary": ""
-    },
-    {
-      "person": "Vikram",
-      "mention_count": 14,
-      "avg_sentiment": 0.7127,
-      "dominant_emotion": "realization",
-      "last_mentioned": "2026-08-21T12:00:00Z",
-      "trend": "stable",
-      "relationship_type": "friend",
-      "relationship_type_confidence": 0.0714,
-      "relationship_type_ambiguity": "",
-      "closeness_score": 3.9511,
-      "sentiment_trend": "stable",
-      "co_mentioned_with": {
-        "Meera": 13,
-        "Papa": 10,
-        "Sameer": 8,
-        "Rohan": 6,
-        "Anjali": 5,
-        "Neha": 5,
-        "Priya": 3,
-        "Ma": 2,
-        "Ended": 1
-      },
-      "confidence": 1.0,
-      "explanation": "Based on 14 entries mentioning Vikram; usually realization, trend stable.",
-      "sentiment_score": 50,
-      "sentiment_label": "",
-      "impact_summary": ""
-    },
-    {
-      "person": "Sameer",
-      "mention_count": 12,
-      "avg_sentiment": 0.5948,
-      "dominant_emotion": "disappointment",
-      "last_mentioned": "2026-08-21T12:00:00Z",
-      "trend": "improving",
-      "relationship_type": "friend",
-      "relationship_type_confidence": 0.0833,
-      "relationship_type_ambiguity": "",
-      "closeness_score": 2.7862,
-      "sentiment_trend": "improving",
-      "co_mentioned_with": {
-        "Meera": 12,
-        "Vikram": 8,
-        "Papa": 6,
-        "Rohan": 6,
-        "Anjali": 6,
-        "Priya": 4,
-        "Neha": 4,
-        "Arjun": 1,
-        "Ended": 1
-      },
-      "confidence": 1.0,
-      "explanation": "Based on 12 entries mentioning Sameer; usually disappointment, trend improving.",
-      "sentiment_score": 50,
-      "sentiment_label": "",
-      "impact_summary": ""
-    },
-    {
-      "person": "Rohan",
-      "mention_count": 12,
-      "avg_sentiment": 0.277,
-      "dominant_emotion": "realization",
-      "last_mentioned": "2026-08-21T12:00:00Z",
-      "trend": "improving",
-      "relationship_type": "family",
-      "relationship_type_confidence": 0.0833,
-      "relationship_type_ambiguity": "",
-      "closeness_score": 2.5363,
-      "sentiment_trend": "improving",
-      "co_mentioned_with": {
-        "Meera": 11,
-        "Papa": 7,
-        "Sameer": 6,
-        "Vikram": 6,
-        "Priya": 5,
-        "Anjali": 4,
-        "Arjun": 2,
-        "Ma": 1,
-        "Ended": 1,
-        "Neha": 1
-      },
-      "confidence": 1.0,
-      "explanation": "Based on 12 entries mentioning Rohan; usually realization, trend improving.",
-      "sentiment_score": 50,
-      "sentiment_label": "",
-      "impact_summary": ""
-    },
-    {
-      "person": "Priya",
-      "mention_count": 9,
-      "avg_sentiment": 0.2779,
-      "dominant_emotion": "disappointment",
-      "last_mentioned": "2026-08-11T12:00:00Z",
+      "person": "Sarah",
+      "mention_count": 10,
+      "avg_sentiment": 0.196,
+      "dominant_emotion": "pride",
+      "last_mentioned": "2026-09-05T18:15:00Z",
       "trend": "improving",
       "relationship_type": "colleague",
-      "relationship_type_confidence": 0.1111,
+      "relationship_type_confidence": 1.0,
       "relationship_type_ambiguity": "",
-      "closeness_score": 0.1948,
+      "closeness_score": 2.6291,
       "sentiment_trend": "improving",
       "co_mentioned_with": {
-        "Meera": 9,
-        "Papa": 5,
-        "Rohan": 5,
-        "Sameer": 4,
-        "Arjun": 3,
-        "Vikram": 3,
-        "Anjali": 2,
-        "Ma": 1,
-        "Neha": 1
+        "Maya": 2
+      },
+      "confidence": 1.0,
+      "explanation": "Based on 10 entries mentioning Sarah; usually pride, trend improving.",
+      "sentiment_score": 50,
+      "sentiment_label": "",
+      "impact_summary": ""
+    },
+    {
+      "person": "Maya",
+      "mention_count": 9,
+      "avg_sentiment": 0.1933,
+      "dominant_emotion": "joy",
+      "last_mentioned": "2026-09-05T18:15:00Z",
+      "trend": "improving",
+      "relationship_type": "friend",
+      "relationship_type_confidence": 1.0,
+      "relationship_type_ambiguity": "",
+      "closeness_score": 2.5971,
+      "sentiment_trend": "improving",
+      "co_mentioned_with": {
+        "Sarah": 2
       },
       "confidence": 0.9,
-      "explanation": "Based on 9 entries mentioning Priya; usually disappointment, trend improving.",
-      "sentiment_score": 50,
-      "sentiment_label": "",
-      "impact_summary": ""
-    },
-    {
-      "person": "Anjali",
-      "mention_count": 8,
-      "avg_sentiment": 0.7392,
-      "dominant_emotion": "realization",
-      "last_mentioned": "2026-08-20T12:00:00Z",
-      "trend": "declining",
-      "relationship_type": "other",
-      "relationship_type_confidence": 0.125,
-      "relationship_type_ambiguity": "",
-      "closeness_score": 1.2167,
-      "sentiment_trend": "declining",
-      "co_mentioned_with": {
-        "Meera": 8,
-        "Sameer": 6,
-        "Papa": 5,
-        "Vikram": 5,
-        "Rohan": 4,
-        "Neha": 2,
-        "Priya": 2,
-        "Arjun": 1,
-        "Ended": 1
-      },
-      "confidence": 0.8,
-      "explanation": "Based on 8 entries mentioning Anjali; usually realization, trend declining.",
-      "sentiment_score": 50,
-      "sentiment_label": "",
-      "impact_summary": ""
-    },
-    {
-      "person": "Neha",
-      "mention_count": 6,
-      "avg_sentiment": 0.6553,
-      "dominant_emotion": "neutral",
-      "last_mentioned": "2026-08-21T12:00:00Z",
-      "trend": "declining",
-      "relationship_type": "family",
-      "relationship_type_confidence": 0.1667,
-      "relationship_type_ambiguity": "",
-      "closeness_score": 1.7654,
-      "sentiment_trend": "declining",
-      "co_mentioned_with": {
-        "Meera": 6,
-        "Papa": 5,
-        "Vikram": 5,
-        "Sameer": 4,
-        "Anjali": 2,
-        "Priya": 1,
-        "Rohan": 1
-      },
-      "confidence": 0.6,
-      "explanation": "Based on 6 entries mentioning Neha; usually neutral, trend declining.",
-      "sentiment_score": 50,
-      "sentiment_label": "",
-      "impact_summary": ""
-    },
-    {
-      "person": "Ma",
-      "mention_count": 4,
-      "avg_sentiment": 0.0351,
-      "dominant_emotion": "confusion",
-      "last_mentioned": "2026-08-14T12:00:00Z",
-      "trend": "stable",
-      "relationship_type": "family",
-      "relationship_type_confidence": 1.0,
-      "relationship_type_ambiguity": "",
-      "closeness_score": 0.2365,
-      "sentiment_trend": "stable",
-      "co_mentioned_with": {
-        "Meera": 4,
-        "Papa": 4,
-        "Vikram": 2,
-        "Priya": 1,
-        "Rohan": 1
-      },
-      "confidence": 0.4,
-      "explanation": "Based on 4 entries mentioning Ma; usually confusion, trend stable.",
-      "sentiment_score": 50,
-      "sentiment_label": "",
-      "impact_summary": ""
-    },
-    {
-      "person": "Arjun",
-      "mention_count": 4,
-      "avg_sentiment": 0.144,
-      "dominant_emotion": "disappointment",
-      "last_mentioned": "2026-08-07T12:00:00Z",
-      "trend": "improving",
-      "relationship_type": "unknown",
-      "relationship_type_confidence": 1.0,
-      "relationship_type_ambiguity": "",
-      "closeness_score": 0.083,
-      "sentiment_trend": "improving",
-      "co_mentioned_with": {
-        "Meera": 4,
-        "Priya": 3,
-        "Rohan": 2,
-        "Sameer": 1,
-        "Anjali": 1,
-        "Papa": 1
-      },
-      "confidence": 0.4,
-      "explanation": "Based on 4 entries mentioning Arjun; usually disappointment, trend improving.",
+      "explanation": "Based on 9 entries mentioning Maya; usually joy, trend improving.",
       "sentiment_score": 50,
       "sentiment_label": "",
       "impact_summary": ""
     }
   ],
   "insights": [
-    "You've mentioned health 30 times in the last 30 days, often with disappointment.",
+    "You've mentioned health 16 times in the last 30 days, often with relief.",
     "Your sentiment around health has been increasing recently.",
-    "You've mentioned relationship 28 times in the last 30 days, often with disappointment.",
-    "Your sentiment around relationship has been increasing recently.",
-    "You've mentioned career 21 times in the last 30 days, often with disappointment."
+    "You've mentioned career 15 times in the last 30 days, often with optimism.",
+    "Your sentiment around career has been increasing recently.",
+    "Sarah comes up often in your entries, usually with pride."
   ]
 }

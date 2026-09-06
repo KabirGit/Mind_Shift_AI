@@ -4,10 +4,16 @@ import os
 import time
 from datetime import UTC, datetime
 from typing import TYPE_CHECKING, Any
+from uuid import uuid4
 
 from backend.config.debug import log_stage
 from backend.config.settings import get_settings
+from backend.context.decision_context import DecisionContextBuilder
 from backend.emotion.detector import EmotionDetector
+from backend.guidance.agent import GuidanceAgent
+from backend.guidance.decision_parser import DecisionParser
+from backend.guidance.models import DecisionContext, GuidanceResult
+from backend.guidance.service import GuidanceService
 from backend.ingestion.loaders import load_all_documents
 from backend.llm.huggingface_client import HuggingFaceInferenceClient
 from backend.llm.prompt_builder import PromptBuilder
@@ -210,6 +216,21 @@ class RAGService:
             prediction_engine=self.prediction_engine,
         )
 
+        # Bounded decision-support path. These wrap existing services and add no
+        # alternate storage or model client.
+        self.guidance_service = GuidanceService(DecisionParser(self.llm))
+        self.decision_context_builder = DecisionContextBuilder(
+            retriever=self.retriever,
+            journal_db=self.journal_db,
+            pattern_engine=self.pattern_engine,
+            profile_manager=self.profile_manager,
+            goal_engine=self.goal_engine,
+        )
+        self.guidance_agent = GuidanceAgent(self.decision_context_builder)
+        from backend.safety.guidance_risk import GuidanceRiskClassifier
+
+        self.guidance_risk_classifier = GuidanceRiskClassifier()
+
     def _persist_journal_record(
         self, text: str, emotion: dict[str, Any], extracted: dict[str, Any] | None = None
     ) -> None:
@@ -404,6 +425,9 @@ class RAGService:
         # pipeline (so memory/continuity is preserved) and prepend a calm,
         # non-diagnostic safety message to the final response.
         t0 = time.perf_counter()
+        trace_id = str(uuid4())
+        llm_calls = 0
+        guidance_failed = False
         crisis = self.crisis_detector.check(text)
         log_stage("crisis", crisis)
 
@@ -421,6 +445,98 @@ class RAGService:
         )
         # Phase 1+2: write structured record with enrichment fields.
         self._persist_journal_record(text=text, emotion=emotion, extracted=extracted)
+
+        # High-risk non-crisis requests do not reach retrieval, scoring, tools,
+        # or either LLM guidance call. Crisis retains its established response.
+        guidance_risk = self.guidance_risk_classifier.classify(text)
+        if not crisis.get("flagged") and guidance_risk.flagged:
+            self._log_latency(
+                (time.perf_counter() - t0) * 1000.0,
+                trace_id=trace_id,
+                mode="safety",
+                outcome="blocked_high_risk",
+            )
+            return {
+                "emotion": emotion,
+                "stored_entry": stored_entry,
+                "retrieved_memories": [],
+                "prompt": None,
+                "response": guidance_risk.response or "This needs qualified support.",
+                "crisis": crisis,
+                "packet": None,
+                "mode": "safety",
+                "decision_state": None,
+                "guidance": None,
+                "trace_id": trace_id,
+                "tools_called": [],
+                "agent_steps": 0,
+                "llm_calls": 0,
+            }
+
+        # Conservative cues avoid a parsing call for ordinary journaling. Any
+        # unexpected decision-path failure falls through to the legacy flow.
+        if not crisis.get("flagged"):
+            try:
+                parsed = self.guidance_service.parse_decision(
+                    text, emotion=emotion, extracted=extracted
+                )
+                llm_calls += int(parsed.llm_called)
+                if parsed.is_decision and parsed.state is not None:
+                    agent_result = self.guidance_agent.run(
+                        parsed.state, current_text=text, top_k=min(top_k, 3)
+                    )
+                    context = agent_result.context
+                    guidance = self.guidance_service.guide(parsed, context)
+                    prompt = self.prompt_builder.build_guidance(
+                        state=parsed.state,
+                        context=context,
+                        guidance=guidance,
+                        recent_history=chat_history or [],
+                    )
+                    llm_calls += 1
+                    response, used_response_fallback = self._generate_guidance_response(
+                        prompt, guidance
+                    )
+                    memories = self._guidance_memories(context)
+                    outcome = (
+                        "guidance_response_fallback"
+                        if used_response_fallback
+                        else (
+                            "recommended"
+                            if guidance.strong_recommendation
+                            else "insufficient_evidence"
+                        )
+                    )
+                    self._log_latency(
+                        (time.perf_counter() - t0) * 1000.0,
+                        trace_id=trace_id,
+                        mode="guidance",
+                        tools_called=agent_result.tools_called,
+                        memories_retrieved=len(memories),
+                        agent_steps=agent_result.agent_steps,
+                        llm_calls=llm_calls,
+                        outcome=outcome,
+                    )
+                    return {
+                        "emotion": emotion,
+                        "stored_entry": stored_entry,
+                        "retrieved_memories": memories,
+                        "prompt": prompt,
+                        "response": response,
+                        "crisis": crisis,
+                        "packet": None,
+                        "mode": "guidance",
+                        "decision_state": parsed.state,
+                        "guidance": guidance,
+                        "trace_id": trace_id,
+                        "tools_called": agent_result.tools_called,
+                        "agent_steps": agent_result.agent_steps,
+                        "llm_calls": llm_calls,
+                    }
+            except Exception as exc:
+                logger.exception("Guidance path failed; using reflection fallback: %s", exc)
+                guidance_failed = True
+
         # Retrieval uses long-term memory (FAISS). We also inject STM for
         # conversational continuity (recent entries from this session).
         retrieved_ltm = self.retriever.retrieve(
@@ -485,6 +601,7 @@ class RAGService:
             packet=packet,
         )
         log_stage("prompt", {"prompt_preview": prompt[:800]})
+        llm_calls += 1
         response = self.llm.generate(prompt)
 
         # Prepend the safety message when crisis language was detected.
@@ -493,7 +610,22 @@ class RAGService:
 
             response = f"{CRISIS_MESSAGE}\n\n{response}"
 
-        self._log_latency((time.perf_counter() - t0) * 1000.0)
+        mode = "safety" if crisis.get("flagged") else "reflection"
+        outcome = (
+            "crisis_response"
+            if crisis.get("flagged")
+            else "guidance_failure_reflection_fallback"
+            if guidance_failed
+            else "reflected"
+        )
+        self._log_latency(
+            (time.perf_counter() - t0) * 1000.0,
+            trace_id=trace_id,
+            mode=mode,
+            memories_retrieved=len(merged),
+            llm_calls=llm_calls,
+            outcome=outcome,
+        )
 
         return {
             "emotion": emotion,
@@ -503,10 +635,57 @@ class RAGService:
             "response": response,
             "crisis": crisis,
             "packet": packet,
+            "mode": mode,
+            "decision_state": None,
+            "guidance": None,
+            "trace_id": trace_id,
+            "tools_called": [],
+            "agent_steps": 0,
+            "llm_calls": llm_calls,
         }
 
-    def _log_latency(self, elapsed_ms: float) -> None:
-        """Append a latency sample; never let logging failure crash the pipeline."""
+    def _generate_guidance_response(
+        self, prompt: str, guidance: GuidanceResult
+    ) -> tuple[str, bool]:
+        try:
+            response = self.llm.generate(prompt)
+        except Exception as exc:
+            logger.info("Guidance response generation failed: %s", exc)
+            return self.guidance_service.render_fallback(guidance), True
+        required = ("validation:", "recommendation:", "why:", "uncertainty:", "next steps:")
+        lowered = response.casefold()
+        if not all(section in lowered for section in required):
+            return self.guidance_service.render_fallback(guidance), True
+        return response, False
+
+    @staticmethod
+    def _guidance_memories(context: DecisionContext) -> list[dict[str, Any]]:
+        return [
+            {
+                "metadata": {
+                    "text": memory.text,
+                    "timestamp": memory.timestamp,
+                    "emotion": memory.emotion,
+                    "topics": memory.topics,
+                },
+                "scores": {"combined": memory.relevance},
+            }
+            for memory in context.similar_memories
+        ]
+
+    def _log_latency(
+        self,
+        elapsed_ms: float,
+        *,
+        trace_id: str | None = None,
+        mode: str = "reflection",
+        tools_called: list[str] | None = None,
+        memories_retrieved: int = 0,
+        agent_steps: int = 0,
+        llm_calls: int = 0,
+        outcome: str = "completed",
+    ) -> None:
+        """Append a redacted trace; never let logging failure crash the pipeline."""
         try:
             path = getattr(self, "_latency_log_path", None)
             if not path:
@@ -514,10 +693,19 @@ class RAGService:
             parent = os.path.dirname(path)
             if parent:
                 os.makedirs(parent, exist_ok=True)
+            latency_ms = round(elapsed_ms, 2)
             line = json.dumps(
                 {
                     "timestamp": datetime.now(UTC).isoformat().replace("+00:00", "Z"),
-                    "elapsed_ms": round(elapsed_ms, 2),
+                    "trace_id": trace_id or str(uuid4()),
+                    "mode": mode,
+                    "tools_called": list(tools_called or [])[:3],
+                    "memories_retrieved": max(0, int(memories_retrieved)),
+                    "agent_steps": max(0, min(3, int(agent_steps))),
+                    "llm_calls": max(0, int(llm_calls)),
+                    "outcome": outcome,
+                    "latency_ms": latency_ms,
+                    "elapsed_ms": latency_ms,
                 }
             )
             with open(path, "a", encoding="utf-8") as f:

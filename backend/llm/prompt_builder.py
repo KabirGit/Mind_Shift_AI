@@ -143,3 +143,31 @@ class PromptBuilder:
             text = turn.get("content", "").replace("\n", " ")
             lines.append(f"- {role}: {text[:120]}")
         return "\n".join(lines)
+
+    def build_guidance(
+        self,
+        *,
+        state: Any,
+        context: Any,
+        guidance: Any,
+        recent_history: list[dict[str, str]],
+    ) -> str:
+        """Build a grounded decision response without changing reflection prompts."""
+        evidence = guidance.evidence or [
+            "No relevant personal history is available; do not imply otherwise."
+        ]
+        return (
+            "You are a personal reflection and decision-support assistant, not a therapist "
+            "or authority. Use only the structured analysis below. Never invent memories, "
+            "outcomes, or certainty. Distinguish correlation from evidence.\n\n"
+            f"Decision state:\n{state.model_dump_json()}\n\n"
+            f"Evidence strength: {context.evidence_strength:.2f}\n"
+            f"Evidence:\n- " + "\n- ".join(evidence) + "\n\n"
+            f"Guidance analysis:\n{guidance.model_dump_json()}\n\n"
+            f"Recent chat history:\n{self._format_history(recent_history)}\n\n"
+            "Write a calm, concise response with these explicit sections: Validation, "
+            "Recommendation, Why, Uncertainty, and Next steps. If "
+            "strong_recommendation is false, say that more information is needed instead "
+            "of forcing a choice. Include two to four numbered actions and do not add facts "
+            "that are absent from the analysis."
+        )

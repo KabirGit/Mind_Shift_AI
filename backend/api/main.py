@@ -135,6 +135,10 @@ def chat(
         stored_entry=output.get("stored_entry"),
         packet=packet,
         prompt=output.get("prompt"),
+        mode=output.get("mode", "reflection"),
+        decision_state=output.get("decision_state"),
+        guidance=output.get("guidance"),
+        trace_id=output.get("trace_id"),
     )
 
 

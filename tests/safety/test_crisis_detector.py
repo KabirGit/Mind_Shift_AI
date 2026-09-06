@@ -4,6 +4,7 @@ import hashlib
 
 from backend.api.rag_service import RAGService
 from backend.safety.crisis_detector import CRISIS_MESSAGE, CrisisDetector
+from backend.safety.guidance_risk import GuidanceRiskClassifier
 from backend.storage.db import JournalDB
 
 
@@ -22,6 +23,29 @@ def test_neutral_text_not_flagged():
 def test_empty_text_not_flagged():
     out = CrisisDetector().check("")
     assert out["flagged"] is False
+
+
+def test_medication_decision_is_high_risk():
+    result = GuidanceRiskClassifier().classify(
+        "Should I double my antidepressant dose tonight?"
+    )
+    assert result.flagged is True
+    assert result.category == "medical"
+
+
+def test_immediate_danger_is_high_risk_without_decision_wording():
+    result = GuidanceRiskClassifier().classify(
+        "My abusive partner threatened me and I am not safe at home."
+    )
+    assert result.flagged is True
+    assert result.category == "immediate_danger"
+
+
+def test_general_medical_journaling_is_not_over_routed():
+    result = GuidanceRiskClassifier().classify(
+        "I felt supported after my routine doctor appointment."
+    )
+    assert result.flagged is False
 
 
 # --- full pipeline crisis integration (with fakes, no models/network) ---
@@ -86,3 +110,5 @@ def test_run_pipeline_flagged_prepends_safety_message(tmp_path):
     assert CRISIS_MESSAGE in out["response"]
     # The normal pipeline still ran (reply appended after the safety message).
     assert "normal empathetic reply" in out["response"]
+    assert out["mode"] == "safety"
+    assert out["guidance"] is None

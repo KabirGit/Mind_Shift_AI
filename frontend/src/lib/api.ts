@@ -53,6 +53,10 @@ export type ChatResponse = {
     memory_replay?: Record<string, unknown> | null;
   } | null;
   prompt?: string | null;
+  mode?: "reflection" | "guidance" | "safety";
+  decision_state?: Record<string, unknown> | null;
+  guidance?: Record<string, unknown> | null;
+  trace_id?: string | null;
 };
 
 export type EmotionPoint = {

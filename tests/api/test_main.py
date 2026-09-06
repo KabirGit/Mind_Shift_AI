@@ -474,6 +474,10 @@ def test_chat_endpoint_happy_path():
     assert body["crisis"]["flagged"] is False
     assert body["retrieved_memories"][0]["metadata"]["text"] == "prior note"
     assert body["packet"]["reflection_prompts"]
+    assert body["mode"] == "reflection"
+    assert body["decision_state"] is None
+    assert body["guidance"] is None
+    assert "trace_id" in body
 
 
 def test_chat_endpoint_allows_pages_cors_preflight():

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -12,6 +12,7 @@ from backend.analytics.models import PatternSummary, TriggerStat
 from backend.analytics.prediction_engine import BurnoutRisk, SentimentForecast
 from backend.analytics.relationship_engine import RelationshipProfile
 from backend.analytics.timeline_engine import TimelineEvent
+from backend.guidance.models import DecisionState, GuidanceResult
 from backend.orchestrator.packet import IntelligencePacket
 
 
@@ -36,6 +37,10 @@ class ChatResponse(BaseModel):
     stored_entry: dict[str, Any] | None = None
     packet: IntelligencePacket | None = None
     prompt: str | None = None
+    mode: Literal["reflection", "guidance", "safety"] = "reflection"
+    decision_state: DecisionState | None = None
+    guidance: GuidanceResult | None = None
+    trace_id: str | None = None
 
 
 class DemoChatHistoryResponse(BaseModel):
