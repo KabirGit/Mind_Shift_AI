@@ -20,6 +20,11 @@ type ThreadItem = ChatMessage & {
   crisis?: ChatResponse["crisis"];
   retrieved?: Array<Record<string, unknown>>;
   prompt?: string | null;
+  mode?: ChatResponse["mode"];
+  decisionState?: Record<string, unknown> | null;
+  guidance?: Record<string, unknown> | null;
+  traceId?: string | null;
+  toolsCalled?: string[];
 };
 
 export default function ChatPage() {
@@ -53,7 +58,12 @@ export default function ChatPage() {
             memoryReplay: message.memory_replay,
             crisis: message.crisis,
             retrieved: message.retrieved_memories,
-            prompt: message.prompt
+            prompt: message.prompt,
+            mode: message.mode,
+            decisionState: message.decision_state,
+            guidance: message.guidance,
+            traceId: message.trace_id,
+            toolsCalled: message.tools_called
           }))
         );
       } catch (exc) {
@@ -92,7 +102,11 @@ export default function ChatPage() {
           memoryReplay: result.memory_replay,
           crisis: result.crisis,
           retrieved: result.retrieved_memories,
-          prompt: result.prompt
+          prompt: result.prompt,
+          mode: result.mode,
+          decisionState: result.decision_state,
+          guidance: result.guidance,
+          traceId: result.trace_id
         }
       ]);
     } catch (exc) {
@@ -168,8 +182,47 @@ export default function ChatPage() {
                     }`}
                     key={`${item.role}-${index}`}
                   >
-                    <p className="whitespace-pre-wrap leading-7">{item.content}</p>
+                    {item.role === "assistant" && item.mode === "guidance" ? (
+                      <GuidanceMessage content={item.content} />
+                    ) : (
+                      <p className="whitespace-pre-wrap leading-7">{item.content}</p>
+                    )}
                     {item.emotion ? <EmotionStrip emotion={item.emotion} /> : null}
+                    {item.role === "assistant" && item.mode ? (
+                      <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
+                        <span className="rounded-full border border-coral bg-[#fff7f2] px-3 py-1 text-coralDark">
+                          Route: {titleCase(item.mode)}
+                        </span>
+                        {item.toolsCalled?.length ? (
+                          <span className="rounded-full border border-line bg-[#fffdf8] px-3 py-1 text-ink">
+                            {item.toolsCalled.length} bounded tools
+                          </span>
+                        ) : null}
+                        {item.traceId ? (
+                          <span className="rounded-full border border-line bg-[#fffdf8] px-3 py-1 font-mono text-ink">
+                            {item.traceId}
+                          </span>
+                        ) : null}
+                      </div>
+                    ) : null}
+                    {item.decisionState || item.guidance ? (
+                      <details className="mt-3 rounded-lg border border-line bg-[#fffdf8] p-3 text-sm text-ink">
+                        <summary className="cursor-pointer font-semibold">
+                          Structured decision evidence
+                        </summary>
+                        <pre className="mt-2 overflow-x-auto whitespace-pre-wrap font-mono text-xs text-body">
+                          {JSON.stringify(
+                            {
+                              decision_state: item.decisionState,
+                              guidance: item.guidance,
+                              tools_called: item.toolsCalled
+                            },
+                            null,
+                            2
+                          )}
+                        </pre>
+                      </details>
+                    ) : null}
                     {item.memoryReplay ? (
                       <details className="mt-3 rounded-lg border border-line bg-[#fffdf8] p-3 text-sm text-ink">
                         <summary className="cursor-pointer font-semibold">
@@ -312,6 +365,84 @@ export default function ChatPage() {
         </aside>
       </div>
     </AppShell>
+  );
+}
+
+type GuidanceSections = {
+  validation: string;
+  recommendation: string;
+  why: string;
+  uncertainty: string;
+  nextSteps: string;
+};
+
+function parseGuidanceSections(content: string): GuidanceSections | null {
+  const markers = [
+    { label: "Validation:", key: "validation" },
+    { label: "Recommendation:", key: "recommendation" },
+    { label: "Why:", key: "why" },
+    { label: "Uncertainty:", key: "uncertainty" },
+    { label: "Next steps:", key: "nextSteps" }
+  ] as const;
+  const positions = markers.map(({ label }) => content.indexOf(label));
+  if (positions.some((position) => position < 0)) return null;
+
+  const sections = {} as GuidanceSections;
+  markers.forEach(({ label, key }, index) => {
+    const start = positions[index] + label.length;
+    const end = positions[index + 1] ?? content.length;
+    sections[key] = content.slice(start, end).trim();
+  });
+  return sections;
+}
+
+function guidanceLines(value: string): string[] {
+  return value
+    .split("\n")
+    .map((line) => line.trim().replace(/^[-*]\s+/, "").replace(/^\d+\.\s+/, ""))
+    .filter(Boolean);
+}
+
+function GuidanceMessage({ content }: { content: string }) {
+  const sections = parseGuidanceSections(content);
+  if (!sections) return <p className="whitespace-pre-wrap leading-7">{content}</p>;
+
+  return (
+    <div className="space-y-4 leading-7">
+      <p>{sections.validation}</p>
+      <div className="rounded-lg border border-coral/40 bg-[#fff7f2] p-4">
+        <p className="text-xs font-bold uppercase tracking-[0.12em] text-coralDark">
+          Suggested direction
+        </p>
+        <p className="mt-1 font-semibold text-ink">{sections.recommendation}</p>
+      </div>
+      <GuidanceList title="Why this fits" value={sections.why} />
+      <GuidanceList title="What is still unknown" value={sections.uncertainty} />
+      <GuidanceList ordered title="Try next" value={sections.nextSteps} />
+    </div>
+  );
+}
+
+function GuidanceList({
+  title,
+  value,
+  ordered = false
+}: {
+  title: string;
+  value: string;
+  ordered?: boolean;
+}) {
+  const lines = guidanceLines(value);
+  const List = ordered ? "ol" : "ul";
+  return (
+    <div>
+      <p className="font-semibold text-ink">{title}</p>
+      <List className={`mt-1 space-y-1 pl-5 text-body ${ordered ? "list-decimal" : "list-disc"}`}>
+        {lines.map((line, index) => (
+          <li key={`${index}-${line}`}>{line}</li>
+        ))}
+      </List>
+    </div>
   );
 }
 

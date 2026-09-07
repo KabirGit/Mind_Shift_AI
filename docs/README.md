@@ -1,5 +1,7 @@
-Add screenshots here — run `make seed && make run` and screenshot the dashboard tab and chat tab.
+# MindShift AI documentation
 
-Suggested files:
-- `screenshot_placeholder.png` — the Insights Dashboard tab (alerts, charts, timeline).
-- `chat_placeholder.png` — the Chat tab showing a response with the 🔁 Memory Replay expander.
+- [Production GenAI architecture](production-genai-architecture.md) explains the hardened decision-support request flow, reliability boundary, context policy, bounded agent, tracing, evaluations, security model, and interview preparation.
+- [Dashboard story QA](dashboard-story-qa.md) covers dashboard validation.
+- [Demo mode QA](demo-mode-qa.md) covers deterministic demo verification.
+
+`Intent.md` at the repository root remains the authoritative product intent.

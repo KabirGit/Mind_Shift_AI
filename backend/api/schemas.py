@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -12,6 +12,7 @@ from backend.analytics.models import PatternSummary, TriggerStat
 from backend.analytics.prediction_engine import BurnoutRisk, SentimentForecast
 from backend.analytics.relationship_engine import RelationshipProfile
 from backend.analytics.timeline_engine import TimelineEvent
+from backend.guidance.models import DecisionState, GuidanceResult
 from backend.orchestrator.packet import IntelligencePacket
 
 
@@ -36,6 +37,10 @@ class ChatResponse(BaseModel):
     stored_entry: dict[str, Any] | None = None
     packet: IntelligencePacket | None = None
     prompt: str | None = None
+    mode: Literal["reflection", "guidance", "safety"] = "reflection"
+    decision_state: DecisionState | None = None
+    guidance: GuidanceResult | None = None
+    trace_id: str | None = None
 
 
 class DemoChatHistoryResponse(BaseModel):
@@ -113,6 +118,42 @@ class DiagnosticsResponse(BaseModel):
     retrieval_precision: dict[str, Any]
     emotion_confidence: dict[str, Any]
     latency: dict[str, Any]
+    trace_health: dict[str, Any] = Field(default_factory=dict)
+
+
+class DemoJournalEntry(BaseModel):
+    id: str
+    date: str
+    text: str
+    emotion: str
+    emotion_confidence: float
+    sentiment: float
+    topics: list[str] = Field(default_factory=list)
+    habits: list[str] = Field(default_factory=list)
+    people: list[str] = Field(default_factory=list)
+
+
+class DemoJournalEntriesResponse(BaseModel):
+    persona: str
+    entry_count: int
+    days_covered: int
+    average_words_per_entry: float
+    entries: list[DemoJournalEntry] = Field(default_factory=list)
+
+
+class ObservabilityResponse(BaseModel):
+    generated_at: str
+    source: str
+    dataset: dict[str, Any]
+    diagnostics: DiagnosticsResponse
+    request_flow: list[str] = Field(default_factory=list)
+    route_contracts: list[dict[str, Any]] = Field(default_factory=list)
+    model_boundary: dict[str, Any]
+    context_policy: dict[str, Any]
+    traces: list[dict[str, Any]] = Field(default_factory=list)
+    evaluation: dict[str, Any]
+    capabilities: list[dict[str, str]] = Field(default_factory=list)
+    privacy: dict[str, Any]
 
 
 class HealthResponse(BaseModel):

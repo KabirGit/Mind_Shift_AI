@@ -36,6 +36,7 @@ import {
   type GraphQuery,
   type PeopleGraph,
   type TimelineEvent,
+  getDashboardSummary,
   getDashboardStory,
   getPeopleGraph,
   getTimeline,
@@ -56,6 +57,7 @@ export default function DashboardPage() {
   const { mode } = useDemoMode();
   const [range, setRange] = useState(RANGES[1]);
   const [story, setStory] = useState<DashboardStory | null>(null);
+  const [insights, setInsights] = useState<string[]>([]);
   const [timeline, setTimeline] = useState<TimelineEvent[]>([]);
   const [peopleGraph, setPeopleGraph] = useState<PeopleGraph | null>(null);
   const [graphNode, setGraphNode] = useState("");
@@ -69,13 +71,15 @@ export default function DashboardPage() {
       setLoading(true);
       setError(null);
       try {
-        const [storyData, timelineData, peopleGraphData] = await Promise.all([
+        const [storyData, summaryData, timelineData, peopleGraphData] = await Promise.all([
           getDashboardStory(range, mode),
+          getDashboardSummary(range, mode),
           getTimeline(mode),
           getPeopleGraph(mode)
         ]);
         if (cancelled) return;
         setStory(storyData);
+        setInsights(summaryData.insights);
         setTimeline(timelineData.events);
         setPeopleGraph(peopleGraphData);
       } catch (exc) {
@@ -174,6 +178,30 @@ export default function DashboardPage() {
           <MonthHero story={story} />
         ) : (
           <p className="text-sm leading-6">{loading ? "Loading review." : "No review yet."}</p>
+        )}
+      </Card>
+
+      <Card className="mt-6" tone="light">
+        <SectionTitle icon={<Sparkles />} title="Evidence-backed insights" />
+        {insights.length ? (
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {insights.map((insight, index) => (
+              <div
+                className="flex gap-3 rounded-lg border border-line bg-canvas p-4"
+                key={`${index}-${insight}`}
+              >
+                <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-coral text-sm font-bold text-white">
+                  {index + 1}
+                </span>
+                <p className="text-sm leading-6 text-body">{insight}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <EmptyState
+            detail="Insights appear after repeated patterns clear the evidence threshold."
+            title="No evidence-backed insights yet"
+          />
         )}
       </Card>
 

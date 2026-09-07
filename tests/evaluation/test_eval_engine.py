@@ -61,3 +61,74 @@ def test_latency_summary(tmp_path):
 def test_latency_missing_file(tmp_path):
     eng = EvalEngine(_FakeStore(), _db(tmp_path, [0.9]), str(tmp_path / "none.jsonl"))
     assert eng.latency_summary() == {"avg_ms": 0.0, "p95_ms": 0.0, "sample_count": 0}
+
+
+def test_trace_health_summary(tmp_path):
+    log = tmp_path / "traces.jsonl"
+    log.write_text(
+        "\n".join(
+            [
+                json.dumps(
+                    {
+                        "status": "success",
+                        "mode": "guidance",
+                        "provider_attempts": 2,
+                        "retry_count": 0,
+                        "logical_llm_calls": 2,
+                        "tools_called": ["search_similar_memories"],
+                    }
+                ),
+                json.dumps(
+                    {
+                        "status": "degraded",
+                        "mode": "reflection",
+                        "provider_attempts": 2,
+                        "retry_count": 1,
+                        "logical_llm_calls": 1,
+                        "tools_called": [],
+                    }
+                ),
+            ]
+        ),
+        encoding="utf-8",
+    )
+    eng = EvalEngine(_FakeStore(), _db(tmp_path, [0.9]), str(log))
+
+    assert eng.trace_health_summary() == {
+        "sample_count": 2,
+        "status_counts": {"success": 1, "degraded": 1},
+        "mode_counts": {"guidance": 1, "reflection": 1},
+        "provider_attempts": 4,
+        "retry_count": 1,
+        "logical_llm_calls": 3,
+        "tool_calls": 1,
+    }
+
+
+def test_recent_trace_summaries_allow_lists_operational_fields(tmp_path):
+    log = tmp_path / "traces.jsonl"
+    private = "private journal content"
+    log.write_text(
+        json.dumps(
+            {
+                "trace_id": "trace-1",
+                "mode": "guidance",
+                "status": "success",
+                "outcome": "recommended",
+                "logical_llm_calls": 2,
+                "tools_called": ["search_similar_memories"],
+                "latency_ms": 1200,
+                "prompt": private,
+                "response": private,
+                "journal_text": private,
+            }
+        ),
+        encoding="utf-8",
+    )
+    eng = EvalEngine(_FakeStore(), _db(tmp_path, [0.9]), str(log))
+
+    rows = eng.recent_trace_summaries()
+
+    assert rows[0]["trace_id"] == "trace-1"
+    assert private not in json.dumps(rows)
+    assert "prompt" not in rows[0]

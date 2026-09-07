@@ -53,6 +53,10 @@ export type ChatResponse = {
     memory_replay?: Record<string, unknown> | null;
   } | null;
   prompt?: string | null;
+  mode?: "reflection" | "guidance" | "safety";
+  decision_state?: Record<string, unknown> | null;
+  guidance?: Record<string, unknown> | null;
+  trace_id?: string | null;
 };
 
 export type EmotionPoint = {
@@ -104,6 +108,11 @@ export type DemoChatHistory = {
     crisis?: ChatResponse["crisis"];
     retrieved_memories?: Array<Record<string, unknown>>;
     prompt?: string | null;
+    mode?: "reflection" | "guidance" | "safety";
+    decision_state?: Record<string, unknown> | null;
+    guidance?: Record<string, unknown> | null;
+    trace_id?: string | null;
+    tools_called?: string[];
   }>;
 };
 
@@ -294,6 +303,88 @@ export type Diagnostics = {
   retrieval_precision: Record<string, unknown>;
   emotion_confidence: Record<string, unknown>;
   latency: Record<string, unknown>;
+  trace_health: Record<string, unknown>;
+};
+
+export type ObservabilityTrace = {
+  timestamp?: string;
+  trace_id: string;
+  mode: "reflection" | "guidance" | "safety";
+  status: "success" | "degraded" | "blocked" | "failed";
+  outcome: string;
+  requested_models?: string[];
+  actual_models?: string[];
+  prompt_versions?: string[];
+  logical_llm_calls: number;
+  provider_attempts: number;
+  retry_count: number;
+  tools_called: string[];
+  memories_retrieved: number;
+  agent_steps: number;
+  agent_termination_reason?: string | null;
+  context_selection?: Record<string, number>;
+  stage_latencies_ms?: Record<string, number>;
+  failure_category?: string | null;
+  latency_ms: number;
+};
+
+export type Observability = {
+  generated_at: string;
+  source: string;
+  dataset: {
+    persona: string;
+    entry_count: number;
+    days_covered: number;
+    first_date?: string | null;
+    last_date?: string | null;
+    average_words_per_entry: number;
+    topic_mentions: Record<string, number>;
+    habit_mentions: Record<string, number>;
+    people_mentions: Record<string, number>;
+  };
+  diagnostics: Diagnostics;
+  request_flow: string[];
+  route_contracts: Array<{
+    mode: "reflection" | "guidance" | "safety";
+    when: string;
+    logical_llm_calls: number;
+    maximum_tool_calls: number;
+    guarantee: string;
+  }>;
+  model_boundary: Record<string, string | number>;
+  context_policy: Record<string, string | number | boolean>;
+  traces: ObservabilityTrace[];
+  evaluation: {
+    status: string;
+    case_count: number;
+    passed?: number | null;
+    coverage: string[];
+  };
+  capabilities: Array<{
+    name: string;
+    status: string;
+    evidence: string;
+    component: string;
+  }>;
+  privacy: Record<string, string | boolean>;
+};
+
+export type DemoJournalEntries = {
+  persona: string;
+  entry_count: number;
+  days_covered: number;
+  average_words_per_entry: number;
+  entries: Array<{
+    id: string;
+    date: string;
+    text: string;
+    emotion: string;
+    emotion_confidence: number;
+    sentiment: number;
+    topics: string[];
+    habits: string[];
+    people: string[];
+  }>;
 };
 
 export function sendChat(
@@ -366,6 +457,16 @@ export function getPeopleGraph(mode: EndpointMode = "live"): Promise<PeopleGraph
 
 export function getDiagnostics(mode: EndpointMode = "live"): Promise<Diagnostics> {
   return apiFetch<Diagnostics>(`${demoPrefix(mode)}/diagnostics`);
+}
+
+export function getObservability(
+  mode: EndpointMode = "live"
+): Promise<Observability> {
+  return apiFetch<Observability>(`${demoPrefix(mode)}/observability`);
+}
+
+export function getDemoJournalEntries(): Promise<DemoJournalEntries> {
+  return apiFetch<DemoJournalEntries>("/api/demo/journal-entries");
 }
 
 export function getDemoChatHistory(): Promise<DemoChatHistory> {

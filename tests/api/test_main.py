@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 from fastapi.testclient import TestClient
 
 from backend.analytics.goal_engine import GoalProgress
@@ -284,6 +286,20 @@ class FakeEvalEngine:
     def latency_summary(self):
         return {"avg_ms": 12.0, "p95_ms": 20.0, "sample_count": 2}
 
+    def trace_health_summary(self):
+        return {
+            "sample_count": 2,
+            "status_counts": {"success": 2},
+            "mode_counts": {"reflection": 1, "guidance": 1},
+            "provider_attempts": 3,
+            "retry_count": 0,
+            "logical_llm_calls": 3,
+            "tool_calls": 2,
+        }
+
+    def recent_trace_summaries(self, limit: int = 6):
+        return []
+
 
 class FakeService:
     def __init__(self, empty: bool = False):
@@ -474,6 +490,10 @@ def test_chat_endpoint_happy_path():
     assert body["crisis"]["flagged"] is False
     assert body["retrieved_memories"][0]["metadata"]["text"] == "prior note"
     assert body["packet"]["reflection_prompts"]
+    assert body["mode"] == "reflection"
+    assert body["decision_state"] is None
+    assert body["guidance"] is None
+    assert "trace_id" in body
 
 
 def test_chat_endpoint_allows_pages_cors_preflight():
@@ -561,6 +581,12 @@ def test_dashboard_and_support_endpoints_happy_path():
     diagnostics = client.get("/api/diagnostics")
     assert diagnostics.status_code == 200
     assert diagnostics.json()["latency"]["sample_count"] == 2
+    assert diagnostics.json()["trace_health"]["provider_attempts"] == 3
+
+    observability = client.get("/api/observability")
+    assert observability.status_code == 200
+    assert observability.json()["dataset"]["entry_count"] == 1
+    assert len(observability.json()["route_contracts"]) == 3
 
 
 def test_dashboard_story_happy_path_applies_thresholds():
@@ -612,6 +638,8 @@ def test_demo_endpoints_return_static_json_without_service():
         "/api/demo/dashboard/timeline": "events",
         "/api/demo/dashboard/growth": "narrative",
         "/api/demo/diagnostics": "retrieval_precision",
+        "/api/demo/observability": "capabilities",
+        "/api/demo/journal-entries": "entries",
         "/api/demo/graph/people": "nodes",
         "/api/demo/graph/query?node=career": "neighbors",
         "/api/demo/chat-history": "messages",
@@ -624,6 +652,45 @@ def test_demo_endpoints_return_static_json_without_service():
     chat = client.get("/api/demo/chat-history").json()
     assert chat["mode"] == "demo"
     assert len(chat["messages"]) >= 4
+    guidance_messages = [
+        message for message in chat["messages"] if message.get("mode") == "guidance"
+    ]
+    assert len(guidance_messages) == 1
+    assert guidance_messages[0]["decision_state"]
+    assert guidance_messages[0]["guidance"]
+    assert len(guidance_messages[0]["tools_called"]) <= 3
+
+    journal = client.get("/api/demo/journal-entries").json()
+    assert journal["entry_count"] == 30
+    assert journal["days_covered"] == 30
+    assert min(len(entry["text"].split()) for entry in journal["entries"]) >= 65
+
+    observability = client.get("/api/demo/observability").json()
+    assert observability["dataset"]["entry_count"] == 30
+    assert observability["dataset"]["days_covered"] == 30
+    assert observability["evaluation"]["passed"] == 15
+    assert observability["evaluation"]["case_count"] == 15
+    assert len(observability["dataset"]["people_mentions"]) >= 8
+    assert len(observability["dataset"]["topic_mentions"]) >= 8
+    assert len(observability["dataset"]["habit_mentions"]) >= 8
+    assert all(item["status"] == "proven" for item in observability["capabilities"])
+    assert {trace["mode"] for trace in observability["traces"]} == {
+        "reflection",
+        "guidance",
+        "safety",
+    }
+    trace_json = json.dumps(observability["traces"]).lower()
+    assert "journal_text" not in trace_json
+    assert "system_prompt" not in trace_json
+    assert "user_prompt" not in trace_json
+    assert "model_response" not in trace_json
+
+    summary = client.get("/api/demo/dashboard/summary").json()
+    assert len(summary["relationships"]) >= 8
+    assert any("relationship tone" in insight for insight in summary["insights"])
+    assert any("Days you mention" in insight for insight in summary["insights"])
+    goals = client.get("/api/demo/dashboard/goals").json()
+    assert len(goals["goals"]) >= 5
 
 
 def test_dashboard_and_support_endpoints_empty_data_path():
