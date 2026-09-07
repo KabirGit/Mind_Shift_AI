@@ -38,8 +38,11 @@ make demo-snapshot
 ```
 
 The generator builds a detailed 30-day synthetic persona in a throwaway local SQLite
-store, runs the real deterministic analytics engines, creates redacted route traces,
-and writes static JSON. If valid
+store. The narrative spans work, partnership, friendship, shared family care,
+finances, health, learning, creativity, eight recurring people, and non-linear
+behavior changes. It runs the real deterministic analytics engines, creates redacted
+route traces, and writes static JSON. This is RAG/evaluation data, not model
+fine-tuning. If valid
 Hugging Face credentials and network access are available, the script can freeze
 live-generated sample replies; otherwise the JSON metadata records that offline
 fallback transcript text was used.

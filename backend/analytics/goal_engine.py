@@ -20,6 +20,9 @@ GOAL_PATTERNS: dict[str, list[str]] = {
     "mental_health": ["therapy", "anxiety", "stress management"],
     "education": ["exam", "degree", "graduation", "course"],
     "promotion": ["promotion", "raise", "performance review"],
+    "financial_stability": ["budget", "savings", "financial runway"],
+    "relationship_balance": ["partnership", "friendship", "present with"],
+    "family_support": ["family care", "care calendar", "support raj"],
 }
 
 _GOAL_INTENT_PATTERNS = (

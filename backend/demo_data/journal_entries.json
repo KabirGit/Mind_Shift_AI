@@ -2,50 +2,63 @@
   "persona": "Aarav, a product analyst navigating a release, promotion goal, health routines, finances, and relationship repair.",
   "entry_count": 30,
   "days_covered": 30,
-  "average_words_per_entry": 59.0,
+  "average_words_per_entry": 81.0,
   "entries": [
     {
       "id": "demo-00",
       "date": "2026-08-08",
-      "text": "I started the month with a strong workout before work. The release plan feels big, but manageable. I wrote down three priorities for the release and noticed that planning reduced the usual Sunday-night noise. My goal this month is to protect four movement sessions each week while still showing that I can lead the launch without becoming frantic.",
+      "text": "The month began with a sunrise run before I drafted the launch plan with Sarah. I was excited by the promotion possibility, but I noticed the old urge to prove myself by owning every dependency. My goal is to earn the promotion through visible delegation, predictable updates, and early escalation rather than heroics. I wrote those behaviors beside the release milestones and protected three exercise blocks, treating energy as part of leadership rather than a reward after work.",
       "emotion": "optimism",
       "emotion_confidence": 0.86,
       "sentiment": 0.48,
       "topics": [
         "career",
-        "health"
+        "health",
+        "learning"
       ],
       "habits": [
-        "exercise"
+        "exercise",
+        "planning"
       ],
-      "people": []
-    },
-    {
-      "id": "demo-01",
-      "date": "2026-08-09",
-      "text": "My manager Sarah liked the first project draft and said the promotion path is visible if I keep leading calmly. I felt proud, but I also caught myself immediately looking for what could go wrong. I asked Sarah which leadership behaviors would make the promotion case concrete, and she named clearer delegation, calmer status updates, and earlier risk escalation.",
-      "emotion": "pride",
-      "emotion_confidence": 0.84,
-      "sentiment": 0.36,
-      "topics": [
-        "career"
-      ],
-      "habits": [],
       "people": [
         "Sarah"
       ]
     },
     {
+      "id": "demo-01",
+      "date": "2026-08-09",
+      "text": "Arjun and I tried a phone-free dinner, although I kept thinking about unfinished work. Arjun was patient, yet he could tell I was only half listening. I initially defended checking notifications as responsibility, then realized I was asking him to share an evening with my anxiety. I want to protect our partnership with one twenty-minute work check after dinner and a shared cooking night, which feels more realistic than promising never to think about work at home.",
+      "emotion": "caring",
+      "emotion_confidence": 0.83,
+      "sentiment": 0.22,
+      "topics": [
+        "relationship",
+        "home",
+        "career"
+      ],
+      "habits": [
+        "cooking",
+        "social_media"
+      ],
+      "people": [
+        "Arjun"
+      ]
+    },
+    {
       "id": "demo-02",
       "date": "2026-08-10",
-      "text": "My friend Maya and I had dinner after a long day. It was easy to talk and I felt lighter afterward. We talked about how quickly I disappear into work when a deadline becomes personal. Maya did not try to fix it; she asked me to send a short message when I am overloaded instead of going silent, which felt both kind and practical.",
+      "text": "Maya convinced me to take photographs by the lake instead of working through Saturday. Photography used to make me curious, while lately I have judged it as unproductive. Maya noticed that I became playful once we stopped discussing the launch. I also listened to her uncertainty about changing jobs, which reminded me that friendship cannot be only a recovery service for my stress. I came home physically tired and mentally wider.",
       "emotion": "joy",
       "emotion_confidence": 0.88,
-      "sentiment": 0.44,
+      "sentiment": 0.58,
       "topics": [
-        "relationship"
+        "relationship",
+        "creativity",
+        "health"
       ],
-      "habits": [],
+      "habits": [
+        "exercise"
+      ],
       "people": [
         "Maya"
       ]
@@ -53,426 +66,540 @@
     {
       "id": "demo-03",
       "date": "2026-08-11",
-      "text": "The deadline moved up. I skipped the gym and stayed at my desk late, which left me tense. By late afternoon my shoulders were tight and I had eaten lunch at the laptop. I told myself that skipping one workout was efficient, but the evening felt restless and unfocused, so I want to watch whether this trade-off repeats.",
-      "emotion": "stress",
-      "emotion_confidence": 0.82,
-      "sentiment": -0.25,
+      "text": "Neha called about Dad's follow-up appointment with Dr Mehta, and I immediately volunteered to manage everything. Neha sounded worried and Raj minimized the issue, so I slipped into organizer mode before asking what either of them wanted. Dr Mehta had described the appointment as routine, but my mind turned it into an emergency. I created a checklist, then wondered whether taking control was care or a way to avoid feeling uncertain. Neha and I agreed to divide calls after we had more facts.",
+      "emotion": "caring",
+      "emotion_confidence": 0.81,
+      "sentiment": 0.05,
       "topics": [
-        "career",
-        "health"
+        "family",
+        "health",
+        "home"
       ],
-      "habits": [],
-      "people": []
+      "habits": [
+        "planning"
+      ],
+      "people": [
+        "Neha",
+        "Raj",
+        "Dr Mehta"
+      ]
     },
     {
       "id": "demo-04",
       "date": "2026-08-12",
-      "text": "I slept badly after thinking about the launch budget and rent. Money is starting to sit in the background. I kept calculating worst-case scenarios instead of checking the actual account balance. The fear was vague but physical, and I noticed it made the release feel more dangerous too. Tomorrow I will separate the work risk from the money facts.",
-      "emotion": "fear",
-      "emotion_confidence": 0.81,
-      "sentiment": -0.36,
+      "text": "Vikram missed an integration deadline and I reacted as though his delay proved I was failing as lead. The integration dependency was genuinely late, but my tone in the meeting made collaboration harder. I had consumed three coffees and entered without asking what had blocked Vikram. Later I could see a familiar attitude: when I fear being judged by Sarah, I become controlling with the team. I scheduled a calmer technical review and wrote down process questions instead of accusations.",
+      "emotion": "anger",
+      "emotion_confidence": 0.84,
+      "sentiment": -0.44,
       "topics": [
-        "money",
-        "health"
+        "career",
+        "relationship"
       ],
       "habits": [
-        "sleep"
+        "coffee"
       ],
-      "people": []
+      "people": [
+        "Vikram"
+      ]
     },
     {
       "id": "demo-05",
       "date": "2026-08-13",
-      "text": "Sarah asked for another revision. Her notes were fair, but I took them personally and felt deflated. The first thought was that the promotion was slipping away, even though Sarah commented on the document rather than my ability. I saved the notes, took a ten-minute walk, and planned to sort them into factual changes and assumptions before replying.",
-      "emotion": "sadness",
-      "emotion_confidence": 0.79,
-      "sentiment": -0.42,
+      "text": "I stayed online past midnight, scrolled between messages, and slept badly before the review. Arjun asked me to close the laptop twice and I said I was almost done, though I was mostly refreshing messages. The combination of caffeine, scrolling, and shallow sleep left me impatient the next morning. I skipped movement and interpreted neutral comments as criticism. This is the first clear cluster I want to track rather than treating each bad reaction as a separate personality failure.",
+      "emotion": "stress",
+      "emotion_confidence": 0.86,
+      "sentiment": -0.52,
       "topics": [
-        "career"
+        "career",
+        "health",
+        "relationship"
       ],
-      "habits": [],
+      "habits": [
+        "sleep",
+        "social_media",
+        "coffee"
+      ],
       "people": [
-        "Sarah"
+        "Arjun"
       ]
     },
     {
       "id": "demo-06",
       "date": "2026-08-14",
-      "text": "I went for a short run anyway. It did not fix work, but my body felt less braced by the end. I only ran for eighteen minutes and almost dismissed it as too small to matter. Afterward I could read Sarah's comments without the same rush of defensiveness. That is useful evidence that movement changes how I approach pressure, even when it does not remove the problem.",
-      "emotion": "relief",
-      "emotion_confidence": 0.83,
-      "sentiment": 0.18,
+      "text": "Sarah returned the proposal with another round of edits and mentioned that promotion evidence still looked uneven. I heard the word uneven and translated it into not leadership material. After the meeting, Sarah clarified that my technical delivery was strong but that delegation evidence was thin. The distinction mattered, although fear remained high. I resisted drafting a resignation message and instead listed what could be demonstrated within two weeks, what required longer, and what was outside my control.",
+      "emotion": "fear",
+      "emotion_confidence": 0.88,
+      "sentiment": -0.58,
       "topics": [
         "career",
-        "health"
+        "learning"
       ],
-      "habits": [
-        "exercise"
-      ],
-      "people": []
+      "habits": [],
+      "people": [
+        "Sarah"
+      ]
     },
     {
       "id": "demo-07",
       "date": "2026-08-15",
-      "text": "Maya checked in and I answered too quickly. I think I sounded distant, then felt guilty about it. Maya's message was warm, but I treated it like another task competing for attention. I want to repair that quickly rather than wait until guilt turns into avoidance. A simple honest note would be more respectful than pretending I am fine.",
+      "text": "Arjun said he was carrying most of the meals and housework while I lived inside the launch. My first response was to list everything I had done recently, which made Arjun feel even less seen. When I slowed down, I could admit that work had become an excuse to opt out of ordinary shared responsibility. We chose three fixed tasks I would own and one evening with no launch discussion. His frustration was not rejection; it was information about an imbalance we could change.",
       "emotion": "remorse",
-      "emotion_confidence": 0.78,
-      "sentiment": -0.28,
+      "emotion_confidence": 0.84,
+      "sentiment": -0.41,
       "topics": [
-        "relationship"
+        "relationship",
+        "home",
+        "career"
       ],
-      "habits": [],
+      "habits": [
+        "cooking"
+      ],
       "people": [
-        "Maya"
+        "Arjun"
       ]
     },
     {
       "id": "demo-08",
       "date": "2026-08-16",
-      "text": "The product meeting ran long. I drank too much coffee and could feel myself getting sharp. During the meeting I interrupted twice and later replayed both moments. The caffeine probably amplified an already tense morning, so I am going to cap coffee after lunch and prepare the decision points before the next planning session.",
-      "emotion": "annoyance",
-      "emotion_confidence": 0.8,
-      "sentiment": -0.18,
+      "text": "Raj asked whether I could cover a larger family expense, and I felt guilty for wanting limits. I want to support Raj, and I also have rent, savings goals, and uncertainty about work. Neha assumed I had more financial room because I usually say yes quickly. I opened the actual numbers instead of arguing from guilt. We postponed the decision for forty-eight hours, agreed to ask Raj what portion was essential, and decided that care should not require either sibling to hide resentment.",
+      "emotion": "fear",
+      "emotion_confidence": 0.82,
+      "sentiment": -0.37,
       "topics": [
-        "career"
+        "family",
+        "money",
+        "relationship"
       ],
       "habits": [
-        "coffee"
+        "budgeting"
       ],
-      "people": []
+      "people": [
+        "Raj",
+        "Neha"
+      ]
     },
     {
       "id": "demo-09",
       "date": "2026-08-17",
-      "text": "No workout again. I scrolled late while worrying about money, slept poorly, and woke up already behind. The phone gave me an easy escape from the budget and the backlog, but it also kept my mind activated past midnight. I woke with less patience and more catastrophic thinking. Tonight I will charge it outside the bedroom and choose one financial task before scrolling.",
-      "emotion": "sadness",
-      "emotion_confidence": 0.82,
-      "sentiment": -0.46,
+      "text": "A short walk with Maya interrupted three days of sitting and gave me room to admit how brittle I felt. Maya did not minimize the work or family pressure, but she questioned why rest always had to be earned. During the walk my breathing settled, and I noticed I could describe Vikram's delay without calling it a disaster. I sent him a brief message confirming the review agenda. The problem was unchanged, yet my stance moved from prosecution toward investigation after twenty-five minutes outside.",
+      "emotion": "relief",
+      "emotion_confidence": 0.86,
+      "sentiment": 0.24,
       "topics": [
         "health",
-        "money"
+        "relationship",
+        "career"
       ],
       "habits": [
-        "sleep",
-        "social_media"
+        "exercise"
       ],
-      "people": []
+      "people": [
+        "Maya"
+      ]
     },
     {
       "id": "demo-10",
       "date": "2026-08-18",
-      "text": "Sarah and I disagreed about priorities. I left the call convinced I was failing the team. Sarah challenged the order of the launch milestones, and I heard it as evidence that I was not ready to lead. Looking back, she was asking for a clearer dependency map. I need to ask clarifying questions before turning disagreement into a verdict about myself.",
-      "emotion": "fear",
-      "emotion_confidence": 0.84,
-      "sentiment": -0.55,
+      "text": "Vikram and I reviewed the failed handoff, and I apologized for turning a process gap into a personal accusation. Vikram explained that the handoff lacked an owner and that he had been reluctant to challenge my optimistic estimate. That was uncomfortable evidence about the environment I had created. We mapped the dependency, added a daily checkpoint, and agreed he would raise risk directly. Apologizing did not weaken my authority; it made the next action clearer and reduced the private shame I had been carrying.",
+      "emotion": "remorse",
+      "emotion_confidence": 0.83,
+      "sentiment": -0.08,
       "topics": [
-        "career"
+        "career",
+        "relationship",
+        "learning"
       ],
-      "habits": [],
+      "habits": [
+        "planning"
+      ],
       "people": [
-        "Sarah"
+        "Vikram"
       ]
     },
     {
       "id": "demo-11",
       "date": "2026-08-19",
-      "text": "Maya invited me for a walk, but I cancelled because I felt too tired to explain myself. Cancelling gave short-term relief, then made the evening lonelier. I drafted a message explaining that I was depleted rather than uninterested. I am noticing that isolation feels protective in the moment but usually extends the difficult mood into the next day.",
+      "text": "I accompanied Neha and Raj to Dr Mehta, then noticed I had silently expected Neha to read my exhaustion. The appointment went well, but the day exposed a family pattern. Neha waits until she is certain before asking for help, while I volunteer early and later feel unappreciated. Raj tries to protect us by downplaying his needs, which creates more guessing. Over dinner I named my fatigue without blaming Neha, and we assigned the next two tasks explicitly instead of relying on silent expectations.",
       "emotion": "sadness",
-      "emotion_confidence": 0.79,
-      "sentiment": -0.38,
+      "emotion_confidence": 0.82,
+      "sentiment": 0.0,
       "topics": [
-        "relationship",
-        "health"
+        "family",
+        "health",
+        "relationship"
       ],
-      "habits": [],
+      "habits": [
+        "cooking"
+      ],
       "people": [
-        "Maya"
+        "Neha",
+        "Raj",
+        "Dr Mehta"
       ]
     },
     {
       "id": "demo-12",
       "date": "2026-08-20",
-      "text": "I cooked dinner instead of ordering takeout. Small win, but it helped me feel less chaotic. Chopping vegetables and cleaning the kitchen gave the evening a beginning and an end. I did not solve the backlog, but I stopped carrying work into every room. Small routines may be useful because they restore a sense of sequence when everything feels urgent.",
-      "emotion": "relief",
-      "emotion_confidence": 0.8,
-      "sentiment": 0.16,
+      "text": "At a team dinner, Sarah praised Vikram's technical recovery while I struggled not to compare it with my own review. I was genuinely pleased for Vikram and still felt threatened by Sarah's praise. Both reactions were true. Instead of withdrawing, I asked what had helped the recovery and learned that the checkpoints I suggested were useful. Comparison softened when I focused on the shared system. I left early enough to keep my plan with Arjun, which was a small test of whether work success had to consume the whole evening.",
+      "emotion": "envy",
+      "emotion_confidence": 0.79,
+      "sentiment": -0.21,
       "topics": [
-        "health"
+        "career",
+        "relationship"
       ],
-      "habits": [
-        "cooking"
-      ],
-      "people": []
+      "habits": [],
+      "people": [
+        "Sarah",
+        "Vikram"
+      ]
     },
     {
       "id": "demo-13",
       "date": "2026-08-21",
-      "text": "The work backlog is real. I did not exercise and I can feel my patience thinning. I answered a teammate too abruptly and regretted it immediately. The pattern seems less about the person and more about accumulated sleep loss, missed movement, and unmade decisions. I blocked thirty minutes tomorrow to reduce the backlog before the first meeting.",
-      "emotion": "anger",
-      "emotion_confidence": 0.77,
-      "sentiment": -0.33,
+      "text": "This was the low point: I cancelled Maya, snapped at Arjun, ignored the budget, and worked without making progress. I had slept poorly, used coffee instead of breakfast, and moved between work, family messages, and the bank app without finishing anything. Maya's invitation felt like another demand, and Arjun's question about dinner triggered a sharp response. The old attitude was that everyone needed something from me; the harder truth was that I had agreed to too much without communicating limits. I wrote apologies but waited until calmer to send them.",
+      "emotion": "sadness",
+      "emotion_confidence": 0.91,
+      "sentiment": -0.72,
       "topics": [
         "career",
+        "relationship",
+        "money",
         "health"
       ],
-      "habits": [],
-      "people": []
+      "habits": [
+        "social_media",
+        "coffee"
+      ],
+      "people": [
+        "Maya",
+        "Arjun"
+      ]
     },
     {
       "id": "demo-14",
       "date": "2026-08-22",
-      "text": "I told Sarah I was overwhelmed and worried about the performance review. She was more understanding than I expected. Saying the concern aloud was uncomfortable, but it replaced several imagined outcomes with specific information. Sarah said the review would focus on how I handled scope and communication, not whether the launch was flawless. I left with two concrete improvements instead of a vague threat.",
-      "emotion": "realization",
-      "emotion_confidence": 0.81,
-      "sentiment": -0.12,
+      "text": "I put the phone outside the bedroom, slept eight hours, and tried ten minutes of breathing before email. Rest did not solve the launch, yet it changed the scale of every problem. During the breathing practice I noticed how quickly fear became a story about permanent failure. Arjun and I ate breakfast without discussing logistics, and I entered work with one priority list. I still felt embarrassed about yesterday, but the embarrassment led to repair rather than more hiding and frantic activity.",
+      "emotion": "relief",
+      "emotion_confidence": 0.85,
+      "sentiment": 0.31,
       "topics": [
-        "career"
+        "health",
+        "home",
+        "relationship"
       ],
-      "habits": [],
+      "habits": [
+        "sleep",
+        "meditation",
+        "social_media"
+      ],
       "people": [
-        "Sarah"
+        "Arjun"
       ]
     },
     {
       "id": "demo-15",
       "date": "2026-08-23",
-      "text": "Mid-month low point. I skipped the gym, worried about money, and avoided texting Maya back. This was the clearest low point of the month: work, finances, health, and friendship all felt like one failure. I wrote down what was actually true and what I was predicting. The smallest next step is sleep, followed by one honest message to Maya.",
-      "emotion": "sadness",
-      "emotion_confidence": 0.86,
-      "sentiment": -0.62,
+      "text": "Arjun and I divided household tasks explicitly instead of arguing about who should have noticed them. We discussed emotional labor as well as visible chores. Arjun said uncertainty was easier than being repeatedly promised help that did not appear. I chose cooking and the weekly shopping list, while he chose laundry and bills. The conversation moved from who cares more to what reliability looks like. I felt less defensive once the expectations were observable instead of moral judgments.",
+      "emotion": "caring",
+      "emotion_confidence": 0.87,
+      "sentiment": 0.42,
       "topics": [
-        "money",
         "relationship",
-        "health"
+        "home"
       ],
-      "habits": [],
+      "habits": [
+        "cooking",
+        "planning"
+      ],
       "people": [
-        "Maya"
+        "Arjun"
       ]
     },
     {
       "id": "demo-16",
       "date": "2026-08-24",
-      "text": "I slept nine hours after putting my phone outside the bedroom. The morning felt quieter. I expected to lie awake without the phone, but I fell asleep faster after reading for twenty minutes. The extra rest did not create instant optimism, yet I felt less reactive and more able to distinguish today's tasks from the whole future.",
-      "emotion": "relief",
-      "emotion_confidence": 0.84,
-      "sentiment": 0.24,
+      "text": "Sarah reduced the release scope, and Vikram agreed to own the risky integration with daily checkpoints. Cutting two features disappointed me because I had attached ambition to scope. Sarah framed the smaller release as judgment, not retreat, and asked me to make ownership visible. Vikram chose the integration plan and I kept review responsibility without rewriting his work. The workload became bounded, and I noticed curiosity replacing the urge to monitor every detail.",
+      "emotion": "optimism",
+      "emotion_confidence": 0.86,
+      "sentiment": 0.29,
       "topics": [
-        "health"
+        "career",
+        "learning"
       ],
       "habits": [
-        "sleep"
+        "planning"
       ],
-      "people": []
+      "people": [
+        "Sarah",
+        "Vikram"
+      ]
     },
     {
       "id": "demo-17",
       "date": "2026-08-25",
-      "text": "Sarah helped me cut the project scope. I still felt behind, but at least there was a path. We removed two low-value launch features and assigned a decision owner for each remaining risk. The workload became measurable rather than endless. I want to remember that asking for scope clarity is a leadership behavior, not an admission that I cannot cope.",
-      "emotion": "optimism",
-      "emotion_confidence": 0.82,
-      "sentiment": 0.08,
+      "text": "Leena challenged my belief that good leadership means absorbing every uncertainty before anyone else sees it. Leena asked whether I wanted to be indispensable or trusted, and the difference stayed with me. We reviewed moments where I had hidden risk, absorbed family tasks, or avoided disappointing friends. I plan to use the leadership course to practice delegation, while the evening journal tracks facts, assumptions, and the next reversible action. The new approach feels more honest than performing certainty.",
+      "emotion": "realization",
+      "emotion_confidence": 0.84,
+      "sentiment": 0.26,
       "topics": [
-        "career"
+        "career",
+        "learning",
+        "relationship"
       ],
-      "habits": [],
+      "habits": [
+        "reading",
+        "journaling"
+      ],
       "people": [
-        "Sarah"
+        "Leena"
       ]
     },
     {
       "id": "demo-18",
       "date": "2026-08-26",
-      "text": "Maya and I talked honestly. I apologized for disappearing and she said she understood. I told Maya that stress had made me withdraw and that the silence was not about her. She appreciated the directness and asked me not to wait for a perfect explanation next time. Repair felt lighter than the week of avoiding it.",
-      "emotion": "caring",
-      "emotion_confidence": 0.87,
+      "text": "Neha and I made a shared calendar for Raj's care instead of treating the more anxious person as the default organizer. The calendar included appointments, transport, medication pickup, and who would update relatives. Raj could see the plan and correct what we had assumed about him. My goal is to keep family care shared: Neha took two calls I would normally grab, while I chose transport and one expense. Control has often been my way of showing love, but the plan left space for all three of us to have preferences.",
+      "emotion": "relief",
+      "emotion_confidence": 0.86,
       "sentiment": 0.34,
       "topics": [
-        "relationship"
+        "family",
+        "health",
+        "home"
       ],
-      "habits": [],
+      "habits": [
+        "planning"
+      ],
       "people": [
-        "Maya"
+        "Neha",
+        "Raj"
       ]
     },
     {
       "id": "demo-19",
       "date": "2026-08-27",
-      "text": "First proper workout in days. My mood was noticeably steadier afterward. The session was moderate rather than ambitious: thirty minutes of strength work and a slow walk home. I concentrated better afterward and did not reread the same email repeatedly. Consistency appears more useful than waiting for enough energy to do an ideal workout.",
-      "emotion": "joy",
+      "text": "Maya and I walked after work, and I listened to her career news before talking about my launch. Maya told me about an interview she had not mentioned because our recent conversations centered on my crises. I felt ashamed for a moment, then chose interest over self-punishment. I want to keep our friendship mutual, so we walked for forty minutes, discussed her news, and made a photography plan. Repair includes making room for the other person's life, not only explaining my absence.",
+      "emotion": "caring",
       "emotion_confidence": 0.88,
-      "sentiment": 0.52,
+      "sentiment": 0.51,
       "topics": [
-        "health"
-      ],
-      "habits": [
-        "exercise"
-      ],
-      "people": []
-    },
-    {
-      "id": "demo-20",
-      "date": "2026-08-28",
-      "text": "The budget still worries me, but I made a spreadsheet and stopped avoiding the numbers. Listing rent, savings, and discretionary spending showed that the situation needs attention but is not an emergency. I scheduled a weekly fifteen-minute money review. Replacing background dread with a recurring check may stop financial fear from attaching itself to every work decision.",
-      "emotion": "realization",
-      "emotion_confidence": 0.79,
-      "sentiment": -0.05,
-      "topics": [
-        "money"
-      ],
-      "habits": [],
-      "people": []
-    },
-    {
-      "id": "demo-21",
-      "date": "2026-08-29",
-      "text": "I did a morning run before the standup. Sarah noticed I was calmer during planning. The run created enough space to enter standup with a plan instead of an apology. Sarah's observation mattered because it connected a private habit with a visible work behavior. I want to test this on two more meeting days before treating it as a reliable pattern.",
-      "emotion": "pride",
-      "emotion_confidence": 0.86,
-      "sentiment": 0.46,
-      "topics": [
-        "career",
-        "health"
+        "relationship",
+        "health",
+        "career"
       ],
       "habits": [
         "exercise"
       ],
       "people": [
-        "Sarah"
+        "Maya"
+      ]
+    },
+    {
+      "id": "demo-20",
+      "date": "2026-08-28",
+      "text": "I reviewed the budget, set a clear amount for helping Raj, and showed the plan to Neha. The spreadsheet showed I could contribute a fixed amount without using emergency savings, but not the larger amount I had almost promised. I plan to keep a weekly budget review so guilt does not decide first. Neha was relieved to see the constraint, and Raj chose the smaller immediate expense. Budgeting turned a loyalty test into a shared decision with boundaries and dates.",
+      "emotion": "realization",
+      "emotion_confidence": 0.83,
+      "sentiment": 0.17,
+      "topics": [
+        "money",
+        "family",
+        "home"
+      ],
+      "habits": [
+        "budgeting"
+      ],
+      "people": [
+        "Raj",
+        "Neha"
+      ]
+    },
+    {
+      "id": "demo-21",
+      "date": "2026-08-29",
+      "text": "A run before planning helped me ask Sarah and Vikram clarifying questions rather than arriving defensive. I slept seven and a half hours, ran slowly, and limited coffee before the planning meeting. When Sarah questioned the sequence, I asked which customer risk concerned her. Vikram answered part of it and I did not interrupt. The meeting produced a better dependency order without the familiar aftermath of replaying every sentence. I want to test whether preparation and movement consistently reduce defensiveness.",
+      "emotion": "pride",
+      "emotion_confidence": 0.89,
+      "sentiment": 0.56,
+      "topics": [
+        "career",
+        "health",
+        "learning"
+      ],
+      "habits": [
+        "exercise",
+        "sleep"
+      ],
+      "people": [
+        "Sarah",
+        "Vikram"
       ]
     },
     {
       "id": "demo-22",
       "date": "2026-08-30",
-      "text": "Maya sent a voice note that made me laugh. The friendship feels repaired, not perfect, but warmer. I replied with a voice note instead of overthinking the perfect apology. We agreed to walk again this weekend. The relationship feels stronger when I share the messy middle, not only the polished version after I have already recovered.",
-      "emotion": "joy",
-      "emotion_confidence": 0.89,
-      "sentiment": 0.5,
+      "text": "Vikram completed the integration and credited the smaller checkpoints rather than individual heroics. My first impulse was to claim the recovery as proof of my leadership, but Vikram's comment corrected that story. The system worked because ownership was distributed and risk became discussable. I thanked him publicly and asked what process to keep after launch. Pride felt steadier when it included the team rather than protecting a heroic self-image.",
+      "emotion": "gratitude",
+      "emotion_confidence": 0.88,
+      "sentiment": 0.54,
       "topics": [
+        "career",
+        "learning",
         "relationship"
       ],
-      "habits": [],
+      "habits": [
+        "planning"
+      ],
       "people": [
-        "Maya"
+        "Vikram"
       ]
     },
     {
       "id": "demo-23",
       "date": "2026-08-31",
-      "text": "Work was still intense, yet I handled feedback without spiraling. That felt new. Sarah requested one more change and I asked which user risk it addressed before reacting. The conversation stayed specific, and I completed the revision without treating it as a referendum on the promotion. That felt like genuine progress under the same kind of pressure.",
-      "emotion": "optimism",
-      "emotion_confidence": 0.84,
-      "sentiment": 0.28,
+      "text": "Arjun and I went out without our phones and talked about travel, not just chores or my job. We chose a small neighborhood restaurant and left both phones in Arjun's bag. He talked about a travel course he wants to take, and I noticed how little attention I had given his ambitions this month. I shared the promotion uncertainty without asking him to decide for me. The evening felt intimate because neither of us had to become manager, patient, or problem solver.",
+      "emotion": "joy",
+      "emotion_confidence": 0.9,
+      "sentiment": 0.64,
       "topics": [
-        "career"
+        "relationship",
+        "creativity",
+        "home"
       ],
-      "habits": [],
+      "habits": [
+        "social_media",
+        "meditation"
+      ],
       "people": [
-        "Sarah"
+        "Arjun"
       ]
     },
     {
       "id": "demo-24",
       "date": "2026-09-01",
-      "text": "Gym after work, simple dinner, early sleep. The combination made the day feel recoverable. None of the choices was dramatic, but together they lowered the sense of emergency. I prepared clothes for the morning and left the phone in the hallway. This combination may be a repeatable recovery routine after demanding workdays.",
-      "emotion": "relief",
-      "emotion_confidence": 0.87,
-      "sentiment": 0.58,
+      "text": "Neha, Raj, and I cooked together, and I let an imperfect family plan remain shared rather than taking it back. Raj wanted to cook an old family recipe and initially rejected help. Neha became impatient, while I nearly took over. We slowed down, divided the steps, and let the meal take longer. The same lesson appeared outside work: coordination does not require control. I left without checking the care calendar twice, trusting that Neha would handle her part and Raj would call if his needs changed.",
+      "emotion": "gratitude",
+      "emotion_confidence": 0.89,
+      "sentiment": 0.59,
       "topics": [
-        "health"
+        "family",
+        "health",
+        "relationship"
       ],
       "habits": [
-        "exercise",
-        "cooking",
-        "sleep"
+        "cooking"
       ],
-      "people": []
+      "people": [
+        "Neha",
+        "Raj"
+      ]
     },
     {
       "id": "demo-25",
       "date": "2026-09-02",
-      "text": "I reviewed expenses and found a way to reduce two subscriptions. Money feels less foggy. The numbers showed a manageable gap rather than the disaster I had imagined. Cancelling unused subscriptions created a small monthly buffer, and I set a savings target for the next three pay cycles. Concrete facts made the career decision feel less emotionally loaded.",
-      "emotion": "optimism",
-      "emotion_confidence": 0.82,
-      "sentiment": 0.22,
+      "text": "Leena reviewed my promotion examples and Sarah helped turn them into measurable leadership evidence. Leena helped me select examples of delegation, recovery after conflict, and clearer boundaries rather than presenting only output volume. Sarah converted them into two measurable criteria for the promotion review. I plan to finish the leadership course this quarter, and I scheduled reading time instead of adding another late work session. Clear standards now feel more useful than guessing at approval.",
+      "emotion": "pride",
+      "emotion_confidence": 0.87,
+      "sentiment": 0.47,
       "topics": [
-        "money"
+        "career",
+        "learning"
       ],
-      "habits": [],
-      "people": []
+      "habits": [
+        "reading",
+        "planning"
+      ],
+      "people": [
+        "Leena",
+        "Sarah"
+      ]
     },
     {
       "id": "demo-26",
       "date": "2026-09-03",
-      "text": "Sarah approved the final project plan and said it supports my promotion case. I felt trusted again instead of just evaluated. Sarah highlighted the clearer ownership map and the calmer way I communicated trade-offs. I wrote down the specific evidence instead of converting it into a general need for approval. The promotion remains uncertain, but my next development steps are much clearer.",
-      "emotion": "pride",
-      "emotion_confidence": 0.9,
-      "sentiment": 0.62,
+      "text": "A late QA regression tested the new habits, but Vikram and I paused, assigned owners, and avoided blame. The regression arrived at 9 p.m., exactly when my old pattern would have produced blame and an all-night rescue. I paused for five breaths, asked Vikram to assess impact, and informed Sarah with a bounded plan. We fixed the highest-risk path and deferred the rest. I drank one coffee rather than three and still slept before midnight. The calmer response was imperfect but repeatable.",
+      "emotion": "optimism",
+      "emotion_confidence": 0.88,
+      "sentiment": 0.38,
       "topics": [
-        "career"
+        "career",
+        "health",
+        "learning"
       ],
-      "habits": [],
+      "habits": [
+        "meditation",
+        "coffee"
+      ],
       "people": [
-        "Sarah"
+        "Vikram"
       ]
     },
     {
       "id": "demo-27",
       "date": "2026-09-04",
-      "text": "Maya and I walked after dinner. We talked about stress without it taking over the whole evening. I explained the launch pressure without asking Maya to absorb all of it. We also talked about her week and made plans unrelated to work. That balance felt important: support works better when the relationship remains larger than the current problem.",
-      "emotion": "caring",
-      "emotion_confidence": 0.86,
-      "sentiment": 0.49,
+      "text": "Maya and Arjun joined me for dinner, and I stayed present even when a launch notification appeared. Maya brought recent photographs and Arjun described his travel idea. A launch alert appeared on my watch, and I felt the familiar pull to leave the table mentally. I checked that it was nonurgent, silenced it, and returned to the conversation. Both of them noticed. Being present felt less like willpower and more like a series of small environmental choices made before stress peaked.",
+      "emotion": "joy",
+      "emotion_confidence": 0.91,
+      "sentiment": 0.67,
       "topics": [
         "relationship",
-        "health"
+        "home",
+        "creativity"
       ],
       "habits": [
-        "exercise"
+        "cooking",
+        "social_media"
       ],
       "people": [
-        "Maya"
+        "Maya",
+        "Arjun"
       ]
     },
     {
       "id": "demo-28",
       "date": "2026-09-05",
-      "text": "This week feels better. Exercise is back, work is clearer, and I am not carrying everything alone. The improvement is not a straight line, but the difficult stretch no longer feels random. Movement, sleep boundaries, smaller plans, and early communication each shorten the time I stay stuck. I want to keep tracking these supports rather than assuming the better week will maintain itself.",
-      "emotion": "gratitude",
-      "emotion_confidence": 0.9,
-      "sentiment": 0.68,
+      "text": "Sarah scheduled the promotion review and offered two weeks to demonstrate the final leadership criteria. The review is still uncertain, which makes resignation fantasies tempting because they offer an immediate end to evaluation. I plan to use Sarah's two-week window to build promotion evidence, while remembering that leaving would affect rent, the family support budget, and plans with Arjun. I listed all options and their constraints. Anticipation and fear are present, but neither has to make the irreversible choice alone.",
+      "emotion": "anticipation",
+      "emotion_confidence": 0.86,
+      "sentiment": 0.19,
       "topics": [
         "career",
-        "relationship",
-        "health"
+        "money",
+        "learning"
       ],
       "habits": [
-        "exercise"
+        "planning",
+        "budgeting"
       ],
       "people": [
-        "Sarah",
-        "Maya"
+        "Sarah"
       ]
     },
     {
       "id": "demo-29",
       "date": "2026-09-06",
-      "text": "I still have pressure around the launch, but I can see the pattern now: sleep, exercise, and honest conversations help. I reviewed the month and can see a full sequence: pressure rose, routines disappeared, isolation increased, then small reversible actions helped. The launch and promotion are still meaningful uncertainties, but I now have evidence about what steadies me while I decide.",
+      "text": "Looking back with Arjun, Maya, Neha, and Raj in mind, I can see that progress came from sharing responsibility rather than controlling every outcome. The month was not a simple improvement story. Work pressure exposed defensiveness, family care exposed control, money exposed guilt, and close relationships exposed avoidance. Exercise, sleep, meditation, budgeting, and explicit conversations helped, but only when I used them to engage rather than escape. My attitude is shifting from proving I can carry everything to asking what can be shared, measured, tested, or repaired.",
       "emotion": "realization",
-      "emotion_confidence": 0.88,
-      "sentiment": 0.57,
+      "emotion_confidence": 0.92,
+      "sentiment": 0.61,
       "topics": [
         "career",
         "relationship",
-        "health"
+        "family",
+        "health",
+        "money"
       ],
       "habits": [
         "exercise",
-        "sleep"
+        "sleep",
+        "meditation",
+        "budgeting"
       ],
       "people": [
-        "Sarah",
-        "Maya"
+        "Arjun",
+        "Maya",
+        "Neha",
+        "Raj"
       ]
     }
   ]

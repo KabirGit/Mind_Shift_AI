@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
+from typing import Any
 
 from backend.analytics.models import PatternSummary, compute_confidence
 from backend.analytics.pattern_engine import PatternEngine
@@ -18,6 +19,7 @@ class _InsightCandidate:
     text: str
     confidence: float
     recency: float
+    kind: str
 
 
 class InsightEngine:
@@ -65,6 +67,7 @@ class InsightEngine:
                     ),
                     confidence=confidence,
                     recency=1.0,
+                    kind="topic",
                 )
             )
             if trig.trend in {"increasing", "decreasing"}:
@@ -76,44 +79,43 @@ class InsightEngine:
                         ),
                         confidence=confidence,
                         recency=1.0,
+                        kind="topic",
                     )
                 )
 
-        # Recurring person insight.
+        # Recurring-person insights. Keep two so a month with several important
+        # relationships is not reduced to only the most frequently named person.
         if summary.recurring_people:
-            top_person, count = max(
-                summary.recurring_people.items(), key=lambda kv: kv[1]
-            )
-            confidence = compute_confidence(count)
-            if count >= 3:
-                top_emotion = self._person_emotion(top_person, days)
-                if top_emotion:
+            recurring_people = sorted(
+                summary.recurring_people.items(),
+                key=lambda item: (-item[1], item[0]),
+            )[:2]
+            profiles = self._relationship_profiles(days)
+            for person, count in recurring_people:
+                confidence = compute_confidence(count)
+                profile = profiles.get(person)
+                if count >= 3 and profile is not None:
                     candidates.append(
                         _InsightCandidate(
                             text=(
-                                f"{top_person} comes up often in your entries, usually "
-                                f"with {top_emotion}."
+                                f"{person} appears in {count} recent entries; the "
+                                f"relationship tone is {profile.sentiment_trend} and "
+                                f"often carries {profile.dominant_emotion}."
                             ),
                             confidence=confidence,
                             recency=0.8,
+                            kind="relationship",
                         )
                     )
-                else:
+                elif count >= 2:
                     candidates.append(
                         _InsightCandidate(
-                            text=f"{top_person} appears frequently in your recent entries.",
+                            text=f"{person} appears frequently in your recent entries.",
                             confidence=confidence,
                             recency=0.8,
+                            kind="relationship",
                         )
                     )
-            elif count >= 2:
-                candidates.append(
-                    _InsightCandidate(
-                        text=f"{top_person} appears frequently in your recent entries.",
-                        confidence=confidence,
-                        recency=0.8,
-                    )
-                )
 
         # Habit-correlation insights (up to 2; mention_count >= 3 and not neutral).
         candidates.extend(self._habit_insights(days))
@@ -147,6 +149,7 @@ class InsightEngine:
                     ),
                     confidence=corr.confidence or compute_confidence(corr.mention_count),
                     recency=0.7,
+                    kind="habit",
                 )
             )
             if len(out) >= 2:
@@ -159,10 +162,17 @@ class InsightEngine:
             c for c in candidates
             if c.confidence >= MIN_INSIGHT_CONFIDENCE and c.text.strip()
         ]
-        filtered.sort(key=lambda c: (c.confidence, c.recency), reverse=True)
+        filtered.sort(key=lambda c: (c.confidence, c.recency, c.text), reverse=True)
         out: list[str] = []
         seen: set[str] = set()
-        for c in filtered:
+        selected: list[_InsightCandidate] = []
+        # A dashboard is more useful when it shows different kinds of evidence.
+        # Reserve space before filling by score so topic frequency cannot hide
+        # relationship trajectories and behavior correlations.
+        for kind, limit in (("topic", 2), ("relationship", 2), ("habit", 1)):
+            selected.extend([c for c in filtered if c.kind == kind][:limit])
+        selected.extend(c for c in filtered if c not in selected)
+        for c in selected:
             signature = " ".join(
                 word.lower().strip(".,;:!?")
                 for word in c.text.split()
@@ -177,14 +187,11 @@ class InsightEngine:
                 break
         return out
 
-    def _person_emotion(self, person: str, days: int) -> str | None:
+    def _relationship_profiles(self, days: int) -> dict[str, Any]:
         if self.relationship_engine is None:
-            return None
+            return {}
         try:
             profiles = self.relationship_engine.analyze(lookback_days=days)
         except Exception:
-            return None
-        for p in profiles:
-            if p.person == person:
-                return p.dominant_emotion
-        return None
+            return {}
+        return {profile.person: profile for profile in profiles}

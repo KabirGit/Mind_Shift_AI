@@ -3,19 +3,19 @@
     {
       "period_label": "2026-08",
       "entry_count": 24,
-      "avg_sentiment": 0.0017,
-      "dominant_emotion": "sadness",
-      "top_topic": "career",
+      "avg_sentiment": 0.095,
+      "dominant_emotion": "caring",
+      "top_topic": "relationship",
       "snapshot_date": "2026-09-06T12:00:00Z"
     },
     {
       "period_label": "2026-09",
       "entry_count": 6,
-      "avg_sentiment": 0.5267,
+      "avg_sentiment": 0.485,
       "dominant_emotion": "realization",
-      "top_topic": "health",
+      "top_topic": "career",
       "snapshot_date": "2026-09-06T12:00:00Z"
     }
   ],
-  "narrative": "From 2026-W32 to 2026-W36, mood score moved from 71% to 75%, a slightly lighter shift. Entry volume changed by +5, and the leading topic moved from career to career. You've written 30 entries total."
+  "narrative": "From 2026-W32 to 2026-W36, mood score moved from 68% to 75%, a noticeably lighter shift. Entry volume changed by +5, and the leading topic moved from career to career. You've written 30 entries total."
 }

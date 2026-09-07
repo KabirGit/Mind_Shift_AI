@@ -2,41 +2,56 @@
   "generated_at": "2026-09-06T12:00:00Z",
   "source": "deterministic 30-day recruiter fixture",
   "dataset": {
-    "persona": "Aarav, a product analyst navigating a release, promotion goal, health routines, finances, and relationship repair.",
+    "persona": "Aarav, a product analyst balancing leadership pressure, partnership, friendship, shared family care, finances, health, and creativity across eight recurring relationships.",
     "entry_count": 30,
     "days_covered": 30,
     "first_date": "2026-08-08",
     "last_date": "2026-09-06",
-    "average_words_per_entry": 59.0,
+    "average_words_per_entry": 81.0,
     "topic_mentions": {
-      "health": 16,
-      "career": 15,
-      "relationship": 9,
-      "money": 5
+      "relationship": 20,
+      "career": 19,
+      "health": 14,
+      "learning": 10,
+      "home": 9,
+      "family": 7,
+      "money": 5,
+      "creativity": 3
     },
     "habit_mentions": {
-      "exercise": 8,
-      "sleep": 5,
-      "cooking": 2,
-      "social_media": 1,
-      "coffee": 1
+      "planning": 9,
+      "exercise": 6,
+      "cooking": 6,
+      "social_media": 6,
+      "sleep": 4,
+      "meditation": 4,
+      "budgeting": 4,
+      "coffee": 4,
+      "reading": 2,
+      "journaling": 1
     },
     "people_mentions": {
-      "Sarah": 10,
-      "Maya": 9
+      "Arjun": 9,
+      "Neha": 7,
+      "Raj": 7,
+      "Sarah": 7,
+      "Vikram": 7,
+      "Maya": 6,
+      "Leena": 2,
+      "Dr Mehta": 2
     }
   },
   "diagnostics": {
     "retrieval_precision": {
-      "precision_at_k": 0.9333,
+      "precision_at_k": 0.9667,
       "k": 3,
       "n_samples_used": 10,
       "note": "Approximation using topic overlap as relevance proxy."
     },
     "emotion_confidence": {
-      "mean_confidence": 0.8373,
-      "min": 0.77,
-      "max": 0.9,
+      "mean_confidence": 0.8607,
+      "min": 0.79,
+      "max": 0.92,
       "low_confidence_ratio": 0.0
     },
     "latency": {
@@ -488,43 +503,43 @@
     {
       "name": "Emotion and sentiment signals",
       "status": "proven",
-      "evidence": "Mean emotion confidence 84%; 13 distinct emotions.",
+      "evidence": "Mean emotion confidence 86%; 14 distinct emotions.",
       "component": "EmotionDetector + VADER metadata"
     },
     {
       "name": "Pattern and trigger analytics",
       "status": "proven",
-      "evidence": "4 recurring topics and 4 evidence-scored trigger patterns.",
+      "evidence": "8 recurring topics and 8 evidence-scored trigger patterns.",
       "component": "PatternEngine"
     },
     {
       "name": "Habit correlation",
       "status": "proven",
-      "evidence": "3 repeated habits evaluated against mood changes.",
+      "evidence": "7 repeated habits evaluated against mood changes.",
       "component": "HabitEngine"
     },
     {
       "name": "Relationship intelligence",
       "status": "proven",
-      "evidence": "2 recurring people with typed relationships and trends.",
+      "evidence": "8 recurring people with typed relationships and trends.",
       "component": "RelationshipEngine"
     },
     {
       "name": "Goals, growth, and prediction",
       "status": "proven",
-      "evidence": "1 tracked goal(s), 2 growth snapshot(s), and a bounded seven-day forecast.",
+      "evidence": "6 tracked goal(s), 2 growth snapshot(s), and a bounded seven-day forecast.",
       "component": "GoalEngine + GrowthTracker + PredictionEngine"
     },
     {
       "name": "Timeline and knowledge graph",
       "status": "proven",
-      "evidence": "20 timeline events; 12 graph nodes and 24 evidence edges.",
+      "evidence": "20 timeline events; 27 graph nodes and 117 evidence edges.",
       "component": "TimelineEngine + KnowledgeGraph"
     },
     {
       "name": "RAG retrieval quality",
       "status": "proven",
-      "evidence": "Precision@3 proxy 93% across 10 samples.",
+      "evidence": "Precision@3 proxy 97% across 10 samples.",
       "component": "FAISS-compatible retrieval evaluation"
     },
     {

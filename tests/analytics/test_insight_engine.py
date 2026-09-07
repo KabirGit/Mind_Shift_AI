@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from types import SimpleNamespace
+
+from backend.analytics.habit_engine import HabitCorrelation
 from backend.analytics.insight_engine import InsightEngine
 from backend.analytics.models import PatternSummary, TriggerStat
 
@@ -61,3 +64,62 @@ def test_zero_entries_fallback():
     summary = PatternSummary(period_entry_count=0)
     out = InsightEngine(FakeEngine(summary)).generate()
     assert out == ["Not enough journal history yet to generate insights."]
+
+
+def test_insights_reserve_space_for_relationships_and_behavior():
+    summary = PatternSummary(
+        recurring_topics={"career": 12, "health": 10, "money": 8},
+        recurring_people={"Arjun": 8, "Maya": 6},
+        triggers=[
+            TriggerStat(
+                topic=topic,
+                frequency=frequency,
+                avg_sentiment=0.2,
+                dominant_emotion="optimism",
+                trend="increasing",
+            )
+            for topic, frequency in (("career", 12), ("health", 10), ("money", 8))
+        ],
+        period_entry_count=20,
+    )
+
+    class Relationships:
+        def analyze(self, lookback_days=30):
+            return [
+                SimpleNamespace(
+                    person="Arjun",
+                    sentiment_trend="improving",
+                    dominant_emotion="caring",
+                ),
+                SimpleNamespace(
+                    person="Maya",
+                    sentiment_trend="stable",
+                    dominant_emotion="joy",
+                ),
+            ]
+
+    class Habits:
+        def analyze(self, lookback_days=30):
+            return [
+                HabitCorrelation(
+                    habit="exercise",
+                    mention_count=7,
+                    avg_sentiment_when_mentioned=0.4,
+                    avg_sentiment_other_days=-0.1,
+                    delta=0.5,
+                    correlation_label="positive",
+                    confidence=0.7,
+                    explanation="Exercise days are lighter.",
+                )
+            ]
+
+    out = InsightEngine(
+        FakeEngine(summary),
+        habit_engine=Habits(),
+        relationship_engine=Relationships(),
+    ).generate()
+
+    assert len(out) == 5
+    assert any("Arjun" in insight for insight in out)
+    assert any("Maya" in insight for insight in out)
+    assert any("exercise" in insight for insight in out)

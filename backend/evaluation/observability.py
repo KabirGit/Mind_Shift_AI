@@ -135,8 +135,9 @@ def build_observability_snapshot(
         "source": source,
         "dataset": {
             "persona": (
-                "Aarav, a product analyst navigating a release, promotion goal, "
-                "health routines, finances, and relationship repair."
+                "Aarav, a product analyst balancing leadership pressure, partnership, "
+                "friendship, shared family care, finances, health, and creativity across "
+                "eight recurring relationships."
             ),
             "entry_count": len(records),
             "days_covered": len(dates),

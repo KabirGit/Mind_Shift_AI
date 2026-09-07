@@ -663,13 +663,16 @@ def test_demo_endpoints_return_static_json_without_service():
     journal = client.get("/api/demo/journal-entries").json()
     assert journal["entry_count"] == 30
     assert journal["days_covered"] == 30
-    assert min(len(entry["text"].split()) for entry in journal["entries"]) >= 50
+    assert min(len(entry["text"].split()) for entry in journal["entries"]) >= 65
 
     observability = client.get("/api/demo/observability").json()
     assert observability["dataset"]["entry_count"] == 30
     assert observability["dataset"]["days_covered"] == 30
     assert observability["evaluation"]["passed"] == 15
     assert observability["evaluation"]["case_count"] == 15
+    assert len(observability["dataset"]["people_mentions"]) >= 8
+    assert len(observability["dataset"]["topic_mentions"]) >= 8
+    assert len(observability["dataset"]["habit_mentions"]) >= 8
     assert all(item["status"] == "proven" for item in observability["capabilities"])
     assert {trace["mode"] for trace in observability["traces"]} == {
         "reflection",
@@ -681,6 +684,13 @@ def test_demo_endpoints_return_static_json_without_service():
     assert "system_prompt" not in trace_json
     assert "user_prompt" not in trace_json
     assert "model_response" not in trace_json
+
+    summary = client.get("/api/demo/dashboard/summary").json()
+    assert len(summary["relationships"]) >= 8
+    assert any("relationship tone" in insight for insight in summary["insights"])
+    assert any("Days you mention" in insight for insight in summary["insights"])
+    goals = client.get("/api/demo/dashboard/goals").json()
+    assert len(goals["goals"]) >= 5
 
 
 def test_dashboard_and_support_endpoints_empty_data_path():
