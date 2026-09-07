@@ -131,12 +131,14 @@ def _service(tmp_path, llm, prompt_builder=None):
 
 
 def test_decision_uses_two_llm_calls_and_filters_current_memory(tmp_path):
-    final = (
-        "Validation: This is understandably difficult.\n"
-        "Recommendation: Gather evidence first.\n"
-        "Why: A trial limits downside.\n"
-        "Uncertainty: Team culture is unknown.\n"
-        "Next steps: 1. Ask questions. 2. Run a small trial."
+    final = json.dumps(
+        {
+            "validation": "This is understandably difficult.",
+            "recommendation": "Gather evidence first.",
+            "why": ["A trial limits downside."],
+            "uncertainty": ["Team culture is unknown."],
+            "next_actions": ["Ask questions.", "Run a small trial."],
+        }
     )
     llm = QueueLLM([_decision_json(), final])
     service = _service(tmp_path, llm)
@@ -148,7 +150,13 @@ def test_decision_uses_two_llm_calls_and_filters_current_memory(tmp_path):
     assert output["mode"] == "guidance"
     assert output["decision_state"] is not None
     assert output["guidance"] is not None
-    assert output["response"] == final
+    assert output["response"] == (
+        "Validation:\nThis is understandably difficult.\n\n"
+        "Recommendation:\nGather evidence first.\n\n"
+        "Why:\n- A trial limits downside.\n\n"
+        "Uncertainty:\n- Team culture is unknown.\n\n"
+        "Next steps:\n1. Ask questions.\n2. Run a small trial."
+    )
     assert len(llm.prompts) == 2
     assert output["agent_steps"] <= 3
     assert len(output["tools_called"]) == output["agent_steps"]
@@ -210,10 +218,14 @@ def _last_trace(path: Path):
 
 
 def test_guidance_trace_is_structured_and_redacted(tmp_path):
-    final = (
-        "Validation: This is difficult.\nRecommendation: Gather evidence.\n"
-        "Why: It limits downside.\nUncertainty: Culture.\n"
-        "Next steps: 1. Ask. 2. Review."
+    final = json.dumps(
+        {
+            "validation": "This is difficult.",
+            "recommendation": "Gather evidence.",
+            "why": ["It limits downside."],
+            "uncertainty": ["Culture is unknown."],
+            "next_actions": ["Ask.", "Review."],
+        }
     )
     service = _service(tmp_path, QueueLLM([_decision_json(), final]))
     trace_path = tmp_path / "guidance.jsonl"
@@ -226,6 +238,18 @@ def test_guidance_trace_is_structured_and_redacted(tmp_path):
     assert trace["mode"] == "guidance"
     assert trace["agent_steps"] <= 3
     assert trace["llm_calls"] == 2
+    assert trace["logical_llm_calls"] == 2
+    assert trace["provider_attempts"] == 2
+    assert trace["retry_count"] == 0
+    assert trace["prompt_versions"] == ["decision-parse-v2", "guidance-response-v2"]
+    assert trace["status"] == "success"
+    assert trace["agent_termination_reason"] in {
+        "sufficient_context",
+        "max_calls",
+        "no_additional_tool_needed",
+    }
+    assert trace["context_selection"]["estimated_tokens"] <= 1500
+    assert "total" in trace["stage_latencies_ms"]
     assert trace["latency_ms"] == trace["elapsed_ms"]
     serialized = json.dumps(trace)
     assert "Should I stay" not in serialized

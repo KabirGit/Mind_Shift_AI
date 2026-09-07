@@ -1,6 +1,6 @@
 # AI Reflection Intelligence Platform
 
-A local-first journaling companion that turns your entries into explainable, deterministic self-reflection intelligence — with a single free-tier LLM call as the only external dependency.
+A local-first journaling companion that turns your entries into explainable, deterministic self-reflection intelligence, with a hosted LLM as the only external runtime dependency.
 
 ![CI](https://img.shields.io/badge/tests-passing-brightgreen)
 
@@ -21,11 +21,13 @@ The deployed Next.js app defaults to `demo` mode on fresh load. Demo mode serves
 
 - Dashboard/story JSON from `/api/demo/dashboard/*`
 - Relationship graph JSON from `/api/demo/graph/*`
-- A read-only sample transcript from `/api/demo/chat-history`
+- Thirty detailed, consecutive journal entries from `/api/demo/journal-entries`
+- A read-only transcript that proves reflection and decision guidance via `/api/demo/chat-history`
+- A recruiter-facing system proof page backed by `/api/demo/observability`
 - Static files committed under `backend/demo_data/`
 
 This is decoupled from Render free-tier ephemeral storage: opening the deployed site
-does not require live SQLite records, FAISS indexes, or Mistral calls. The persistent
+does not require live SQLite records, FAISS indexes, or hosted-model calls. The persistent
 banner CTA switches the client to `live` mode, which uses `/api/dashboard/*` and
 `/api/chat` with the real pipeline.
 
@@ -35,9 +37,10 @@ Regenerate the snapshot with:
 make demo-snapshot
 ```
 
-The generator builds a 30-day synthetic persona in a throwaway local SQLite store,
-runs the real deterministic analytics engines, and writes static JSON. If valid
-Mistral credentials and network access are available, the script can freeze
+The generator builds a detailed 30-day synthetic persona in a throwaway local SQLite
+store, runs the real deterministic analytics engines, creates redacted route traces,
+and writes static JSON. If valid
+Hugging Face credentials and network access are available, the script can freeze
 live-generated sample replies; otherwise the JSON metadata records that offline
 fallback transcript text was used.
 
@@ -69,7 +72,7 @@ journal entry
         ProfileManager (UserProfile) · KnowledgeGraph
   → Orchestrator.assemble() → IntelligencePacket
   → PromptBuilder.build(insights, reflection, profile snapshot, memory replay)
-  → llm.generate() ◄── THE SINGLE LLM CALL (free-tier Mistral)
+  → typed hosted-model call (Hugging Face Inference Providers by default)
   → response (+ crisis resources prepended if flagged)
   → latency logged to data/latency_log.jsonl
 
@@ -90,17 +93,19 @@ Dashboard (no LLM): proactive alerts · emotion timeline · triggers/habits/peop
 | PDF export | Local (fpdf2) |
 | Vector search | Local (FAISS) |
 | Metadata storage | Local (SQLite) |
-| LLM response generation | Free-tier Mistral API (1 call/entry) |
+| LLM response generation | Hugging Face Inference Providers (`arsoban/ocd-therapist-27b-v0.3`) |
 
 ## Quick Start
 
 ```bash
 git clone <repo> && cd <repo>
-cp .env.example .env    # add your Mistral API key
+cp .env.example .env    # add a Hugging Face Inference Providers token
 make install-dev
 make seed               # optional: populate 30 days of demo data
 make demo-snapshot      # regenerate static recruiter demo JSON
-make run                # opens http://localhost:8501
+make run-api            # FastAPI on http://localhost:8502
+# in a second terminal:
+make run-frontend       # Next.js on http://localhost:3000
 ```
 
 Render uses lightweight deterministic embeddings/emotion detection so the app
@@ -177,6 +182,6 @@ Intentionally out of scope for v1:
 
 - **Deterministic analytics, not LLM-as-reasoner:** patterns and predictions are computed in testable Python so results are reproducible, explainable, and free — the LLM only phrases the reply.
 - **FAISS + SQLite dual storage:** FAISS gives fast semantic recall while SQLite holds the structured, queryable metadata that powers the analytics engines and dashboard.
-- **Free-tier Mistral over a fully local model:** keeps setup lightweight and fast to run on any machine while still limiting the cloud dependency to a single call per entry.
+- **Hosted specialist model over a local 27B deployment:** keeps setup lightweight while routing the default model through Hugging Face Inference Providers; deterministic safety and guidance logic remains local.
 
 > This project is a reflection tool, not a medical or psychological diagnosis.

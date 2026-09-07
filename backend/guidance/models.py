@@ -4,6 +4,8 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, field_validator
 
+from backend.llm.models import LLMCallResult
+
 
 def _clean_text(value: object, *, limit: int) -> str:
     return " ".join(str(value or "").strip().split())[:limit]
@@ -105,9 +107,39 @@ class DecisionParseResult(BaseModel):
     confidence: float = Field(default=0.0, ge=0.0, le=1.0)
     used_fallback: bool = False
     llm_called: bool = False
+    llm_result: LLMCallResult | None = Field(default=None, exclude=True)
+
+
+class GuidanceResponseDraft(BaseModel):
+    """Bounded structured draft for the user-facing guidance response."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    validation: str = Field(min_length=1, max_length=300)
+    recommendation: str = Field(min_length=1, max_length=500)
+    why: list[str] = Field(min_length=1, max_length=4)
+    uncertainty: list[str] = Field(min_length=1, max_length=4)
+    next_actions: list[str] = Field(min_length=2, max_length=4)
+
+    @field_validator("validation", "recommendation", mode="before")
+    @classmethod
+    def _clean_draft_text(cls, value: object) -> str:
+        return _clean_text(value, limit=500)
+
+    @field_validator("why", "uncertainty", "next_actions", mode="before")
+    @classmethod
+    def _clean_draft_list(cls, value: object) -> list[str]:
+        if not isinstance(value, list):
+            return []
+        return [
+            _clean_text(item, limit=300)
+            for item in value
+            if _clean_text(item, limit=300)
+        ][:4]
 
 
 class MemoryEvidence(BaseModel):
+    memory_id: str | None = None
     text: str = Field(max_length=500)
     timestamp: str | None = None
     emotion: str = "neutral"
@@ -128,6 +160,33 @@ class EmotionalContext(BaseModel):
     recurring_emotions: dict[str, int] = Field(default_factory=dict)
 
 
+class ConversationTurn(BaseModel):
+    role: Literal["user", "assistant"]
+    content: str = Field(max_length=500)
+
+
+class ContextSelectionReport(BaseModel):
+    included: dict[str, int] = Field(default_factory=dict)
+    deduplicated: dict[str, int] = Field(default_factory=dict)
+    truncated: dict[str, int] = Field(default_factory=dict)
+    dropped: dict[str, int] = Field(default_factory=dict)
+    estimated_tokens: int = Field(default=0, ge=0)
+    budget_tokens: int = Field(default=1500, ge=1)
+
+
+class PromptContext(BaseModel):
+    """Globally budgeted prompt-only context with explicit source boundaries."""
+
+    decision: dict[str, Any]
+    retrieval_evidence: list[MemoryEvidence] = Field(default_factory=list, max_length=3)
+    relevant_patterns: list[EvidenceItem] = Field(default_factory=list, max_length=3)
+    goals: list[EvidenceItem] = Field(default_factory=list, max_length=2)
+    profile_summary: dict[str, Any] | None = None
+    related_prior_decisions: list[EvidenceItem] = Field(default_factory=list, max_length=2)
+    conversation_history: list[ConversationTurn] = Field(default_factory=list, max_length=6)
+    selection: ContextSelectionReport
+
+
 class DecisionContext(BaseModel):
     """Small evidence packet assembled from existing project services."""
 
@@ -140,6 +199,7 @@ class DecisionContext(BaseModel):
     recent_decisions: list[EvidenceItem] = Field(default_factory=list, max_length=3)
     evidence_strength: float = Field(default=0.0, ge=0.0, le=1.0)
     missing_context: list[str] = Field(default_factory=list)
+    prompt_context: PromptContext | None = None
 
 
 class CandidateOption(BaseModel):
@@ -196,6 +256,8 @@ class ToolObservation(BaseModel):
     tool: str
     success: bool
     result_count: int = Field(default=0, ge=0)
+    duration_ms: float = Field(default=0.0, ge=0.0)
+    failure_category: str | None = None
     error: str | None = None
 
 
@@ -204,3 +266,8 @@ class AgentResult(BaseModel):
     tools_called: list[str] = Field(default_factory=list, max_length=3)
     observations: list[ToolObservation] = Field(default_factory=list, max_length=3)
     agent_steps: int = Field(default=0, ge=0, le=3)
+    accumulated_evidence: dict[str, int] = Field(default_factory=dict)
+    termination_reason: Literal[
+        "sufficient_context", "max_calls", "no_additional_tool_needed"
+    ] = "no_additional_tool_needed"
+    remaining_call_budget: int = Field(default=3, ge=0, le=3)

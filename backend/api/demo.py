@@ -10,11 +10,13 @@ from backend.api.schemas import (
     DashboardStoryResponse,
     DashboardSummaryResponse,
     DemoChatHistoryResponse,
+    DemoJournalEntriesResponse,
     DiagnosticsResponse,
     GoalsResponse,
     GraphPeopleResponse,
     GraphQueryResponse,
     GrowthResponse,
+    ObservabilityResponse,
     PredictionsResponse,
     TimelineResponse,
 )
@@ -64,6 +66,16 @@ def demo_dashboard_growth() -> Any:
 @router.get("/diagnostics", response_model=DiagnosticsResponse)
 def demo_diagnostics() -> Any:
     return _read_json("diagnostics.json")
+
+
+@router.get("/observability", response_model=ObservabilityResponse)
+def demo_observability() -> Any:
+    return _read_json("observability.json")
+
+
+@router.get("/journal-entries", response_model=DemoJournalEntriesResponse)
+def demo_journal_entries() -> Any:
+    return _read_json("journal_entries.json")
 
 
 @router.get("/graph/people", response_model=GraphPeopleResponse)

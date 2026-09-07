@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from backend.analytics._stats_utils import recency_decay
@@ -47,11 +48,22 @@ class Retriever:
         query: str,
         query_emotion: str = "neutral",
         top_k: int = 5,
+        *,
+        exclude_entry_hashes: set[str] | None = None,
+        diversify: bool = False,
+        diversity_penalty: float = 0.15,
     ) -> list[dict[str, Any]]:
         candidates = self.vector_store.query(
             query_text=query,
             top_k=max(top_k, self.candidate_pool),
         )
+        excluded = exclude_entry_hashes or set()
+        if excluded:
+            candidates = [
+                item
+                for item in candidates
+                if str(item.get("metadata", {}).get("entry_hash", "")) not in excluded
+            ]
         if not candidates:
             return []
 
@@ -82,7 +94,55 @@ class Retriever:
             )
 
         ranked.sort(key=lambda x: x["scores"]["combined"], reverse=True)
+        if diversify:
+            return self._diverse_top_k(ranked, top_k, max(0.0, diversity_penalty))
         return ranked[:top_k]
+
+    @classmethod
+    def _diverse_top_k(
+        cls,
+        ranked: list[dict[str, Any]],
+        top_k: int,
+        penalty: float,
+    ) -> list[dict[str, Any]]:
+        """Penalize near-repeated text while preserving the existing ranking signal."""
+
+        remaining = list(enumerate(ranked))
+        selected: list[dict[str, Any]] = []
+        while remaining and len(selected) < top_k:
+            best_position = max(
+                range(len(remaining)),
+                key=lambda position: (
+                    float(remaining[position][1]["scores"]["combined"])
+                    - penalty
+                    * max(
+                        (
+                            cls._token_overlap(
+                                remaining[position][1], prior
+                            )
+                            for prior in selected
+                        ),
+                        default=0.0,
+                    ),
+                    -remaining[position][0],
+                ),
+            )
+            _, item = remaining.pop(best_position)
+            if selected and max(cls._token_overlap(item, prior) for prior in selected) >= 0.82:
+                continue
+            selected.append(item)
+        return selected
+
+    @staticmethod
+    def _token_overlap(left: dict[str, Any], right: dict[str, Any]) -> float:
+        def tokens(item: dict[str, Any]) -> set[str]:
+            text = str(item.get("metadata", {}).get("text", "")).casefold()
+            return set(re.findall(r"[a-z0-9]+", text))
+
+        left_tokens = tokens(left)
+        right_tokens = tokens(right)
+        union = left_tokens | right_tokens
+        return len(left_tokens & right_tokens) / len(union) if union else 0.0
 
     def _normalize_semantic(self, candidates: list[dict[str, Any]]) -> list[float]:
         distances = [float(c.get("distance", 0.0)) for c in candidates]

@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import logging
-from typing import Any
+import time
+from typing import Any, Literal
 
 from backend.context.decision_context import DecisionContextBuilder
 from backend.guidance.models import AgentResult, DecisionState, ToolObservation
@@ -42,6 +43,7 @@ class GuidanceAgent:
         *,
         current_text: str,
         top_k: int = 3,
+        recent_history: list[dict[str, str]] | None = None,
     ) -> AgentResult:
         results: dict[str, Any] = {}
         calls: list[str] = []
@@ -72,7 +74,10 @@ class GuidanceAgent:
             observations,
         )
 
-        context = self.context_builder.assemble(state, results)
+        context = self._assemble(state, results, recent_history)
+        termination_reason: Literal[
+            "sufficient_context", "max_calls", "no_additional_tool_needed"
+        ] = "sufficient_context"
         if context.evidence_strength < self.EARLY_STOP_STRENGTH:
             third = (
                 "get_recent_decision_context"
@@ -89,13 +94,41 @@ class GuidanceAgent:
                     calls,
                     observations,
                 )
-                context = self.context_builder.assemble(state, results)
+                context = self._assemble(state, results, recent_history)
+                termination_reason = (
+                    "sufficient_context"
+                    if context.evidence_strength >= self.EARLY_STOP_STRENGTH
+                    else "max_calls"
+                )
+            else:
+                termination_reason = "no_additional_tool_needed"
+
+        accumulated_evidence = {
+            observation.tool: observation.result_count
+            for observation in observations
+            if observation.success and observation.result_count
+        }
 
         return AgentResult(
             context=context,
             tools_called=calls,
             observations=observations,
             agent_steps=len(calls),
+            accumulated_evidence=accumulated_evidence,
+            termination_reason=termination_reason,
+            remaining_call_budget=self.MAX_TOOL_CALLS - len(calls),
+        )
+
+    def _assemble(
+        self,
+        state: DecisionState,
+        results: dict[str, Any],
+        recent_history: list[dict[str, str]] | None,
+    ) -> Any:
+        if recent_history is None:
+            return self.context_builder.assemble(state, results)
+        return self.context_builder.assemble(
+            state, results, recent_history=recent_history
         )
 
     def _observe(
@@ -111,6 +144,7 @@ class GuidanceAgent:
         if name in calls or len(calls) >= self.MAX_TOOL_CALLS:
             return
         calls.append(name)
+        started = time.perf_counter()
         try:
             value = self._execute(name, state, current_text=current_text, top_k=top_k)
             results[name] = value
@@ -119,15 +153,22 @@ class GuidanceAgent:
                     tool=name,
                     success=True,
                     result_count=self._result_count(value),
+                    duration_ms=(time.perf_counter() - started) * 1000,
                 )
             )
         except Exception as exc:
-            logger.info("Guidance tool %s unavailable: %s", name, exc)
+            logger.info(
+                "Guidance tool unavailable tool=%s error_type=%s",
+                name,
+                type(exc).__name__,
+            )
             results[name] = self._empty_result(name)
             observations.append(
                 ToolObservation(
                     tool=name,
                     success=False,
+                    duration_ms=(time.perf_counter() - started) * 1000,
+                    failure_category=self._failure_category(exc),
                     error=type(exc).__name__,
                 )
             )
@@ -169,3 +210,11 @@ class GuidanceAgent:
         if name == "get_user_profile":
             return {"profile": None, "goals": []}
         return []
+
+    @staticmethod
+    def _failure_category(exc: Exception) -> str:
+        if isinstance(exc, TimeoutError):
+            return "timeout"
+        if isinstance(exc, (ConnectionError, OSError)):
+            return "unavailable"
+        return "tool_error"

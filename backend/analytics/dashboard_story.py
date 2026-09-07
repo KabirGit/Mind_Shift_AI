@@ -16,6 +16,7 @@ from backend.analytics._stats_utils import (
 from backend.analytics.goal_engine import GoalProgress
 from backend.analytics.habit_engine import HabitCorrelation
 from backend.analytics.models import TriggerStat, compute_confidence
+from backend.analytics.prediction_engine import BurnoutRisk, SentimentForecast
 from backend.analytics.presentation import (
     delta_direction,
     delta_summary,
@@ -25,7 +26,6 @@ from backend.analytics.presentation import (
     sentiment_summary,
     trend_phrase,
 )
-from backend.analytics.prediction_engine import BurnoutRisk, SentimentForecast
 from backend.analytics.relationship_engine import RelationshipProfile
 from backend.analytics.temporal_engine import TemporalPattern
 from backend.analytics.timeline_engine import TimelineEvent

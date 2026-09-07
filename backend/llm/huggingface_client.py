@@ -1,125 +1,64 @@
+"""Hugging Face Inference Providers chat-completions boundary."""
+
 from __future__ import annotations
 
-import logging
+import time
+from collections.abc import Callable
 from typing import Any
 
-import requests
-
-logger = logging.getLogger(__name__)
+from backend.llm.mistral_client import MistralInferenceClient
 
 
-class HuggingFaceInferenceClient:
+class HuggingFaceInferenceClient(MistralInferenceClient):
+    """Typed client for Hugging Face's OpenAI-compatible inference router.
+
+    The router selects a concrete provider from a model suffix. MindShift pins
+    the requested OCD model to Featherless AI because it is the provider listed
+    for that model on the Hub. All status handling, retry bounds, response-shape
+    validation, and usage capture are inherited from the common chat boundary.
     """
-    Hugging Face Inference API client (local process).
-    Contract:
-      generate(prompt: str) -> str
-    """
+
+    endpoint = "https://router.huggingface.co/v1/chat/completions"
+    provider_name = "Hugging Face Inference Providers"
 
     def __init__(
         self,
         model_name: str,
         api_token: str | None,
         max_new_tokens: int = 220,
-        timeout_s: int = 30,
+        timeout_s: float | None = None,
         temperature: float = 0.2,
+        *,
+        provider: str | None = "featherless-ai",
+        connect_timeout_s: float = 5.0,
+        read_timeout_s: float = 30.0,
+        max_attempts: int = 2,
+        retry_backoff_s: float = 0.25,
+        session: Any | None = None,
+        sleep_fn: Callable[[float], None] = time.sleep,
     ) -> None:
-        self.model_name = model_name
-        self.api_token = api_token
-        self.max_new_tokens = max_new_tokens
-        self.timeout_s = timeout_s
-        self.temperature = temperature
-
-    def _headers(self) -> dict[str, str]:
-        headers = {"Content-Type": "application/json"}
-        if self.api_token:
-            headers["Authorization"] = f"Bearer {self.api_token}"
-        return headers
-
-    """def generate(self, prompt: str) -> str:
-        url =f"https://api-inference.huggingface.co/models/{self.model_name}"
-        payload: dict[str, Any] = {
-            "inputs": prompt,
-            "parameters": {
-                "max_new_tokens": self.max_new_tokens,
-                "temperature": self.temperature,
-                # Keep response consistent across models.
-                "return_full_text": False,
-            },
-        }
-
-        req = urllib.request.Request(
-            url=url,
-            data=json.dumps(payload).encode("utf-8"),
-            headers=self._headers(),
-            method="POST",
+        normalized_model = model_name.strip()
+        normalized_provider = provider.strip() if provider else ""
+        routed_model = (
+            f"{normalized_model}:{normalized_provider}"
+            if normalized_provider and ":" not in normalized_model.rsplit("/", 1)[-1]
+            else normalized_model
+        )
+        self.hub_model_name = normalized_model
+        self.inference_provider = normalized_provider or None
+        super().__init__(
+            model_name=routed_model,
+            api_token=api_token,
+            max_new_tokens=max_new_tokens,
+            timeout_s=timeout_s,
+            temperature=temperature,
+            connect_timeout_s=connect_timeout_s,
+            read_timeout_s=read_timeout_s,
+            max_attempts=max_attempts,
+            retry_backoff_s=retry_backoff_s,
+            session=session,
+            sleep_fn=sleep_fn,
         )
 
-        try:
-            with urllib.request.urlopen(req, timeout=self.timeout_s) as resp:
-                body = resp.read().decode("utf-8")
-            data = json.loads(body)
-            return self._extract_text(data)
-        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, socket.timeout) as exc:
-            logger.exception("HF Inference API call failed, using fallback: %s", exc)
-            return (
-                "I’m here with you. I may not have immediate access to generate a full reply right now, "
-                "but it helps to notice what you’re feeling and what you need in this moment."
-            )
-        except Exception as exc:
-            logger.exception("HF Inference API parsing failed, using fallback: %s", exc)
-            return (
-                "I’m here with you. Tell me a bit more about what triggered this feeling, and we can explore it gently."
-            )"""
 
-    
-    def generate(self, prompt: str) -> str:
-        url = "https://api.mistral.ai/v1/chat/completions"
-
-        headers = {
-            "Authorization": f"Bearer {self.api_token}",
-            "Content-Type": "application/json"
-        }
-
-        payload = {
-            "model": self.model_name,
-            "messages": [
-                {"role": "system", "content": "You are an empathetic journaling assistant."},
-                {"role": "user", "content": prompt}
-            ],
-            "temperature": self.temperature,
-            "max_tokens": self.max_new_tokens
-        }
-
-        try:
-            res = requests.post(url, headers=headers, json=payload, timeout=self.timeout_s)
-            data = res.json()
-            return data["choices"][0]["message"]["content"]
-        except Exception as e:
-            logger.exception("Mistral API failed: %s", e)
-            return "I'm here with you. Tell me more about what you're feeling."
-
-    def _extract_text(self, data: Any) -> str:
-        # HF often returns either:
-        # - list[{"generated_text": "..."}]
-        # - dict{"error": "..."} on failures
-        if isinstance(data, dict) and "error" in data:
-            raise RuntimeError(f"HF error: {data['error']}")
-
-        if isinstance(data, list) and data:
-            first = data[0]
-            if isinstance(first, dict):
-                # Most generation models
-                text = first.get("generated_text") or first.get("summary_text") or ""
-                return str(text).strip() or self._fallback_from_data(first)
-        return self._fallback_from_data(data)
-
-    def _fallback_from_data(self, data: Any) -> str:
-        # Try to use any text-like value.
-        if isinstance(data, dict):
-            for key in ("generated_text", "summary_text", "text"):
-                if key in data and data[key]:
-                    return str(data[key]).strip()
-        return (
-            "I hear you. Take a slow breath, and if you can, tell me what part feels the heaviest right now."
-        )
-
+__all__ = ["HuggingFaceInferenceClient"]

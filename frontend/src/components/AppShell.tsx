@@ -35,6 +35,12 @@ export function AppShell({ children }: AppShellProps) {
             >
               Insights
             </Link>
+            <Link
+              className="rounded-lg px-4 py-2 text-ink hover:border-coral hover:text-ink"
+              href="/observability"
+            >
+              System proof
+            </Link>
           </nav>
         </div>
         <div className="border-t border-line/70 bg-[#fffdf8]">

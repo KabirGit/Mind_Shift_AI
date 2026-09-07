@@ -88,3 +88,103 @@ class EvalEngine:
         except Exception as exc:
             logger.exception("latency_summary failed: %s", exc)
             return default
+
+    def trace_health_summary(self) -> dict:
+        """Summarize request outcomes and retries from redacted structured traces."""
+
+        default = {
+            "sample_count": 0,
+            "status_counts": {},
+            "mode_counts": {},
+            "provider_attempts": 0,
+            "retry_count": 0,
+            "logical_llm_calls": 0,
+            "tool_calls": 0,
+        }
+        try:
+            if not os.path.exists(self.latency_log_path):
+                return default
+            status_counts: dict[str, int] = {}
+            mode_counts: dict[str, int] = {}
+            attempts = 0
+            retries = 0
+            logical_calls = 0
+            tool_calls = 0
+            samples = 0
+            with open(self.latency_log_path, encoding="utf-8") as handle:
+                for line in handle:
+                    try:
+                        record = json.loads(line)
+                    except (json.JSONDecodeError, TypeError):
+                        continue
+                    samples += 1
+                    status = str(record.get("status", "unknown"))
+                    status_counts[status] = status_counts.get(status, 0) + 1
+                    mode = str(record.get("mode", "unknown"))
+                    mode_counts[mode] = mode_counts.get(mode, 0) + 1
+                    attempts += max(0, int(record.get("provider_attempts", 0)))
+                    retries += max(0, int(record.get("retry_count", 0)))
+                    logical_calls += max(0, int(record.get("logical_llm_calls", 0)))
+                    tools = record.get("tools_called", [])
+                    if isinstance(tools, list):
+                        tool_calls += len(tools)
+            return {
+                "sample_count": samples,
+                "status_counts": status_counts,
+                "mode_counts": mode_counts,
+                "provider_attempts": attempts,
+                "retry_count": retries,
+                "logical_llm_calls": logical_calls,
+                "tool_calls": tool_calls,
+            }
+        except Exception as exc:
+            logger.warning("trace health summary failed error_type=%s", type(exc).__name__)
+            return default
+
+    def recent_trace_summaries(self, limit: int = 6) -> list[dict]:
+        """Return allow-listed operational fields from recent structured traces."""
+
+        safe_limit = max(1, min(20, int(limit)))
+        allowed = (
+            "timestamp",
+            "trace_id",
+            "mode",
+            "status",
+            "outcome",
+            "requested_models",
+            "actual_models",
+            "prompt_versions",
+            "logical_llm_calls",
+            "provider_attempts",
+            "retry_count",
+            "token_usage",
+            "tools_called",
+            "tool_observations",
+            "memories_retrieved",
+            "agent_steps",
+            "agent_termination_reason",
+            "context_selection",
+            "stage_latencies_ms",
+            "failure_category",
+            "latency_ms",
+        )
+        try:
+            if not os.path.exists(self.latency_log_path):
+                return []
+            records: list[dict] = []
+            with open(self.latency_log_path, encoding="utf-8") as handle:
+                for line in handle:
+                    try:
+                        value = json.loads(line)
+                    except (json.JSONDecodeError, TypeError):
+                        continue
+                    if isinstance(value, dict):
+                        records.append(
+                            {key: value[key] for key in allowed if key in value}
+                        )
+            return records[-safe_limit:]
+        except Exception as exc:
+            logger.warning(
+                "recent trace summary failed error_type=%s", type(exc).__name__
+            )
+            return []

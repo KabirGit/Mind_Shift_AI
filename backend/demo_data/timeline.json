@@ -1,9 +1,9 @@
 {
   "events": [
     {
-      "timestamp": "2026-08-07T09:15:00Z",
+      "timestamp": "2026-08-08T09:15:00Z",
       "title": "career \u2014 feeling optimism",
-      "description": "I started the month with a strong workout before work. The release plan feels big, but manageable.",
+      "description": "I started the month with a strong workout before work. The release plan feels big, but manageable. I",
       "emotion": "optimism",
       "sentiment": 0.48,
       "significance_score": 0.48,
@@ -12,7 +12,7 @@
       "mood_label": "positive"
     },
     {
-      "timestamp": "2026-08-08T10:15:00Z",
+      "timestamp": "2026-08-09T10:15:00Z",
       "title": "career \u2014 feeling pride",
       "description": "My manager Sarah liked the first project draft and said the promotion path is visible if I keep lead",
       "emotion": "pride",
@@ -24,9 +24,9 @@
       "mood_label": "positive"
     },
     {
-      "timestamp": "2026-08-09T11:15:00Z",
+      "timestamp": "2026-08-10T11:15:00Z",
       "title": "relationship \u2014 feeling joy",
-      "description": "My friend Maya and I had dinner after a long day. It was easy to talk and I felt lighter afterward.",
+      "description": "My friend Maya and I had dinner after a long day. It was easy to talk and I felt lighter afterward. ",
       "emotion": "joy",
       "sentiment": 0.44,
       "primary_person": "Maya",
@@ -36,7 +36,7 @@
       "mood_label": "positive"
     },
     {
-      "timestamp": "2026-08-11T13:15:00Z",
+      "timestamp": "2026-08-12T13:15:00Z",
       "title": "money \u2014 feeling fear",
       "description": "I slept badly after thinking about the launch budget and rent. Money is starting to sit in the backg",
       "emotion": "fear",
@@ -47,7 +47,7 @@
       "mood_label": "heavy"
     },
     {
-      "timestamp": "2026-08-12T14:15:00Z",
+      "timestamp": "2026-08-13T14:15:00Z",
       "title": "career \u2014 feeling sadness",
       "description": "Sarah asked for another revision. Her notes were fair, but I took them personally and felt deflated.",
       "emotion": "sadness",
@@ -60,9 +60,9 @@
       "mood_label": "heavy"
     },
     {
-      "timestamp": "2026-08-14T16:15:00Z",
+      "timestamp": "2026-08-15T16:15:00Z",
       "title": "relationship \u2014 feeling remorse",
-      "description": "Maya checked in and I answered too quickly. I think I sounded distant, then felt guilty about it.",
+      "description": "Maya checked in and I answered too quickly. I think I sounded distant, then felt guilty about it. Ma",
       "emotion": "remorse",
       "sentiment": -0.28,
       "baseline_sentiment": 0.44,
@@ -73,7 +73,7 @@
       "mood_label": "heavy"
     },
     {
-      "timestamp": "2026-08-16T18:15:00Z",
+      "timestamp": "2026-08-17T18:15:00Z",
       "title": "health \u2014 feeling sadness",
       "description": "No workout again. I scrolled late while worrying about money, slept poorly, and woke up already behi",
       "emotion": "sadness",
@@ -84,9 +84,9 @@
       "mood_label": "heavy"
     },
     {
-      "timestamp": "2026-08-17T09:15:00Z",
+      "timestamp": "2026-08-18T09:15:00Z",
       "title": "career \u2014 feeling fear",
-      "description": "Sarah and I disagreed about priorities. I left the call convinced I was failing the team.",
+      "description": "Sarah and I disagreed about priorities. I left the call convinced I was failing the team. Sarah chal",
       "emotion": "fear",
       "sentiment": -0.55,
       "baseline_sentiment": -0.03,
@@ -97,9 +97,9 @@
       "mood_label": "very heavy"
     },
     {
-      "timestamp": "2026-08-18T10:15:00Z",
+      "timestamp": "2026-08-19T10:15:00Z",
       "title": "relationship \u2014 feeling sadness",
-      "description": "Maya invited me for a walk, but I cancelled because I felt too tired to explain myself.",
+      "description": "Maya invited me for a walk, but I cancelled because I felt too tired to explain myself. Cancelling g",
       "emotion": "sadness",
       "sentiment": -0.38,
       "baseline_sentiment": 0.08,
@@ -110,9 +110,9 @@
       "mood_label": "heavy"
     },
     {
-      "timestamp": "2026-08-20T12:15:00Z",
+      "timestamp": "2026-08-21T12:15:00Z",
       "title": "career \u2014 feeling anger",
-      "description": "The work backlog is real. I did not exercise and I can feel my patience thinning.",
+      "description": "The work backlog is real. I did not exercise and I can feel my patience thinning. I answered a teamm",
       "emotion": "anger",
       "sentiment": -0.33,
       "significance_score": 0.33,
@@ -121,9 +121,9 @@
       "mood_label": "heavy"
     },
     {
-      "timestamp": "2026-08-22T14:15:00Z",
+      "timestamp": "2026-08-23T14:15:00Z",
       "title": "money \u2014 feeling sadness",
-      "description": "Mid-month low point. I skipped the gym, worried about money, and avoided texting Maya back.",
+      "description": "Mid-month low point. I skipped the gym, worried about money, and avoided texting Maya back. This was",
       "emotion": "sadness",
       "sentiment": -0.62,
       "baseline_sentiment": -0.0733,
@@ -134,9 +134,9 @@
       "mood_label": "very heavy"
     },
     {
-      "timestamp": "2026-08-25T17:15:00Z",
+      "timestamp": "2026-08-26T17:15:00Z",
       "title": "relationship \u2014 feeling caring",
-      "description": "Maya and I talked honestly. I apologized for disappearing and she said she understood.",
+      "description": "Maya and I talked honestly. I apologized for disappearing and she said she understood. I told Maya t",
       "emotion": "caring",
       "sentiment": 0.34,
       "baseline_sentiment": -0.21,
@@ -147,9 +147,9 @@
       "mood_label": "positive"
     },
     {
-      "timestamp": "2026-08-26T18:15:00Z",
+      "timestamp": "2026-08-27T18:15:00Z",
       "title": "health \u2014 feeling joy",
-      "description": "First proper workout in days. My mood was noticeably steadier afterward.",
+      "description": "First proper workout in days. My mood was noticeably steadier afterward. The session was moderate ra",
       "emotion": "joy",
       "sentiment": 0.52,
       "significance_score": 0.52,
@@ -158,9 +158,9 @@
       "mood_label": "positive"
     },
     {
-      "timestamp": "2026-08-28T10:15:00Z",
+      "timestamp": "2026-08-29T10:15:00Z",
       "title": "career \u2014 feeling pride",
-      "description": "I did a morning run before the standup. Sarah noticed I was calmer during planning.",
+      "description": "I did a morning run before the standup. Sarah noticed I was calmer during planning. The run created ",
       "emotion": "pride",
       "sentiment": 0.46,
       "baseline_sentiment": -0.13,
@@ -171,9 +171,9 @@
       "mood_label": "positive"
     },
     {
-      "timestamp": "2026-08-29T11:15:00Z",
+      "timestamp": "2026-08-30T11:15:00Z",
       "title": "relationship \u2014 feeling joy",
-      "description": "Maya sent a voice note that made me laugh. The friendship feels repaired, not perfect, but warmer.",
+      "description": "Maya sent a voice note that made me laugh. The friendship feels repaired, not perfect, but warmer. I",
       "emotion": "joy",
       "sentiment": 0.5,
       "baseline_sentiment": -0.1,
@@ -184,9 +184,9 @@
       "mood_label": "positive"
     },
     {
-      "timestamp": "2026-08-30T12:15:00Z",
+      "timestamp": "2026-08-31T12:15:00Z",
       "title": "career \u2014 feeling optimism",
-      "description": "Work was still intense, yet I handled feedback without spiraling. That felt new.",
+      "description": "Work was still intense, yet I handled feedback without spiraling. That felt new. Sarah requested one",
       "emotion": "optimism",
       "sentiment": 0.28,
       "baseline_sentiment": -0.11,
@@ -197,9 +197,9 @@
       "mood_label": "positive"
     },
     {
-      "timestamp": "2026-08-31T13:15:00Z",
+      "timestamp": "2026-09-01T13:15:00Z",
       "title": "health \u2014 feeling relief",
-      "description": "Gym after work, simple dinner, early sleep. The combination made the day feel recoverable.",
+      "description": "Gym after work, simple dinner, early sleep. The combination made the day feel recoverable. None of t",
       "emotion": "relief",
       "sentiment": 0.58,
       "significance_score": 0.58,
@@ -208,7 +208,7 @@
       "mood_label": "strongly positive"
     },
     {
-      "timestamp": "2026-09-02T15:15:00Z",
+      "timestamp": "2026-09-03T15:15:00Z",
       "title": "career \u2014 feeling pride",
       "description": "Sarah approved the final project plan and said it supports my promotion case. I felt trusted again i",
       "emotion": "pride",
@@ -221,9 +221,9 @@
       "mood_label": "strongly positive"
     },
     {
-      "timestamp": "2026-09-03T16:15:00Z",
+      "timestamp": "2026-09-04T16:15:00Z",
       "title": "relationship \u2014 feeling caring",
-      "description": "Maya and I walked after dinner. We talked about stress without it taking over the whole evening.",
+      "description": "Maya and I walked after dinner. We talked about stress without it taking over the whole evening. I e",
       "emotion": "caring",
       "sentiment": 0.49,
       "baseline_sentiment": -0.088,
@@ -234,9 +234,9 @@
       "mood_label": "positive"
     },
     {
-      "timestamp": "2026-09-04T17:15:00Z",
+      "timestamp": "2026-09-05T17:15:00Z",
       "title": "career \u2014 feeling gratitude",
-      "description": "This week feels better. Exercise is back, work is clearer, and I am not carrying everything alone.",
+      "description": "This week feels better. Exercise is back, work is clearer, and I am not carrying everything alone. T",
       "emotion": "gratitude",
       "sentiment": 0.68,
       "baseline_sentiment": 0.264,

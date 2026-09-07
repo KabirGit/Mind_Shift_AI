@@ -1,6 +1,6 @@
 DEMO_PERSONA_JSON ?= $(USERPROFILE)/Downloads/demo_persona_journals.json
 
-.PHONY: install install-dev run seed demo-snapshot ingest-demo-persona test lint typecheck clean help
+.PHONY: install install-dev run run-api run-frontend seed demo-snapshot ingest-demo-persona test lint typecheck clean help
 
 help:           ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -16,6 +16,12 @@ install-dev:    ## Install all dependencies including dev tools
 
 run:            ## Start the Streamlit app
 	streamlit run app.py
+
+run-api:        ## Start the FastAPI backend used by the Next.js app
+	uvicorn backend.api.main:app --host 127.0.0.1 --port 8502 --reload
+
+run-frontend:   ## Start the recruiter-facing Next.js app
+	cd frontend && npm run dev
 
 seed:           ## Populate demo data (deletes existing DB and FAISS store first)
 	@echo "Seeding demo data..."

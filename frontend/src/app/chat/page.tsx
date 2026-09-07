@@ -20,6 +20,11 @@ type ThreadItem = ChatMessage & {
   crisis?: ChatResponse["crisis"];
   retrieved?: Array<Record<string, unknown>>;
   prompt?: string | null;
+  mode?: ChatResponse["mode"];
+  decisionState?: Record<string, unknown> | null;
+  guidance?: Record<string, unknown> | null;
+  traceId?: string | null;
+  toolsCalled?: string[];
 };
 
 export default function ChatPage() {
@@ -53,7 +58,12 @@ export default function ChatPage() {
             memoryReplay: message.memory_replay,
             crisis: message.crisis,
             retrieved: message.retrieved_memories,
-            prompt: message.prompt
+            prompt: message.prompt,
+            mode: message.mode,
+            decisionState: message.decision_state,
+            guidance: message.guidance,
+            traceId: message.trace_id,
+            toolsCalled: message.tools_called
           }))
         );
       } catch (exc) {
@@ -92,7 +102,11 @@ export default function ChatPage() {
           memoryReplay: result.memory_replay,
           crisis: result.crisis,
           retrieved: result.retrieved_memories,
-          prompt: result.prompt
+          prompt: result.prompt,
+          mode: result.mode,
+          decisionState: result.decision_state,
+          guidance: result.guidance,
+          traceId: result.trace_id
         }
       ]);
     } catch (exc) {
@@ -170,6 +184,41 @@ export default function ChatPage() {
                   >
                     <p className="whitespace-pre-wrap leading-7">{item.content}</p>
                     {item.emotion ? <EmotionStrip emotion={item.emotion} /> : null}
+                    {item.role === "assistant" && item.mode ? (
+                      <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
+                        <span className="rounded-full border border-coral bg-[#fff7f2] px-3 py-1 text-coralDark">
+                          Route: {titleCase(item.mode)}
+                        </span>
+                        {item.toolsCalled?.length ? (
+                          <span className="rounded-full border border-line bg-[#fffdf8] px-3 py-1 text-ink">
+                            {item.toolsCalled.length} bounded tools
+                          </span>
+                        ) : null}
+                        {item.traceId ? (
+                          <span className="rounded-full border border-line bg-[#fffdf8] px-3 py-1 font-mono text-ink">
+                            {item.traceId}
+                          </span>
+                        ) : null}
+                      </div>
+                    ) : null}
+                    {item.decisionState || item.guidance ? (
+                      <details className="mt-3 rounded-lg border border-line bg-[#fffdf8] p-3 text-sm text-ink">
+                        <summary className="cursor-pointer font-semibold">
+                          Structured decision evidence
+                        </summary>
+                        <pre className="mt-2 overflow-x-auto whitespace-pre-wrap font-mono text-xs text-body">
+                          {JSON.stringify(
+                            {
+                              decision_state: item.decisionState,
+                              guidance: item.guidance,
+                              tools_called: item.toolsCalled
+                            },
+                            null,
+                            2
+                          )}
+                        </pre>
+                      </details>
+                    ) : null}
                     {item.memoryReplay ? (
                       <details className="mt-3 rounded-lg border border-line bg-[#fffdf8] p-3 text-sm text-ink">
                         <summary className="cursor-pointer font-semibold">

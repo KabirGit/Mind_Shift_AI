@@ -28,14 +28,14 @@
       "target": "Sarah",
       "sentiment": 0.196,
       "weight": 10,
-      "closeness_score": 2.6291
+      "closeness_score": 2.7095
     },
     {
       "source": "User",
       "target": "Maya",
       "sentiment": 0.1933,
       "weight": 9,
-      "closeness_score": 2.5971
+      "closeness_score": 2.6766
     }
   ]
 }

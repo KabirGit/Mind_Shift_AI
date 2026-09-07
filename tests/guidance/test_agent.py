@@ -76,6 +76,9 @@ def test_fear_selects_emotional_patterns_and_stops_when_sufficient():
         "get_emotional_patterns",
     ]
     assert result.agent_steps == 2
+    assert result.termination_reason == "sufficient_context"
+    assert result.remaining_call_budget == 1
+    assert result.accumulated_evidence
 
 
 def test_neutral_choice_uses_profile_second():
@@ -95,6 +98,8 @@ def test_insufficient_evidence_uses_recent_decisions_third():
         "get_recent_decision_context",
     ]
     assert result.agent_steps == 3
+    assert result.termination_reason == "max_calls"
+    assert result.remaining_call_budget == 0
 
 
 def test_moderate_emotional_evidence_fetches_profile_third():
@@ -117,6 +122,8 @@ def test_tool_failure_degrades_and_hard_limit_holds():
     result = agent.run(_state(emotion="fear"), current_text="now")
     assert result.observations[0].success is False
     assert result.observations[0].error == "RuntimeError"
+    assert result.observations[0].failure_category == "tool_error"
+    assert result.observations[0].duration_ms >= 0
     assert result.agent_steps <= 3
 
 

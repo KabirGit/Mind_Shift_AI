@@ -43,11 +43,16 @@ class FakePatternEngine:
 class FakeProfileManager:
     def __init__(self, fail: bool = False):
         self.fail = fail
+        self.update_calls = 0
 
-    def update(self):
+    def load(self):
         if self.fail:
             raise RuntimeError("profile unavailable")
         return UserProfile(entry_count=4, top_triggers=["career"])
+
+    def update(self):
+        self.update_calls += 1
+        raise AssertionError("context tool must not update the profile")
 
 
 class FakeGoalEngine:
@@ -150,6 +155,15 @@ def test_empty_history_is_explicit_and_never_fabricated():
     assert context.recent_decisions == []
     assert "relevant personal history" in context.missing_context
     assert not any("previous" in item.summary.lower() for item in context.relevant_patterns)
+
+
+def test_profile_tool_is_read_only():
+    manager = FakeProfileManager()
+
+    result = _builder(profile_manager=manager).get_user_profile(_state())
+
+    assert result["profile"]["entry_count"] == 4
+    assert manager.update_calls == 0
 
 
 def test_partial_service_failures_degrade_to_missing_context():

@@ -24,10 +24,13 @@ from backend.api.schemas import (
     GraphQueryResponse,
     GrowthResponse,
     HealthResponse,
+    ObservabilityResponse,
     PredictionsResponse,
     TimelineResponse,
 )
 from backend.config.logger import setup_logging
+from backend.config.settings import get_settings
+from backend.evaluation.observability import build_observability_snapshot
 
 setup_logging()
 
@@ -258,6 +261,22 @@ def diagnostics(
         retrieval_precision=service.eval_engine.retrieval_precision_at_k(k=3),
         emotion_confidence=service.eval_engine.emotion_confidence_stats(),
         latency=service.eval_engine.latency_summary(),
+        trace_health=service.eval_engine.trace_health_summary(),
+    )
+
+
+@app.get("/api/observability", response_model=ObservabilityResponse)
+def observability(
+    service: Annotated[RAGService, Depends(get_service)],
+) -> ObservabilityResponse:
+    settings = get_settings()
+    return ObservabilityResponse.model_validate(
+        build_observability_snapshot(
+            service,
+            source="live local pipeline",
+            model=settings.hf_model,
+            provider=settings.hf_inference_provider,
+        )
     )
 
 

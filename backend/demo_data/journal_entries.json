@@ -1,0 +1,479 @@
+{
+  "persona": "Aarav, a product analyst navigating a release, promotion goal, health routines, finances, and relationship repair.",
+  "entry_count": 30,
+  "days_covered": 30,
+  "average_words_per_entry": 59.0,
+  "entries": [
+    {
+      "id": "demo-00",
+      "date": "2026-08-08",
+      "text": "I started the month with a strong workout before work. The release plan feels big, but manageable. I wrote down three priorities for the release and noticed that planning reduced the usual Sunday-night noise. My goal this month is to protect four movement sessions each week while still showing that I can lead the launch without becoming frantic.",
+      "emotion": "optimism",
+      "emotion_confidence": 0.86,
+      "sentiment": 0.48,
+      "topics": [
+        "career",
+        "health"
+      ],
+      "habits": [
+        "exercise"
+      ],
+      "people": []
+    },
+    {
+      "id": "demo-01",
+      "date": "2026-08-09",
+      "text": "My manager Sarah liked the first project draft and said the promotion path is visible if I keep leading calmly. I felt proud, but I also caught myself immediately looking for what could go wrong. I asked Sarah which leadership behaviors would make the promotion case concrete, and she named clearer delegation, calmer status updates, and earlier risk escalation.",
+      "emotion": "pride",
+      "emotion_confidence": 0.84,
+      "sentiment": 0.36,
+      "topics": [
+        "career"
+      ],
+      "habits": [],
+      "people": [
+        "Sarah"
+      ]
+    },
+    {
+      "id": "demo-02",
+      "date": "2026-08-10",
+      "text": "My friend Maya and I had dinner after a long day. It was easy to talk and I felt lighter afterward. We talked about how quickly I disappear into work when a deadline becomes personal. Maya did not try to fix it; she asked me to send a short message when I am overloaded instead of going silent, which felt both kind and practical.",
+      "emotion": "joy",
+      "emotion_confidence": 0.88,
+      "sentiment": 0.44,
+      "topics": [
+        "relationship"
+      ],
+      "habits": [],
+      "people": [
+        "Maya"
+      ]
+    },
+    {
+      "id": "demo-03",
+      "date": "2026-08-11",
+      "text": "The deadline moved up. I skipped the gym and stayed at my desk late, which left me tense. By late afternoon my shoulders were tight and I had eaten lunch at the laptop. I told myself that skipping one workout was efficient, but the evening felt restless and unfocused, so I want to watch whether this trade-off repeats.",
+      "emotion": "stress",
+      "emotion_confidence": 0.82,
+      "sentiment": -0.25,
+      "topics": [
+        "career",
+        "health"
+      ],
+      "habits": [],
+      "people": []
+    },
+    {
+      "id": "demo-04",
+      "date": "2026-08-12",
+      "text": "I slept badly after thinking about the launch budget and rent. Money is starting to sit in the background. I kept calculating worst-case scenarios instead of checking the actual account balance. The fear was vague but physical, and I noticed it made the release feel more dangerous too. Tomorrow I will separate the work risk from the money facts.",
+      "emotion": "fear",
+      "emotion_confidence": 0.81,
+      "sentiment": -0.36,
+      "topics": [
+        "money",
+        "health"
+      ],
+      "habits": [
+        "sleep"
+      ],
+      "people": []
+    },
+    {
+      "id": "demo-05",
+      "date": "2026-08-13",
+      "text": "Sarah asked for another revision. Her notes were fair, but I took them personally and felt deflated. The first thought was that the promotion was slipping away, even though Sarah commented on the document rather than my ability. I saved the notes, took a ten-minute walk, and planned to sort them into factual changes and assumptions before replying.",
+      "emotion": "sadness",
+      "emotion_confidence": 0.79,
+      "sentiment": -0.42,
+      "topics": [
+        "career"
+      ],
+      "habits": [],
+      "people": [
+        "Sarah"
+      ]
+    },
+    {
+      "id": "demo-06",
+      "date": "2026-08-14",
+      "text": "I went for a short run anyway. It did not fix work, but my body felt less braced by the end. I only ran for eighteen minutes and almost dismissed it as too small to matter. Afterward I could read Sarah's comments without the same rush of defensiveness. That is useful evidence that movement changes how I approach pressure, even when it does not remove the problem.",
+      "emotion": "relief",
+      "emotion_confidence": 0.83,
+      "sentiment": 0.18,
+      "topics": [
+        "career",
+        "health"
+      ],
+      "habits": [
+        "exercise"
+      ],
+      "people": []
+    },
+    {
+      "id": "demo-07",
+      "date": "2026-08-15",
+      "text": "Maya checked in and I answered too quickly. I think I sounded distant, then felt guilty about it. Maya's message was warm, but I treated it like another task competing for attention. I want to repair that quickly rather than wait until guilt turns into avoidance. A simple honest note would be more respectful than pretending I am fine.",
+      "emotion": "remorse",
+      "emotion_confidence": 0.78,
+      "sentiment": -0.28,
+      "topics": [
+        "relationship"
+      ],
+      "habits": [],
+      "people": [
+        "Maya"
+      ]
+    },
+    {
+      "id": "demo-08",
+      "date": "2026-08-16",
+      "text": "The product meeting ran long. I drank too much coffee and could feel myself getting sharp. During the meeting I interrupted twice and later replayed both moments. The caffeine probably amplified an already tense morning, so I am going to cap coffee after lunch and prepare the decision points before the next planning session.",
+      "emotion": "annoyance",
+      "emotion_confidence": 0.8,
+      "sentiment": -0.18,
+      "topics": [
+        "career"
+      ],
+      "habits": [
+        "coffee"
+      ],
+      "people": []
+    },
+    {
+      "id": "demo-09",
+      "date": "2026-08-17",
+      "text": "No workout again. I scrolled late while worrying about money, slept poorly, and woke up already behind. The phone gave me an easy escape from the budget and the backlog, but it also kept my mind activated past midnight. I woke with less patience and more catastrophic thinking. Tonight I will charge it outside the bedroom and choose one financial task before scrolling.",
+      "emotion": "sadness",
+      "emotion_confidence": 0.82,
+      "sentiment": -0.46,
+      "topics": [
+        "health",
+        "money"
+      ],
+      "habits": [
+        "sleep",
+        "social_media"
+      ],
+      "people": []
+    },
+    {
+      "id": "demo-10",
+      "date": "2026-08-18",
+      "text": "Sarah and I disagreed about priorities. I left the call convinced I was failing the team. Sarah challenged the order of the launch milestones, and I heard it as evidence that I was not ready to lead. Looking back, she was asking for a clearer dependency map. I need to ask clarifying questions before turning disagreement into a verdict about myself.",
+      "emotion": "fear",
+      "emotion_confidence": 0.84,
+      "sentiment": -0.55,
+      "topics": [
+        "career"
+      ],
+      "habits": [],
+      "people": [
+        "Sarah"
+      ]
+    },
+    {
+      "id": "demo-11",
+      "date": "2026-08-19",
+      "text": "Maya invited me for a walk, but I cancelled because I felt too tired to explain myself. Cancelling gave short-term relief, then made the evening lonelier. I drafted a message explaining that I was depleted rather than uninterested. I am noticing that isolation feels protective in the moment but usually extends the difficult mood into the next day.",
+      "emotion": "sadness",
+      "emotion_confidence": 0.79,
+      "sentiment": -0.38,
+      "topics": [
+        "relationship",
+        "health"
+      ],
+      "habits": [],
+      "people": [
+        "Maya"
+      ]
+    },
+    {
+      "id": "demo-12",
+      "date": "2026-08-20",
+      "text": "I cooked dinner instead of ordering takeout. Small win, but it helped me feel less chaotic. Chopping vegetables and cleaning the kitchen gave the evening a beginning and an end. I did not solve the backlog, but I stopped carrying work into every room. Small routines may be useful because they restore a sense of sequence when everything feels urgent.",
+      "emotion": "relief",
+      "emotion_confidence": 0.8,
+      "sentiment": 0.16,
+      "topics": [
+        "health"
+      ],
+      "habits": [
+        "cooking"
+      ],
+      "people": []
+    },
+    {
+      "id": "demo-13",
+      "date": "2026-08-21",
+      "text": "The work backlog is real. I did not exercise and I can feel my patience thinning. I answered a teammate too abruptly and regretted it immediately. The pattern seems less about the person and more about accumulated sleep loss, missed movement, and unmade decisions. I blocked thirty minutes tomorrow to reduce the backlog before the first meeting.",
+      "emotion": "anger",
+      "emotion_confidence": 0.77,
+      "sentiment": -0.33,
+      "topics": [
+        "career",
+        "health"
+      ],
+      "habits": [],
+      "people": []
+    },
+    {
+      "id": "demo-14",
+      "date": "2026-08-22",
+      "text": "I told Sarah I was overwhelmed and worried about the performance review. She was more understanding than I expected. Saying the concern aloud was uncomfortable, but it replaced several imagined outcomes with specific information. Sarah said the review would focus on how I handled scope and communication, not whether the launch was flawless. I left with two concrete improvements instead of a vague threat.",
+      "emotion": "realization",
+      "emotion_confidence": 0.81,
+      "sentiment": -0.12,
+      "topics": [
+        "career"
+      ],
+      "habits": [],
+      "people": [
+        "Sarah"
+      ]
+    },
+    {
+      "id": "demo-15",
+      "date": "2026-08-23",
+      "text": "Mid-month low point. I skipped the gym, worried about money, and avoided texting Maya back. This was the clearest low point of the month: work, finances, health, and friendship all felt like one failure. I wrote down what was actually true and what I was predicting. The smallest next step is sleep, followed by one honest message to Maya.",
+      "emotion": "sadness",
+      "emotion_confidence": 0.86,
+      "sentiment": -0.62,
+      "topics": [
+        "money",
+        "relationship",
+        "health"
+      ],
+      "habits": [],
+      "people": [
+        "Maya"
+      ]
+    },
+    {
+      "id": "demo-16",
+      "date": "2026-08-24",
+      "text": "I slept nine hours after putting my phone outside the bedroom. The morning felt quieter. I expected to lie awake without the phone, but I fell asleep faster after reading for twenty minutes. The extra rest did not create instant optimism, yet I felt less reactive and more able to distinguish today's tasks from the whole future.",
+      "emotion": "relief",
+      "emotion_confidence": 0.84,
+      "sentiment": 0.24,
+      "topics": [
+        "health"
+      ],
+      "habits": [
+        "sleep"
+      ],
+      "people": []
+    },
+    {
+      "id": "demo-17",
+      "date": "2026-08-25",
+      "text": "Sarah helped me cut the project scope. I still felt behind, but at least there was a path. We removed two low-value launch features and assigned a decision owner for each remaining risk. The workload became measurable rather than endless. I want to remember that asking for scope clarity is a leadership behavior, not an admission that I cannot cope.",
+      "emotion": "optimism",
+      "emotion_confidence": 0.82,
+      "sentiment": 0.08,
+      "topics": [
+        "career"
+      ],
+      "habits": [],
+      "people": [
+        "Sarah"
+      ]
+    },
+    {
+      "id": "demo-18",
+      "date": "2026-08-26",
+      "text": "Maya and I talked honestly. I apologized for disappearing and she said she understood. I told Maya that stress had made me withdraw and that the silence was not about her. She appreciated the directness and asked me not to wait for a perfect explanation next time. Repair felt lighter than the week of avoiding it.",
+      "emotion": "caring",
+      "emotion_confidence": 0.87,
+      "sentiment": 0.34,
+      "topics": [
+        "relationship"
+      ],
+      "habits": [],
+      "people": [
+        "Maya"
+      ]
+    },
+    {
+      "id": "demo-19",
+      "date": "2026-08-27",
+      "text": "First proper workout in days. My mood was noticeably steadier afterward. The session was moderate rather than ambitious: thirty minutes of strength work and a slow walk home. I concentrated better afterward and did not reread the same email repeatedly. Consistency appears more useful than waiting for enough energy to do an ideal workout.",
+      "emotion": "joy",
+      "emotion_confidence": 0.88,
+      "sentiment": 0.52,
+      "topics": [
+        "health"
+      ],
+      "habits": [
+        "exercise"
+      ],
+      "people": []
+    },
+    {
+      "id": "demo-20",
+      "date": "2026-08-28",
+      "text": "The budget still worries me, but I made a spreadsheet and stopped avoiding the numbers. Listing rent, savings, and discretionary spending showed that the situation needs attention but is not an emergency. I scheduled a weekly fifteen-minute money review. Replacing background dread with a recurring check may stop financial fear from attaching itself to every work decision.",
+      "emotion": "realization",
+      "emotion_confidence": 0.79,
+      "sentiment": -0.05,
+      "topics": [
+        "money"
+      ],
+      "habits": [],
+      "people": []
+    },
+    {
+      "id": "demo-21",
+      "date": "2026-08-29",
+      "text": "I did a morning run before the standup. Sarah noticed I was calmer during planning. The run created enough space to enter standup with a plan instead of an apology. Sarah's observation mattered because it connected a private habit with a visible work behavior. I want to test this on two more meeting days before treating it as a reliable pattern.",
+      "emotion": "pride",
+      "emotion_confidence": 0.86,
+      "sentiment": 0.46,
+      "topics": [
+        "career",
+        "health"
+      ],
+      "habits": [
+        "exercise"
+      ],
+      "people": [
+        "Sarah"
+      ]
+    },
+    {
+      "id": "demo-22",
+      "date": "2026-08-30",
+      "text": "Maya sent a voice note that made me laugh. The friendship feels repaired, not perfect, but warmer. I replied with a voice note instead of overthinking the perfect apology. We agreed to walk again this weekend. The relationship feels stronger when I share the messy middle, not only the polished version after I have already recovered.",
+      "emotion": "joy",
+      "emotion_confidence": 0.89,
+      "sentiment": 0.5,
+      "topics": [
+        "relationship"
+      ],
+      "habits": [],
+      "people": [
+        "Maya"
+      ]
+    },
+    {
+      "id": "demo-23",
+      "date": "2026-08-31",
+      "text": "Work was still intense, yet I handled feedback without spiraling. That felt new. Sarah requested one more change and I asked which user risk it addressed before reacting. The conversation stayed specific, and I completed the revision without treating it as a referendum on the promotion. That felt like genuine progress under the same kind of pressure.",
+      "emotion": "optimism",
+      "emotion_confidence": 0.84,
+      "sentiment": 0.28,
+      "topics": [
+        "career"
+      ],
+      "habits": [],
+      "people": [
+        "Sarah"
+      ]
+    },
+    {
+      "id": "demo-24",
+      "date": "2026-09-01",
+      "text": "Gym after work, simple dinner, early sleep. The combination made the day feel recoverable. None of the choices was dramatic, but together they lowered the sense of emergency. I prepared clothes for the morning and left the phone in the hallway. This combination may be a repeatable recovery routine after demanding workdays.",
+      "emotion": "relief",
+      "emotion_confidence": 0.87,
+      "sentiment": 0.58,
+      "topics": [
+        "health"
+      ],
+      "habits": [
+        "exercise",
+        "cooking",
+        "sleep"
+      ],
+      "people": []
+    },
+    {
+      "id": "demo-25",
+      "date": "2026-09-02",
+      "text": "I reviewed expenses and found a way to reduce two subscriptions. Money feels less foggy. The numbers showed a manageable gap rather than the disaster I had imagined. Cancelling unused subscriptions created a small monthly buffer, and I set a savings target for the next three pay cycles. Concrete facts made the career decision feel less emotionally loaded.",
+      "emotion": "optimism",
+      "emotion_confidence": 0.82,
+      "sentiment": 0.22,
+      "topics": [
+        "money"
+      ],
+      "habits": [],
+      "people": []
+    },
+    {
+      "id": "demo-26",
+      "date": "2026-09-03",
+      "text": "Sarah approved the final project plan and said it supports my promotion case. I felt trusted again instead of just evaluated. Sarah highlighted the clearer ownership map and the calmer way I communicated trade-offs. I wrote down the specific evidence instead of converting it into a general need for approval. The promotion remains uncertain, but my next development steps are much clearer.",
+      "emotion": "pride",
+      "emotion_confidence": 0.9,
+      "sentiment": 0.62,
+      "topics": [
+        "career"
+      ],
+      "habits": [],
+      "people": [
+        "Sarah"
+      ]
+    },
+    {
+      "id": "demo-27",
+      "date": "2026-09-04",
+      "text": "Maya and I walked after dinner. We talked about stress without it taking over the whole evening. I explained the launch pressure without asking Maya to absorb all of it. We also talked about her week and made plans unrelated to work. That balance felt important: support works better when the relationship remains larger than the current problem.",
+      "emotion": "caring",
+      "emotion_confidence": 0.86,
+      "sentiment": 0.49,
+      "topics": [
+        "relationship",
+        "health"
+      ],
+      "habits": [
+        "exercise"
+      ],
+      "people": [
+        "Maya"
+      ]
+    },
+    {
+      "id": "demo-28",
+      "date": "2026-09-05",
+      "text": "This week feels better. Exercise is back, work is clearer, and I am not carrying everything alone. The improvement is not a straight line, but the difficult stretch no longer feels random. Movement, sleep boundaries, smaller plans, and early communication each shorten the time I stay stuck. I want to keep tracking these supports rather than assuming the better week will maintain itself.",
+      "emotion": "gratitude",
+      "emotion_confidence": 0.9,
+      "sentiment": 0.68,
+      "topics": [
+        "career",
+        "relationship",
+        "health"
+      ],
+      "habits": [
+        "exercise"
+      ],
+      "people": [
+        "Sarah",
+        "Maya"
+      ]
+    },
+    {
+      "id": "demo-29",
+      "date": "2026-09-06",
+      "text": "I still have pressure around the launch, but I can see the pattern now: sleep, exercise, and honest conversations help. I reviewed the month and can see a full sequence: pressure rose, routines disappeared, isolation increased, then small reversible actions helped. The launch and promotion are still meaningful uncertainties, but I now have evidence about what steadies me while I decide.",
+      "emotion": "realization",
+      "emotion_confidence": 0.88,
+      "sentiment": 0.57,
+      "topics": [
+        "career",
+        "relationship",
+        "health"
+      ],
+      "habits": [
+        "exercise",
+        "sleep"
+      ],
+      "people": [
+        "Sarah",
+        "Maya"
+      ]
+    }
+  ]
+}

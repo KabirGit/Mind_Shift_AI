@@ -31,45 +31,49 @@
       },
       "retrieved_memories": [
         {
-          "index": 3,
-          "distance": 7.0,
+          "index": 17,
+          "distance": 5.0,
           "metadata": {
-            "text": "Sarah approved the final project plan and said it supports my promotion case. I felt trusted again instead of just evaluated.",
-            "timestamp": "2026-09-02T15:15:00Z",
-            "emotion": "pride",
+            "text": "I cooked dinner instead of ordering takeout. Small win, but it helped me feel less chaotic. Chopping vegetables and cleaning the kitchen gave the evening a beginning and an end. I did not solve the backlog, but I stopped carrying work into every room. Small routines may be useful because they restore a sense of sequence when everything feels urgent.",
+            "timestamp": "2026-08-20T11:15:00Z",
+            "emotion": "relief",
             "topics": [
-              "career"
-            ]
-          }
-        },
-        {
-          "index": 16,
-          "distance": 7.0,
-          "metadata": {
-            "text": "The work backlog is real. I did not exercise and I can feel my patience thinning.",
-            "timestamp": "2026-08-20T12:15:00Z",
-            "emotion": "anger",
-            "topics": [
-              "career",
               "health"
             ]
           }
         },
         {
           "index": 23,
-          "distance": 7.0,
+          "distance": 5.0,
           "metadata": {
-            "text": "I went for a short run anyway. It did not fix work, but my body felt less braced by the end.",
-            "timestamp": "2026-08-13T15:15:00Z",
+            "text": "I went for a short run anyway. It did not fix work, but my body felt less braced by the end. I only ran for eighteen minutes and almost dismissed it as too small to matter. Afterward I could read Sarah's comments without the same rush of defensiveness. That is useful evidence that movement changes how I approach pressure, even when it does not remove the problem.",
+            "timestamp": "2026-08-14T15:15:00Z",
             "emotion": "relief",
             "topics": [
               "career",
               "health"
             ]
           }
+        },
+        {
+          "index": 27,
+          "distance": 5.0,
+          "metadata": {
+            "text": "My friend Maya and I had dinner after a long day. It was easy to talk and I felt lighter afterward. We talked about how quickly I disappear into work when a deadline becomes personal. Maya did not try to fix it; she asked me to send a short message when I am overloaded instead of going silent, which felt both kind and practical.",
+            "timestamp": "2026-08-10T11:15:00Z",
+            "emotion": "joy",
+            "topics": [
+              "relationship"
+            ]
+          }
         }
       ],
-      "prompt": null
+      "prompt": null,
+      "mode": "reflection",
+      "trace_id": null,
+      "decision_state": null,
+      "guidance": null,
+      "tools_called": []
     },
     {
       "role": "user",
@@ -102,8 +106,8 @@
           "index": 6,
           "distance": 7.0,
           "metadata": {
-            "text": "Work was still intense, yet I handled feedback without spiraling. That felt new.",
-            "timestamp": "2026-08-30T12:15:00Z",
+            "text": "Work was still intense, yet I handled feedback without spiraling. That felt new. Sarah requested one more change and I asked which user risk it addressed before reacting. The conversation stayed specific, and I completed the revision without treating it as a referendum on the promotion. That felt like genuine progress under the same kind of pressure.",
+            "timestamp": "2026-08-31T12:15:00Z",
             "emotion": "optimism",
             "topics": [
               "career"
@@ -111,34 +115,37 @@
           }
         },
         {
-          "index": 1,
-          "distance": 8.0,
+          "index": 18,
+          "distance": 7.0,
           "metadata": {
-            "text": "This week feels better. Exercise is back, work is clearer, and I am not carrying everything alone.",
-            "timestamp": "2026-09-04T17:15:00Z",
-            "emotion": "gratitude",
+            "text": "Maya invited me for a walk, but I cancelled because I felt too tired to explain myself. Cancelling gave short-term relief, then made the evening lonelier. I drafted a message explaining that I was depleted rather than uninterested. I am noticing that isolation feels protective in the moment but usually extends the difficult mood into the next day.",
+            "timestamp": "2026-08-19T10:15:00Z",
+            "emotion": "sadness",
             "topics": [
-              "career",
               "relationship",
               "health"
             ]
           }
         },
         {
-          "index": 20,
-          "distance": 8.0,
+          "index": 22,
+          "distance": 7.0,
           "metadata": {
-            "text": "No workout again. I scrolled late while worrying about money, slept poorly, and woke up already behind.",
-            "timestamp": "2026-08-16T18:15:00Z",
-            "emotion": "sadness",
+            "text": "Maya checked in and I answered too quickly. I think I sounded distant, then felt guilty about it. Maya's message was warm, but I treated it like another task competing for attention. I want to repair that quickly rather than wait until guilt turns into avoidance. A simple honest note would be more respectful than pretending I am fine.",
+            "timestamp": "2026-08-15T16:15:00Z",
+            "emotion": "remorse",
             "topics": [
-              "health",
-              "money"
+              "relationship"
             ]
           }
         }
       ],
-      "prompt": null
+      "prompt": null,
+      "mode": "reflection",
+      "trace_id": null,
+      "decision_state": null,
+      "guidance": null,
+      "tools_called": []
     },
     {
       "role": "user",
@@ -169,10 +176,10 @@
       "retrieved_memories": [
         {
           "index": 0,
-          "distance": 6.0,
+          "distance": 5.0,
           "metadata": {
-            "text": "I still have pressure around the launch, but I can see the pattern now: sleep, exercise, and honest conversations help.",
-            "timestamp": "2026-09-05T18:15:00Z",
+            "text": "I still have pressure around the launch, but I can see the pattern now: sleep, exercise, and honest conversations help. I reviewed the month and can see a full sequence: pressure rose, routines disappeared, isolation increased, then small reversible actions helped. The launch and promotion are still meaningful uncertainties, but I now have evidence about what steadies me while I decide.",
+            "timestamp": "2026-09-06T18:15:00Z",
             "emotion": "realization",
             "topics": [
               "career",
@@ -182,32 +189,151 @@
           }
         },
         {
-          "index": 9,
-          "distance": 6.0,
-          "metadata": {
-            "text": "The budget still worries me, but I made a spreadsheet and stopped avoiding the numbers.",
-            "timestamp": "2026-08-27T09:15:00Z",
-            "emotion": "realization",
-            "topics": [
-              "money"
-            ]
-          }
-        },
-        {
           "index": 2,
-          "distance": 7.0,
+          "distance": 5.0,
           "metadata": {
-            "text": "Maya and I walked after dinner. We talked about stress without it taking over the whole evening.",
-            "timestamp": "2026-09-03T16:15:00Z",
+            "text": "Maya and I walked after dinner. We talked about stress without it taking over the whole evening. I explained the launch pressure without asking Maya to absorb all of it. We also talked about her week and made plans unrelated to work. That balance felt important: support works better when the relationship remains larger than the current problem.",
+            "timestamp": "2026-09-04T16:15:00Z",
             "emotion": "caring",
             "topics": [
               "relationship",
               "health"
             ]
           }
+        },
+        {
+          "index": 7,
+          "distance": 5.0,
+          "metadata": {
+            "text": "Maya sent a voice note that made me laugh. The friendship feels repaired, not perfect, but warmer. I replied with a voice note instead of overthinking the perfect apology. We agreed to walk again this weekend. The relationship feels stronger when I share the messy middle, not only the polished version after I have already recovered.",
+            "timestamp": "2026-08-30T11:15:00Z",
+            "emotion": "joy",
+            "topics": [
+              "relationship"
+            ]
+          }
         }
       ],
-      "prompt": null
+      "prompt": null,
+      "mode": "reflection",
+      "trace_id": null,
+      "decision_state": null,
+      "guidance": null,
+      "tools_called": []
+    },
+    {
+      "role": "user",
+      "content": "I received another round of launch feedback. Should I resign now or ask Sarah for a two-week improvement plan while protecting my income?"
+    },
+    {
+      "role": "assistant",
+      "content": "Validation:\nRepeated feedback can make leaving feel urgent, especially when the promotion and your sense of competence are involved.\n\nRecommendation:\nAsk Sarah for a two-week improvement plan before making an irreversible resignation decision.\n\nWhy:\n- Recent entries show that specific scope and feedback conversations reduced uncertainty.\n- Stable income is a stated constraint, while a short trial is reversible.\n- Fear was high during earlier feedback, but later evidence showed clearer planning and trust.\n\nUncertainty:\n- The next review criteria are not yet confirmed.\n- Your financial runway has not been calculated.\n\nNext steps:\n1. Ask for two measurable success criteria.\n2. Run the plan for two weeks and record outcomes.\n3. Review your finances before reconsidering resignation.",
+      "emotion": {
+        "emotion": "realization",
+        "confidence": 0.84,
+        "all_emotions": [
+          {
+            "emotion": "realization",
+            "score": 0.84
+          },
+          {
+            "emotion": "curiosity",
+            "score": 0.54
+          }
+        ]
+      },
+      "memory_replay": null,
+      "crisis": {
+        "flagged": false,
+        "matched_terms": []
+      },
+      "retrieved_memories": [
+        {
+          "index": 3,
+          "distance": 3.0,
+          "metadata": {
+            "text": "Sarah approved the final project plan and said it supports my promotion case. I felt trusted again instead of just evaluated. Sarah highlighted the clearer ownership map and the calmer way I communicated trade-offs. I wrote down the specific evidence instead of converting it into a general need for approval. The promotion remains uncertain, but my next development steps are much clearer.",
+            "timestamp": "2026-09-03T15:15:00Z",
+            "emotion": "pride",
+            "topics": [
+              "career"
+            ]
+          }
+        },
+        {
+          "index": 19,
+          "distance": 3.0,
+          "metadata": {
+            "text": "Sarah and I disagreed about priorities. I left the call convinced I was failing the team. Sarah challenged the order of the launch milestones, and I heard it as evidence that I was not ready to lead. Looking back, she was asking for a clearer dependency map. I need to ask clarifying questions before turning disagreement into a verdict about myself.",
+            "timestamp": "2026-08-18T09:15:00Z",
+            "emotion": "fear",
+            "topics": [
+              "career"
+            ]
+          }
+        },
+        {
+          "index": 29,
+          "distance": 3.0,
+          "metadata": {
+            "text": "I started the month with a strong workout before work. The release plan feels big, but manageable. I wrote down three priorities for the release and noticed that planning reduced the usual Sunday-night noise. My goal this month is to protect four movement sessions each week while still showing that I can lead the launch without becoming frantic.",
+            "timestamp": "2026-08-08T09:15:00Z",
+            "emotion": "optimism",
+            "topics": [
+              "career",
+              "health"
+            ]
+          }
+        }
+      ],
+      "prompt": null,
+      "mode": "guidance",
+      "trace_id": "demo-guidance-01",
+      "decision_state": {
+        "problem": "How to respond to repeated launch feedback without making a fear-driven irreversible choice.",
+        "desired_outcome": "Protect income while testing whether clearer expectations improve the role.",
+        "user_stated_options": [
+          "Resign now",
+          "Ask Sarah for a two-week improvement plan"
+        ],
+        "fears": [
+          "Falling behind",
+          "Losing income"
+        ],
+        "constraints": [
+          "Stable income",
+          "Active product launch"
+        ],
+        "relevant_goals": [
+          "Promotion",
+          "Calmer leadership"
+        ],
+        "current_emotion": "fear",
+        "missing_information": [
+          "Specific success criteria",
+          "Available financial runway"
+        ],
+        "uncertainty": 0.42
+      },
+      "guidance": {
+        "recommended_option": "Ask Sarah for a two-week improvement plan",
+        "strong_recommendation": true,
+        "evidence_confidence": 0.68,
+        "uncertainty": [
+          "The next review criteria are not yet confirmed.",
+          "Resignation runway has not been calculated."
+        ],
+        "next_actions": [
+          "Request two measurable success criteria.",
+          "Run the plan for two weeks and record outcomes.",
+          "Review finances before reconsidering resignation."
+        ]
+      },
+      "tools_called": [
+        "search_similar_memories",
+        "get_emotional_patterns",
+        "get_user_profile"
+      ]
     }
   ]
 }

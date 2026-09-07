@@ -40,7 +40,7 @@
         "sentiment": 0.196,
         "type": "person",
         "relationship_type": "colleague",
-        "closeness_score": 2.6291,
+        "closeness_score": 2.7095,
         "neighbor": "Sarah"
       },
       {
@@ -48,7 +48,7 @@
         "sentiment": 0.1933,
         "type": "person",
         "relationship_type": "friend",
-        "closeness_score": 2.5971,
+        "closeness_score": 2.6766,
         "neighbor": "Maya"
       }
     ]
@@ -160,7 +160,7 @@
         "sentiment": 0.1933,
         "type": "person",
         "relationship_type": "friend",
-        "closeness_score": 2.5971,
+        "closeness_score": 2.6766,
         "neighbor": "User"
       }
     ]
@@ -195,7 +195,7 @@
         "sentiment": 0.196,
         "type": "person",
         "relationship_type": "colleague",
-        "closeness_score": 2.6291,
+        "closeness_score": 2.7095,
         "neighbor": "User"
       }
     ]

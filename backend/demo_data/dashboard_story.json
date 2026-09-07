@@ -12,7 +12,7 @@
     "entry_count": 30,
     "days_in_range": 30,
     "growth_score": 0.6924,
-    "growth_narrative": "From 2026-W32 to 2026-W36, mood score moved from 71% to 76%, a slightly lighter shift. Entry volume changed by +3, and the leading topic moved from career to health. You've written 30 entries total.",
+    "growth_narrative": "From 2026-W32 to 2026-W36, mood score moved from 71% to 75%, a slightly lighter shift. Entry volume changed by +5, and the leading topic moved from career to career. You've written 30 entries total.",
     "has_sufficient_data": true,
     "minimum_entry_count": 5,
     "baseline_mood_score": 55,
@@ -99,12 +99,12 @@
       "mention_count": 10,
       "avg_sentiment": 0.196,
       "dominant_emotion": "pride",
-      "last_mentioned": "2026-09-05T18:15:00Z",
+      "last_mentioned": "2026-09-06T18:15:00Z",
       "trend": "improving",
       "relationship_type": "colleague",
       "relationship_type_confidence": 1.0,
       "relationship_type_ambiguity": "",
-      "closeness_score": 2.6291,
+      "closeness_score": 2.7095,
       "sentiment_trend": "improving",
       "co_mentioned_with": {
         "Maya": 2
@@ -120,12 +120,12 @@
       "mention_count": 9,
       "avg_sentiment": 0.1933,
       "dominant_emotion": "joy",
-      "last_mentioned": "2026-09-05T18:15:00Z",
+      "last_mentioned": "2026-09-06T18:15:00Z",
       "trend": "improving",
       "relationship_type": "friend",
       "relationship_type_confidence": 1.0,
       "relationship_type_ambiguity": "",
-      "closeness_score": 2.5971,
+      "closeness_score": 2.6766,
       "sentiment_trend": "improving",
       "co_mentioned_with": {
         "Sarah": 2
@@ -139,61 +139,61 @@
   ],
   "rhythm": {
     "topic": "health",
-    "peak_day_of_week": "Tuesday",
+    "peak_day_of_week": "Wednesday",
     "peak_time_of_day": "morning",
-    "day_time_crossing": "Friday morning",
+    "day_time_crossing": "Saturday morning",
     "day_time_sample_size": 2,
     "peak_day_avg_sentiment": -0.37,
     "peak_time_avg_sentiment": 0.47,
     "baseline_avg_sentiment": 0.1225,
     "delta": -0.4925,
     "confidence": 1.0,
-    "explanation": "Health sentiment peaks on Tuesdays (-0.49, below its baseline)."
+    "explanation": "Health sentiment peaks on Wednesdays (-0.49, below its baseline)."
   },
   "weekly_buckets": [
     {
       "label": "Aug 03-Aug 09",
-      "avg_sentiment": 0.4267,
+      "avg_sentiment": 0.42,
       "dominant_emotion": "optimism",
       "top_topic": "career",
-      "entry_count": 3,
+      "entry_count": 2,
       "mood_score": 71,
       "mood_label": "positive"
     },
     {
       "label": "Aug 10-Aug 16",
-      "avg_sentiment": -0.2529,
-      "dominant_emotion": "sadness",
+      "avg_sentiment": -0.1243,
+      "dominant_emotion": "joy",
       "top_topic": "career",
       "entry_count": 7,
-      "mood_score": 37,
-      "mood_label": "heavy"
+      "mood_score": 44,
+      "mood_label": "mixed"
     },
     {
       "label": "Aug 17-Aug 23",
-      "avg_sentiment": -0.2286,
+      "avg_sentiment": -0.3286,
       "dominant_emotion": "sadness",
       "top_topic": "health",
       "entry_count": 7,
-      "mood_score": 39,
+      "mood_score": 34,
       "mood_label": "heavy"
     },
     {
       "label": "Aug 24-Aug 30",
-      "avg_sentiment": 0.3043,
-      "dominant_emotion": "optimism",
-      "top_topic": "career",
+      "avg_sentiment": 0.2986,
+      "dominant_emotion": "joy",
+      "top_topic": "health",
       "entry_count": 7,
       "mood_score": 65,
       "mood_label": "positive"
     },
     {
       "label": "Aug 31-Sep 06",
-      "avg_sentiment": 0.5267,
-      "dominant_emotion": "relief",
-      "top_topic": "health",
-      "entry_count": 6,
-      "mood_score": 76,
+      "avg_sentiment": 0.4914,
+      "dominant_emotion": "optimism",
+      "top_topic": "career",
+      "entry_count": 7,
+      "mood_score": 75,
       "mood_label": "positive"
     }
   ],
@@ -222,8 +222,8 @@
   "goals": [
     {
       "goal_keyword": "promotion",
-      "first_mentioned": "2026-08-08T10:15:00Z",
-      "last_mentioned": "2026-09-02T15:15:00Z",
+      "first_mentioned": "2026-08-09T10:15:00Z",
+      "last_mentioned": "2026-09-03T15:15:00Z",
       "mention_count": 2,
       "avg_sentiment": 0.49,
       "sentiment_trend": "improving",
@@ -235,7 +235,7 @@
     }
   ],
   "highlight_memory": {
-    "timestamp": "2026-08-12T14:15:00Z",
+    "timestamp": "2026-08-13T14:15:00Z",
     "title": "career \u2014 feeling sadness",
     "description": "Sarah asked for another revision. Her notes were fair, but I took them personally and felt deflated.",
     "emotion": "sadness",
